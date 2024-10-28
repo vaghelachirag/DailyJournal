@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/person"
+        android:title="Person"
+        android:icon="@mipmap/ic_launcher"/>
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:enabled="true"
+        android:visible="true"
+        android:iconTint="@color/material_on_primary_disabled"
+        android:icon="@drawable/leftside"/>
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@mipmap/ic_launcher"/>
+</menu>

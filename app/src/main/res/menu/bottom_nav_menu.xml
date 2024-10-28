@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/person"
+        android:title="Home"
+        android:icon="@drawable/ic_android_black_24dp"/>
+    <item
+        android:id="@+id/home"
+        android:title="Analystic"
+        android:enabled="true"
+        android:visible="true"
+        android:icon="@drawable/leftside"/>
+    <item
+        android:id="@+id/settings"
+        android:title="Premium"
+        android:icon="@mipmap/ic_launcher"/>
+</menu>

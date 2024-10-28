@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/main_graident"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_Logo"
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20sp"
+            android:src="@drawable/logo">
+        </ImageView>
+        <com.app.dailyjounral.widget.LogoText
+            android:id="@+id/txt_Header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_Logo"
+            android:layout_marginTop="20sp"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:text="Daily Journal">
+        </com.app.dailyjounral.widget.LogoText>
+
+        <LinearLayout
+            android:id="@id/ll_Tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_Header"
+            android:layout_marginTop="20sp"
+            android:weightSum="2">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:cardCornerRadius="10dp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginStart="30sp"
+                android:layout_weight="1"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="10sp"
+                app:cardBackgroundColor="@color/white"
+                card_view:cardUseCompatPadding="true">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30ssp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/tip_icon">
+
+                    </ImageView>
+
+                    <com.app.dailyjounral.widget.LogoText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Logo"
+                        android:layout_marginTop="10sp"
+                        android:gravity="start"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Tip of The Day">
+                    </com.app.dailyjounral.widget.LogoText>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:cardCornerRadius="10dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="30sp"
+                android:layout_marginStart="30sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="10sp"
+                app:cardBackgroundColor="@color/white"
+                card_view:cardUseCompatPadding="true">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="8dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30ssp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/quote_icon">
+
+                    </ImageView>
+
+                    <com.app.dailyjounral.widget.LogoText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/iv_Logo"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="Daily Quote">
+                    </com.app.dailyjounral.widget.LogoText>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:gravity="bottom"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="10sp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_home"
+                    app:tint="@color/black">
+
+                </ImageView>
+
+                <com.app.dailyjounral.widget.HeaderText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Home"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center">
+
+                </com.app.dailyjounral.widget.HeaderText>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="10sp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_analystic"
+                    app:tint="@color/gray_616161">
+            </ImageView>
+            <com.app.dailyjounral.widget.SmallText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Analystic"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                >
+
+            </com.app.dailyjounral.widget.SmallText>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="10sp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_preium"
+                app:tint="@color/gray_616161" />
+            <com.app.dailyjounral.widget.SmallText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Premuim"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                >
+            </com.app.dailyjounral.widget.SmallText>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_DailyGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:cardCornerRadius="10dp"
+            android:layout_below="@+id/ll_Tip"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="30sp"
+            android:layout_marginStart="30sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginLeft="10sp"
+            app:cardBackgroundColor="@color/white"
+            card_view:cardUseCompatPadding="true">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:layout_marginTop="10sp"
+                android:layout_marginBottom="10sp"
+                android:orientation="vertical">
+                <com.app.dailyjounral.widget.LogoText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_20ssp"
+                    android:textColor="@color/black"
+                    android:text="Daily Reflection">
+
+                </com.app.dailyjounral.widget.LogoText>
+                <com.app.dailyjounral.widget.SmallText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_16ssp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="10sp"
+                    android:textColor="@color/black"
+                    android:text="Daily Jounral">
+
+                </com.app.dailyjounral.widget.SmallText>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSleep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:fadeScrollbars="false"
+            android:layout_marginEnd="@dimen/_30ssp"
+            android:layout_marginStart="@dimen/_30ssp"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:paddingTop="6dp"
+            android:visibility="visible"
+            android:paddingBottom="6dp"
+            android:layout_below="@+id/card_DailyGeneral"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_mood" />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
