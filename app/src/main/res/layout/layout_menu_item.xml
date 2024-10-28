@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="itemData"
+            type="com.app.dailyjounral.model.MenuDataModel" />
+
+        <variable
+            name="holder"
+            type="com.app.dailyjounral.adapter.MenuItemViewHolder" />
+
+    </data>
+
+    <LinearLayout
+    android:id="@+id/ll_Main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_8ssp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_Logo"
+        android:layout_width="@dimen/_20ssp"
+        android:layout_height="@dimen/_20ssp"
+        android:layout_marginStart="@dimen/_10ssp"
+        android:tint="@color/gray_616161"
+        android:src="@mipmap/ic_launcher"
+        tools:ignore="MissingConstraints">
+
+    </androidx.appcompat.widget.AppCompatImageView>
+
+        <com.app.dailyjounral.widget.SmallText
+            android:id="@+id/txtMenuName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Menu Name"
+            android:textSize="@dimen/_10ssp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_10ssp"
+            android:textColor="@color/black"
+            app:layout_constraintRight_toRightOf="@+id/iv_Logo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage">
+
+        </com.app.dailyjounral.widget.SmallText>
+    </LinearLayout>
+</layout>

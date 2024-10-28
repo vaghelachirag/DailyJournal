@@ -7,29 +7,30 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.dailyjounral.R
-import com.app.dailyjounral.databinding.ItemMoodBinding
+import com.app.dailyjounral.databinding.LayoutMoodDetectorBinding
 import com.app.dailyjounral.model.MoodDataModel
 import com.app.secureglobal.interfaces.OnItemSelected
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class MoodAdapter(val context: Context, private val list: MutableList<MoodDataModel>, val onItemSelected: OnItemSelected<MoodDataModel>) :  RecyclerView.Adapter<MoodItemViewHolder>()  {
+class MoodSelectorAdapter(val context: Context, private val list: MutableList<MoodDataModel>, val onItemSelected: OnItemSelected<MoodDataModel>):  RecyclerView.Adapter<MoodDetectorItemViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoodItemViewHolder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoodDetectorItemViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
 
-        val binder = DataBindingUtil.inflate<ItemMoodBinding>(
+        val binder = DataBindingUtil.inflate<LayoutMoodDetectorBinding>(
             layoutInflater,
-            R.layout.item_mood,
+            R.layout.layout_mood_detector,
             parent,
             false
         )
-        return MoodItemViewHolder(binder)
+        return MoodDetectorItemViewHolder(binder)
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: MoodItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(holder: MoodDetectorItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
         val options: RequestOptions = RequestOptions()
@@ -37,13 +38,7 @@ class MoodAdapter(val context: Context, private val list: MutableList<MoodDataMo
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
 
-        Glide.with(context).load(list[position].image).apply(options).into(holder.binding.ivMood)
-        holder.binding.txtHeader.text = list[position].title
-
-
-       /* holder.binding.llMain.setOnClickListener {
-            onItemSelected.onItemSelected(list[position], position)
-        }*/
+        Glide.with(context).load(list[position].image).apply(options).into(holder.binding.ivIcon)
     }
     override fun getItemCount(): Int {
         return list.size

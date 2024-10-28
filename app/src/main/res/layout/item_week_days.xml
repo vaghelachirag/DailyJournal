@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
+
+
+    <data>
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="itemData"
+            type="com.app.dailyjounral.model.ModelDataWeek" />
+
+        <variable
+            name="holder"
+            type="com.app.dailyjounral.adapter.WeekItemViewHolder" />
+
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.app.dailyjounral.widget.SmallText
+        android:id="@+id/txtWeekDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M"
+        android:padding="@dimen/_5ssp"
+        android:textSize="@dimen/_8ssp"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        tools:ignore="MissingConstraints,SpUsage,UnknownIdInLayout">
+
+    </com.app.dailyjounral.widget.SmallText>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

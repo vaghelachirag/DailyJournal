@@ -7,6 +7,25 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+
+
+    <!--Common-->
+    <string name="please_wait">Please wait</string>
+    <string name="dashboard">Dashboard</string>
+
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="splash_fragment_label">Splash Fragment</string>
+    <string name="login_fragment_label">Login Fragment</string>
+    <string name="signup_fragment_label">Signup Fragment</string>
+    <string name="home_fragment_label">Home Fragment</string>
+    <string name="dashboard_fragment_label">Dashboard Fragment</string>
+    <string name="dashboard_menu_fragment_label">Dashboard Menu Fragment</string>
+    <string name="webView_fragment_label">Dashboard Fragment</string>
+
+
+
+
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus

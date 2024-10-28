@@ -3,9 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="red">#FF0000</color>
     <color name="top_header_color">#A77AFF</color>
     <color name="middle_header_color">#C0A0FF</color>
     <color name="end_header_color">#F2ECFF</color>
     <color name="gray_616161">#616161</color>
+    <color name="color_light_navy_blue">#952B3582</color>
 
 </resources>
