@@ -25,31 +25,18 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_8ssp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:cardCornerRadius="10dp"
-        android:layout_marginEnd="@dimen/_30ssp"
-        android:layout_marginStart="@dimen/_30ssp"
-        android:layout_weight="1"
-        android:layout_marginRight="@dimen/_10ssp"
-        android:layout_marginLeft="@dimen/_10ssp"
-        app:cardBackgroundColor="@color/white"
-        card_view:cardUseCompatPadding="true"
-        tools:ignore="MissingConstraints">
-
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="vertical"
        android:padding="10sp">
        <LinearLayout
-           android:layout_width="@dimen/_50ssp"
-           android:layout_height="@dimen/_50ssp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
            android:layout_gravity="center"
            android:gravity="center"
-           android:background="@drawable/circular_background">
+           android:padding="@dimen/_15ssp"
+           android:background="@drawable/tip_of_the_day_gradient">
 
            <ImageView
                android:id="@+id/iv_Mood"
@@ -61,20 +48,19 @@
            </ImageView>
        </LinearLayout>
 
-       <com.app.dailyjounral.widget.LogoText
+       <com.app.dailyjounral.widget.InterFontText
            android:id="@+id/txt_Header"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_gravity="center"
-           android:layout_marginTop="10sp"
-           android:textSize="15sp"
-           android:textColor="@color/top_header_color"
+           android:layout_marginTop="@dimen/_3ssp"
+           android:textSize="@dimen/_12ssp"
+           android:textColor="@color/list_text_bg"
            android:text="Sleep">
 
-       </com.app.dailyjounral.widget.LogoText>
+       </com.app.dailyjounral.widget.InterFontText>
 
    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

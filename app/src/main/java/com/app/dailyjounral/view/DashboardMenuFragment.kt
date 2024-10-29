@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
 import com.app.dailyjounral.adapter.MoodAdapter
@@ -18,6 +19,7 @@ import com.app.dailyjounral.view.detail.DetailActivity
 import com.app.dailyjounral.viewmodel.DashboardMenuViewModel
 import com.app.secureglobal.interfaces.OnItemSelected
 import com.app.secureglobal.view.base.BaseFragment
+import com.bumptech.glide.Glide
 
 class DashboardMenuFragment: BaseFragment()  {
 
@@ -41,9 +43,24 @@ class DashboardMenuFragment: BaseFragment()  {
             if (isLoading && isAdded) showProgressbar()
             else if (!isLoading && isAdded) hideProgressbar()
         }
+
+        Glide.with(requireActivity())
+            .load(R.drawable.applogo)
+            .circleCrop()
+            .into(binding.ivLogo);
+
         addMoodData()
         setAction()
+        setBottomTab()
         return binding.root
+    }
+
+    private fun setBottomTab() {
+        binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+        binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+
+        binding.llTab1.visibility  = View.VISIBLE
+        binding.llTab2.visibility  = View.GONE
     }
 
     private fun setAction() {
@@ -53,17 +70,40 @@ class DashboardMenuFragment: BaseFragment()  {
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
              startActivity(iDashboard)
          }
+
+        binding.llHome.setOnClickListener {
+            binding.llTab1.visibility = View.VISIBLE
+            binding.llTab2.visibility = View.GONE
+
+
+            binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+            binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+
+            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
+            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
+
+        binding.llAnalystic.setOnClickListener {
+            binding.llTab1.visibility = View.GONE
+            binding.llTab2.visibility = View.VISIBLE
+
+            binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+            binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
+
+            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
+            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
+        }
     }
 
     private fun addMoodData() {
-        moodDataList.add(MoodDataModel("Sleep","",R.drawable.sleep_icon))
-        moodDataList.add(MoodDataModel("Gratitude","",R.drawable.gradidute_icon))
-        moodDataList.add(MoodDataModel("Mood","",R.drawable.mood_icon))
+        moodDataList.add(MoodDataModel("Sleep","",R.drawable.list_sleep_icon))
+        moodDataList.add(MoodDataModel("Gratitude","",R.drawable.list_graditity_icon))
+        moodDataList.add(MoodDataModel("Mood","",R.drawable.list_mood_icon))
 
 
-        moodDataList.add(MoodDataModel("Sleep","",R.drawable.sleep_icon))
-        moodDataList.add(MoodDataModel("Gratitude","",R.drawable.gradidute_icon))
-        moodDataList.add(MoodDataModel("Mood","",R.drawable.mood_icon))
+        moodDataList.add(MoodDataModel("Sleep","",R.drawable.list_sleep_icon))
+        moodDataList.add(MoodDataModel("Gratitude","",R.drawable.list_graditity_icon))
+        moodDataList.add(MoodDataModel("Mood","",R.drawable.list_mood_icon))
 
         val layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 

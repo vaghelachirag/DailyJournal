@@ -123,7 +123,7 @@
                         android:id="@+id/ll_DailyJournal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:orientation="vertical">
                         <ImageView
                             android:id="@+id/iv_Image"
@@ -149,7 +149,7 @@
                         android:id="@+id/ll_Mood"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:orientation="vertical">
 
                         <androidx.recyclerview.widget.RecyclerView

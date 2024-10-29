@@ -11,7 +11,16 @@
     <color name="color_light_navy_blue">#952B3582</color>
 
 
-    <color name="tip_of_the_bg">#292D32</color>
+    <color name="tip_of_day_gradient_top">#180248</color>
+    <color name="tip_of_day_gradient_bottom">#775BB2</color>
 
+    <color name="list_background">#492F7F</color>
+
+    <color name="list_text_bg">#1C0647</color>
+
+    <color name="tab_selected_bg">#B38CFF</color>
+    <color name="tab_un_selected_bg">#160042</color>
+
+    <color name="main_logo_txt_bg">#B38CFF</color>
 
 </resources>

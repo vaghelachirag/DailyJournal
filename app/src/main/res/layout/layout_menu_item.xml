@@ -30,8 +30,6 @@
         android:id="@+id/iv_Logo"
         android:layout_width="@dimen/_20ssp"
         android:layout_height="@dimen/_20ssp"
-        android:layout_marginStart="@dimen/_10ssp"
-        android:tint="@color/gray_616161"
         android:src="@mipmap/ic_launcher"
         tools:ignore="MissingConstraints">
 

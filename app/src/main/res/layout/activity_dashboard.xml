@@ -7,7 +7,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/main_graident">
+
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawer"
             android:layout_width="match_parent"
@@ -21,14 +23,16 @@
 
                 <com.google.android.material.appbar.AppBarLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
+
 
                     <androidx.appcompat.widget.Toolbar
                         android:id="@+id/toolbarDashboard"
                         android:layout_width="match_parent"
+                        android:background="#AF88FF"
+                        android:visibility="gone"
                         android:layout_height="?android:attr/actionBarSize"
-                        android:background="@color/top_header_color"
-                        app:titleTextAppearance="@style/Toolbar.TitleText"
                         app:titleTextColor="@color/white">
 
 
@@ -49,6 +53,7 @@
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:maxLines="1"
+                            android:visibility="gone"
                             android:singleLine="true"
                             android:textColor="@color/white"
                             android:textSize="16sp"

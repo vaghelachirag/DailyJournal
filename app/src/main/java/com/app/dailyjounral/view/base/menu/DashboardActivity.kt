@@ -47,8 +47,6 @@ class DashboardActivity : BaseActivity(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
         session = Session(this);
 
-        window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
-
 
         // Set up ActionBar
         setSupportActionBar(binding.toolbarDashboard)
@@ -82,13 +80,14 @@ class DashboardActivity : BaseActivity(){
     }
 
     private fun addMenuData() {
-        menuList.add(MenuDataModel("Tip of the day","",R.drawable.icon_tip_of_the_day))
-        menuList.add(MenuDataModel("Quote","",R.drawable.icon_quoute))
-        menuList.add(MenuDataModel("Change Password","",R.drawable.icon_changepassword))
+        menuList.add(MenuDataModel("Home","",R.drawable.icon_home))
+        menuList.add(MenuDataModel("Sleep","",R.drawable.icon_sleep))
+        menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_gradituty))
 
 
-        menuList.add(MenuDataModel("My Profile","",R.drawable.icon_profile))
-        menuList.add(MenuDataModel("Sign out","",R.drawable.icon_signout))
+        menuList.add(MenuDataModel("Mood","",R.drawable.icon_mood))
+        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile))
+        menuList.add(MenuDataModel("Logout","",R.drawable.icon_login))
 
         val layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
