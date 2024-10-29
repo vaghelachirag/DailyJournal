@@ -7,7 +7,9 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.WindowManager
+import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -19,11 +21,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.ActivityDashboardBinding
 import com.app.dailyjounral.model.MenuDataModel
-import com.app.dailyjounral.model.MoodDataModel
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseActivity
 import com.app.secureglobal.interfaces.OnItemSelected
 import com.app.secureglobal.view.adapter.MenuItemAdapter
+import com.bumptech.glide.Glide
 
 
 @Suppress("DEPRECATION")
@@ -102,6 +104,14 @@ class DashboardActivity : BaseActivity(){
             }
 
         })
+
+        val menuHeader = findViewById<View>(com.app.dailyjounral.R.id.layoutMenu)
+        val userImage = menuHeader.findViewById<View>(com.app.dailyjounral.R.id.navHeaderLogo) as ImageView
+
+        Glide.with(this)
+            .load(R.drawable.applogo)
+            .circleCrop()
+            .into(userImage);
     }
 
 

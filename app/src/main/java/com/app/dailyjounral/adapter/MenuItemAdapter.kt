@@ -30,7 +30,7 @@ class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDa
         return MenuItemViewHolder(binder)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: MenuItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
@@ -44,6 +44,10 @@ class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDa
 
         holder.binding.llMain.setOnClickListener {
             onItemSelected.onItemSelected(list[position], position)
+        }
+
+        if (position == 0){
+            holder.binding.llMain.background = context.getDrawable(R.drawable.slide_menu_selected_bg)
         }
     }
     override fun getItemCount(): Int {

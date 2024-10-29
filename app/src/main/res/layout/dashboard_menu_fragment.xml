@@ -365,19 +365,10 @@
                 android:layout_marginEnd="@dimen/_30ssp"
                 android:weightSum="3">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/icon_arrow_left">
-
-                </ImageView>
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvSleep"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:clipToPadding="false"
                     android:fadeScrollbars="false"
                     android:paddingTop="6dp"
@@ -386,14 +377,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_mood" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:src="@drawable/icon_arrow_right">
-
-                </ImageView>
             </LinearLayout>
 
             <ImageView

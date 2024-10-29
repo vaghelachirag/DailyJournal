@@ -9,12 +9,4 @@
             android:title="@string/dashboard" />
 
     </group>
-    <group
-        android:id="@+id/nav_footer">
-
-        <item
-            android:id="@+id/nav_log_version"
-            app:actionLayout="@layout/menu_footer"
-            android:title="" />
-    </group>
 </menu>

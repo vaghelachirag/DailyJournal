@@ -23,4 +23,6 @@
 
     <color name="main_logo_txt_bg">#B38CFF</color>
 
+    <color name="menu_selected_bg">#F0E8FF</color>
+
 </resources>
