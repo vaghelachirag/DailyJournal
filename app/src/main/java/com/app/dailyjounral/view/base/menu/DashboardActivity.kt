@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -23,8 +22,8 @@ import com.app.dailyjounral.databinding.ActivityDashboardBinding
 import com.app.dailyjounral.model.MenuDataModel
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseActivity
-import com.app.secureglobal.interfaces.OnItemSelected
-import com.app.secureglobal.view.adapter.MenuItemAdapter
+import com.app.dailyjounral.interfaces.OnItemSelected
+import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.bumptech.glide.Glide
 
 
@@ -38,7 +37,7 @@ class DashboardActivity : BaseActivity(){
     private var activityDashboard : DashboardActivity? = null
 
     // Session
-    var session: Session? = null;
+    private var session: Session? = null;
 
     private var menuList = mutableListOf<MenuDataModel>()
 
@@ -82,14 +81,14 @@ class DashboardActivity : BaseActivity(){
     }
 
     private fun addMenuData() {
-        menuList.add(MenuDataModel("Home","",R.drawable.icon_home))
-        menuList.add(MenuDataModel("Sleep","",R.drawable.icon_sleep))
-        menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_gradituty))
+        menuList.add(MenuDataModel("Home","",R.drawable.icon_home,true))
+        menuList.add(MenuDataModel("Sleep","",R.drawable.icon_sleep,false))
+        menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_gradituty,false))
 
 
-        menuList.add(MenuDataModel("Mood","",R.drawable.icon_mood))
-        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile))
-        menuList.add(MenuDataModel("Logout","",R.drawable.icon_login))
+        menuList.add(MenuDataModel("Mood","",R.drawable.icon_mood,false))
+        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,false))
+        menuList.add(MenuDataModel("Logout","",R.drawable.icon_login,false))
 
         val layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -101,6 +100,7 @@ class DashboardActivity : BaseActivity(){
 
             override fun onItemSelected(t: MenuDataModel?, position: Int) {
                // clickMenuEvent(t)
+                Log.e("MenuPosition",position.toString())
             }
 
         })

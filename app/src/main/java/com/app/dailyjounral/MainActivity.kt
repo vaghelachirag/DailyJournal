@@ -3,14 +3,9 @@ package com.app.dailyjounral
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.app.dailyjounral.adapter.MoodAdapter
 import com.app.dailyjounral.databinding.ActivityMainBinding
-import com.app.dailyjounral.model.MoodDataModel
-import com.app.secureglobal.interfaces.OnItemSelected
 
 
 class MainActivity : AppCompatActivity() {

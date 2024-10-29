@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +18,8 @@ import com.app.dailyjounral.model.MoodDataModel
 import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.view.detail.DetailActivity
 import com.app.dailyjounral.viewmodel.DashboardMenuViewModel
-import com.app.secureglobal.interfaces.OnItemSelected
+import com.app.dailyjounral.interfaces.OnItemSelected
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.secureglobal.view.base.BaseFragment
 import com.bumptech.glide.Glide
 
@@ -65,11 +67,28 @@ class DashboardMenuFragment: BaseFragment()  {
 
     private fun setAction() {
          binding.cardTipOfTheDay.setOnClickListener {
+             AppConstants.detailType = 1
              val iDashboard = Intent(activity, DetailActivity::class.java)
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
              startActivity(iDashboard)
          }
+
+        binding.cardDailyQuote.setOnClickListener {
+            AppConstants.detailType = 2
+            val iDashboard = Intent(activity, DetailActivity::class.java)
+            iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(iDashboard)
+        }
+
+        binding.cardDailyGeneral.setOnClickListener {
+            AppConstants.detailType = 2
+            val iDashboard = Intent(activity, DetailActivity::class.java)
+            iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(iDashboard)
+        }
 
         binding.llHome.setOnClickListener {
             binding.llTab1.visibility = View.VISIBLE
@@ -113,6 +132,7 @@ class DashboardMenuFragment: BaseFragment()  {
 
             override fun onItemSelected(t: MoodDataModel?, position: Int) {
                 //  clickMenuEvent(t)
+                Log.e("Postition",position.toString())
             }
 
         })

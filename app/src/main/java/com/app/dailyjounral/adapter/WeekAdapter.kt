@@ -7,13 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.dailyjounral.R
-import com.app.dailyjounral.databinding.ItemMoodBinding
 import com.app.dailyjounral.databinding.ItemWeekDaysBinding
 import com.app.dailyjounral.model.ModelDataWeek
 import com.app.dailyjounral.uttils.Utils
-import com.app.secureglobal.interfaces.OnItemSelected
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
+import com.app.dailyjounral.interfaces.OnItemSelected
 
 class WeekAdapter(val context: Context, private val list: MutableList<ModelDataWeek>, val onItemSelected: OnItemSelected<ModelDataWeek>) :  RecyclerView.Adapter<WeekItemViewHolder>()  {
 

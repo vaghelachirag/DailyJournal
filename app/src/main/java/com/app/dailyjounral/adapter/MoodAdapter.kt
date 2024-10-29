@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.ItemMoodBinding
 import com.app.dailyjounral.model.MoodDataModel
-import com.app.secureglobal.interfaces.OnItemSelected
+import com.app.dailyjounral.interfaces.OnItemSelected
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 

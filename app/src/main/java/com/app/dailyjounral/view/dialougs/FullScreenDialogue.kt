@@ -13,8 +13,7 @@ import com.app.dailyjounral.R
 import com.app.dailyjounral.adapter.WeekAdapter
 import com.app.dailyjounral.databinding.FullScreenDialougBinding
 import com.app.dailyjounral.model.ModelDataWeek
-import com.app.dailyjounral.model.MoodDataModel
-import com.app.secureglobal.interfaces.OnItemSelected
+import com.app.dailyjounral.interfaces.OnItemSelected
 
 
 class FullScreenDialogue(private var mContext: Context) : Dialog(mContext, R.style.ThemeDialog)  {

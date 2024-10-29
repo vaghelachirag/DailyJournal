@@ -9,7 +9,7 @@ import com.app.dailyjounral.adapter.WeekAdapter
 import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.model.ModelDataWeek
 import com.app.dailyjounral.model.MoodDataModel
-import com.app.secureglobal.interfaces.OnItemSelected
+import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.secureglobal.model.base.BaseViewModel
 
 

@@ -3,13 +3,16 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.DetailActivityBinding
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseActivity
 import com.app.dailyjounral.viewmodel.DetailViewModel
+import com.bumptech.glide.Glide
 import java.util.Calendar
 
 
@@ -32,9 +35,27 @@ class DetailActivity : BaseActivity(){
         binding.lifecycleOwner = this
         session = Session(this);
 
+
+        Glide.with(this)
+            .load(R.drawable.applogo)
+            .circleCrop()
+            .into(binding.ivLogo);
+
+
         setCurrentDate()
         detailViewModel.init()
 
+        setDetailType()
+    }
+
+    private fun setDetailType() {
+        if (AppConstants.detailType == 1){
+            binding.ivImage.visibility = View.GONE
+        }
+
+        if (AppConstants.detailType == 2){
+            binding.ivImage.visibility = View.VISIBLE
+        }
     }
 
     private fun setCurrentDate() {
