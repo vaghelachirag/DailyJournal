@@ -109,7 +109,7 @@ class DashboardActivity : BaseActivity(){
         val userImage = menuHeader.findViewById<View>(com.app.dailyjounral.R.id.navHeaderLogo) as ImageView
 
         Glide.with(this)
-            .load(R.drawable.applogo)
+            .load(R.drawable.user_image)
             .circleCrop()
             .into(userImage);
     }

@@ -17,7 +17,6 @@
             android:layout_height="@dimen/_60ssp"
             android:src="@drawable/logo"
             android:scaleType="fitXY"
-            android:tint="@color/menu_selected_bg"
             tools:ignore="MissingConstraints" />
 
 
