@@ -35,4 +35,19 @@
         <item name="colorAccent">@color/top_header_color</item>
     </style>
 
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="hintTextAppearance">@style/HintText</item>
+        <!--        <item name="android:paddingBottom">@dimen/_3sdp</item>-->
+        <item name="android:textSize">14sp</item>
+        <item name="hintTextColor">@color/black</item>
+        <item name="textFillColor">@color/main_logo_txt_bg</item>
+        <item name="boxStrokeColor">@color/main_logo_txt_bg</item>
+    </style>
+
+    <style name="HintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">10sp</item>
+
+    </style>
+
+
 </resources>

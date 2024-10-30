@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.dailyjounral.R
@@ -17,6 +18,8 @@ import com.app.dailyjounral.interfaces.OnItemSelected
 
 
 class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDataModel>, val onItemSelected: OnItemSelected<MenuDataModel>) :  RecyclerView.Adapter<MenuItemViewHolder>() {
+
+    private var mSelectedItem: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemViewHolder {
 
@@ -44,15 +47,30 @@ class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDa
         holder.binding.txtMenuName.text = list[position].title
 
         if (list[position].isSelected){
-            holder.binding.llMain.background = context.getDrawable(R.drawable.slide_menu_selected_bg)
+            holder.binding.llMain.background = null
         }else{
             holder.binding.llMain.background =  null
         }
 
         holder.binding.llMain.setOnClickListener {
-            list[position].isSelected = true
+            mSelectedItem = position;
+            notifyDataSetChanged();
+           /* list[position].isSelected = true
             notifyDataSetChanged()
-            onItemSelected.onItemSelected(list[position], position)
+            onItemSelected.onItemSelected(list[position], position)*/
+        }
+
+        if (position == mSelectedItem) {
+            holder.binding.llMain.background = context.getDrawable(R.drawable.menu_selected_background)
+            holder.binding.txtMenuName.setTextColor(context.getColor(R.color.tab_selected_bg))
+            holder.binding.ivLogo.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.menu_selected_bg));
+            holder.binding.ivLogo.setColorFilter(ContextCompat.getColor(context, R.color.menu_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+           // holder.binding.ivLogo.setBackgroundColor(ContextCompat.getColor(context, R.color.tab_selected_bg))
+        }
+        else{
+            holder.binding.txtMenuName.setTextColor(context.getColor(R.color.tab_un_selected_bg))
+            holder.binding.ivLogo.setColorFilter(ContextCompat.getColor(context, R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+            holder.binding.ivLogo.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.tab_un_selected_bg));
         }
 
     }

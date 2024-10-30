@@ -1,3 +1,5 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="edit_text_size">@dimen/_40ssp</dimen>
+    <dimen name="loginTextSize">14.00sp</dimen>
 </resources>

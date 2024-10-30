@@ -120,6 +120,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/rvMenu"
                         android:layout_marginTop="@dimen/_20ssp"
                         android:layout_marginLeft="@dimen/_10ssp"
+                        android:visibility="gone"
                         android:gravity="start">
                     </com.app.dailyjounral.widget.HeaderText>
 

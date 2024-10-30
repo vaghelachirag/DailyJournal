@@ -15,10 +15,11 @@
             android:id="@+id/navHeaderLogo"
             android:layout_width="@dimen/_60ssp"
             android:layout_height="@dimen/_60ssp"
-            android:src="@drawable/logo"
             android:scaleType="fitXY"
-            tools:ignore="MissingConstraints" />
-
+            android:src="@drawable/logo"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="30dp" />
 
         <com.app.dailyjounral.widget.InterFontText
             android:id="@+id/txt_UserName"
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10ssp"
             android:textSize="@dimen/_12ssp"
-            android:text="User Name"
+            android:text="Robert Downey"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@+id/navHeaderLogo"
             tools:ignore="MissingConstraints">

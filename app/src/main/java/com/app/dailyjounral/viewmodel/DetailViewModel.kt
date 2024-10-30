@@ -10,6 +10,7 @@ import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.model.ModelDataWeek
 import com.app.dailyjounral.model.MoodDataModel
 import com.app.dailyjounral.interfaces.OnItemSelected
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.secureglobal.model.base.BaseViewModel
 
 
@@ -19,8 +20,40 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
     private var moodDataList = mutableListOf<MoodDataModel>()
 
     fun init() {
+        if (AppConstants.detailType == 3){
+            addMoodData()
+        }
+        if (AppConstants.detailType == 4){
+            addWorkoutData()
+        }
+
+        if (AppConstants.detailType == 5){
+            addSleepData()
+        }
         addWeekData()
-        addMoodData()
+
+    }
+
+    private fun addSleepData() {
+        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_sleep_one))
+        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_sleep_nine))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_sleep_eight))
+
+
+        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_sleep_one))
+        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_sleep_nine))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_sleep_eight))
+    }
+
+    private fun addWorkoutData() {
+        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_running))
+        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_dumbell))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_running))
+
+
+        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_dumbell))
+        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_running))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_dumbell))
     }
 
     private fun addMoodData() {

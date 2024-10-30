@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.dailyjounral.databinding.HomeFragmentBinding
 import com.app.dailyjounral.viewmodel.HomeViewModel
-import com.app.secureglobal.view.base.BaseFragment
+import com.app.dailyjounral.view.base.BaseFragment
 
 class HomeFragment : BaseFragment(){
 

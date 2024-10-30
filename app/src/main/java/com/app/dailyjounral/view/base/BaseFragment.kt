@@ -1,16 +1,17 @@
-package com.app.secureglobal.view.base
+@file:Suppress("DEPRECATION")
+
+package com.app.dailyjounral.view.base
 
 import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Context
 import androidx.fragment.app.Fragment
-import com.app.dailyjounral.R
 import com.app.dailyjounral.uttils.Session
 
 
 open class BaseFragment : Fragment() {
-    lateinit var mContext: Context
-    lateinit var mActivity: Activity
+    private lateinit var mContext: Context
+    private lateinit var mActivity: Activity
     private var progressDialog: ProgressDialog? = null
     lateinit var session: Session
 
@@ -24,7 +25,7 @@ open class BaseFragment : Fragment() {
 
     }
 
-    fun showProgressbar(message: String? = requireActivity().getString(R.string.please_wait)) {
+    fun showProgressbar() {
         hideProgressbar()
         if (progressDialog == null) {
             progressDialog = ProgressDialog(requireContext(), 1)

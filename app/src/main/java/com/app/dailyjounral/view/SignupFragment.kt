@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.dailyjounral.databinding.SignupFragmentBinding
 import com.app.dailyjounral.viewmodel.SignupViewModel
-import com.app.secureglobal.view.base.BaseFragment
+import com.app.dailyjounral.view.base.BaseFragment
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.

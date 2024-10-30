@@ -20,9 +20,10 @@ import com.app.dailyjounral.view.detail.DetailActivity
 import com.app.dailyjounral.viewmodel.DashboardMenuViewModel
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.uttils.AppConstants
-import com.app.secureglobal.view.base.BaseFragment
+import com.app.dailyjounral.view.base.BaseFragment
 import com.bumptech.glide.Glide
 
+@Suppress("DEPRECATION")
 class DashboardMenuFragment: BaseFragment()  {
 
     private var _binding: DashboardMenuFragmentBinding? = null
@@ -49,7 +50,7 @@ class DashboardMenuFragment: BaseFragment()  {
         Glide.with(requireActivity())
             .load(R.drawable.applogo)
             .circleCrop()
-            .into(binding.ivLogo);
+            .into(binding.ivLogo)
 
         addMoodData()
         setAction()
@@ -98,8 +99,8 @@ class DashboardMenuFragment: BaseFragment()  {
             binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
             binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
-            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
-            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
+            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
 
         binding.llAnalystic.setOnClickListener {
@@ -109,8 +110,8 @@ class DashboardMenuFragment: BaseFragment()  {
             binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
             binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
 
-            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
-            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY);
+            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
         }
     }
 
@@ -120,9 +121,10 @@ class DashboardMenuFragment: BaseFragment()  {
         moodDataList.add(MoodDataModel("Mood","",R.drawable.list_mood_icon))
 
 
-        moodDataList.add(MoodDataModel("Sleep","",R.drawable.list_sleep_icon))
-        moodDataList.add(MoodDataModel("Gratitude","",R.drawable.list_graditity_icon))
-        moodDataList.add(MoodDataModel("Mood","",R.drawable.list_mood_icon))
+        moodDataList.add(MoodDataModel("Goal Setting","",R.drawable.list_sleep_icon))
+        moodDataList.add(MoodDataModel("Work-out","",R.drawable.list_graditity_icon))
+        moodDataList.add(MoodDataModel("Quote","",R.drawable.list_mood_icon))
+        moodDataList.add(MoodDataModel("Self-Care Tip","",R.drawable.list_mood_icon))
 
         val layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 
@@ -133,6 +135,61 @@ class DashboardMenuFragment: BaseFragment()  {
             override fun onItemSelected(t: MoodDataModel?, position: Int) {
                 //  clickMenuEvent(t)
                 Log.e("Postition",position.toString())
+
+                if (position == 0){
+                    AppConstants.detailType = 5
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+
+                if (position == 1){
+                    AppConstants.detailType = 0
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+                if (position == 2){
+                    AppConstants.detailType = 3
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+
+
+                if (position == 3){
+                    AppConstants.detailType = 1
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+
+                if (position == 4){
+                    AppConstants.detailType = 4
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+                if (position == 5){
+                    AppConstants.detailType = 2
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+                if (position == 6){
+                    AppConstants.detailType = 2
+                    val iDashboard = Intent(activity, DetailActivity::class.java)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(iDashboard)
+                }
+
             }
 
         })

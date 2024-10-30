@@ -1,16 +1,11 @@
 package com.app.dailyjounral.view.base.menu
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.IntentFilter
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -32,12 +27,12 @@ class DashboardActivity : BaseActivity(){
 
 
     private lateinit var binding: ActivityDashboardBinding
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var activityDashboard : DashboardActivity? = null
 
     // Session
-    private var session: Session? = null;
+    private var session: Session? = null
 
     private var menuList = mutableListOf<MenuDataModel>()
 
@@ -46,7 +41,7 @@ class DashboardActivity : BaseActivity(){
         super.onCreate(savedInstanceState)
         activityDashboard = this
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
-        session = Session(this);
+        session = Session(this)
 
 
         // Set up ActionBar
@@ -105,13 +100,13 @@ class DashboardActivity : BaseActivity(){
 
         })
 
-        val menuHeader = findViewById<View>(com.app.dailyjounral.R.id.layoutMenu)
-        val userImage = menuHeader.findViewById<View>(com.app.dailyjounral.R.id.navHeaderLogo) as ImageView
+        val menuHeader = findViewById<View>(R.id.layoutMenu)
+        val userImage = menuHeader.findViewById<View>(R.id.navHeaderLogo) as ImageView
 
         Glide.with(this)
             .load(R.drawable.user_image)
             .circleCrop()
-            .into(userImage);
+            .into(userImage)
     }
 
 
@@ -124,6 +119,7 @@ class DashboardActivity : BaseActivity(){
      //   binding.txtVersion.text = "Version : " +BuildConfig.VERSION_NAME
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onResume() {
         super.onResume()
         val intentFilter = IntentFilter()
@@ -135,41 +131,11 @@ class DashboardActivity : BaseActivity(){
         Log.e("OnResume","OnResume")
     }
 
+    @SuppressLint("SetTextI18n")
     fun  setTitle(){
         if (title != null) binding.tvTitle.text = "Dashboard"
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
 
-
-    private fun getToken(context: Context): String? {
-        return context.getSharedPreferences("_", MODE_PRIVATE).getString("fb", "empty")
-    }
-
-    private fun askNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-
-            } else if (shouldShowRequestPermissionRationale(android.Manifest.permission.POST_NOTIFICATIONS)) {
-
-            } else {
-                // Directly ask for the permission
-                requestPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-            }
-        }
-    }
-
-    // Declare the launcher at the top of your Activity/Fragment:
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted: Boolean ->
-        if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
-        } else {
-            // TODO: Inform user that that your app will not show notifications.
-        }
-    }
 
 }

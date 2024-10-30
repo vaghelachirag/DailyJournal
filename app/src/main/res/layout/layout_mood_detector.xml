@@ -25,12 +25,13 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_8ssp">
 
+
+
     <ImageView
         android:id="@+id/iv_Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/mood_icon"
-        tools:ignore="MissingConstraints">
+        android:src="@drawable/mood_icon">
 
     </ImageView>
 

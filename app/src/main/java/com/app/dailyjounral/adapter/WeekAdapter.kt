@@ -2,6 +2,8 @@ package com.app.dailyjounral.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -33,11 +35,16 @@ class WeekAdapter(val context: Context, private val list: MutableList<ModelDataW
 
         holder.binding.txtWeekDays.text = list[position].title
 
-        if (Utils().getCurrentWeekDay() == position + 1){
-           holder.binding.txtWeekDays.setTextColor(R.color.red)
+        if(Utils().getCurrentWeekDay() == position + 1){
+            holder.binding.txtWeekDays.setTextColor(R.color.white)
+            holder.binding.txtWeekDays.setTypeface(null, Typeface.BOLD);
+            holder.binding.txtWeekDays.setTextColor(Color.parseColor("#FF0000"));
+            holder.binding.txtWeekDays.setBackgroundResource(R.drawable.circular_background)
         }
         else{
-            holder.binding.txtWeekDays.setTextColor(R.color.black)
+            holder.binding.txtWeekDays.setTextColor(R.color.red)
+            holder.binding.txtWeekDays.setTypeface(null, Typeface.NORMAL);
+            holder.binding.txtWeekDays.setTextColor(Color.parseColor("#000000"));
         }
 
     }

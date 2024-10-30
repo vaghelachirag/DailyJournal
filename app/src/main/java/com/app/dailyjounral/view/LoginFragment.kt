@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.app.dailyjounral.databinding.LoginscreenBinding
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.viewmodel.LoginViewModel
-import com.app.secureglobal.view.base.BaseFragment
+import com.app.dailyjounral.view.base.BaseFragment
 
 
 
