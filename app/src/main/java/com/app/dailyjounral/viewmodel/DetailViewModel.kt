@@ -20,17 +20,21 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
     private var moodDataList = mutableListOf<MoodDataModel>()
 
     fun init() {
-        if (AppConstants.detailType == 3){
-            addMoodData()
-        }
         if (AppConstants.detailType == 4){
-            addWorkoutData()
-        }
-
-        if (AppConstants.detailType == 5){
             addSleepData()
         }
-        addWeekData()
+        if (AppConstants.detailType == 5){
+          //  addWorkoutData()
+        }
+
+        if (AppConstants.detailType == 6){
+          addMoodData()
+        }
+
+        if (AppConstants.detailType == 8){
+            addWorkoutData()
+        }
+       addWeekData()
 
     }
 

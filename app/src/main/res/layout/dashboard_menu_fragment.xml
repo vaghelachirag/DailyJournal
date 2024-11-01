@@ -19,35 +19,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/main_graident"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_80ssp"
-                android:layout_marginStart="-20dp"
-                android:src="@drawable/icon_top_left_leaf">
-
-            </ImageView>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_80ssp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="-20dp"
-                android:src="@drawable/icon_top_right_leaf">
-
-            </ImageView>
-            <ImageView
-                android:id="@+id/iv_Logo"
-                android:layout_width="@dimen/_50ssp"
-                android:layout_height="@dimen/_50ssp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_30ssp"
-                android:contentDescription="TODO"
-                android:src="@drawable/applogo">
-            </ImageView>
 
             <com.app.dailyjounral.widget.LogoRegularText
                 android:layout_width="wrap_content"
@@ -62,7 +35,6 @@
                 android:id="@+id/iv_text_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_35ssp"
-                android:layout_below="@+id/iv_Logo"
                 android:layout_marginTop="@dimen/_20ssp"
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/text_daily_journal">
@@ -178,128 +150,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="bottom"
-                android:layout_alignParentBottom="true"
-                android:gravity="bottom"
-                android:background="@color/white"
-                android:weightSum="2">
-
-
-                <LinearLayout
-                    android:id="@+id/ll_Home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="10sp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_Tab1"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_3ssp"
-                        android:layout_marginLeft="@dimen/_30ssp"
-                        android:layout_marginRight="@dimen/_30ssp"
-                        android:background="@color/tab_selected_bg"
-                        android:orientation="horizontal">
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/iv_Home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_10ssp"
-                        android:backgroundTint="@color/tab_un_selected_bg"
-                        android:src="@drawable/ic_botttom_home">
-
-                    </ImageView>
-
-                    <com.app.dailyjounral.widget.InterFontText
-                        android:id="@+id/txt_Home"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:text="Home"
-                        android:textColor="@color/tab_selected_bg">
-
-                    </com.app.dailyjounral.widget.InterFontText>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/ll_Analystic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="10sp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/ll_Tab2"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_3ssp"
-                        android:layout_marginLeft="@dimen/_30ssp"
-                        android:layout_marginRight="@dimen/_30ssp"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        android:background="@color/tab_selected_bg">
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/iv_Analytics"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_10ssp"
-                        android:src="@drawable/ic_bottom_analystic">
-                    </ImageView>
-                    <com.app.dailyjounral.widget.InterFontText
-                        android:id="@+id/txt_Analytics"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Analytics"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/tab_un_selected_bg"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        >
-
-                    </com.app.dailyjounral.widget.InterFontText>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:visibility="gone"
-                    android:layout_marginBottom="10sp"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_preium"
-                        app:tint="@color/gray_616161" />
-                    <com.app.dailyjounral.widget.InterFontText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Premium"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        >
-                    </com.app.dailyjounral.widget.InterFontText>
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/card_DailyGeneral"

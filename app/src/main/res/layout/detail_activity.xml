@@ -19,36 +19,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/main_graident"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_80ssp"
-                android:layout_marginStart="-20dp"
-                android:src="@drawable/icon_top_left_leaf">
 
-            </ImageView>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_80ssp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="-20dp"
-                android:src="@drawable/icon_top_right_leaf">
-
-            </ImageView>
-            <ImageView
-                android:id="@+id/iv_Logo"
-                android:layout_width="@dimen/_50ssp"
-                android:layout_height="@dimen/_50ssp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_30ssp"
-                android:contentDescription="TODO"
-                android:src="@drawable/applogo">
-            </ImageView>
 
             <com.app.dailyjounral.widget.LogoRegularText
                 android:layout_width="wrap_content"
@@ -189,6 +164,7 @@
                             android:textColor="@color/black"
                             android:layout_marginStart="@dimen/_10ssp"
                             android:layout_marginEnd="@dimen/_10ssp"
+                            android:maxLines="12"
                             android:text="@string/lorem_ipsum">
 
                         </com.app.dailyjounral.widget.InterFontText>

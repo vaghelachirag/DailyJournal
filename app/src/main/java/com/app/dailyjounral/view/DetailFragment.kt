@@ -1,56 +1,45 @@
-package com.app.dailyjounral.view.detail
+package com.app.dailyjounral.view
+
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
-import android.view.Menu
+import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.DataBindingUtil
+import android.view.ViewGroup
 import com.app.dailyjounral.R
+import com.app.dailyjounral.databinding.DashboardMenuFragmentBinding
 import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.uttils.AppConstants
-import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utils
-import com.app.dailyjounral.view.base.BaseActivity
+import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.viewmodel.DetailViewModel
-import com.bumptech.glide.Glide
 
+class DetailFragment: BaseFragment() {
 
-class DetailActivity : BaseActivity(){
+    private var _binding: DetailActivityBinding? = null
 
+    private val binding get() = _binding!!
 
-    private lateinit var binding: DetailActivityBinding
+    private val detailViewModel by lazy { DetailViewModel(requireActivity(),binding) }
 
-    // Session
-    private var session: Session? = null
-
-    private val detailViewModel by lazy { DetailViewModel(this,binding) }
-
-    @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.detail_activity)
+    @SuppressLint("SetTextI18n")
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = DetailActivityBinding.inflate(inflater, container, false)
         binding.viewModel = detailViewModel
         binding.lifecycleOwner = this
-        session = Session(this)
-
-/*
-
-        Glide.with(this)
-            .load(R.drawable.applogo)
-            .circleCrop()
-            .into(binding.ivLogo)
-*/
-
         setCurrentDate()
-        detailViewModel.init()
         setHeader()
+        detailViewModel.init()
+        return binding.root
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setHeader() {
-         if(AppConstants.detailType == 1){
+        if(AppConstants.detailType == 1){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_tip_of_day))
             setTipOfDayData(false)
-         }
+        }
         if(AppConstants.detailType == 2){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_quote))
             setTipOfDayData(true)
@@ -89,6 +78,10 @@ class DetailActivity : BaseActivity(){
 
     }
 
+    private fun setCurrentDate() {
+        binding.txtCurrentDate.text = Utils().getCurrentDate()
+    }
+
     private fun setTipOfDayData(showImage: Boolean) {
         if (showImage){
             binding.ivImage.visibility = View.VISIBLE
@@ -115,11 +108,5 @@ class DetailActivity : BaseActivity(){
     }
 
 
-    private fun setCurrentDate() {
-        binding.txtCurrentDate.text = Utils().getCurrentDate()
-    }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return false
-    }
 }

@@ -2,28 +2,22 @@ package com.app.dailyjounral.view
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
 import com.app.dailyjounral.adapter.MoodAdapter
 import com.app.dailyjounral.databinding.DashboardMenuFragmentBinding
-import com.app.dailyjounral.model.MoodDataModel
-import com.app.dailyjounral.view.base.menu.DashboardActivity
-import com.app.dailyjounral.view.detail.DetailActivity
-import com.app.dailyjounral.viewmodel.DashboardMenuViewModel
 import com.app.dailyjounral.interfaces.OnItemSelected
+import com.app.dailyjounral.model.MoodDataModel
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.view.base.BaseFragment
-import com.bumptech.glide.Glide
+import com.app.dailyjounral.view.base.menu.DashboardActivity
+import com.app.dailyjounral.viewmodel.DashboardMenuViewModel
 
-@Suppress("DEPRECATION")
 class DashboardMenuFragment: BaseFragment()  {
 
     private var _binding: DashboardMenuFragmentBinding? = null
@@ -47,11 +41,6 @@ class DashboardMenuFragment: BaseFragment()  {
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
-        Glide.with(requireActivity())
-            .load(R.drawable.applogo)
-            .circleCrop()
-            .into(binding.ivLogo)
-
         addMoodData()
         setAction()
         setBottomTab()
@@ -59,38 +48,34 @@ class DashboardMenuFragment: BaseFragment()  {
     }
 
     private fun setBottomTab() {
-        binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+       /* binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
         binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
         binding.llTab1.visibility  = View.VISIBLE
-        binding.llTab2.visibility  = View.GONE
+        binding.llTab2.visibility  = View.GONE*/
     }
 
     private fun setAction() {
          binding.cardTipOfTheDay.setOnClickListener {
-             AppConstants.detailType = 1
+            /* AppConstants.detailType = 1
              val iDashboard = Intent(activity, DetailActivity::class.java)
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-             startActivity(iDashboard)
+             startActivity(iDashboard)*/
+             AppConstants.detailType = 1
+             (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
          }
 
         binding.cardDailyQuote.setOnClickListener {
             AppConstants.detailType = 2
-            val iDashboard = Intent(activity, DetailActivity::class.java)
-            iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(iDashboard)
+            (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
         }
 
         binding.cardDailyGeneral.setOnClickListener {
-            AppConstants.detailType = 2
-            val iDashboard = Intent(activity, DetailActivity::class.java)
-            iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            startActivity(iDashboard)
+            AppConstants.detailType = 3
+            (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
         }
-
+/*
         binding.llHome.setOnClickListener {
             binding.llTab1.visibility = View.VISIBLE
             binding.llTab2.visibility = View.GONE
@@ -112,10 +97,11 @@ class DashboardMenuFragment: BaseFragment()  {
 
             binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
             binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-        }
+        }*/
     }
 
     private fun addMoodData() {
+        moodDataList = mutableListOf()
         moodDataList.add(MoodDataModel("Sleep","",R.drawable.list_sleep_icon))
         moodDataList.add(MoodDataModel("Gratitude","",R.drawable.list_graditity_icon))
         moodDataList.add(MoodDataModel("Mood","",R.drawable.list_mood_icon))
@@ -137,57 +123,36 @@ class DashboardMenuFragment: BaseFragment()  {
                 Log.e("Postition",position.toString())
 
                 if (position == 0){
-                    AppConstants.detailType = 5
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 4
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
 
                 if (position == 1){
-                    AppConstants.detailType = 0
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 5
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 2){
-                    AppConstants.detailType = 3
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 6
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
 
 
                 if (position == 3){
-                    AppConstants.detailType = 1
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 7
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
 
                 if (position == 4){
-                    AppConstants.detailType = 4
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 8
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 5){
-                    AppConstants.detailType = 2
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 9
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 6){
-                    AppConstants.detailType = 2
-                    val iDashboard = Intent(activity, DetailActivity::class.java)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    startActivity(iDashboard)
+                    AppConstants.detailType = 10
+                    (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
 
             }
@@ -196,11 +161,4 @@ class DashboardMenuFragment: BaseFragment()  {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_nav_menup)
-        (context as DashboardActivity).setTitle()
-    }
 }

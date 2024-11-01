@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -19,6 +20,7 @@ import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseActivity
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.adapter.MenuItemAdapter
+import com.app.dailyjounral.uttils.AppConstants
 import com.bumptech.glide.Glide
 
 
@@ -27,7 +29,7 @@ class DashboardActivity : BaseActivity(){
 
 
     private lateinit var binding: ActivityDashboardBinding
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private var activityDashboard : DashboardActivity? = null
 
@@ -45,7 +47,7 @@ class DashboardActivity : BaseActivity(){
 
 
         // Set up ActionBar
-        setSupportActionBar(binding.toolbarDashboard)
+      //  setSupportActionBar(binding.toolbarDashboard)
         val actionBar = supportActionBar
         if (actionBar != null) {
             supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -56,8 +58,8 @@ class DashboardActivity : BaseActivity(){
 
         setVersionName()
 
-        supportActionBar!!.title = "Test"
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_nav_menup)
+       /* supportActionBar!!.title = "Test"
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_nav_menup)*/
 
         navController = findNavController(R.id.navHostFragmentPickford)
 
@@ -66,13 +68,21 @@ class DashboardActivity : BaseActivity(){
             R.id.dashboardMenuFragment,
         ).setDrawerLayout(binding.drawer).build()
 
+        Glide.with(this)
+            .load(R.drawable.applogo)
+            .circleCrop()
+            .into(binding.ivLogo)
 
+
+/*
         setupActionBarWithNavController(
             navController,
             appBarConfiguration
         )
+*/
 
         addMenuData()
+        setAction()
     }
 
     private fun addMenuData() {
@@ -127,15 +137,46 @@ class DashboardActivity : BaseActivity(){
 
         navController = findNavController(R.id.navHostFragmentPickford)
 
-        if (title != null) binding.tvTitle.text = "Dashboard"
+        setBottomTab()
+
+      //  if (title != null) binding.tvTitle.text = "Dashboard"
         Log.e("OnResume","OnResume")
     }
 
     @SuppressLint("SetTextI18n")
     fun  setTitle(){
-        if (title != null) binding.tvTitle.text = "Dashboard"
+        //if (title != null) binding.tvTitle.text = "Dashboard"
     }
 
+    private fun setAction() {
+                binding.llHome.setOnClickListener {
+                    binding.llTab1.visibility = View.VISIBLE
+                    binding.llTab2.visibility = View.GONE
 
 
+                    binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+                    binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+
+                    binding.ivHome.setColorFilter(ContextCompat.getColor(this, R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+                    binding.ivAnalytics.setColorFilter(ContextCompat.getColor(this, R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+                }
+
+                binding.llAnalystic.setOnClickListener {
+                    binding.llTab1.visibility = View.GONE
+                    binding.llTab2.visibility = View.VISIBLE
+
+                    binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+                    binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
+
+                    binding.ivHome.setColorFilter(ContextCompat.getColor(this, R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+                    binding.ivAnalytics.setColorFilter(ContextCompat.getColor(this, R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+                }
+    }
+    private fun setBottomTab() {
+         binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+         binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+
+         binding.llTab1.visibility  = View.VISIBLE
+         binding.llTab2.visibility  = View.GONE
+    }
 }

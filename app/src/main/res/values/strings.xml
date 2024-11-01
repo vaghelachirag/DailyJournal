@@ -22,6 +22,7 @@
     <string name="dashboard_fragment_label">Dashboard Fragment</string>
     <string name="dashboard_menu_fragment_label">Dashboard Menu Fragment</string>
     <string name="webView_fragment_label">Dashboard Fragment</string>
+    <string name="detail_fragment_label">Detail Fragment</string>
 
 
 
