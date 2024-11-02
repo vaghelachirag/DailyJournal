@@ -106,7 +106,4 @@ class DetailFragment: BaseFragment() {
         binding.llMood.visibility = View.VISIBLE
         binding.llGratuity.visibility = View.VISIBLE
     }
-
-
-
 }

@@ -136,7 +136,6 @@ class DashboardMenuFragment: BaseFragment()  {
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
                 }
 
-
                 if (position == 3){
                     AppConstants.detailType = 7
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
@@ -160,5 +159,4 @@ class DashboardMenuFragment: BaseFragment()  {
         })
 
     }
-
 }

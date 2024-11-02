@@ -38,7 +38,7 @@ class WeekAdapter(val context: Context, private val list: MutableList<ModelDataW
         if(Utils().getCurrentWeekDay() == position + 1){
             holder.binding.txtWeekDays.setTextColor(R.color.white)
             holder.binding.txtWeekDays.setTypeface(null, Typeface.BOLD);
-            holder.binding.txtWeekDays.setTextColor(Color.parseColor("#FF0000"));
+            holder.binding.txtWeekDays.setTextColor(Color.parseColor("#180248"));
             holder.binding.txtWeekDays.setBackgroundResource(R.drawable.circular_background)
         }
         else{

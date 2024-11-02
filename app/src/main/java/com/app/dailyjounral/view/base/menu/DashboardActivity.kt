@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -22,6 +23,7 @@ import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.app.dailyjounral.uttils.AppConstants
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 
 
 @Suppress("DEPRECATION")
@@ -37,7 +39,7 @@ class DashboardActivity : BaseActivity(){
     private var session: Session? = null
 
     private var menuList = mutableListOf<MenuDataModel>()
-
+    private var options: RequestOptions? = null;
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,10 @@ class DashboardActivity : BaseActivity(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
         session = Session(this)
 
+       options = RequestOptions()
+            .centerCrop()
+            .placeholder(R.mipmap.ic_launcher_round)
+            .error(R.mipmap.ic_launcher_round)
 
         // Set up ActionBar
       //  setSupportActionBar(binding.toolbarDashboard)
@@ -149,6 +155,13 @@ class DashboardActivity : BaseActivity(){
     }
 
     private fun setAction() {
+                binding.ivMenu.setOnClickListener {
+                    if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
+                        binding.drawer.closeDrawer(GravityCompat.START)
+                    }else{
+                        binding.drawer.openDrawer(GravityCompat.START)
+                    }
+                }
                 binding.llHome.setOnClickListener {
                     binding.llTab1.visibility = View.VISIBLE
                     binding.llTab2.visibility = View.GONE
@@ -157,8 +170,9 @@ class DashboardActivity : BaseActivity(){
                     binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
                     binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
-                    binding.ivHome.setColorFilter(ContextCompat.getColor(this, R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-                    binding.ivAnalytics.setColorFilter(ContextCompat.getColor(this, R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+                    Glide.with(this).load(R.drawable.icon_home_active).apply(options!!).into(binding.ivHome)
+                    Glide.with(this).load(R.drawable.icon_analystic_unselected).apply(options!!).into(binding.ivAnalytics)
+
                 }
 
                 binding.llAnalystic.setOnClickListener {
@@ -168,8 +182,9 @@ class DashboardActivity : BaseActivity(){
                     binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
                     binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
 
-                    binding.ivHome.setColorFilter(ContextCompat.getColor(this, R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-                    binding.ivAnalytics.setColorFilter(ContextCompat.getColor(this, R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
+                   // binding.ivHome.setColorFilter(R.color.tab_un_selected_bg,android.graphics.PorterDuff.Mode.MULTIPLY);
+                    Glide.with(this).load(R.drawable.icon_home_unselected).apply(options!!).into(binding.ivHome)
+                    Glide.with(this).load(R.drawable.icon_anaylist_active).apply(options!!).into(binding.ivAnalytics)
                 }
     }
     private fun setBottomTab() {

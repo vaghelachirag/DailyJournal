@@ -63,6 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/main_graident"
+
                 android:orientation="vertical"
                 tools:ignore="MissingConstraints">
 
@@ -108,12 +109,14 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/iv_Menu"
                     app:defaultNavHost="true"
+                    android:layout_above="@+id/ll_bottom"
                     app:navGraph="@navigation/nav_grpah_pickford" />
 
 
                 <LinearLayout
+                    android:id="@+id/ll_bottom"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_60ssp"
                     android:orientation="horizontal"
                     android:layout_gravity="bottom"
                     android:layout_alignParentBottom="true"
@@ -190,7 +193,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginTop="@dimen/_10ssp"
-                            android:src="@drawable/ic_bottom_analystic">
+                            android:src="@drawable/icon_analystic_unselected">
                         </ImageView>
                         <com.app.dailyjounral.widget.InterFontText
                             android:id="@+id/txt_Analytics"

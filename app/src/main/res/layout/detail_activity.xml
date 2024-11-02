@@ -157,7 +157,7 @@
 
                         </ImageView>
 
-                        <com.app.dailyjounral.widget.InterFontText
+                        <com.app.dailyjounral.widget.SegoeUIText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10ssp"
@@ -167,7 +167,7 @@
                             android:maxLines="12"
                             android:text="@string/lorem_ipsum">
 
-                        </com.app.dailyjounral.widget.InterFontText>
+                        </com.app.dailyjounral.widget.SegoeUIText>
 
                     </LinearLayout>
                     <LinearLayout
