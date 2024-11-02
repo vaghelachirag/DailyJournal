@@ -46,6 +46,8 @@ class DetailFragment: BaseFragment() {
         }
         if(AppConstants.detailType == 3){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_daily_journal))
+            setTipOfDayData(false)
+            setDailyGeneralData()
         }
         if(AppConstants.detailType == 4){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_sleep))
@@ -76,6 +78,10 @@ class DetailFragment: BaseFragment() {
             setTipOfDayData(true)
         }
 
+    }
+
+    private fun setDailyGeneralData() {
+         binding.llDailyJournalAns.visibility = View.VISIBLE
     }
 
     private fun setCurrentDate() {

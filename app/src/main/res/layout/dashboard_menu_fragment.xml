@@ -235,7 +235,7 @@
                 android:src="@drawable/icon_bottom_leaf"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:paddingBottom="@dimen/_80ssp">
+                android:paddingBottom="@dimen/_20ssp">
 
             </ImageView>
 

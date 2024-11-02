@@ -92,14 +92,14 @@ class DashboardActivity : BaseActivity(){
     }
 
     private fun addMenuData() {
-        menuList.add(MenuDataModel("Home","",R.drawable.icon_home,true))
-        menuList.add(MenuDataModel("Sleep","",R.drawable.icon_sleep,false))
-        menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_gradituty,false))
+        menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
+        menuList.add(MenuDataModel("Sleep","",R.drawable.icon_menu_sleep_unselected,R.drawable.icon_menu_sleep_selected,false))
+        menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_menu_gradituty_unselected,R.drawable.icon_menu_gradituty_selected,false))
 
 
-        menuList.add(MenuDataModel("Mood","",R.drawable.icon_mood,false))
-        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,false))
-        menuList.add(MenuDataModel("Logout","",R.drawable.icon_login,false))
+        menuList.add(MenuDataModel("Mood","",R.drawable.icon_menu_mood_unselected,R.drawable.icon_menu_mood_selected,false))
+        menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
+        menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
 
         val layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

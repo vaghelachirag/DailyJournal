@@ -60,17 +60,18 @@ class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDa
             onItemSelected.onItemSelected(list[position], position)*/
         }
 
+
         if (position == mSelectedItem) {
             holder.binding.llMain.background = context.getDrawable(R.drawable.menu_selected_background)
             holder.binding.txtMenuName.setTextColor(context.getColor(R.color.tab_selected_bg))
-            holder.binding.ivLogo.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.menu_selected_bg));
             holder.binding.ivLogo.setColorFilter(ContextCompat.getColor(context, R.color.menu_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
            // holder.binding.ivLogo.setBackgroundColor(ContextCompat.getColor(context, R.color.tab_selected_bg))
+
+            Glide.with(context).load(list[position].selectedimage).apply(options).into(holder.binding.ivLogo)
+
         }
         else{
             holder.binding.txtMenuName.setTextColor(context.getColor(R.color.tab_un_selected_bg))
-            holder.binding.ivLogo.setColorFilter(ContextCompat.getColor(context, R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-            holder.binding.ivLogo.setBackgroundTintList(ContextCompat.getColorStateList(context,R.color.tab_un_selected_bg));
         }
 
     }

@@ -25,4 +25,8 @@
 
     <color name="menu_selected_bg">#F0E8FF</color>
 
+    <color name="daily_general_ans_bg">#F0F0F0</color>
+
+
+
 </resources>

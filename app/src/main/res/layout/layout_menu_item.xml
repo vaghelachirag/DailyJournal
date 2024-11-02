@@ -47,6 +47,7 @@
             android:text="Menu Name"
             android:textSize="@dimen/_10ssp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginStart="@dimen/_10ssp"
             android:textColor="@color/black"
             app:layout_constraintRight_toRightOf="@+id/iv_Logo"
