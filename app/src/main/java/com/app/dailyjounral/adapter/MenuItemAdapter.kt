@@ -55,6 +55,7 @@ class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDa
         holder.binding.llMain.setOnClickListener {
             mSelectedItem = position;
             notifyDataSetChanged();
+            onItemSelected.onItemSelected(list[position], position)
            /* list[position].isSelected = true
             notifyDataSetChanged()
             onItemSelected.onItemSelected(list[position], position)*/

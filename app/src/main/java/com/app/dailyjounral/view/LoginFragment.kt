@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.app.dailyjounral.databinding.LoginscreenBinding
+import com.app.dailyjounral.databinding.FragmentLoginBinding
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.viewmodel.LoginViewModel
 import com.app.dailyjounral.view.base.BaseFragment
@@ -18,13 +18,13 @@ import com.app.dailyjounral.view.base.BaseFragment
  */
 class LoginFragment : BaseFragment() {
 
-    private var _binding: LoginscreenBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private val signInViewModel by lazy { LoginViewModel(activity as Context,this@LoginFragment,binding) }
+    private val signInViewModel by lazy { LoginViewModel(activity as Context,binding) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = LoginscreenBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.viewModel = signInViewModel
         binding.lifecycleOwner = this
 

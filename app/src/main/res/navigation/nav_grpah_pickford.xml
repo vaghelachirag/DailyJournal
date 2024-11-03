@@ -20,6 +20,9 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/dashboardMenuFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
 
     </fragment>
 
@@ -52,6 +55,13 @@
             app:destination="@id/dashboardMenuFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/LoginFragment"
+        android:name="com.app.dailyjounral.view.fragment.LoginFragment"
+        android:label="@string/login_fragment_label"
+        tools:layout="@layout/fragment_login">
 
+
+    </fragment>
 
 </navigation>

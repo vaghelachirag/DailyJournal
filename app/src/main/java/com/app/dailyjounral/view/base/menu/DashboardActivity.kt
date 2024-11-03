@@ -6,22 +6,20 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
+import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.app.dailyjounral.databinding.ActivityDashboardBinding
+import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MenuDataModel
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseActivity
-import com.app.dailyjounral.interfaces.OnItemSelected
-import com.app.dailyjounral.adapter.MenuItemAdapter
-import com.app.dailyjounral.uttils.AppConstants
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
@@ -39,7 +37,8 @@ class DashboardActivity : BaseActivity(){
     private var session: Session? = null
 
     private var menuList = mutableListOf<MenuDataModel>()
-    private var options: RequestOptions? = null;
+    private var options: RequestOptions? = null
+
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,6 +111,26 @@ class DashboardActivity : BaseActivity(){
             override fun onItemSelected(t: MenuDataModel?, position: Int) {
                // clickMenuEvent(t)
                 Log.e("MenuPosition",position.toString())
+                binding.drawer.closeDrawer(GravityCompat.START)
+                if (position == 0){
+                    navController.navigate(R.id.dashboardMenuFragment)
+                }
+                if (position == 1){
+                    AppConstants.detailType = 4
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 2){
+                    AppConstants.detailType = 5
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 3){
+                    AppConstants.detailType = 6
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 4){
+                    AppConstants.detailType = 6
+                    navController.navigate(R.id.LoginFragment)
+                }
             }
 
         })
@@ -149,11 +168,6 @@ class DashboardActivity : BaseActivity(){
         Log.e("OnResume","OnResume")
     }
 
-    @SuppressLint("SetTextI18n")
-    fun  setTitle(){
-        //if (title != null) binding.tvTitle.text = "Dashboard"
-    }
-
     private fun setAction() {
                 binding.ivMenu.setOnClickListener {
                     if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
@@ -173,6 +187,7 @@ class DashboardActivity : BaseActivity(){
                     Glide.with(this).load(R.drawable.icon_home_active).apply(options!!).into(binding.ivHome)
                     Glide.with(this).load(R.drawable.icon_analystic_unselected).apply(options!!).into(binding.ivAnalytics)
 
+                    navController.navigate(R.id.dashboardMenuFragment)
                 }
 
                 binding.llAnalystic.setOnClickListener {
