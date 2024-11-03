@@ -26,7 +26,7 @@
     <color name="menu_selected_bg">#F0E8FF</color>
 
     <color name="daily_general_ans_bg">#F0F0F0</color>
-
+    <color name="light_gray_bg">#D3D3D3</color>
 
 
 </resources>

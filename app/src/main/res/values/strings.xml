@@ -33,6 +33,13 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="submit">Submit</string>
     <string name="orLoginWith">Or Login With</string>
+    <string name="signup_text">Do not have Account?</string>
+    <string name="register_now_text"> Register Now</string>
+
+
+    <!-- Register -->
+    <string name="register">Register</string>
+    <string name="fullName">Full Name</string>
 
     <string name="app_font_bold">roboto_bold.ttf</string>
     <string name="app_font_medium">roboto_medium.ttf</string>
