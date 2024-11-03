@@ -18,6 +18,7 @@
     <string name="splash_fragment_label">Splash Fragment</string>
     <string name="login_fragment_label">Login Fragment</string>
     <string name="signup_fragment_label">Signup Fragment</string>
+    <string name="register_fragment_label">Register Fragment</string>
     <string name="home_fragment_label">Home Fragment</string>
     <string name="dashboard_fragment_label">Dashboard Fragment</string>
     <string name="dashboard_menu_fragment_label">Dashboard Menu Fragment</string>
@@ -40,6 +41,8 @@
     <!-- Register -->
     <string name="register">Register</string>
     <string name="fullName">Full Name</string>
+    <string name="already_have_account_text">Already have Account?</string>
+    <string name="login_now_text"> Login Now</string>
 
     <string name="app_font_bold">roboto_bold.ttf</string>
     <string name="app_font_medium">roboto_medium.ttf</string>

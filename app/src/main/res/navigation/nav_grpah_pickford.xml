@@ -62,6 +62,18 @@
         tools:layout="@layout/fragment_login">
 
 
+        <action
+            android:id="@+id/action_LoginFragment_to_RegisterFragment2"
+            app:destination="@id/RegisterFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RegisterFragment"
+        android:name="com.app.dailyjounral.view.fragment.RegisterFragment"
+        android:label="@string/register_fragment_label"
+        tools:layout="@layout/fragment_register">
+
+
     </fragment>
 
 </navigation>

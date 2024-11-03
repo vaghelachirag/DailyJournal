@@ -131,6 +131,10 @@ class DashboardActivity : BaseActivity(){
                     AppConstants.detailType = 6
                     navController.navigate(R.id.LoginFragment)
                 }
+                if (position == 5){
+                    AppConstants.detailType = 6
+                    navController.navigate(R.id.LoginFragment)
+                }
             }
 
         })
