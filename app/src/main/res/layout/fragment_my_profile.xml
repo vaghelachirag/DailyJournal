@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.app.dailyjounral.viewmodel.MyProfileViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_20ssp"
+        android:layout_marginEnd="@dimen/_10ssp"
+        android:layout_marginStart="@dimen/_15ssp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16ssp"
+                android:layout_marginEnd="@dimen/_16ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints">
+
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:id="@+id/tvSignupLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="start"
+                    android:text="@string/my_profile"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivProfileImage"
+                    android:layout_width="@dimen/_80ssp"
+                    android:layout_height="@dimen/_80ssp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/logo"
+                    android:layout_marginTop="@dimen/_20ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel"
+                    tools:ignore="MissingConstraints" />
+
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:id="@+id/fullNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fullName"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:textSize="@dimen/_10ssp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/ivProfileImage">
+
+                </com.app.dailyjounral.widget.RobotoRegularText>
+
+                <com.app.dailyjounral.widget.TypefaceEditText
+                    android:id="@+id/edt_FullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/fullName"
+                    android:textSize="@dimen/_12ssp"
+                    android:drawableTint="@color/top_header_color"
+                    android:background="@drawable/round_shape_edittext"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/icon_profile"
+                    android:paddingStart="@dimen/_10ssp"
+                    android:drawablePadding="@dimen/_10ssp"
+                    android:padding="@dimen/_8ssp"
+                    android:layout_marginTop="@dimen/_5ssp"
+                    app:layout_constraintTop_toBottomOf="@+id/fullNameLabel"
+                    tools:ignore="RtlSymmetry">
+
+                </com.app.dailyjounral.widget.TypefaceEditText>
+
+
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:id="@+id/emailLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_FullName">
+
+                </com.app.dailyjounral.widget.RobotoRegularText>
+
+                <com.app.dailyjounral.widget.TypefaceEditText
+                    android:id="@+id/edt_Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:textSize="@dimen/_12ssp"
+                    android:drawableTint="@color/top_header_color"
+                    android:background="@drawable/round_shape_edittext"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/icon_email"
+                    android:paddingStart="@dimen/_10ssp"
+                    android:drawablePadding="@dimen/_10ssp"
+                    android:padding="@dimen/_8ssp"
+                    android:layout_marginTop="@dimen/_5ssp"
+                    app:layout_constraintTop_toBottomOf="@+id/emailLabel"
+                    tools:ignore="RtlSymmetry">
+
+                </com.app.dailyjounral.widget.TypefaceEditText>
+
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:id="@+id/passwordLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:textSize="@dimen/_10ssp"
+                    android:visibility="gone"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_Email">
+
+                </com.app.dailyjounral.widget.RobotoRegularText>
+
+                <com.app.dailyjounral.widget.TypefaceEditText
+                    android:id="@+id/edt_Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:drawableTint="@color/top_header_color"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/_12ssp"
+                    app:passwordToggleEnabled="true"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/icon_lock"
+                    android:paddingStart="@dimen/_10ssp"
+                    android:drawablePadding="@dimen/_10ssp"
+                    android:visibility="gone"
+                    android:background="@drawable/round_shape_edittext"
+                    android:padding="@dimen/_8ssp"
+                    android:drawableEnd="@drawable/icon_eye"
+                    android:layout_marginTop="@dimen/_5ssp"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
+                    tools:ignore="RtlSymmetry">
+
+                </com.app.dailyjounral.widget.TypefaceEditText>
+
+                <LinearLayout
+                    android:id="@+id/ll_RemeberMe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginTop="@dimen/_5ssp"
+                    app:layout_constraintTop_toBottomOf="@+id/edt_Password">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+                        <com.app.dailyjounral.widget.RobotoRegularText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_3ssp"
+                            android:gravity="center_vertical"
+                            android:text="Is Adult?"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="@color/tab_un_selected_bg"
+                            android:layout_gravity="center"
+                            app:layout_constraintBottom_toBottomOf="@+id/chkRememberPassword"
+                            app:layout_constraintStart_toEndOf="@+id/chkRememberPassword"
+                            app:layout_constraintTop_toTopOf="@+id/chkRememberPassword"
+                            tools:ignore="SmallSp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start">
+
+                        <RadioGroup
+                            android:id="@+id/radiogroup"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_gravity="top"
+                            android:gravity="top"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:animationCache="false">
+
+                            <RadioButton
+                                android:text="Yes"
+                                android:scaleX="0.60"
+                                android:scaleY="0.60"
+                                android:textSize="@dimen/_15ssp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/radioButton3" />
+
+                            <RadioButton
+                                android:text="No"
+                                android:scaleX="0.60"
+                                android:scaleY="0.60"
+                                android:textSize="@dimen/_15ssp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/radioButton4" />
+
+
+                        </RadioGroup>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_Login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cornerRadius="@dimen/_5ssp"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_RemeberMe"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/update">
+                </Button>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

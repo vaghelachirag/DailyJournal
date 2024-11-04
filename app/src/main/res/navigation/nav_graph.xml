@@ -39,6 +39,9 @@
         app:popExitAnim="@anim/anim_slide_out_to_bottom">
 
 
+        <action
+            android:id="@+id/action_LoginFragment_to_ForgotPasswordFragment"
+            app:destination="@id/ForgotPasswordFragment" />
     </fragment>
 
     <fragment
@@ -47,6 +50,13 @@
         android:label="@string/register_fragment_label"
         tools:layout="@layout/fragment_register">
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/ForgotPasswordFragment"
+        android:name="com.app.dailyjounral.view.fragment.ForgotPasswordFragment"
+        android:label="@string/fragment_forgot_password_label"
+        tools:layout="@layout/fragment_forgot_password">
 
     </fragment>
 

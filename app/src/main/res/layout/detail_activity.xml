@@ -23,8 +23,6 @@
             tools:ignore="MissingConstraints">
 
 
-
-
             <com.app.dailyjounral.widget.LogoRegularText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,12 +65,13 @@
                 android:background="@color/white"
                 app:cardCornerRadius="10dp"
                 android:layout_below="@+id/iv_text_logo"
+                android:layout_above="@+id/iv_Bottom"
                 android:layout_marginTop="20sp"
                 android:layout_marginEnd="30sp"
                 android:layout_marginStart="30sp"
                 android:layout_marginRight="10sp"
                 android:layout_marginLeft="10sp"
-                android:layout_marginBottom="@dimen/_30ssp"
+                android:layout_marginBottom="@dimen/_50ssp"
                 app:cardBackgroundColor="@color/white"
                 card_view:cardUseCompatPadding="true">
 
@@ -265,115 +264,87 @@
                         android:orientation="vertical"
                         android:layout_marginTop="@dimen/_20ssp">
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/TextInputLayout"
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:passwordToggleEnabled="false"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            android:layout_marginLeft="@dimen/_10ssp"
-                            android:layout_marginRight="@dimen/_10ssp"
-                            tools:ignore="MissingConstraints">
-
-                            <com.app.dailyjounral.widget.TypefaceEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/edit_text_size"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
-                                android:maxLength="50"
-                                android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/gray_616161"
-                                android:textSize="@dimen/loginTextSize"
-                                app:custom_font="@string/app_font_regular"
-                                tools:ignore="MissingClass,SpUsage" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/TextInputLayout"
+                            android:layout_height="@dimen/_40ssp"
+                            android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginEnd="@dimen/_10ssp"
+                            android:hint=""
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_gravity="top"
+                            android:gravity="top"
+                            android:paddingTop="@dimen/_10ssp"
+                            android:paddingLeft="@dimen/_5ssp"
+                            android:background="@color/daily_general_ans_bg" />
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:passwordToggleEnabled="false"
-                            android:layout_marginTop="@dimen/_5ssp"
-                            android:layout_marginLeft="@dimen/_10ssp"
-                            android:layout_marginRight="@dimen/_10ssp"
-                            tools:ignore="MissingConstraints">
-
-                            <com.app.dailyjounral.widget.TypefaceEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/edit_text_size"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
-                                android:maxLength="50"
-                                android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/gray_616161"
-                                android:textSize="@dimen/loginTextSize"
-                                app:custom_font="@string/app_font_regular"
-                                tools:ignore="MissingClass,SpUsage" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/TextInputLayout"
+                            android:layout_height="@dimen/_40ssp"
+                            android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginEnd="@dimen/_10ssp"
+                            android:layout_marginTop="@dimen/_15ssp"
+                            android:hint=""
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_gravity="top"
+                            android:gravity="top"
+                            android:paddingTop="@dimen/_10ssp"
+                            android:paddingLeft="@dimen/_5ssp"
+                            android:background="@color/daily_general_ans_bg" />
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:passwordToggleEnabled="false"
-                            android:layout_marginTop="@dimen/_5ssp"
-                            android:layout_marginLeft="@dimen/_10ssp"
-                            android:layout_marginRight="@dimen/_10ssp"
-                            tools:ignore="MissingConstraints">
-
-                            <com.app.dailyjounral.widget.TypefaceEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/edit_text_size"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
-                                android:maxLength="50"
-                                android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/gray_616161"
-                                android:textSize="@dimen/loginTextSize"
-                                app:custom_font="@string/app_font_regular"
-                                tools:ignore="MissingClass,SpUsage" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/TextInputLayout"
+                            android:layout_height="@dimen/_40ssp"
+                            android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginEnd="@dimen/_10ssp"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:hint=""
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_gravity="top"
+                            android:gravity="top"
+                            android:paddingTop="@dimen/_10ssp"
+                            android:paddingLeft="@dimen/_5ssp"
+                            android:background="@color/daily_general_ans_bg" />
+                        <EditText
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:passwordToggleEnabled="false"
-                            android:layout_marginTop="@dimen/_5ssp"
-                            android:layout_marginLeft="@dimen/_10ssp"
-                            android:layout_marginRight="@dimen/_10ssp"
-                            tools:ignore="MissingConstraints">
+                            android:layout_height="@dimen/_40ssp"
+                            android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginEnd="@dimen/_10ssp"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:hint=""
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_gravity="top"
+                            android:gravity="top"
+                            android:paddingTop="@dimen/_10ssp"
+                            android:paddingStart="@dimen/_5ssp"
+                            android:background="@color/daily_general_ans_bg" />
 
-                            <com.app.dailyjounral.widget.TypefaceEditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/edit_text_size"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:imeOptions="actionNext"
-                                android:inputType="textEmailAddress"
-                                android:maxLength="50"
-                                android:singleLine="true"
-                                android:textColor="@color/black"
-                                android:textColorHint="@color/gray_616161"
-                                android:textSize="@dimen/loginTextSize"
-                                app:custom_font="@string/app_font_regular"
-                                tools:ignore="MissingClass,SpUsage" />
-                        </com.google.android.material.textfield.TextInputLayout>
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:paddingTop="@dimen/_10ssp"
+                            android:paddingStart="@dimen/_5ssp"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:layout_weight="2.7"
+                            app:cornerRadius="@dimen/_5ssp"
+                            android:text="Submit">
+
+                        </Button>
                     </LinearLayout>
+
 
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/iv_Bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_bottom_leaf"
+                android:layout_marginBottom="@dimen/_30ssp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+            </ImageView>
 
         </RelativeLayout>
 

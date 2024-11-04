@@ -25,25 +25,31 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/_8ssp">
 
-
-
-    <ImageView
-        android:id="@+id/iv_Icon"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/mood_icon">
+        android:orientation="vertical"
+        android:gravity="center">
 
-    </ImageView>
+        <ImageView
+            android:id="@+id/iv_Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/mood_icon">
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_Icon">
+        </ImageView>
 
-    </RadioButton>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+        </RadioButton>
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

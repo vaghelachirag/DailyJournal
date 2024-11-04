@@ -76,4 +76,39 @@
 
     </fragment>
 
+
+    <fragment
+        android:id="@+id/ForgotPasswordFragment"
+        android:name="com.app.dailyjounral.view.fragment.ForgotPasswordFragment"
+        android:label="@string/fragment_forgot_password_label"
+        tools:layout="@layout/fragment_forgot_password">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/ChangePasswordFragment"
+        android:name="com.app.dailyjounral.view.fragment.ChangePasswordFragment"
+        android:label="@string/change_password_label"
+        tools:layout="@layout/change_password">
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/OtpPasswordFragment"
+        android:name="com.app.dailyjounral.view.fragment.OtpPasswordFragment"
+        android:label="@string/otp_label"
+        tools:layout="@layout/otp_password">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/MyProfileFragment"
+        android:name="com.app.dailyjounral.view.fragment.MyProfileFragment"
+        android:label="@string/my_profile_label"
+        tools:layout="@layout/fragment_my_profile">
+
+    </fragment>
+
+
 </navigation>

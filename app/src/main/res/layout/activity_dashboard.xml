@@ -94,8 +94,8 @@
 
                 <ImageView
                     android:id="@+id/iv_Logo"
-                    android:layout_width="@dimen/_50ssp"
-                    android:layout_height="@dimen/_50ssp"
+                    android:layout_width="@dimen/_60ssp"
+                    android:layout_height="@dimen/_60ssp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_30ssp"
                     android:contentDescription="TODO"

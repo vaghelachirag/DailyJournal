@@ -38,7 +38,7 @@ class DetailFragment: BaseFragment() {
     private fun setHeader() {
         if(AppConstants.detailType == 1){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_tip_of_day))
-            setTipOfDayData(false)
+            setTipOfDayData(true)
         }
         if(AppConstants.detailType == 2){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_quote))

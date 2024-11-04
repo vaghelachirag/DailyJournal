@@ -6,6 +6,8 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -85,7 +87,13 @@ class DashboardActivity : BaseActivity(){
             appBarConfiguration
         )
 */
+        val menuHeader = findViewById<View>(R.id.layoutMenu)
+        val llHeader = menuHeader.findViewById<View>(R.id.ll_Header) as ConstraintLayout
 
+        llHeader.setOnClickListener {
+            navController.navigate(R.id.MyProfileFragment)
+            binding.drawer.closeDrawer(GravityCompat.START)
+        }
         addMenuData()
         setAction()
     }
@@ -129,7 +137,7 @@ class DashboardActivity : BaseActivity(){
                 }
                 if (position == 4){
                     AppConstants.detailType = 6
-                    navController.navigate(R.id.LoginFragment)
+                    navController.navigate(R.id.ChangePasswordFragment)
                 }
                 if (position == 5){
                     AppConstants.detailType = 6
