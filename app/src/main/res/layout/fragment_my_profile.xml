@@ -32,30 +32,47 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
 
-                <com.app.dailyjounral.widget.RobotoRegularText
+                <TextView
                     android:id="@+id/tvSignupLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
                     android:text="@string/my_profile"
                     android:textColor="@color/black"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/_20ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:fontFamily="@font/roboto_bold"/>
 
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivProfileImage"
-                    android:layout_width="@dimen/_80ssp"
-                    android:layout_height="@dimen/_80ssp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/logo"
+                <FrameLayout
+                    android:id="@+id/rv_ProfilePic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginTop="@dimen/_20ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel"
-                    tools:ignore="MissingConstraints" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivProfileImage"
+                        android:layout_width="@dimen/_80ssp"
+                        android:layout_height="@dimen/_80ssp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/logo"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:visibility="gone"
+                        android:src="@drawable/icon_edit">
+
+                    </ImageView>
+                </FrameLayout>
+
 
                 <com.app.dailyjounral.widget.RobotoRegularText
                     android:id="@+id/fullNameLabel"
@@ -66,7 +83,7 @@
                     android:textSize="@dimen/_10ssp"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/ivProfileImage">
+                    app:layout_constraintTop_toBottomOf="@+id/rv_ProfilePic">
 
                 </com.app.dailyjounral.widget.RobotoRegularText>
 
@@ -85,6 +102,7 @@
                     android:drawablePadding="@dimen/_10ssp"
                     android:padding="@dimen/_8ssp"
                     android:layout_marginTop="@dimen/_5ssp"
+                    android:text="Robert Downey"
                     app:layout_constraintTop_toBottomOf="@+id/fullNameLabel"
                     tools:ignore="RtlSymmetry">
 
@@ -111,6 +129,7 @@
                     android:focusableInTouchMode="false"
                     android:focusable="false"
                     android:textSize="@dimen/_12ssp"
+                    android:text="robotD@gmail.com"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
                     android:fontFamily="@font/roboto_regular"
@@ -209,20 +228,22 @@
 
                             <RadioButton
                                 android:text="Yes"
-                                android:scaleX="0.60"
-                                android:scaleY="0.60"
+                                android:scaleX="0.80"
+                                android:scaleY="0.80"
                                 android:textSize="@dimen/_15ssp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
                                 android:id="@+id/radioButton3" />
 
                             <RadioButton
                                 android:text="No"
-                                android:scaleX="0.60"
-                                android:scaleY="0.60"
+                                android:scaleX="0.80"
+                                android:scaleY="0.80"
                                 android:textSize="@dimen/_15ssp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
                                 android:id="@+id/radioButton4" />
 
 

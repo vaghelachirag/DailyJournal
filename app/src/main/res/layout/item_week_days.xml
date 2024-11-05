@@ -22,20 +22,21 @@
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_3ssp">
 
-    <TextView
+    <com.app.dailyjounral.widget.RobotoRegularText
         android:id="@+id/txtWeekDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="M"
-        android:textSize="@dimen/_8ssp"
+        android:textSize="@dimen/_12ssp"
         android:layout_gravity="center"
-        android:textColor="@color/white"
-        android:padding="@dimen/_5ssp"
+        android:textColor="@color/tip_of_day_gradient_top"
+        android:gravity="center"
         tools:ignore="MissingConstraints,SpUsage,UnknownIdInLayout">
 
-    </TextView>
+    </com.app.dailyjounral.widget.RobotoRegularText>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -39,9 +39,7 @@ class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDa
         holder.bind(list[position])
 
         val options: RequestOptions = RequestOptions()
-            .centerCrop()
-            .placeholder(R.mipmap.ic_launcher_round)
-            .error(R.mipmap.ic_launcher_round)
+
 
         Glide.with(context).load(list[position].image).apply(options).into(holder.binding.ivLogo)
         holder.binding.txtMenuName.text = list[position].title

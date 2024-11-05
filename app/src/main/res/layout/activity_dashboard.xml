@@ -147,9 +147,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_10ssp"
-                            android:backgroundTint="@color/tab_un_selected_bg"
-                            android:src="@drawable/ic_botttom_home">
+                            android:layout_marginTop="@dimen/_10ssp">
 
                         </ImageView>
 
@@ -189,8 +187,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_10ssp"
-                            android:src="@drawable/icon_analystic_unselected">
+                            android:layout_marginTop="@dimen/_10ssp">
                         </ImageView>
                         <com.app.dailyjounral.widget.InterFontText
                             android:id="@+id/txt_Analytics"

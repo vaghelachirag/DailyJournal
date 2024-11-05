@@ -10,7 +10,6 @@ import com.app.dailyjounral.databinding.FragmentLoginBinding
 import com.app.dailyjounral.databinding.OtpPasswordBinding
 import com.app.dailyjounral.view.fragment.ChangePasswordFragment
 import com.app.dailyjounral.view.fragment.ForgotPasswordFragment
-import com.app.dailyjounral.view.fragment.LoginFragment
 import com.app.dailyjounral.view.fragment.OtpPasswordFragment
 import com.app.secureglobal.model.base.BaseViewModel
 
@@ -22,7 +21,7 @@ class OTPViewModel(private val context: Context, private val binding: OtpPasswor
      private var confirmPassword : ObservableField<String> = ObservableField()
 
     fun redirectToChangePassword(){
-        otpFragment.findNavController().navigate(R.id.ChangePasswordFragment)
+        otpFragment.findNavController().navigate(R.id.ResetPasswordFragment)
     }
 
 }

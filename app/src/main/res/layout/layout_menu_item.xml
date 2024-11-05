@@ -40,7 +40,7 @@
 
     </androidx.appcompat.widget.AppCompatImageView>
 
-        <com.app.dailyjounral.widget.SmallText
+        <com.app.dailyjounral.widget.PoppinsBoldText
             android:id="@+id/txtMenuName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,6 +56,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SpUsage">
 
-        </com.app.dailyjounral.widget.SmallText>
+        </com.app.dailyjounral.widget.PoppinsBoldText>
     </LinearLayout>
 </layout>

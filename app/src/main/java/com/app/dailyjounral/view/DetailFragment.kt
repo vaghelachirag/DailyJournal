@@ -37,7 +37,7 @@ class DetailFragment: BaseFragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setHeader() {
         if(AppConstants.detailType == 1){
-            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_tip_of_day))
+            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detai_tip_of_day_text))
             setTipOfDayData(true)
         }
         if(AppConstants.detailType == 2){
@@ -64,13 +64,14 @@ class DetailFragment: BaseFragment() {
         if(AppConstants.detailType == 7){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_goal_setting))
             setTipOfDayData(false)
+            setDailyGeneralData()
         }
         if(AppConstants.detailType == 8){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_workout))
             setMoodDetectorData()
         }
         if(AppConstants.detailType == 9){
-            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_quote))
+            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_selfcare_tip))
             setTipOfDayData(true)
         }
         if(AppConstants.detailType == 10){

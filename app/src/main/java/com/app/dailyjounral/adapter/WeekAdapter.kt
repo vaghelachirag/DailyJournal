@@ -35,18 +35,18 @@ class WeekAdapter(val context: Context, private val list: MutableList<ModelDataW
 
         holder.binding.txtWeekDays.text = list[position].title
 
-        if(position == 0){
-            holder.binding.txtWeekDays.setTextColor(R.color.white)
+        if(position == 1){
+          /*  holder.binding.txtWeekDays.setTextColor(R.color.white)
             holder.binding.txtWeekDays.setTypeface(null, Typeface.BOLD);
             holder.binding.txtWeekDays.setTextColor(Color.parseColor("#FF0000"));
-            holder.binding.txtWeekDays.textSize = 10F
-           // holder.binding.txtWeekDays.setBackgroundResource(R.drawable.circular_background)
+           // holder.binding.txtWeekDays.textSize = 10F*/
+            holder.binding.txtWeekDays.setBackgroundResource(R.drawable.circular_background)
         }
         else{
-            holder.binding.txtWeekDays.textSize = 10F
+          //  holder.binding.txtWeekDays.textSize = 10F
             holder.binding.txtWeekDays.setTextColor(R.color.red)
-            holder.binding.txtWeekDays.setTypeface(null, Typeface.NORMAL);
-            holder.binding.txtWeekDays.setTextColor(Color.parseColor("#000000"));
+          //  holder.binding.txtWeekDays.setTypeface(null, Typeface.NORMAL);
+       //     holder.binding.txtWeekDays.setTextColor(Color.parseColor("#000000"));
         }
 
     }

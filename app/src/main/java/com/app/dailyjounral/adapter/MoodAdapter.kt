@@ -33,7 +33,6 @@ class MoodAdapter(val context: Context, private val list: MutableList<MoodDataMo
         holder.bind(list[position])
 
         val options: RequestOptions = RequestOptions()
-            .centerCrop()
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
 

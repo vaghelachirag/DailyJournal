@@ -5,14 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.app.dailyjounral.databinding.ChangePasswordBinding
-import com.app.dailyjounral.databinding.FragmentForgotPasswordBinding
-import com.app.dailyjounral.databinding.FragmentLoginBinding
 import com.app.dailyjounral.databinding.OtpPasswordBinding
 import com.app.dailyjounral.view.base.BaseFragment
-import com.app.dailyjounral.viewmodel.ChangePasswordViewModel
-import com.app.dailyjounral.viewmodel.ForgotPasswordViewModel
-import com.app.dailyjounral.viewmodel.LoginViewModel
 import com.app.dailyjounral.viewmodel.OTPViewModel
 
 class OtpPasswordFragment: BaseFragment() {

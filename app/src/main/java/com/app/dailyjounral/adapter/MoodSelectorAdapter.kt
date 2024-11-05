@@ -34,16 +34,15 @@ class MoodSelectorAdapter(val context: Context, private val list: MutableList<Mo
     override fun onBindViewHolder(holder: MoodDetectorItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
-        if (list[position].title.contains("MoodSelector")){
-            holder.binding.llMood.visibility = View.VISIBLE
-            holder.binding.ivIcon.visibility = View.GONE
-        }
-        val options: RequestOptions = RequestOptions()
-            .centerCrop()
+        holder.binding.llMood.visibility = View.VISIBLE
+        holder.binding.ivIcon.visibility = View.GONE
+
+
+       val options: RequestOptions = RequestOptions()
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
 
-        Glide.with(context).load(list[position].image).apply(options).into(holder.binding.ivIcon)
+        Glide.with(context).load(list[position].image).apply(options).into(holder.binding.ivMood)
     }
     override fun getItemCount(): Int {
         return list.size

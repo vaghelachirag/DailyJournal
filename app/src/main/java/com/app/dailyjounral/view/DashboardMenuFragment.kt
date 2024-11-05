@@ -107,10 +107,9 @@ class DashboardMenuFragment: BaseFragment()  {
         moodDataList.add(MoodDataModel("Mood","",R.drawable.list_mood_icon))
 
 
-        moodDataList.add(MoodDataModel("Goal Setting","",R.drawable.list_sleep_icon))
-        moodDataList.add(MoodDataModel("Work-out","",R.drawable.list_graditity_icon))
-        moodDataList.add(MoodDataModel("Quote","",R.drawable.list_mood_icon))
-        moodDataList.add(MoodDataModel("Self-Care Tip","",R.drawable.list_mood_icon))
+        moodDataList.add(MoodDataModel("Goal Setting","",R.drawable.list_goal_setting))
+        moodDataList.add(MoodDataModel("Work-out","",R.drawable.list_icon_weight))
+        moodDataList.add(MoodDataModel("Self-Care Tip","",R.drawable.list_selfcare_icon))
 
         val layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
 

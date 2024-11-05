@@ -48,7 +48,7 @@ class DetailActivity : BaseActivity(){
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun setHeader() {
          if(AppConstants.detailType == 1){
-            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_tip_of_day))
+            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detai_tip_of_day_text))
             setTipOfDayData(false)
          }
         if(AppConstants.detailType == 2){

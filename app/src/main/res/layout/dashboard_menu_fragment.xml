@@ -82,6 +82,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/white_round_shape"
                             android:padding="@dimen/_15ssp"
+                            android:scaleType="fitCenter"
                             android:src="@drawable/icon_dashboard_tip_of_day">
 
                         </ImageView>
@@ -131,6 +132,7 @@
                             android:layout_gravity="center"
                             android:background="@drawable/white_round_shape"
                             android:padding="@dimen/_15ssp"
+                            android:scaleType="fitCenter"
                             android:src="@drawable/icon_dasboard_daily_quete">
 
                         </ImageView>

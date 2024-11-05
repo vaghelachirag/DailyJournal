@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.app.dailyjounral.viewmodel.SignupViewModel" />
+            type="com.app.dailyjounral.viewmodel.LoginViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -32,50 +32,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
 
-                <TextView
+                <com.app.dailyjounral.widget.RobotoRegularText
                     android:id="@+id/tvSignupLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:text="@string/register"
+                    android:text="@string/login"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="25sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:fontFamily="@font/roboto_bold"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.app.dailyjounral.widget.RobotoRegularText
-                    android:id="@+id/fullNameLabel"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvSignupLabelContinue"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/fullName"
-                    android:layout_marginTop="@dimen/_10ssp"
-                    android:textSize="@dimen/_10ssp"
-                    android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel">
-
-                </com.app.dailyjounral.widget.RobotoRegularText>
-
-                <com.app.dailyjounral.widget.TypefaceEditText
-                    android:id="@+id/edt_FullName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/fullName"
-                    android:textSize="@dimen/_12ssp"
-                    android:drawableTint="@color/top_header_color"
-                    android:background="@drawable/round_shape_edittext"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textColor="@color/black"
-                    android:drawableStart="@drawable/icon_profile"
-                    android:paddingStart="@dimen/_10ssp"
-                    android:drawablePadding="@dimen/_10ssp"
-                    android:padding="@dimen/_8ssp"
-                    android:layout_marginTop="@dimen/_5ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/fullNameLabel"
-                    tools:ignore="RtlSymmetry">
-
-                </com.app.dailyjounral.widget.TypefaceEditText>
+                    android:gravity="center"
+                    android:text="sign_in_continue"
+                    android:textColor="@color/gray_616161"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel" />
 
 
                 <com.app.dailyjounral.widget.RobotoRegularText
@@ -83,10 +62,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/email"
-                    android:layout_marginTop="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_15ssp"
                     android:textSize="@dimen/_10ssp"
                     android:textColor="@color/black"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_FullName">
+                    app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel">
 
                 </com.app.dailyjounral.widget.RobotoRegularText>
 
@@ -98,9 +77,9 @@
                     android:textSize="@dimen/_12ssp"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
-                    android:fontFamily="@font/roboto_regular"
+                    android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/black"
-                    android:drawableStart="@drawable/icon_email"
+                    android:drawableStart="@drawable/baseline_email_24"
                     android:paddingStart="@dimen/_10ssp"
                     android:drawablePadding="@dimen/_10ssp"
                     android:padding="@dimen/_8ssp"
@@ -150,20 +129,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
-                    android:layout_marginTop="@dimen/_5ssp"
+                    android:layout_marginTop="@dimen/_20ssp"
                     app:layout_constraintTop_toBottomOf="@+id/edt_Password">
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/chkRememberPassword"
+                            style="@style/MaterialCheckBoxStyle"
+                            android:background="@android:color/white"
+                            android:button="@null"
+                            android:minWidth="0dp"
+                            android:minHeight="0dp"
+                            android:layout_marginStart="@dimen/_5ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/inpPwd" />
                         <com.app.dailyjounral.widget.RobotoRegularText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_3ssp"
                             android:gravity="center_vertical"
-                            android:text="Is Adult?"
+                            android:text="Remember Me"
                             android:textSize="@dimen/_10ssp"
                             android:textColor="@color/tab_un_selected_bg"
                             android:layout_gravity="center"
@@ -177,41 +165,21 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="start"
-                        android:gravity="start">
+                        android:layout_gravity="end"
+                        android:gravity="end">
 
-                        <RadioGroup
-                            android:id="@+id/radiogroup"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_gravity="top"
-                            android:gravity="top"
+                        <com.app.dailyjounral.widget.RobotoRegularText
+                            android:id="@+id/txtForgotPassword"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:animationCache="false">
+                            android:text="@string/forgot_password"
+                            android:textSize="@dimen/_10ssp"
+                            android:layout_marginRight="@dimen/_5ssp"
+                            android:layout_gravity="end"
+                            android:textColor="@color/tab_un_selected_bg"
+                            android:gravity="end">
 
-                            <RadioButton
-                                android:text="Yes"
-                                android:scaleX="0.80"
-                                android:scaleY="0.80"
-                                android:textSize="@dimen/_15ssp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_regular"
-                                android:id="@+id/radioButton3" />
-
-                            <RadioButton
-                                android:text="No"
-                                android:scaleX="0.80"
-                                android:scaleY="0.80"
-                                android:textSize="@dimen/_15ssp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/roboto_regular"
-                                android:id="@+id/radioButton4" />
-
-
-                        </RadioGroup>
+                        </com.app.dailyjounral.widget.RobotoRegularText>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -221,10 +189,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cornerRadius="@dimen/_5ssp"
-                    android:layout_marginTop="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_20ssp"
                     app:layout_constraintTop_toBottomOf="@+id/ll_RemeberMe"
                     android:fontFamily="@font/roboto_regular"
-                    android:text="@string/register">
+                    android:text="@string/login">
                 </Button>
                 <LinearLayout
                     android:id="@+id/ll_loginOption"
@@ -321,22 +289,23 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:gravity="center|top"
+                    android:paddingBottom="@dimen/_10ssp"
                     app:layout_constraintTop_toBottomOf="@+id/ll_SocialLogin">
 
                     <com.app.dailyjounral.widget.RobotoRegularText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/already_have_account_text"
+                        android:text="@string/signup_text"
                         android:textColor="@color/list_text_bg"
                         android:layout_marginTop="@dimen/_10ssp"
                         android:textSize="@dimen/_10ssp" />
 
                     <com.app.dailyjounral.widget.PoppinsBoldText
-                        android:id="@+id/txt_RedirectToLogin"
+                        android:id="@+id/txt_RedirectToSignup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5ssp"
-                        android:text="@string/login_now_text"
+                        android:text="@string/register_now_text"
                         android:textColor="@color/list_text_bg"
                         android:layout_marginTop="@dimen/_10ssp"
                         android:textSize="@dimen/_10ssp" />

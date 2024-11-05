@@ -50,7 +50,6 @@
                 android:id="@+id/iv_text_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_35ssp"
-                android:layout_below="@+id/iv_Logo"
                 android:layout_marginTop="@dimen/_20ssp"
                 android:layout_centerHorizontal="true"
                 android:visibility="visible"
@@ -65,14 +64,13 @@
                 android:background="@color/white"
                 app:cardCornerRadius="10dp"
                 android:layout_below="@+id/iv_text_logo"
-                android:layout_above="@+id/iv_Bottom"
-                android:layout_marginTop="20sp"
-                android:layout_marginEnd="30sp"
-                android:layout_marginStart="30sp"
-                android:layout_marginRight="10sp"
-                android:layout_marginLeft="10sp"
-                android:layout_marginBottom="@dimen/_30ssp"
+                android:layout_marginTop="@dimen/_40ssp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/_60ssp"
                 app:cardBackgroundColor="@color/white"
+                android:layout_marginStart="@dimen/_15ssp"
+                android:layout_marginEnd="@dimen/_15ssp"
+                card_view:cardElevation="4dp"
                 card_view:cardUseCompatPadding="true">
 
                 <RelativeLayout
@@ -96,7 +94,7 @@
                             android:id="@+id/ll_WeekDays"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.1">
+                            android:layout_weight="1">
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvWeekDays"
@@ -115,13 +113,13 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:gravity="end"
-                            android:layout_weight="0.9">
+                            android:gravity="center"
+                            android:layout_weight="1">
 
                             <com.app.dailyjounral.widget.HeaderText
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/_10ssp"
+                                android:textSize="@dimen/_12ssp"
                                 android:text="Date : ">
 
                             </com.app.dailyjounral.widget.HeaderText>
@@ -130,7 +128,7 @@
                                 android:id="@+id/txtCurrentDate"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="@dimen/_10ssp"
+                                android:textSize="@dimen/_12ssp"
                                 android:text="27/01/2024">
 
                             </com.app.dailyjounral.widget.SmallText>
@@ -153,19 +151,20 @@
                             android:layout_marginStart="@dimen/_10ssp"
                             android:layout_marginEnd="@dimen/_10ssp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/natureimage">
+                            android:src="@drawable/daily_general_img">
 
                         </ImageView>
 
                         <com.app.dailyjounral.widget.RobotoRegularText
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_10ssp"
-                            android:textColor="@color/black"
                             android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginTop="@dimen/_10ssp"
                             android:layout_marginEnd="@dimen/_10ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:maxLines="5"
-                            android:text="@string/lorem_ipsum">
+                            android:text="@string/lorem_ipsum"
+                            android:textColor="@color/black">
 
                         </com.app.dailyjounral.widget.RobotoRegularText>
 
@@ -238,11 +237,12 @@
                         android:layout_height="wrap_content"
                         android:visibility="visible"
                         android:orientation="vertical"
+                        android:gravity="center"
                         android:layout_marginTop="@dimen/_20ssp">
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvMoodDetector"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_10ssp"
                             android:clipToPadding="false"
@@ -255,38 +255,37 @@
                             tools:listitem="@layout/layout_mood_detector" />
 
                     </LinearLayout>
-                       <LinearLayout
+                    <LinearLayout
                         android:id="@+id/ll_Gratuity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
                         android:orientation="vertical"
-                        android:layout_marginTop="@dimen/_20ssp">
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginStart="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_10ssp">
                        <androidx.core.widget.NestedScrollView
                            android:layout_width="match_parent"
-                           android:layout_height="200sp">
+                           android:layout_height="wrap_content">
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="200sp"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_40ssp"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
                                 android:hint=""
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="top"
                                 android:gravity="top"
-                                android:paddingTop="@dimen/_10ssp"
-                                android:paddingLeft="@dimen/_5ssp"
-                                android:background="@color/daily_general_ans_bg" />
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40ssp"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:paddingTop="@dimen/_15ssp"
                                 android:layout_marginTop="@dimen/_15ssp"
+                                android:paddingLeft="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg" />
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40ssp"
+                                android:layout_marginTop="@dimen/_5ssp"
                                 android:hint=""
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="top"
@@ -297,9 +296,7 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_40ssp"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
-                                android:layout_marginTop="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_5ssp"
                                 android:hint=""
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="top"
@@ -310,9 +307,7 @@
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_40ssp"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
-                                android:layout_marginTop="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_5ssp"
                                 android:hint=""
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="top"
@@ -325,9 +320,8 @@
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:paddingTop="@dimen/_10ssp"
                             android:paddingStart="@dimen/_5ssp"
-                            android:layout_marginTop="@dimen/_10ssp"
+                            android:layout_marginTop="@dimen/_5ssp"
                             android:layout_weight="2.7"
                             app:cornerRadius="@dimen/_5ssp"
                             android:text="Submit"
@@ -345,7 +339,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_bottom_leaf"
-                android:layout_marginBottom="@dimen/_30ssp"
+                android:layout_marginBottom="@dimen/_20ssp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true">
 

@@ -6,10 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.app.dailyjounral.databinding.FragmentForgotPasswordBinding
-import com.app.dailyjounral.databinding.FragmentLoginBinding
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.viewmodel.ForgotPasswordViewModel
-import com.app.dailyjounral.viewmodel.LoginViewModel
 
 class ForgotPasswordFragment: BaseFragment() {
 

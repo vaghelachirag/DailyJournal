@@ -1,4 +1,5 @@
 package com.app.dailyjounral.view.base.menu
+
 import android.annotation.SuppressLint
 import android.content.IntentFilter
 import android.os.Bundle
@@ -6,7 +7,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
@@ -80,13 +80,6 @@ class DashboardActivity : BaseActivity(){
             .circleCrop()
             .into(binding.ivLogo)
 
-
-/*
-        setupActionBarWithNavController(
-            navController,
-            appBarConfiguration
-        )
-*/
         val menuHeader = findViewById<View>(R.id.layoutMenu)
         val llHeader = menuHeader.findViewById<View>(R.id.ll_Header) as ConstraintLayout
 
@@ -94,6 +87,7 @@ class DashboardActivity : BaseActivity(){
             navController.navigate(R.id.MyProfileFragment)
             binding.drawer.closeDrawer(GravityCompat.START)
         }
+
         addMenuData()
         setAction()
     }
@@ -102,7 +96,7 @@ class DashboardActivity : BaseActivity(){
         menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
         menuList.add(MenuDataModel("Sleep","",R.drawable.icon_menu_sleep_unselected,R.drawable.icon_menu_sleep_selected,false))
         menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_menu_gradituty_unselected,R.drawable.icon_menu_gradituty_selected,false))
-
+        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
 
         menuList.add(MenuDataModel("Mood","",R.drawable.icon_menu_mood_unselected,R.drawable.icon_menu_mood_selected,false))
         menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
@@ -132,14 +126,17 @@ class DashboardActivity : BaseActivity(){
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 3){
-                    AppConstants.detailType = 6
-                    navController.navigate(R.id.detailViewFragment)
+                    navController.navigate(R.id.MyProfileFragment)
                 }
                 if (position == 4){
                     AppConstants.detailType = 6
-                    navController.navigate(R.id.ChangePasswordFragment)
+                    navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 5){
+                    AppConstants.detailType = 6
+                    navController.navigate(R.id.ChangePasswordFragment)
+                }
+                if (position == 6){
                     AppConstants.detailType = 6
                     navController.navigate(R.id.LoginFragment)
                 }
@@ -173,11 +170,8 @@ class DashboardActivity : BaseActivity(){
         intentFilter.addAction("NotifyUser")
 
         navController = findNavController(R.id.navHostFragmentPickford)
-
         setBottomTab()
 
-      //  if (title != null) binding.tvTitle.text = "Dashboard"
-        Log.e("OnResume","OnResume")
     }
 
     private fun setAction() {
@@ -196,8 +190,8 @@ class DashboardActivity : BaseActivity(){
                     binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
                     binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
-                    Glide.with(this).load(R.drawable.icon_home_active).apply(options!!).into(binding.ivHome)
-                    Glide.with(this).load(R.drawable.icon_analystic_unselected).apply(options!!).into(binding.ivAnalytics)
+                    binding.ivHome.setBackgroundResource(R.drawable.icon_home_active);
+                    binding.ivAnalytics.setBackgroundResource(R.drawable.icon_analystic_unselected);
 
                     navController.navigate(R.id.dashboardMenuFragment)
                 }
@@ -209,14 +203,19 @@ class DashboardActivity : BaseActivity(){
                     binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
                     binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
 
-                   // binding.ivHome.setColorFilter(R.color.tab_un_selected_bg,android.graphics.PorterDuff.Mode.MULTIPLY);
-                    Glide.with(this).load(R.drawable.icon_home_unselected).apply(options!!).into(binding.ivHome)
-                    Glide.with(this).load(R.drawable.icon_anaylist_active).apply(options!!).into(binding.ivAnalytics)
+
+                    binding.ivHome.setBackgroundResource(R.drawable.icon_home_unselected)
+                    binding.ivAnalytics.setBackgroundResource(R.drawable.icon_anaylist_active)
+
+                    navController.navigate(R.id.AnalyticsFragment)
                 }
     }
     private fun setBottomTab() {
          binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
          binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+
+        binding.ivHome.setBackgroundResource(R.drawable.icon_home_active);
+        binding.ivAnalytics.setBackgroundResource(R.drawable.icon_analystic_unselected);
 
          binding.llTab1.visibility  = View.VISIBLE
          binding.llTab2.visibility  = View.GONE

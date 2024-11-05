@@ -46,29 +46,29 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
 
         moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_number_four))
         moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_number_five))
-        moodDataList.add(MoodDataModel("Mood","", R.drawable.six_icon))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_number_six))
     }
 
     private fun addWorkoutData() {
-        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_running))
-        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_dumbell))
-        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_running))
+        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_workout_one))
+        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_workout_two))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_workout_three))
 
 
-        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_dumbell))
-        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_running))
-        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_dumbell))
+        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_workout_four))
+        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_workout_five))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_workout_six))
     }
 
     private fun addMoodData() {
-        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_mood_angel))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_mood_angry))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_mood_sad))
 
 
-        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_mood_smart))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_mood_sleep))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_mood_smart))
 
     }
 
@@ -80,8 +80,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
         weekDayList.add(ModelDataWeek("T",false))
         weekDayList.add(ModelDataWeek("S",false))
 
-        val layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         binding.rvWeekDays.layoutManager = layoutManager
 

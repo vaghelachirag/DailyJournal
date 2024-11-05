@@ -6,18 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.app.dailyjounral.databinding.ChangePasswordBinding
+import com.app.dailyjounral.databinding.ResetPasswordBinding
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.viewmodel.ChangePasswordViewModel
-class ChangePasswordFragment: BaseFragment() {
+import com.app.dailyjounral.viewmodel.ResetPasswordViewModel
 
-    private var _binding: ChangePasswordBinding? = null
+class ResetPasswordFragment: BaseFragment() {
+
+    private var _binding: ResetPasswordBinding? = null
     private val binding get() = _binding!!
-    private val changePasswordViewModel by lazy { ChangePasswordViewModel(activity as Context,binding,this@ChangePasswordFragment) }
+    private val resetPasswordViewModel by lazy { ResetPasswordViewModel(activity as Context,binding,this@ResetPasswordFragment) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        _binding = ChangePasswordBinding.inflate(inflater, container, false)
-        binding.viewModel = changePasswordViewModel
+        _binding = ResetPasswordBinding.inflate(inflater, container, false)
+        binding.viewModel = resetPasswordViewModel
         binding.lifecycleOwner = this
 
 
