@@ -46,7 +46,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
 
         moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_number_four))
         moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_number_five))
-        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_number_seven))
+        moodDataList.add(MoodDataModel("Mood","", R.drawable.six_icon))
     }
 
     private fun addWorkoutData() {
@@ -61,14 +61,14 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
     }
 
     private fun addMoodData() {
-        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
 
 
-        moodDataList.add(MoodDataModel("Sleep","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("Gratitude","", R.drawable.icon_menu_sleep_selected))
-        moodDataList.add(MoodDataModel("Mood","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
+        moodDataList.add(MoodDataModel("MoodSelector","", R.drawable.icon_menu_sleep_selected))
 
     }
 

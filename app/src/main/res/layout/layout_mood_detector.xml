@@ -31,18 +31,38 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <LinearLayout
+            android:id="@+id/ll_Mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/_15ssp"
+            android:visibility="gone"
+            android:background="@drawable/tip_of_the_day_gradient">
+
+            <ImageView
+                android:id="@+id/iv_Mood"
+                android:layout_width="@dimen/_30ssp"
+                android:layout_height="@dimen/_30ssp"
+                android:layout_gravity="center"
+                android:contentDescription="TODO"
+                android:src="@drawable/sleep_icon">
+            </ImageView>
+        </LinearLayout>
         <ImageView
             android:id="@+id/iv_Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:visibility="visible"
             android:src="@drawable/mood_icon">
 
         </ImageView>
 
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_30ssp"
+            android:layout_height="@dimen/_30ssp"
             android:layout_gravity="center"
             android:gravity="center">
 

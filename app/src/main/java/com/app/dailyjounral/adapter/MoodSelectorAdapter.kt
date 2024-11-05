@@ -3,6 +3,7 @@ package com.app.dailyjounral.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +34,10 @@ class MoodSelectorAdapter(val context: Context, private val list: MutableList<Mo
     override fun onBindViewHolder(holder: MoodDetectorItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
+        if (list[position].title.contains("MoodSelector")){
+            holder.binding.llMood.visibility = View.VISIBLE
+            holder.binding.ivIcon.visibility = View.GONE
+        }
         val options: RequestOptions = RequestOptions()
             .centerCrop()
             .placeholder(R.mipmap.ic_launcher_round)

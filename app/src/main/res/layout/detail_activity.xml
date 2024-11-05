@@ -71,7 +71,7 @@
                 android:layout_marginStart="30sp"
                 android:layout_marginRight="10sp"
                 android:layout_marginLeft="10sp"
-                android:layout_marginBottom="@dimen/_50ssp"
+                android:layout_marginBottom="@dimen/_30ssp"
                 app:cardBackgroundColor="@color/white"
                 card_view:cardUseCompatPadding="true">
 
@@ -179,7 +179,7 @@
 
                             <EditText
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_100ssp"
+                                android:layout_height="@dimen/_80ssp"
                                 android:layout_marginStart="@dimen/_10ssp"
                                 android:layout_marginEnd="@dimen/_10ssp"
                                 android:hint="Type your ans.."
@@ -255,67 +255,73 @@
                             tools:listitem="@layout/layout_mood_detector" />
 
                     </LinearLayout>
-
-                    <LinearLayout
+                       <LinearLayout
                         android:id="@+id/ll_Gratuity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone"
                         android:orientation="vertical"
                         android:layout_marginTop="@dimen/_20ssp">
-
-                        <EditText
+                       <androidx.core.widget.NestedScrollView
+                           android:layout_width="match_parent"
+                           android:layout_height="200sp">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_40ssp"
-                            android:layout_marginStart="@dimen/_10ssp"
-                            android:layout_marginEnd="@dimen/_10ssp"
-                            android:hint=""
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_gravity="top"
-                            android:gravity="top"
-                            android:paddingTop="@dimen/_10ssp"
-                            android:paddingLeft="@dimen/_5ssp"
-                            android:background="@color/daily_general_ans_bg" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_40ssp"
-                            android:layout_marginStart="@dimen/_10ssp"
-                            android:layout_marginEnd="@dimen/_10ssp"
-                            android:layout_marginTop="@dimen/_15ssp"
-                            android:hint=""
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_gravity="top"
-                            android:gravity="top"
-                            android:paddingTop="@dimen/_10ssp"
-                            android:paddingLeft="@dimen/_5ssp"
-                            android:background="@color/daily_general_ans_bg" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_40ssp"
-                            android:layout_marginStart="@dimen/_10ssp"
-                            android:layout_marginEnd="@dimen/_10ssp"
-                            android:layout_marginTop="@dimen/_10ssp"
-                            android:hint=""
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_gravity="top"
-                            android:gravity="top"
-                            android:paddingTop="@dimen/_10ssp"
-                            android:paddingLeft="@dimen/_5ssp"
-                            android:background="@color/daily_general_ans_bg" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_40ssp"
-                            android:layout_marginStart="@dimen/_10ssp"
-                            android:layout_marginEnd="@dimen/_10ssp"
-                            android:layout_marginTop="@dimen/_10ssp"
-                            android:hint=""
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_gravity="top"
-                            android:gravity="top"
-                            android:paddingTop="@dimen/_10ssp"
-                            android:paddingStart="@dimen/_5ssp"
-                            android:background="@color/daily_general_ans_bg" />
-
+                            android:layout_height="200sp"
+                            android:orientation="vertical">
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40ssp"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:hint=""
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="top"
+                                android:gravity="top"
+                                android:paddingTop="@dimen/_10ssp"
+                                android:paddingLeft="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg" />
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40ssp"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_15ssp"
+                                android:hint=""
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="top"
+                                android:gravity="top"
+                                android:paddingTop="@dimen/_10ssp"
+                                android:paddingLeft="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg" />
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40ssp"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_10ssp"
+                                android:hint=""
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="top"
+                                android:gravity="top"
+                                android:paddingTop="@dimen/_10ssp"
+                                android:paddingLeft="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg" />
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40ssp"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_10ssp"
+                                android:hint=""
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="top"
+                                android:gravity="top"
+                                android:paddingTop="@dimen/_10ssp"
+                                android:paddingStart="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg" />
+                        </LinearLayout>
+                       </androidx.core.widget.NestedScrollView>
                         <Button
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -324,12 +330,11 @@
                             android:layout_marginTop="@dimen/_10ssp"
                             android:layout_weight="2.7"
                             app:cornerRadius="@dimen/_5ssp"
-                            android:text="Submit">
+                            android:text="Submit"
+                            tools:ignore="RtlSymmetry">
 
                         </Button>
                     </LinearLayout>
-
-
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
