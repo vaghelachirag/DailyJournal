@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.app.dailyjounral.viewmodel.AnalyticsViewModel" />
+    </data>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_text_logo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35ssp"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:visibility="visible"
+                android:src="@drawable/detail_analystics_text">
+
+            </ImageView>
+
+            <com.app.dailyjounral.widget.PoppinsBoldText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/coming_soon"
+                android:textSize="@dimen/_25ssp"
+                android:layout_gravity="center"
+                android:layout_marginTop="200sp"
+                android:textColor="@color/tip_of_day_gradient_top"
+                android:gravity="center">
+
+            </com.app.dailyjounral.widget.PoppinsBoldText>
+
+        </LinearLayout>
+
+</layout>
