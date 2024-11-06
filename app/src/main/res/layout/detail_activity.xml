@@ -151,11 +151,12 @@
                             android:layout_marginStart="@dimen/_10ssp"
                             android:layout_marginEnd="@dimen/_10ssp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/daily_general_img">
+                            android:src="@drawable/icon_placeholder">
 
                         </ImageView>
 
                         <com.app.dailyjounral.widget.RobotoRegularText
+                            android:id="@+id/txtTips"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_10ssp"

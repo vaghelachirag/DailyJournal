@@ -18,4 +18,17 @@ object AppConstants {
     var headerSelfCareTip: String = "Self-Care Tip"
 
 
+  /*  All URL*/
+    var StagingURL = "http://5.77.39.57:50091/api/"
+    var LiveURL = "https://surveyorappapi.pickfords.com/api/"
+    var TestLiveURL = "https://testsurveyorappapi.pickfords.com/api/"
+
+    // For Base URL
+    var baseURL = "http://202.131.110.234:2035/api/"
+    var baseURLImage = "https://squeamish.co.in"
+
+
+    // For timeout
+    var readTimeOut: Long = 15
+    var connectionTimeOut: Long = 15
 }

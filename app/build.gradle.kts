@@ -52,14 +52,24 @@ dependencies {
 
     //Image Process
 
-    implementation ("com.github.bumptech.glide:glide:4.14.2")
-    implementation ("com.intuit.ssp:ssp-android:1.1.1")
+    implementation (libs.glide)
+    implementation (libs.ssp.android)
 
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.1.0")
+
+    //Networking
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.logging.interceptor)
+    implementation (libs.adapter.rxjava2)
+
+    //RX JAVA
+    implementation (libs.rxandroid)
+    implementation (libs.rxbinding)
+
+
 }

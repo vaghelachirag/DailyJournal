@@ -32,9 +32,16 @@
             <ImageView
                 android:layout_width="@dimen/_100ssp"
                 android:layout_height="@dimen/_100ssp"
+                android:visibility="gone"
                 android:src="@drawable/logo">
-
             </ImageView>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_height="wrap_content"
+                android:indeterminateDrawable="@drawable/custom_progress_dialog"
+                android:indeterminate="true" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMessage"
                 android:layout_width="wrap_content"

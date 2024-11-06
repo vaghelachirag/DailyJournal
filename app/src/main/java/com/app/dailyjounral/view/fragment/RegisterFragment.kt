@@ -26,6 +26,11 @@ class RegisterFragment: BaseFragment()  {
             signupViewModel.redirectToLogin()
         }
 
+        signupViewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading && isAdded) showProgressbar()
+            else if (!isLoading && isAdded) hideProgressbar()
+        }
+
         return binding.root
 
     }

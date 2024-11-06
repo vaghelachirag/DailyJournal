@@ -38,6 +38,19 @@
     <string name="signup_text">Do not have Account?</string>
     <string name="register_now_text"> Register Now</string>
 
+    <!-- Login Validation -->
+    <string name="email_validation"> Please enter your Email address</string>
+    <string name="email_valid_validation"> Please enter your valid Email address</string>
+    <string name="password_validation"> Please enter your Password</string>
+    <string name="password_valid_validation"> Please enter password character more than 3</string>
+
+    <!-- Register Validation -->
+    <string name="fullName_validation"> Please enter your Full Name</string>
+
+
+    <!-- OTP Validation -->
+    <string name="otp_validation"> Please enter OTP</string>
+
     <!-- Reset Password -->
     <string name="resetPassword">Reset Password</string>
     <string name="reset">Reset</string>
@@ -89,6 +102,9 @@
 
     <string name="employeecode">Employee Code</string>
 
+
+    <!--    No Internet Connection Message -->
+    <string name="nointernetconnection">Local network problem, please check your network</string>
 
     <string name="lorem_ipsum">
        "Autism is not a disability, it's a different ability. Embrace the uniqueness and celebrate every milestone, no matter how small. You are your child's strongest advocate and their greatest source of love and support."

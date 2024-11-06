@@ -33,12 +33,14 @@ class LoginFragment : BaseFragment() {
         binding.txtForgotPassword.setOnClickListener {
             signInViewModel.redirectToForgotPassword()
         }
+
+        signInViewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading && isAdded) showProgressbar()
+            else if (!isLoading && isAdded) hideProgressbar()
+        }
+
+
         return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
 

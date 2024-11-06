@@ -25,6 +25,12 @@ class OtpPasswordFragment: BaseFragment() {
             otpViewModel.redirectToChangePassword()
         }
 
+        otpViewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading && isAdded) showProgressbar()
+            else if (!isLoading && isAdded) hideProgressbar()
+        }
+
+
         return binding.root
 
     }

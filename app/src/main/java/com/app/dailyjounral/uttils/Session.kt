@@ -3,6 +3,8 @@ package com.app.dailyjounral.uttils
 import android.app.NotificationManager
 import android.content.Context
 import com.app.dailyjounral.R
+import com.app.dailyjounral.model.getLoginResponse.GetLoginData
+import com.google.gson.Gson
 
 
 class Session(val context: Context) {
@@ -20,6 +22,20 @@ class Session(val context: Context) {
             DefaultValue
         }
     }
+
+
+    var user: GetLoginData?
+        get() {
+            val gson = Gson()
+            val json = getDataByKey(KEY_USER_INFO, "")
+            return gson.fromJson(json, GetLoginData::class.java)
+        }
+        set(user) {
+            val gson = Gson()
+            val json = gson.toJson(user)
+            pref.edit().putString(KEY_USER_INFO, json).apply()
+            isLoggedIn = true
+        }
 
 
     @JvmOverloads

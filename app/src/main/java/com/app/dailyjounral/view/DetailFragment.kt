@@ -31,6 +31,14 @@ class DetailFragment: BaseFragment() {
         setCurrentDate()
         setHeader()
         detailViewModel.init()
+
+        // Show Progress bar
+        detailViewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading && isAdded) showProgressbar()
+            else if (!isLoading && isAdded) hideProgressbar()
+        }
+
+
         return binding.root
     }
 

@@ -72,6 +72,12 @@ class SplashScreen : Fragment()  {
                 iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(iDashboard)
                 requireActivity().finish()*/
+
+                val iDashboard = Intent(activity, DashboardActivity::class.java)
+                iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                startActivity(iDashboard)
+                requireActivity().finish()
             }
         }, 2500)
     }
