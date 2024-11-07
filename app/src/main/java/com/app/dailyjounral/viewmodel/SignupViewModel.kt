@@ -2,6 +2,7 @@ package com.app.dailyjounral.viewmodel
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
@@ -12,11 +13,12 @@ import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
 import com.app.dailyjounral.model.getRegisterResponse.SetRegisterUserModel
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
-import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.RegisterFragment
-import com.app.secureglobal.model.base.BaseViewModel
+import com.app.dailyjounral.model.base.BaseViewModel
+import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
+import com.app.dailyjounral.uttils.AppConstants
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -27,7 +29,7 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
     var fullName : ObservableField<String> = ObservableField()
     var emailAddress : ObservableField<String> = ObservableField()
     var password : ObservableField<String> = ObservableField()
-    private var isAdult : MutableLiveData<Boolean> = MutableLiveData()
+     var isAdult : MutableLiveData<Boolean> = MutableLiveData()
 
     fun redirectToLogin(){
         registerFragment.findNavController().navigate(R.id.LoginFragment)
@@ -41,7 +43,6 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
        model.fullName = fullName.get()
        model.emailId = emailAddress.get()
        model.password = password.get()
-       model.isAdult = true
 
        if (model.fullName == null){
            Utils().showSnackBar(context,context.resources.getString(R.string.fullName_validation),binding.constraintLayout)
@@ -59,11 +60,58 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
        else if (model.password.toString().length < 4 ){
            Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
        }
+       else if (binding.radioGroupAdult.checkedRadioButtonId == -1){
+           Utils().showSnackBar(context,context.resources.getString(R.string.adult_validation),binding.constraintLayout)
+       }
        else{
-           Session(context)
-           callRegisterUserAPI()
+           callSendOTPAPI()
+        //   callRegisterUserAPI()
        }
    }
+
+    private fun callSendOTPAPI() {
+        if (Utility.isNetworkConnected(context)){
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getSendOTPToEmail(emailAddress.get().toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetSendOTPResponse>() {
+                    override fun onSuccess(response: GetSendOTPResponse) {
+                        isLoading.postValue(false)
+                        //redirectToHome()
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                    }
+
+                    override fun onNext(getSendOTPResponse: GetSendOTPResponse) {
+                        Log.e("Status",getSendOTPResponse.getSuccess().toString())
+                        isLoading.postValue(false)
+                        if(getSendOTPResponse.getSuccess() == true){
+                            Utils().showSnackBar(context,getSendOTPResponse.getMessage().toString(),binding.constraintLayout)
+                            val bundle = Bundle()
+                            bundle.putString(AppConstants.from, AppConstants.fromRegister)
+                            bundle.putString("OTP", getSendOTPResponse.getData())
+                            bundle.putString("FirstName", fullName.get().toString())
+                            bundle.putString("EmailId", emailAddress.get().toString())
+                            bundle.putString("Password", password.get().toString())
+                            bundle.putBoolean("IsAdult", isAdult.value!!)
+                            registerFragment.findNavController().navigate(R.id.OtpPasswordFragment,bundle)
+                        }else{
+                            //  Utils().showToast(context,t.getMessage().toString())
+                            Utils().showSnackBar(context,getSendOTPResponse.getMessage().toString(),binding.constraintLayout)
+                        }
+                        Log.e("StatusCode",getSendOTPResponse.getSuccess().toString())
+                    }
+
+                })
+        }else{
+            Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
+        }
+    }
 
     // Call  Api  For Register User
     private fun callRegisterUserAPI() {
@@ -96,12 +144,8 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-                            var session = Session(context)
-                            session.isLoggedIn = true
-                            /*  session.user = t.getData()
-                              t.getData()!!.getProfilePicture()?.let { session.storeUserProfileImageKey(it) }
-                              t.getData()!!.getName()?.let { session.storeUserNameKey(it) }
-                              redirectToHome()*/
+                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            registerFragment.findNavController().navigate(R.id.LoginFragment)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)

@@ -22,6 +22,7 @@ class MyProfileFragment: BaseFragment() {
         _binding = FragmentMyProfileBinding.inflate(inflater, container, false)
         binding.viewModel = myProfileViewModel
         binding.lifecycleOwner = this
+        myProfileViewModel.init()
 
 
         binding.btnLogin.setOnClickListener {

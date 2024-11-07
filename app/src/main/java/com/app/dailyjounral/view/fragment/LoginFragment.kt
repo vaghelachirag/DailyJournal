@@ -2,6 +2,7 @@ package com.app.dailyjounral.view.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,12 @@ import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.FragmentLoginBinding
+import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseFragment
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.viewmodel.LoginViewModel
 
 
@@ -31,18 +36,6 @@ class LoginFragment : BaseFragment() {
         binding.viewModel = signInViewModel
         binding.lifecycleOwner = this
 
-        binding.edtEmail.setOnTouchListener(OnTouchListener { v, event ->
-            val DRAWABLE_RIGHT = 2
-
-            if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= ( binding.edtEmail.getRight() -  binding.edtEmail.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    // your action here
-                    Log.e("Password","Click")
-                    return@OnTouchListener true
-                }
-            }
-            false
-        })
 
         binding.txtRedirectToSignup.setOnClickListener {
             signInViewModel.redirectToSignup()
@@ -57,9 +50,17 @@ class LoginFragment : BaseFragment() {
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
-
+        setLoginAndPassword()
+        binding.chkRememberPassword.isChecked = session.getDataByKey(Session.KEY_USER_REMEMBER, false)
         return binding.root
 
+    }
+    private fun setLoginAndPassword() {
+        val email: String = session.getDataByKey(Session.KEY_USER_EMAIL, "")
+        val pwd: String = session.getDataByKey(Session.KEY_USER_PASSWORD, "")
+        session.storeDataByKey(Session.KEY_USER_NAME,"")
+        signInViewModel.email.set(email)
+        signInViewModel.password.set(pwd)
     }
 
 }

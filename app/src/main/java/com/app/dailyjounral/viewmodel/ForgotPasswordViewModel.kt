@@ -16,7 +16,7 @@ import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.ForgotPasswordFragment
-import com.app.secureglobal.model.base.BaseViewModel
+import com.app.dailyjounral.model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -77,6 +77,7 @@ class ForgotPasswordViewModel(private val context: Context, private val binding:
                         if(t.getSuccess() == true){
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                             val bundle = Bundle()
+                            bundle.putString(AppConstants.from, AppConstants.fromOTP)
                             bundle.putString(AppConstants.emailId, email.get().toString())
                             forgotPasswordFragment.findNavController().navigate(R.id.OtpPasswordFragment,bundle)
 

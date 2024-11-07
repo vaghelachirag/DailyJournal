@@ -14,7 +14,7 @@ open class BaseFragment : Fragment() {
     private lateinit var mContext: Context
     private lateinit var mActivity: Activity
     private var progressDialog: ProgressDialog? = null
-    private lateinit var session: Session
+    lateinit var session: Session
 
 
     override fun onAttach(context: Context) {

@@ -37,12 +37,15 @@
     <string name="orLoginWith">Or Login With</string>
     <string name="signup_text">Do not have Account?</string>
     <string name="register_now_text"> Register Now</string>
+    <string name="email_hint">Email<font color='#FF0000'>*</font></string>
 
     <!-- Login Validation -->
     <string name="email_validation"> Please enter your Email address</string>
     <string name="email_valid_validation"> Please enter your valid Email address</string>
     <string name="password_validation"> Please enter your Password</string>
     <string name="password_valid_validation"> Please enter password character more than 3</string>
+    <string name="confirm_password_validation"> New Password and Confirm Password does not match</string>
+    <string name="adult_validation"> Please Select Yes or No </string>
 
     <!-- Register Validation -->
     <string name="fullName_validation"> Please enter your Full Name</string>
@@ -50,6 +53,7 @@
 
     <!-- OTP Validation -->
     <string name="otp_validation"> Please enter OTP</string>
+    <string name="otp_not_match_validation">OTP does not match</string>
 
     <!-- Reset Password -->
     <string name="resetPassword">Reset Password</string>
@@ -62,6 +66,8 @@
     <string name="fullName">Full Name</string>
     <string name="already_have_account_text">Already have Account?</string>
     <string name="login_now_text"> Login Now</string>
+    <string name="fullName_hint">Full Name<font color='#FF0000'>*</font></string>
+    <string name="password_hint">Password<font color='#FF0000'>*</font></string>
 
     <!-- Coming Soon -->
     <string name="coming_soon">Coming Soon..</string>
@@ -76,7 +82,7 @@
     <string name="forgot_password_text">Forgot Password</string>
 
 
-
+    <string name="double_quote">\"</string>
 
     <!-- Change Password -->
     <string name="change_password_text">Change Password</string>
@@ -88,7 +94,8 @@
     <!-- OTP Password -->
     <string name="otp_verification_label">OTP Verification</string>
     <string name="otp_label">OTP</string>
-
+    <string name="old_password_validation"> Please enter your Old Password</string>
+    <string name="new_password_validation"> Please enter your New Password</string>
 
     <string name="my_profile_label">My Profile</string>
 
@@ -105,6 +112,9 @@
 
     <!--    No Internet Connection Message -->
     <string name="nointernetconnection">Local network problem, please check your network</string>
+
+
+    <string name="logoutAlert">Are you sure want to Logout?</string>
 
     <string name="lorem_ipsum">
        "Autism is not a disability, it's a different ability. Embrace the uniqueness and celebrate every milestone, no matter how small. You are your child's strongest advocate and their greatest source of love and support."

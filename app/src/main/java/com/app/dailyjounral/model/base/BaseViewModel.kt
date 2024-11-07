@@ -1,4 +1,4 @@
-package com.app.secureglobal.model.base
+package com.app.dailyjounral.model.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

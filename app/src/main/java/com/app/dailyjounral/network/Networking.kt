@@ -74,7 +74,11 @@ open class Networking(private val context: Context?) {
             @SuppressLint("LongLogTag")
             override fun intercept(chain: Interceptor.Chain): Response {
                 val session = Session(context!!)
-                val request: Request = if (session.isLoggedIn) {
+
+                val request: Request =  chain.request().newBuilder()
+                    .build()
+
+              /*  val request: Request = if (session.isLoggedIn) {
                     chain.request().newBuilder()
                         .header("Authorization", "Bearer " + session.user!!.token)
                         .build()
@@ -83,7 +87,7 @@ open class Networking(private val context: Context?) {
                     chain.request().newBuilder()
                         .build()
 
-                }
+                }*/
                 return chain.proceed(request)
             }
         })

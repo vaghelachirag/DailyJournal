@@ -4,12 +4,17 @@ import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordRes
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
 import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipResponse
+import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
 import com.app.dailyjounral.model.getTipOfTheDayResponse.GetTipOfTheDayResponse
+import com.app.dailyjounral.model.getUserProfileResponse.GetUserProfileResponse
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 
 interface ApiInterface {
@@ -39,9 +44,17 @@ interface ApiInterface {
     fun getResetPasswordResponse(@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
 
     @POST("app/account/change-password")
-    fun getChangePasswordResponse(@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
+    fun getChangePasswordResponse( @Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
 
     @POST("app/account/register")
     fun getRegisterUserResponse(@Body requestBody: RequestBody): Observable<GetRegisterUserResponse>
+
+
+    @GET("app/user/{Id}")
+    fun getUserProfileResponse(@Header("Authorization") header: String?,@Path("Id") emailId: String): Observable<GetUserProfileResponse>
+
+
+    @POST("app/account/register-send-verification-code/{emailId}")
+    fun getSendOTPToEmail(@Path("emailId") emailId: String): Observable<GetSendOTPResponse>
 
 }

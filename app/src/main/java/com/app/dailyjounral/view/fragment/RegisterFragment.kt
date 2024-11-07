@@ -11,7 +11,6 @@ import com.app.dailyjounral.viewmodel.SignupViewModel
 
 class RegisterFragment: BaseFragment()  {
 
-
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private val signupViewModel by lazy { SignupViewModel(activity as Context,binding,this@RegisterFragment) }
@@ -29,6 +28,14 @@ class RegisterFragment: BaseFragment()  {
         signupViewModel.isLoading.observe(requireActivity()) { isLoading ->
             if (isLoading && isAdded) showProgressbar()
             else if (!isLoading && isAdded) hideProgressbar()
+        }
+
+        binding.rbYes.setOnCheckedChangeListener { _, _ ->
+            signupViewModel.isAdult.value = true
+        }
+
+        binding.rbNo.setOnCheckedChangeListener { _, _ ->
+            signupViewModel.isAdult.value = false
         }
 
         return binding.root

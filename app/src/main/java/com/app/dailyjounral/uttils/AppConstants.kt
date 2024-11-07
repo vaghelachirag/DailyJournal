@@ -19,6 +19,10 @@ object AppConstants {
 
     var emailId: String = "EmailId"
 
+    // From
+    var from: String = "From"
+    var fromRegister: String = "Register"
+    var fromOTP: String = "OTP"
 
   /*  All URL*/
     var StagingURL = "http://5.77.39.57:50091/api/"
@@ -33,4 +37,7 @@ object AppConstants {
     // For timeout
     var readTimeOut: Long = 15
     var connectionTimeOut: Long = 15
+
+
+    var menuLogout: String = "Logout"
 }

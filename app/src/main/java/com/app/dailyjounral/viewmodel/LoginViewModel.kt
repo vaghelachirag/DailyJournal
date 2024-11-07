@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.databinding.ObservableField
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.FragmentLoginBinding
+import com.app.dailyjounral.model.base.BaseViewModel
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getLoginResponse.SetLoginModel
 import com.app.dailyjounral.network.CallbackObserver
@@ -16,18 +16,15 @@ import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.LoginFragment
-import com.app.secureglobal.model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class LoginViewModel(private val context: Context, private val binding: FragmentLoginBinding, private val loginFragment: LoginFragment) : BaseViewModel(){
+class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Context, private val binding: FragmentLoginBinding, private val loginFragment: LoginFragment) : BaseViewModel(){
 
     // Login Params
     var email : ObservableField<String> = ObservableField()
     var password : ObservableField<String> = ObservableField()
     private var confirmPassword : ObservableField<String> = ObservableField()
-
-    private var signInMutableLiveData: MutableLiveData<SetLoginModel> = MutableLiveData()
 
     fun redirectToSignup(){
         loginFragment.findNavController().navigate(R.id.RegisterFragment)
@@ -57,12 +54,18 @@ class LoginViewModel(private val context: Context, private val binding: Fragment
             Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
         }
         else{
-            var session = Session(context)
+            val session = Session(context)
 
             if (binding.chkRememberPassword.isChecked) {
-                session.storeDataByKey(Session.KEY_USER_EMAIL, binding.edtEmail.text.toString(),)
-                session.storeDataByKey(Session.KEY_USER_PASSWORD, binding.edtPassword.text.toString(),)
-                session.storeDataByKey(Session.KEY_USER_REMEMBER, binding.chkRememberPassword.isChecked,)
+                session.storeDataByKey(Session.KEY_USER_EMAIL, binding.edtEmail.text.toString())
+                session.storeDataByKey(
+                    Session.KEY_USER_PASSWORD,
+                    binding.edtPassword.text.toString(),
+                )
+                session.storeDataByKey(
+                    Session.KEY_USER_REMEMBER,
+                    binding.chkRememberPassword.isChecked,
+                )
 
             } else {
                 session.storeDataByKey(Session.KEY_USER_EMAIL, "")
@@ -76,7 +79,7 @@ class LoginViewModel(private val context: Context, private val binding: Fragment
 
     @SuppressLint("HardwareIds")
     private fun callLoginAPI() {
-        var session = Session(context)
+        Session(context)
 
         val params = HashMap<String,Any>()
         params["email"] = email.get().toString()
@@ -93,22 +96,22 @@ class LoginViewModel(private val context: Context, private val binding: Fragment
                     override fun onSuccess(response: GetLoginResponse) {
                         isLoading.postValue(false)
                         //redirectToHome()
+
                     }
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
+                        Utils().showSnackBar(context,message,binding.constraintLayout)
                     }
 
                     override fun onNext(t: GetLoginResponse) {
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-                            var session = Session(context)
+                            val session = Session(context)
                             session.isLoggedIn = true
-                          /*  session.user = t.getData()
-                            t.getData()!!.getProfilePicture()?.let { session.storeUserProfileImageKey(it) }
-                            t.getData()!!.getName()?.let { session.storeUserNameKey(it) }
-                            redirectToHome()*/
+                            session.user = t.getData()
+                            loginFragment.findNavController().navigate(R.id.dashboardMenuFragment)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
@@ -118,7 +121,7 @@ class LoginViewModel(private val context: Context, private val binding: Fragment
 
                 })
         }else{
-            Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
         }
     }
 

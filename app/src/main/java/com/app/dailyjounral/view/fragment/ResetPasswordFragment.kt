@@ -27,6 +27,12 @@ class ResetPasswordFragment: BaseFragment() {
         val emailId = requireArguments().getString(AppConstants.emailId);
         resetPasswordViewModel.email.set(emailId)
 
+
+        resetPasswordViewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading && isAdded) showProgressbar()
+            else if (!isLoading && isAdded) hideProgressbar()
+        }
+
         return binding.root
 
     }

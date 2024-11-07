@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import com.app.dailyjounral.databinding.DashboardMenuFragmentBinding
 import com.app.dailyjounral.view.DashboardMenuFragment
-import com.app.secureglobal.model.base.BaseViewModel
+import com.app.dailyjounral.model.base.BaseViewModel
 
 
 class DashboardMenuViewModel(

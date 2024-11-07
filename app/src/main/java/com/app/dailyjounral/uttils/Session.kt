@@ -111,8 +111,6 @@ class Session(val context: Context) {
         const val KEY_USER_REMEMBER = "isRemember"
         const val DEVICE_TYPE = "A"
         const val DATA = "data"
-        const val MeasurementPreference = "MeasurementPreference"
-        const val INVENTORY = "inventory"
         const val FIRST_TIME = "first_time"
 
         const val KEY_USER_NAME = "userName"

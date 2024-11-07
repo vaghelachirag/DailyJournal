@@ -21,6 +21,7 @@ import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MenuDataModel
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Session
+import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -92,7 +93,8 @@ class DashboardActivity : BaseActivity(){
         setAction()
     }
 
-    private fun addMenuData() {
+    public fun addMenuData() {
+         menuList = mutableListOf<MenuDataModel>()
         menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
         menuList.add(MenuDataModel("Sleep","",R.drawable.icon_menu_sleep_unselected,R.drawable.icon_menu_sleep_selected,false))
         menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_menu_gradituty_unselected,R.drawable.icon_menu_gradituty_selected,false))
@@ -100,7 +102,13 @@ class DashboardActivity : BaseActivity(){
 
         menuList.add(MenuDataModel("Mood","",R.drawable.icon_menu_mood_unselected,R.drawable.icon_menu_mood_selected,false))
         menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
-        menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
+
+        session= Session(this)
+        if (!session!!.isLoggedIn){
+            menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
+        }else{
+            menuList.add(MenuDataModel(AppConstants.menuLogout,"",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
+        }
 
         val layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -133,12 +141,23 @@ class DashboardActivity : BaseActivity(){
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 5){
-                    AppConstants.detailType = 6
-                    navController.navigate(R.id.ChangePasswordFragment)
+                    if (session!!.isLoggedIn){
+                        AppConstants.detailType = 6
+                        navController.navigate(R.id.ChangePasswordFragment)
+                    }else{
+                        Utils().showSnackBar(this@DashboardActivity,"Please Login First!",binding.constraintLayout)
+                    }
                 }
                 if (position == 6){
-                    AppConstants.detailType = 6
-                    navController.navigate(R.id.LoginFragment)
+                   /* AppConstants.detailType = 6
+                    navController.navigate(R.id.LoginFragment)*/
+                    Log.e("MenuName", t!!.title)
+                    if (t!!.title == AppConstants.menuLogout){
+                        Utils().showAlertDialog(this@DashboardActivity,resources.getString(R.string.logoutAlert))
+                    }else{
+                        AppConstants.detailType = 6
+                        navController.navigate(R.id.LoginFragment)
+                    }
                 }
             }
 

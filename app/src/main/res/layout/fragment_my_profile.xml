@@ -93,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/fullName"
                     android:textSize="@dimen/_12ssp"
+                    android:text="@={viewModel.firstName}"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
                     android:fontFamily="@font/roboto_regular"
@@ -102,7 +103,6 @@
                     android:drawablePadding="@dimen/_10ssp"
                     android:padding="@dimen/_8ssp"
                     android:layout_marginTop="@dimen/_5ssp"
-                    android:text="Robert Downey"
                     app:layout_constraintTop_toBottomOf="@+id/fullNameLabel"
                     tools:ignore="RtlSymmetry">
 
@@ -129,7 +129,7 @@
                     android:focusableInTouchMode="false"
                     android:focusable="false"
                     android:textSize="@dimen/_12ssp"
-                    android:text="robotD@gmail.com"
+                    android:text="@={viewModel.emailAddress}"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
                     android:fontFamily="@font/roboto_regular"

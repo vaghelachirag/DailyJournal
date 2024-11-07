@@ -28,5 +28,6 @@
     <color name="daily_general_ans_bg">#F0F0F0</color>
     <color name="light_gray_bg">#D3D3D3</color>
 
+    <color name="colorTransparentBlack">#00000000</color>
 
 </resources>

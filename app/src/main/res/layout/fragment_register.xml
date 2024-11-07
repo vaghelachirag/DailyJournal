@@ -61,7 +61,7 @@
                     android:id="@+id/edt_FullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/fullName"
+                    android:hint="@string/fullName_hint"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.fullName}"
                     android:drawableTint="@color/top_header_color"
@@ -95,7 +95,7 @@
                     android:id="@+id/edt_Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
+                    android:hint="@string/email_hint"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.emailAddress}"
                     android:drawableTint="@color/top_header_color"
@@ -136,7 +136,7 @@
                         android:id="@+id/edt_Password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/password"
+                        android:hint="@string/password_hint"
                         android:drawableTint="@color/top_header_color"
                         android:inputType="textPassword"
                         android:textSize="@dimen/_12ssp"
@@ -193,7 +193,7 @@
                         android:gravity="start">
 
                         <RadioGroup
-                            android:id="@+id/radiogroup"
+                            android:id="@+id/radioGroupAdult"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_gravity="top"
@@ -210,7 +210,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
-                                android:id="@+id/radioButton3" />
+                                android:id="@+id/rbYes" />
 
                             <RadioButton
                                 android:text="No"
@@ -220,7 +220,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
-                                android:id="@+id/radioButton4" />
+                                android:id="@+id/rbNo" />
 
 
                         </RadioGroup>

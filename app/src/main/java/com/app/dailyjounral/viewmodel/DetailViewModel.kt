@@ -12,7 +12,6 @@ import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.ModelDataWeek
 import com.app.dailyjounral.model.MoodDataModel
 import com.app.dailyjounral.model.getDailyQuoteResponse.GetDailyQuoteResponse
-import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipData
 import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipResponse
 import com.app.dailyjounral.model.getTipOfTheDayResponse.GetTipOfTheDayResponse
 import com.app.dailyjounral.network.CallbackObserver
@@ -20,7 +19,7 @@ import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
-import com.app.secureglobal.model.base.BaseViewModel
+import com.app.dailyjounral.model.base.BaseViewModel
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -182,17 +181,17 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
     }
 
     private fun setTipOfTheDayData(getTipOfTheDayResponse: GetTipOfTheDayResponse) {
-        binding.txtTips.text = Utility.getNullToBlankString(getTipOfTheDayResponse.getData()?.getTipMessage().toString())
+        binding.txtTips.text =  context.resources.getString(R.string.double_quote)+ Utility.getNullToBlankString(getTipOfTheDayResponse.getData()?.getTipMessage().toString())+ context.resources.getString(R.string.double_quote)
         Glide.with(context).load(getTipOfTheDayResponse.getData()?.getTipImage()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
 
     private fun setDailyQuoteData(getDailyQuoteResponse: GetDailyQuoteResponse) {
-        binding.txtTips.text = Utility.getNullToBlankString(getDailyQuoteResponse.getData()?.getQuoteMessage().toString())
+        binding.txtTips.text =  context.resources.getString(R.string.double_quote)+Utility.getNullToBlankString(getDailyQuoteResponse.getData()?.getQuoteMessage().toString())+ context.resources.getString(R.string.double_quote)
         Glide.with(context).load(getDailyQuoteResponse.getData()?.getQuoteImage()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
 
     private fun setSelfCareTipData(getSelfCareTipData: GetSelfCareTipResponse) {
-        binding.txtTips.text = Utility.getNullToBlankString(getSelfCareTipData.getData()?.getTipMessage().toString())
+        binding.txtTips.text = context.resources.getString(R.string.double_quote)+ Utility.getNullToBlankString(getSelfCareTipData.getData()?.getTipMessage().toString())+ context.resources.getString(R.string.double_quote)
         Glide.with(context).load(getSelfCareTipData.getData()?.getTipImage()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
 

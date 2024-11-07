@@ -6,19 +6,15 @@ import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.navigation.fragment.findNavController
 import com.app.dailyjounral.R
-import com.app.dailyjounral.databinding.ChangePasswordBinding
 import com.app.dailyjounral.databinding.ResetPasswordBinding
 import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
-import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getLoginResponse.SetLoginModel
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
-import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
-import com.app.dailyjounral.view.fragment.ChangePasswordFragment
 import com.app.dailyjounral.view.fragment.ResetPasswordFragment
-import com.app.secureglobal.model.base.BaseViewModel
+import com.app.dailyjounral.model.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -26,8 +22,8 @@ class ResetPasswordViewModel(@SuppressLint("StaticFieldLeak") private val contex
 
     // Login Params
      var email : ObservableField<String> = ObservableField()
-     private var newPassword : ObservableField<String> = ObservableField()
-     private var confirmPassword : ObservableField<String> = ObservableField()
+      var newPassword : ObservableField<String> = ObservableField()
+      var confirmPassword : ObservableField<String> = ObservableField()
 
     fun onResetPasswordClicked(){
         val model = SetLoginModel()
@@ -46,6 +42,9 @@ class ResetPasswordViewModel(@SuppressLint("StaticFieldLeak") private val contex
         }
         else if (model.password.toString().length < 4 ){
             Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+        }
+        else if (model.password.toString() != model.confirmPassword.toString()){
+            Utils().showSnackBar(context,context.resources.getString(R.string.confirm_password_validation),binding.constraintLayout)
         }
         else{
             callResetPasswordAPI()
@@ -81,7 +80,8 @@ class ResetPasswordViewModel(@SuppressLint("StaticFieldLeak") private val contex
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-
+                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            resetPasswordFragment.findNavController().navigate(R.id.LoginFragment)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
