@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
@@ -107,6 +108,12 @@ class DashboardActivity : BaseActivity(){
         if (!session!!.isLoggedIn){
             menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
         }else{
+            if (session!!.user != null){
+                val menuHeader = findViewById<View>(R.id.layoutMenu)
+                val txtUserName = menuHeader.findViewById<View>(R.id.txt_UserName) as TextView
+                txtUserName.text = session!!.user!!.fullName.toString()
+                Log.e("UserName",session!!.user!!.fullName.toString())
+            }
             menuList.add(MenuDataModel(AppConstants.menuLogout,"",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
         }
 
@@ -152,7 +159,7 @@ class DashboardActivity : BaseActivity(){
                    /* AppConstants.detailType = 6
                     navController.navigate(R.id.LoginFragment)*/
                     Log.e("MenuName", t!!.title)
-                    if (t!!.title == AppConstants.menuLogout){
+                    if (t.title == AppConstants.menuLogout){
                         Utils().showAlertDialog(this@DashboardActivity,resources.getString(R.string.logoutAlert))
                     }else{
                         AppConstants.detailType = 6

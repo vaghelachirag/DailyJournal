@@ -92,6 +92,7 @@ class OTPViewModel(private val context: Context, private val binding: OtpPasswor
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
+                        Utils().showSnackBar(context,message,binding.constraintLayout)
                     }
 
                     override fun onNext(t: GetRegisterUserResponse) {
@@ -142,9 +143,6 @@ class OTPViewModel(private val context: Context, private val binding: OtpPasswor
                             otpFragment.findNavController().navigate(R.id.ResetPasswordFragment,bundle)
                             Utils().showSnackBar(context, t.getMessage().toString(), binding.constraintLayout)
                         } else {
-                            val bundle = Bundle()
-                            bundle.putString(AppConstants.emailId, email.get().toString())
-                            otpFragment.findNavController().navigate(R.id.ResetPasswordFragment,bundle)
                             Utils().showSnackBar(context, t.getMessage().toString(), binding.constraintLayout)
                         }
                     }

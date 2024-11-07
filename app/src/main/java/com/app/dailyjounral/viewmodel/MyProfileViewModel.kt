@@ -14,6 +14,7 @@ import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.MyProfileFragment
+import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -22,6 +23,7 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
     // Change Password  Params
     var firstName : ObservableField<String> = ObservableField()
     var emailAddress : ObservableField<String> = ObservableField()
+    var userProfileUrl : ObservableField<String> = ObservableField()
 
     fun init() {
         getUserProfileApi()
@@ -69,5 +71,8 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
     private fun setUserProfile(userProfileResponse: GetUserProfileResponse) {
         binding.edtFullName.setText(Utility.getNullToBlankString(userProfileResponse.getData()?.getFullName().toString()))
         binding.edtEmail.setText(Utility.getNullToBlankString(userProfileResponse.getData()?.getEmailId().toString()))
+        if (userProfileResponse.getData()?.getProfilePicture() != null){
+            Glide.with(context).load(userProfileResponse.getData()!!.getProfilePicture()).apply(Utility.getGlideRequestOption()).into(binding.ivProfileImage)
+        }
     }
 }

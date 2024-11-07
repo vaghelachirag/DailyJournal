@@ -108,6 +108,7 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
+                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                             val session = Session(context)
                             session.isLoggedIn = true
                             session.user = t.getData()

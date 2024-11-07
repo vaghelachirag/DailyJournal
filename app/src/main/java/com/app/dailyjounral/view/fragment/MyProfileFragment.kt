@@ -29,6 +29,10 @@ class MyProfileFragment: BaseFragment() {
          //   forgotPasswordViewModel.redirectToOTP()
         }
 
+        myProfileViewModel.isLoading.observe(requireActivity()) { isLoading ->
+            if (isLoading && isAdded) showProgressbar()
+            else if (!isLoading && isAdded) hideProgressbar()
+        }
 
         Glide.with(this)
             .load(R.drawable.user_image)

@@ -1,5 +1,6 @@
 package com.app.dailyjounral.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
@@ -185,6 +186,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
         Glide.with(context).load(getTipOfTheDayResponse.getData()?.getTipImage()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setDailyQuoteData(getDailyQuoteResponse: GetDailyQuoteResponse) {
         binding.txtTips.text =  context.resources.getString(R.string.double_quote)+Utility.getNullToBlankString(getDailyQuoteResponse.getData()?.getQuoteMessage().toString())+ context.resources.getString(R.string.double_quote)
         Glide.with(context).load(getDailyQuoteResponse.getData()?.getQuoteImage()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
