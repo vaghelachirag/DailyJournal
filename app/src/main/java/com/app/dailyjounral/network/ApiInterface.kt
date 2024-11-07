@@ -2,6 +2,7 @@ package com.app.dailyjounral.network
 import com.app.dailyjounral.model.getDailyQuoteResponse.GetDailyQuoteResponse
 import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
+import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponse
 import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
 import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipResponse
 import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
@@ -56,5 +57,10 @@ interface ApiInterface {
 
     @POST("app/account/register-send-verification-code/{emailId}")
     fun getSendOTPToEmail(@Path("emailId") emailId: String): Observable<GetSendOTPResponse>
+
+
+    @GET("app/mooduser/{date}")
+    fun getUserMoodResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetMoodDataResponse>
+
 
 }

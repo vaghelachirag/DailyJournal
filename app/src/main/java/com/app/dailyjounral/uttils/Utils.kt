@@ -2,6 +2,7 @@ package com.app.dailyjounral.uttils
 
 
 import android.R.attr.textColor
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -88,11 +89,20 @@ class Utils {
         dialog.show()
     }
 
+    @SuppressLint("SimpleDateFormat")
     fun getCurrentDate(): String {
         val today = Date()
         val format = SimpleDateFormat("dd/MM/yyyy")
         return format.format(today)
     }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getDate(): String {
+        val today = Date()
+        val format = SimpleDateFormat("yyyy-MM-dd")
+        return format.format(today)
+    }
+
 
     // Get WeekDay
     fun getCurrentWeekDay(): Int {

@@ -58,9 +58,18 @@ class Utility {
         fun getCurrentDate() : String{
             var currentDate : String = "";
             val formatter =
-                DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm a")
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")
             currentDate = LocalDateTime.now().format(formatter)
            return currentDate;
+        }
+
+        fun getUserToken(context: Context): String {
+           val session = Session(context)
+            var token = ""
+            if (session.isLoggedIn){
+                token =  "Bearer " + session.user!!.token
+            }
+            return token
         }
 
         fun getParseInteger(str: String?): Int {

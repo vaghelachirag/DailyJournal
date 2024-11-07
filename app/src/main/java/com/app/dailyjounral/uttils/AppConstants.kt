@@ -40,4 +40,5 @@ object AppConstants {
 
 
     var menuLogout: String = "Logout"
+
 }

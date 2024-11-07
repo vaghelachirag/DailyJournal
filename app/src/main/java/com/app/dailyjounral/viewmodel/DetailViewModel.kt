@@ -21,6 +21,8 @@ import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.model.base.BaseViewModel
+import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponse
+import com.app.dailyjounral.uttils.Session
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -35,6 +37,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
 
         Log.e("WeekDay",Utils().getCurrentWeekDay().toString())
         Log.e("DetailType",AppConstants.detailType.toString())
+        Log.e("CurrentDate",Utils().getDate())
 
         if (AppConstants.detailType == 1){
             getTipOfDay()
@@ -51,6 +54,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
         }
 
         if (AppConstants.detailType == 6){
+          getMoodDetectorApiResponse()
           addMoodData()
         }
 
@@ -62,6 +66,41 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding) 
         }
        addWeekData()
 
+    }
+
+    private fun getMoodDetectorApiResponse() {
+
+        val session = Session(context)
+        Log.e("Token", session.user!!.token)
+
+
+        if (Utility.isNetworkConnected(context)){
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getUserMoodResponse("Bearer " + session.user!!.token,Utils().getDate())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetMoodDataResponse>() {
+                    override fun onSuccess(response: GetMoodDataResponse) {
+                        isLoading.postValue(false)
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        Log.e("Status",code.toString())
+
+                    }
+
+                    override fun onNext(getMoodDataResponse: GetMoodDataResponse) {
+                        isLoading.postValue(false)
+
+                    }
+
+                })
+        }else{
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
+        }
     }
 
     // Call API For Self Care Tip

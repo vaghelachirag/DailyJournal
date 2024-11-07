@@ -94,7 +94,7 @@ class DashboardActivity : BaseActivity(){
         setAction()
     }
 
-    public fun addMenuData() {
+    private fun addMenuData() {
          menuList = mutableListOf<MenuDataModel>()
         menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
         menuList.add(MenuDataModel("Sleep","",R.drawable.icon_menu_sleep_unselected,R.drawable.icon_menu_sleep_selected,false))
