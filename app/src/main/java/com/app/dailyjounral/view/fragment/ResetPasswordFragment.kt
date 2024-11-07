@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.app.dailyjounral.databinding.ChangePasswordBinding
 import com.app.dailyjounral.databinding.ResetPasswordBinding
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.viewmodel.ChangePasswordViewModel
 import com.app.dailyjounral.viewmodel.ResetPasswordViewModel
@@ -23,6 +24,8 @@ class ResetPasswordFragment: BaseFragment() {
         binding.viewModel = resetPasswordViewModel
         binding.lifecycleOwner = this
 
+        val emailId = requireArguments().getString(AppConstants.emailId);
+        resetPasswordViewModel.email.set(emailId)
 
         return binding.root
 

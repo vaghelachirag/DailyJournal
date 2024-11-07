@@ -1,6 +1,7 @@
 package com.app.dailyjounral.viewmodel
 
 import android.content.Context
+import android.os.Bundle
 import androidx.databinding.ObservableField
 import androidx.navigation.fragment.findNavController
 import com.app.dailyjounral.R
@@ -9,6 +10,7 @@ import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordRes
 import com.app.dailyjounral.model.getOTPVerificationResponse.SetOTPVerificationData
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.OtpPasswordFragment
@@ -39,10 +41,7 @@ class OTPViewModel(private val context: Context, private val binding: OtpPasswor
 
         otp = otp1.get().toString() + otp2.get().toString() +otp3.get().toString() + otp4.get().toString()
 
-        if (model.otp.toString() == null){
-            Utils().showSnackBar(context,context.resources.getString(R.string.otp_validation),binding.constraintLayout)
-        }
-        else if (model.otp.toString().length < 4){
+        if (model.otp.toString().length < 4){
             Utils().showSnackBar(context,context.resources.getString(R.string.otp_validation),binding.constraintLayout)
         }
         else{
@@ -73,8 +72,14 @@ class OTPViewModel(private val context: Context, private val binding: OtpPasswor
                     override fun onNext(t: GetForgotPasswordResponse) {
                         isLoading.postValue(false)
                         if (t.getSuccess() == true) {
+                            val bundle = Bundle()
+                            bundle.putString(AppConstants.emailId, email.get().toString())
+                            otpFragment.findNavController().navigate(R.id.ResetPasswordFragment,bundle)
                             Utils().showSnackBar(context, t.getMessage().toString(), binding.constraintLayout)
                         } else {
+                            val bundle = Bundle()
+                            bundle.putString(AppConstants.emailId, email.get().toString())
+                            otpFragment.findNavController().navigate(R.id.ResetPasswordFragment,bundle)
                             Utils().showSnackBar(context, t.getMessage().toString(), binding.constraintLayout)
                         }
                     }

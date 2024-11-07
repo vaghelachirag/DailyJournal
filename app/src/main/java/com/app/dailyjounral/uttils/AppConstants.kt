@@ -17,6 +17,8 @@ object AppConstants {
     var headerQuote: String = "Quote"
     var headerSelfCareTip: String = "Self-Care Tip"
 
+    var emailId: String = "EmailId"
+
 
   /*  All URL*/
     var StagingURL = "http://5.77.39.57:50091/api/"

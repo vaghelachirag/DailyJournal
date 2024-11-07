@@ -101,7 +101,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/edt_Email">
 
                 </com.app.dailyjounral.widget.RobotoRegularText>
-
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/layout_password"
+                    app:hintEnabled="false"
+                    app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
+                    app:passwordToggleTint="@color/light_gray_bg"
+                    app:passwordToggleEnabled="true">
                 <com.app.dailyjounral.widget.TypefaceEditText
                     android:id="@+id/edt_Password"
                     android:layout_width="match_parent"
@@ -121,10 +128,10 @@
                     android:padding="@dimen/_8ssp"
                     android:drawableEnd="@drawable/icon_eye"
                     android:layout_marginTop="@dimen/_5ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
                     tools:ignore="RtlSymmetry">
 
                 </com.app.dailyjounral.widget.TypefaceEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:id="@+id/ll_RemeberMe"
@@ -132,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:weightSum="2"
                     android:layout_marginTop="@dimen/_20ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/edt_Password">
+                    app:layout_constraintTop_toBottomOf="@+id/layout_password">
 
                     <LinearLayout
                         android:layout_width="0dp"

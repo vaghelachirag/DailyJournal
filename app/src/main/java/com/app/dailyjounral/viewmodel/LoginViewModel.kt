@@ -37,6 +37,7 @@ class LoginViewModel(private val context: Context, private val binding: Fragment
         loginFragment.findNavController().navigate(R.id.ForgotPasswordFragment)
     }
 
+
     fun onSignInClicked(){
         val model = SetLoginModel()
         model.email = email.get()
