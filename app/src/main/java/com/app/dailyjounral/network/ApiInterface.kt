@@ -6,8 +6,10 @@ import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponse
 import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
 import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipResponse
 import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
+import com.app.dailyjounral.model.getSleepDataResponse.GetSleepDataResponse
 import com.app.dailyjounral.model.getTipOfTheDayResponse.GetTipOfTheDayResponse
 import com.app.dailyjounral.model.getUserProfileResponse.GetUserProfileResponse
+import com.app.dailyjounral.model.getWorkoutDataResponse.GetWorkoutDataResponse
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
@@ -62,5 +64,10 @@ interface ApiInterface {
     @GET("app/mooduser/{date}")
     fun getUserMoodResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetMoodDataResponse>
 
+    @GET("app/sleep-user/{date}")
+    fun getUserSleepResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetSleepDataResponse>
+
+    @GET("app/workout-user/{date}")
+    fun getUserWorkoutResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetWorkoutDataResponse>
 
 }
