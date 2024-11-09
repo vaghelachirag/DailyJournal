@@ -13,7 +13,7 @@
                 android:orientation="vertical"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:background="@color/white"
+                android:background="@drawable/round_shape_edittext"
                 android:padding="@dimen/_16ssp">
 
                 <ImageView

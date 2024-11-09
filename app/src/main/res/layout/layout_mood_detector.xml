@@ -13,7 +13,7 @@
 
         <variable
             name="itemData"
-            type="com.app.dailyjounral.model.MoodDataModel" />
+            type="com.app.dailyjounral.model.getMoodResponse.SetSelectedMoodData" />
 
         <variable
             name="holder"
@@ -61,6 +61,7 @@
         </ImageView>
 
         <RadioButton
+            android:id="@+id/rbSelection"
             android:layout_width="@dimen/_30ssp"
             android:layout_height="@dimen/_30ssp"
             android:layout_gravity="center"

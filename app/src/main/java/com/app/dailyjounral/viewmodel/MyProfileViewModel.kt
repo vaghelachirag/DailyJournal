@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.databinding.ObservableField
+import androidx.navigation.fragment.findNavController
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.FragmentMyProfileBinding
 import com.app.dailyjounral.model.base.BaseViewModel
@@ -25,7 +26,13 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
     var emailAddress : ObservableField<String> = ObservableField()
     var userProfileUrl : ObservableField<String> = ObservableField()
 
+    val session  = Session(context)
     fun init() {
+
+        if (!session.isLoggedIn){
+            myProfileFragment.findNavController().navigate(R.id.LoginFragment)
+            return
+        }
         getUserProfileApi()
     }
 
@@ -73,6 +80,11 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
         binding.edtEmail.setText(Utility.getNullToBlankString(userProfileResponse.getData()?.getEmailId().toString()))
         if (userProfileResponse.getData()?.getProfilePicture() != null){
             Glide.with(context).load(userProfileResponse.getData()!!.getProfilePicture()).apply(Utility.getGlideRequestOption()).into(binding.ivProfileImage)
+        }
+        if (userProfileResponse.getData()!!.getIsAdult() == true){
+            binding.rbYes.isChecked = true
+        }else{
+            binding.rbNo.isChecked = true
         }
     }
 }

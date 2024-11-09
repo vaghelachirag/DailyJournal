@@ -43,6 +43,7 @@ class MoodAdapter(val context: Context, private val list: MutableList<MoodDataMo
         holder.binding.llMain.setOnClickListener {
             onItemSelected.onItemSelected(list[position], position)
         }
+
     }
     override fun getItemCount(): Int {
         return list.size

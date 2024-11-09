@@ -7,12 +7,14 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
@@ -20,12 +22,19 @@ import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.app.dailyjounral.databinding.ActivityDashboardBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MenuDataModel
+import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
+import com.app.dailyjounral.model.getLogoutResponse.GetLogoutResponse
+import com.app.dailyjounral.network.CallbackObserver
+import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Session
+import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 @Suppress("DEPRECATION")
@@ -152,7 +161,7 @@ class DashboardActivity : BaseActivity(){
                         AppConstants.detailType = 6
                         navController.navigate(R.id.ChangePasswordFragment)
                     }else{
-                        Utils().showSnackBar(this@DashboardActivity,"Please Login First!",binding.constraintLayout)
+                        navController.navigate(R.id.LoginFragment)
                     }
                 }
                 if (position == 6){
@@ -170,15 +179,91 @@ class DashboardActivity : BaseActivity(){
 
         })
 
+        if (session!!.isLoggedIn){
+            setUserLogoAndName()
+        }else{
+            setAppLogo()
+        }
+
+    }
+
+    private fun setAppLogo() {
+
+        val menuHeader = findViewById<View>(R.id.layoutMenu)
+        val userImage = menuHeader.findViewById<View>(R.id.navHeaderAppLogo) as ImageView
+        val llProfile = menuHeader.findViewById<View>(R.id.llProfile) as LinearLayout
+        val appImage = menuHeader.findViewById<View>(R.id.navHeaderAppLogo) as ImageView
+
+        llProfile.visibility = View.GONE
+        appImage.visibility = View.VISIBLE
+
+
+        Glide.with(this)
+            .load(R.drawable.logo)
+            .circleCrop()
+            .into(userImage)
+
+    }
+
+    private fun setUserLogoAndName() {
+
         val menuHeader = findViewById<View>(R.id.layoutMenu)
         val userImage = menuHeader.findViewById<View>(R.id.navHeaderLogo) as ImageView
+        val llProfile = menuHeader.findViewById<View>(R.id.llProfile) as LinearLayout
+        val appImage = menuHeader.findViewById<View>(R.id.navHeaderAppLogo) as ImageView
+
+        llProfile.visibility = View.VISIBLE
+        appImage.visibility = View.GONE
 
         Glide.with(this)
             .load(R.drawable.user_image)
             .circleCrop()
             .into(userImage)
+
+
     }
 
+    fun  callLogoutApi(){
+
+      if (Utility.isNetworkConnected(this)){
+          showProgressbar()
+          Networking.with(this)
+              .getServices()
+              .getLogoutResponse(Utils().getUserToken(this))
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe(object : CallbackObserver<GetLogoutResponse>() {
+                  override fun onSuccess(response: GetLogoutResponse) {
+                      hideProgressbar()
+                      //redirectToHome()
+                  }
+
+                  override fun onFailed(code: Int, message: String) {
+                      hideProgressbar()
+                      session!!.clearSession()
+                      Utils().showSnackBar(this@DashboardActivity,message,binding.constraintLayout)
+                      Utils().reloadActivity(this@DashboardActivity)
+                  }
+
+                  override fun onNext(t: GetLogoutResponse) {
+                      hideProgressbar()
+                      session!!.clearSession()
+
+                      if(t.getSuccess() == true){
+                          Utils().showSnackBar(this@DashboardActivity,t.getMessage()!!,binding.constraintLayout)
+                      }else{
+                          Utils().showSnackBar(this@DashboardActivity,t.getMessage()!!,binding.constraintLayout)
+                      }
+                      Utils().reloadActivity(this@DashboardActivity)
+                      Log.e("StatusCode",t.getSuccess().toString())
+                  }
+
+              })
+      }else{
+          Utils().showToast(this,this.getString(R.string.nointernetconnection).toString())
+      }
+
+    }
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         return false
@@ -246,4 +331,5 @@ class DashboardActivity : BaseActivity(){
          binding.llTab1.visibility  = View.VISIBLE
          binding.llTab2.visibility  = View.GONE
     }
+
 }

@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -165,7 +166,7 @@
                             android:layout_marginEnd="@dimen/_10ssp"
                             android:textSize="@dimen/_12ssp"
                             android:maxLines="5"
-                            android:text="@string/lorem_ipsum"
+                            android:text=""
                             android:textColor="@color/black">
 
                         </com.app.dailyjounral.widget.RobotoRegularText>
@@ -183,7 +184,7 @@
                                 android:layout_height="@dimen/_80ssp"
                                 android:layout_marginStart="@dimen/_10ssp"
                                 android:layout_marginEnd="@dimen/_10ssp"
-                                android:hint="Type your ans.."
+                                android:hint="@string/enter_your_ans"
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="top"
                                 android:gravity="top"

@@ -43,14 +43,14 @@ class TestActivity : AppCompatActivity() {
        // binding.rvMoodDetector.setLayoutManager(GridLayoutManager(this, 3))
         binding.rvMoodDetector.setLayoutManager(staggeredGridLayoutManager);
 
-        binding.rvMoodDetector.adapter = MoodSelectorAdapter(this, moodDataList,object :
+       /* binding.rvMoodDetector.adapter = MoodSelectorAdapter(this, moodDataList,object :
             OnItemSelected<MoodDataModel> {
 
             override fun onItemSelected(t: MoodDataModel?, position: Int) {
                 //  clickMenuEvent(t)
             }
 
-        })
+        })*/
 
     }
 }

@@ -3,9 +3,12 @@ package com.app.dailyjounral.uttils
 
 import android.R.attr.textColor
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.view.Gravity
 import android.view.View
@@ -18,6 +21,7 @@ import androidx.core.content.ContextCompat
 import com.app.dailyjounral.MainActivity
 import com.app.dailyjounral.R
 import com.app.dailyjounral.view.SplashScreen
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -56,6 +60,24 @@ class Utils {
         snackBar.show()
     }
 
+    public  fun reloadActivity(context: Context){
+        Handler(Looper.getMainLooper()).postDelayed({
+            // do something
+            (context as Activity).finish();
+            context.startActivity(  context.intent);
+        }, 1000)
+
+    }
+
+    public fun getUserToken(context: Context) : String{
+        var token = ""
+        val session = Session(context)
+        if (session.isLoggedIn){
+            token = "Bearer " + session.user?.token.toString()
+        }
+        return token
+    }
+
     // Show Logout Alert Dialoug
     public fun showAlertDialog(context: Context,strTitle: String) {
 
@@ -78,10 +100,7 @@ class Utils {
 
         buttonOk.setOnClickListener {
             dialog.dismiss()
-            session!!.clearSession()
-
-            val intent = Intent(context, MainActivity::class.java)
-            context.startActivity(intent)
+            (context as DashboardActivity).callLogoutApi()
         }
         buttonCancel.setOnClickListener {
             dialog.dismiss()

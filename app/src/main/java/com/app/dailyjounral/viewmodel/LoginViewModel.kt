@@ -1,7 +1,11 @@
 package com.app.dailyjounral.viewmodel
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent.getIntent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.navigation.fragment.findNavController
@@ -58,14 +62,8 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
 
             if (binding.chkRememberPassword.isChecked) {
                 session.storeDataByKey(Session.KEY_USER_EMAIL, binding.edtEmail.text.toString())
-                session.storeDataByKey(
-                    Session.KEY_USER_PASSWORD,
-                    binding.edtPassword.text.toString(),
-                )
-                session.storeDataByKey(
-                    Session.KEY_USER_REMEMBER,
-                    binding.chkRememberPassword.isChecked,
-                )
+                session.storeDataByKey(Session.KEY_USER_PASSWORD, binding.edtPassword.text.toString(),)
+                session.storeDataByKey(Session.KEY_USER_REMEMBER, binding.chkRememberPassword.isChecked,)
 
             } else {
                 session.storeDataByKey(Session.KEY_USER_EMAIL, "")
@@ -97,13 +95,13 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                         isLoading.postValue(false)
                         //redirectToHome()
 
-                    }
+
+       }
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
                         Utils().showSnackBar(context,message,binding.constraintLayout)
                     }
-
                     override fun onNext(t: GetLoginResponse) {
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
@@ -112,7 +110,8 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                             val session = Session(context)
                             session.isLoggedIn = true
                             session.user = t.getData()
-                            loginFragment.findNavController().navigate(R.id.dashboardMenuFragment)
+                            Utils().reloadActivity(context)
+
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)

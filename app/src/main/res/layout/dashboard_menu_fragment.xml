@@ -191,7 +191,7 @@
                         android:textSize="@dimen/_12ssp"
                         android:layout_marginTop="@dimen/_5ssp"
                         android:textColor="@color/white"
-                        android:text="Daily Jounral">
+                        android:text="Daily Journal">
 
                     </com.app.dailyjounral.widget.SegoeUIText>
 

@@ -1,13 +1,12 @@
 package com.app.dailyjounral.view
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.app.dailyjounral.R
-import com.app.dailyjounral.databinding.DashboardMenuFragmentBinding
 import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utils
@@ -20,7 +19,7 @@ class DetailFragment: BaseFragment() {
 
     private val binding get() = _binding!!
 
-    private val detailViewModel by lazy { DetailViewModel(requireActivity(),binding) }
+    private val detailViewModel by lazy { DetailViewModel(requireActivity(),binding,this) }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -38,6 +37,9 @@ class DetailFragment: BaseFragment() {
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
+        detailViewModel.selectedMoodTypeId.observeForever {
+            Log.e("SelectedMood",it.toString())
+        }
 
         return binding.root
     }

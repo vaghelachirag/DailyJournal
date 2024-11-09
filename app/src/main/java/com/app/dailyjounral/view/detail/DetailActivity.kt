@@ -11,7 +11,6 @@ import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseActivity
 import com.app.dailyjounral.viewmodel.DetailViewModel
-import com.bumptech.glide.Glide
 
 
 class DetailActivity : BaseActivity(){
@@ -22,13 +21,11 @@ class DetailActivity : BaseActivity(){
     // Session
     private var session: Session? = null
 
-    private val detailViewModel by lazy { DetailViewModel(this,binding) }
 
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.detail_activity)
-        binding.viewModel = detailViewModel
         binding.lifecycleOwner = this
         session = Session(this)
 
@@ -41,7 +38,6 @@ class DetailActivity : BaseActivity(){
 */
 
         setCurrentDate()
-        detailViewModel.init()
         setHeader()
     }
 

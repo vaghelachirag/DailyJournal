@@ -19,13 +19,13 @@ class GetUserProfileData {
     @Expose
     private var emailId: String? = null
 
-    @SerializedName("userPhoneNumber")
+    @SerializedName("isAdult")
     @Expose
-    private var userPhoneNumber: Any? = null
+    private var isAdult: Boolean? = null
 
     @SerializedName("profilePicture")
     @Expose
-    private var profilePicture: Any? = null
+    private var profilePicture: String? = null
 
     @SerializedName("isActive")
     @Expose
@@ -59,19 +59,19 @@ class GetUserProfileData {
         this.emailId = emailId
     }
 
-    fun getUserPhoneNumber(): Any? {
-        return userPhoneNumber
+    fun getIsAdult(): Boolean? {
+        return isAdult
     }
 
-    fun setUserPhoneNumber(userPhoneNumber: Any?) {
-        this.userPhoneNumber = userPhoneNumber
+    fun setIsAdult(isAdult: Boolean?) {
+        this.isAdult = isAdult
     }
 
-    fun getProfilePicture(): Any? {
+    fun getProfilePicture(): String? {
         return profilePicture
     }
 
-    fun setProfilePicture(profilePicture: Any?) {
+    fun setProfilePicture(profilePicture: String?) {
         this.profilePicture = profilePicture
     }
 

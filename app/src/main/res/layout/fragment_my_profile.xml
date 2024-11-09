@@ -130,6 +130,7 @@
                     android:focusable="false"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.emailAddress}"
+                    android:backgroundTint="@color/light_gray_bg"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
                     android:fontFamily="@font/roboto_regular"
@@ -217,7 +218,7 @@
                         android:gravity="start">
 
                         <RadioGroup
-                            android:id="@+id/radiogroup"
+                            android:id="@+id/rgProfile"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_gravity="top"
@@ -234,7 +235,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
-                                android:id="@+id/radioButton3" />
+                                android:id="@+id/rbYes" />
 
                             <RadioButton
                                 android:text="No"
@@ -244,7 +245,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
-                                android:id="@+id/radioButton4" />
+                                android:id="@+id/rbNo" />
 
 
                         </RadioGroup>

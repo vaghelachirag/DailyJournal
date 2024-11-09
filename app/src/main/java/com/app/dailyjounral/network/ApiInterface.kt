@@ -1,9 +1,13 @@
 package com.app.dailyjounral.network
+import com.app.dailyjounral.model.getDailyGoalResponse.GetDailyGoalResponse
 import com.app.dailyjounral.model.getDailyQuoteResponse.GetDailyQuoteResponse
+import com.app.dailyjounral.model.getDailyReflectionResponse.GetDailyReflectionResponse
 import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
+import com.app.dailyjounral.model.getLogoutResponse.GetLogoutResponse
 import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponse
 import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
+import com.app.dailyjounral.model.getSaveMoodDataResponse.GetSaveMoodDataResponse
 import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipResponse
 import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
 import com.app.dailyjounral.model.getSleepDataResponse.GetSleepDataResponse
@@ -69,5 +73,29 @@ interface ApiInterface {
 
     @GET("app/workout-user/{date}")
     fun getUserWorkoutResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetWorkoutDataResponse>
+
+    @GET("app/account/logout")
+    fun getLogoutResponse(@Header("Authorization") header: String?): Observable<GetLogoutResponse>
+
+    @POST("app/mooduser/save")
+    fun getSaveMoodDataResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetSaveMoodDataResponse>
+
+    @POST("app/workout-user/save")
+    fun getSaveWorkoutDataResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetSaveMoodDataResponse>
+
+    @POST("app/sleep-user/save")
+    fun getSaveSleepDataResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetSaveMoodDataResponse>
+
+
+    @GET("app/daily-goal/today")
+    fun getDailyGoalResponse(): Observable<GetDailyGoalResponse>
+
+
+    @GET("app/daily-reflection/{date}")
+    fun getDailyReflectionResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetDailyReflectionResponse>
+
+
+    @POST("app/workout-user/save")
+    fun getSaveGoalAnswerResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetSaveMoodDataResponse>
 
 }
