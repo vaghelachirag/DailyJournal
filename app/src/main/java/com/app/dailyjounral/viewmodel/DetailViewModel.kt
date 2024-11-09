@@ -303,7 +303,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-
+                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
@@ -653,7 +653,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         workoutDataList.add(SetSelectedWorkoutData(6,"Mood","", R.drawable.icon_workout_six))
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
-        var workoutSelectorAdapter = WorkoutSelectorAdapter(context, workoutDataList,selectedWorkoutTypeId,this,object :
+        var workoutSelectorAdapter = WorkoutSelectorAdapter(context, workoutDataList,selectedWorkoutTypeId,this,true,object :
             OnItemSelected<SetSelectedWorkoutData> {
 
             override fun onItemSelected(t: SetSelectedWorkoutData?, position: Int) {

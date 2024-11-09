@@ -22,7 +22,7 @@ class MoodSelectorAdapter(
     private val list: MutableList<SetSelectedMoodData>,
     private val selectedMoodTypeId: MutableLiveData<Int>,
     private val detailViewModel: DetailViewModel,
-    var firstTime: Boolean,
+    private var firstTime: Boolean,
     val onItemSelected: OnItemSelected<SetSelectedMoodData>
 ):  RecyclerView.Adapter<MoodDetectorItemViewHolder>() {
 
@@ -48,7 +48,7 @@ class MoodSelectorAdapter(
         holder.binding.llMood.visibility = View.VISIBLE
         holder.binding.ivIcon.visibility = View.GONE
 
-        Log.e("SelectedMoodId",selectedMoodTypeId.value.toString())
+      //  Log.e("SelectedMoodId",selectedMoodTypeId.value.toString())
 
        val options: RequestOptions = RequestOptions()
             .placeholder(R.mipmap.ic_launcher_round)

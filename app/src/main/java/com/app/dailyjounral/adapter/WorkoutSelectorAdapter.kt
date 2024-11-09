@@ -20,10 +20,12 @@ class WorkoutSelectorAdapter(
     val context: Context,
     private val list: MutableList<SetSelectedWorkoutData>,
     private val selectedWorkoutTypeId: MutableLiveData<Int>,
-    val detailViewModel: DetailViewModel,
+    private val detailViewModel: DetailViewModel,
+    private var firstTime: Boolean,
     val onItemSelected: OnItemSelected<SetSelectedWorkoutData>
 ):  RecyclerView.Adapter<WorkoutDetectorItemViewHolder>() {
 
+    private var mSelectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorkoutDetectorItemViewHolder {
 
@@ -38,14 +40,14 @@ class WorkoutSelectorAdapter(
         return WorkoutDetectorItemViewHolder(binder)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onBindViewHolder(holder: WorkoutDetectorItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
         holder.binding.llMood.visibility = View.VISIBLE
         holder.binding.ivIcon.visibility = View.GONE
 
-        Log.e("SelectedMoodId",selectedWorkoutTypeId.value.toString())
+      //  Log.e("SelectedMoodId",selectedWorkoutTypeId.value.toString())
 
         val options: RequestOptions = RequestOptions()
             .placeholder(R.mipmap.ic_launcher_round)
@@ -60,8 +62,19 @@ class WorkoutSelectorAdapter(
             holder.binding.rbSelection.isChecked = false
         }
 
+        if (mSelectedPosition == position){
+            holder.binding.rbSelection.isChecked = true
+        }else{
+            if (!firstTime){
+                holder.binding.rbSelection.isChecked = false
+            }
+        }
+
         holder.binding.rbSelection.setOnClickListener {
             detailViewModel.saveWorkoutApiResponse(list[position].typeId)
+            mSelectedPosition = position
+            firstTime = false
+            notifyDataSetChanged()
         }
     }
     override fun getItemCount(): Int {
