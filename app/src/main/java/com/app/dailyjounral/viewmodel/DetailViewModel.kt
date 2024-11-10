@@ -146,6 +146,12 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
     // Get Daily Goal Setting Response
     private fun getDailyGoalApiResponse() {
+
+        if (!session.isLoggedIn){
+            detailFragment.findNavController().navigate(R.id.LoginFragment)
+            return
+        }
+
         if (Utility.isNetworkConnected(context)){
             isLoading.postValue(true)
             Networking.with(context)
