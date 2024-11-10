@@ -38,6 +38,7 @@ import com.app.dailyjounral.model.getWorkoutDataResponse.GetWorkoutResponseData
 import com.app.dailyjounral.model.getWorkoutDataResponse.SetSelectedWorkoutData
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.DetailFragment
+import com.app.dailyjounral.view.dialougs.MessageDialog
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -207,14 +208,16 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
-                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                       // Utils().showSnackBar(context,message,binding.constraintLayout)
+                        MessageDialog(context, message.toString()).show()
                     }
 
                     override fun onNext(t: GetSaveMoodDataResponse) {
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context, t.getMessage().toString()).show()
+                         //   Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                          //   detailFragment.findNavController().navigate(R.id.dashboardMenuFragment)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -252,17 +255,19 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
-                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                       // Utils().showSnackBar(context,message,binding.constraintLayout)
+                        MessageDialog(context, message).show()
                     }
 
                     override fun onNext(t: GetSaveMoodDataResponse) {
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-
+                            MessageDialog(context, t.getMessage().toString()).show()
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                          //  Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context, t.getMessage().toString()).show()
                         }
                         Log.e("StatusCode",t.getSuccess().toString())
                     }
@@ -296,17 +301,20 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
-                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                        MessageDialog(context, message).show()
+                      //  Utils().showSnackBar(context,message,binding.constraintLayout)
                     }
 
                     override fun onNext(t: GetSaveMoodDataResponse) {
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context, t.getMessage()).show()
+                         //   Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                         }else{
+                            MessageDialog(context, t.getMessage()).show()
                             //  Utils().showToast(context,t.getMessage().toString())
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                           // Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                         }
                         Log.e("StatusCode",t.getSuccess().toString())
                     }
@@ -336,7 +344,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         isLoading.postValue(false)
                         if (response.getSuccess() == true){
                             if (response.getData() != null){
-                                setSelectedSleepData(response?.getData()!!)
+                                setSelectedSleepData(response.getData()!!)
                             }
                         }
                     }
@@ -344,14 +352,15 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
                         Log.e("Status",code.toString())
-                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                      //  Utils().showSnackBar(context,message,binding.constraintLayout)
+                        MessageDialog(context, message).show()
                     }
 
                     override fun onNext(getSleepDataResponse: GetSleepDataResponse) {
                         isLoading.postValue(false)
                         if (getSleepDataResponse.getSuccess() == true){
                             if (getSleepDataResponse.getData() != null){
-                                setSelectedSleepData(getSleepDataResponse?.getData()!!)
+                                setSelectedSleepData(getSleepDataResponse.getData()!!)
                             }
                         }
                     }
@@ -611,6 +620,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         binding.txtTips.text = context.resources.getString(R.string.double_quote)+ Utility.getNullToBlankString(getDailyReflectionResponse.getData()?.getQuestion().toString())+ context.resources.getString(R.string.double_quote)
      //   Glide.with(context).load(getDailyReflectionResponse.getData()?.get()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
+    @SuppressLint("SetTextI18n")
     private fun setSelfCareTipData(getSelfCareTipData: GetSelfCareTipResponse) {
         binding.txtTips.text = context.resources.getString(R.string.double_quote)+ Utility.getNullToBlankString(getSelfCareTipData.getData()?.getTipMessage().toString())+ context.resources.getString(R.string.double_quote)
         Glide.with(context).load(getSelfCareTipData.getData()?.getTipImage()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
@@ -627,7 +637,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         sleepDataList.add(SetSelectedSleepData(6,"Mood","", R.drawable.icon_number_six))
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
-        var selectedSleepData = SleepSelectorAdapter(context, sleepDataList,selectedSleepTypeId,object :
+        val sleepSelectorAdapter = SleepSelectorAdapter(context, sleepDataList,selectedSleepTypeId,this,true,object :
             OnItemSelected<SetSelectedSleepData> {
 
             override fun onItemSelected(t: SetSelectedSleepData?, position: Int) {
@@ -635,13 +645,14 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             }
         })
 
-        binding.rvMoodDetector.adapter = selectedSleepData
+        binding.rvMoodDetector.adapter = sleepSelectorAdapter
 
         selectedSleepTypeId.observeForever {
-            selectedSleepData.notifyDataSetChanged()
+            sleepSelectorAdapter.notifyDataSetChanged()
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun addWorkoutData() {
         workoutDataList.add(SetSelectedWorkoutData(1,"Sleep","", R.drawable.icon_workout_one))
         workoutDataList.add(SetSelectedWorkoutData(2,"Gratitude","", R.drawable.icon_workout_two))
@@ -653,7 +664,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         workoutDataList.add(SetSelectedWorkoutData(6,"Mood","", R.drawable.icon_workout_six))
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
-        var workoutSelectorAdapter = WorkoutSelectorAdapter(context, workoutDataList,selectedWorkoutTypeId,this,true,object :
+        val workoutSelectorAdapter = WorkoutSelectorAdapter(context, workoutDataList,selectedWorkoutTypeId,this,true,object :
             OnItemSelected<SetSelectedWorkoutData> {
 
             override fun onItemSelected(t: SetSelectedWorkoutData?, position: Int) {
@@ -668,6 +679,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun addMoodData() {
         moodDataList.add(SetSelectedMoodData(1,"MoodSelector","", R.drawable.icon_mood_angel,false))
         moodDataList.add(SetSelectedMoodData(2,"MoodSelector","", R.drawable.icon_mood_angry,false))
@@ -679,7 +691,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         moodDataList.add(SetSelectedMoodData(6,"MoodSelector","", R.drawable.icon_mood_smart,false))
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
-        var moodSelectorAdapter = MoodSelectorAdapter(context, moodDataList,selectedMoodTypeId,this,true,object :
+        val moodSelectorAdapter = MoodSelectorAdapter(context, moodDataList,selectedMoodTypeId,this,true,object :
             OnItemSelected<SetSelectedMoodData> {
 
             override fun onItemSelected(t: SetSelectedMoodData?, position: Int) {

@@ -44,7 +44,7 @@ class DetailFragment: BaseFragment() {
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     private fun setHeader() {
         if(AppConstants.detailType == 1){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detai_tip_of_day_text))
@@ -55,6 +55,7 @@ class DetailFragment: BaseFragment() {
             setTipOfDayData(true)
         }
         if(AppConstants.detailType == 3){
+            binding.txtLabel.visibility = View.GONE
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_daily_journal))
             setTipOfDayData(false)
             setDailyGeneralData()
@@ -72,7 +73,10 @@ class DetailFragment: BaseFragment() {
         }
 
         if(AppConstants.detailType == 7){
+            binding.txtLabel.visibility = View.VISIBLE
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_goal_setting))
+            binding.txtLabel.text = "Enter your goal of today:"
+            binding.edtAnswer.setHint("Enter your goal")
             setTipOfDayData(false)
             setDailyGeneralData()
         }

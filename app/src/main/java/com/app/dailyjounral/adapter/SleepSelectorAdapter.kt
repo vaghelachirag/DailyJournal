@@ -15,11 +15,18 @@ import com.app.dailyjounral.databinding.LayoutWorkoutDetectorBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.getSleepDataResponse.SetSelectedSleepData
 import com.app.dailyjounral.model.getWorkoutDataResponse.SetSelectedWorkoutData
+import com.app.dailyjounral.viewmodel.DetailViewModel
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
-class SleepSelectorAdapter(val context: Context, private val list: MutableList<SetSelectedSleepData>, private val selectedWorkoutTypeId: MutableLiveData<Int>, val onItemSelected: OnItemSelected<SetSelectedSleepData>):  RecyclerView.Adapter<SleepDetectorItemViewHolder>() {
+class SleepSelectorAdapter(val context: Context,
+                           private val list: MutableList<SetSelectedSleepData>,
+                           private val selectedWorkoutTypeId: MutableLiveData<Int>,
+                           private val detailViewModel: DetailViewModel,
+                           private var firstTime: Boolean,
+                           val onItemSelected: OnItemSelected<SetSelectedSleepData>):  RecyclerView.Adapter<SleepDetectorItemViewHolder>() {
 
+    private var mSelectedPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SleepDetectorItemViewHolder {
 
@@ -41,8 +48,6 @@ class SleepSelectorAdapter(val context: Context, private val list: MutableList<S
         holder.binding.llMood.visibility = View.VISIBLE
         holder.binding.ivIcon.visibility = View.GONE
 
-        Log.e("SelectedMoodId",selectedWorkoutTypeId.value.toString())
-
         val options: RequestOptions = RequestOptions()
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
@@ -56,8 +61,19 @@ class SleepSelectorAdapter(val context: Context, private val list: MutableList<S
             holder.binding.rbSelection.isChecked = false
         }
 
+        if (mSelectedPosition == position){
+            holder.binding.rbSelection.isChecked = true
+        }else{
+            if (!firstTime){
+                holder.binding.rbSelection.isChecked = false
+            }
+        }
+
         holder.binding.rbSelection.setOnClickListener {
-          //  detailViewModel.saveMoodApiResponse(list[position].typeId)
+            detailViewModel.saveSleepApiResponse(list[position].typeId)
+            mSelectedPosition = position
+            firstTime = false
+            notifyDataSetChanged()
         }
     }
     override fun getItemCount(): Int {

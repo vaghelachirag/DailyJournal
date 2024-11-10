@@ -19,6 +19,7 @@ import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
+import com.app.dailyjounral.view.dialougs.MessageDialog
 import com.app.dailyjounral.view.fragment.LoginFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -106,7 +107,8 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context, t.getMessage().toString()).show()
+                           // Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                             val session = Session(context)
                             session.isLoggedIn = true
                             session.user = t.getData()

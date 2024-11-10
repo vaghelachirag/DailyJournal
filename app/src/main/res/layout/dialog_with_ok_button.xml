@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16ssp"
+            app:cardCornerRadius="@dimen/_8ssp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/_16ssp">
+
+
+                <com.app.dailyjounral.widget.PoppinsBoldText
+                    android:id="@+id/tvMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/tab_un_selected_bg"
+                    android:textSize="@dimen/_14ssp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOk"
+                    style="@style/black_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16ssp"
+                    android:text="@string/ok"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_12ssp"
+                    app:backgroundTint="@color/list_text_bg"
+                    app:cornerRadius="@dimen/_100ssp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancel"
+                    style="@style/black_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16ssp"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    app:backgroundTint="@color/light_gray_bg"
+                    app:cornerRadius="@dimen/_100ssp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</layout>

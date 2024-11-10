@@ -130,7 +130,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/_12ssp"
-                                android:text="27/01/2024">
+                                android:text="">
 
                             </com.app.dailyjounral.widget.SmallText>
                         </LinearLayout>
@@ -179,7 +179,17 @@
                             android:visibility="gone"
                             android:orientation="vertical">
 
+                            <com.app.dailyjounral.widget.PoppinsBoldText
+                                android:id="@+id/txtLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:textSize="@dimen/_12ssp">
+
+                            </com.app.dailyjounral.widget.PoppinsBoldText>
+
                             <EditText
+                                android:id="@+id/edtAnswer"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/_80ssp"
                                 android:layout_marginStart="@dimen/_10ssp"
@@ -189,8 +199,9 @@
                                 android:layout_gravity="top"
                                 android:gravity="top"
                                 android:paddingTop="@dimen/_10ssp"
-                                android:paddingLeft="@dimen/_5ssp"
-                                android:background="@color/daily_general_ans_bg">
+                                android:paddingStart="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg"
+                                tools:ignore="RtlSymmetry">
 
                             </EditText>
                             <LinearLayout
