@@ -205,7 +205,7 @@ class Utility {
             return null
         }
 
-        private fun getPath(context: Context, uri: Uri): String? {
+        fun getPath(context: Context, uri: Uri): String? {
             val isKitKat = true
 
             // DocumentProvider

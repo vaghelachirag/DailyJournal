@@ -44,12 +44,12 @@
             </com.app.dailyjounral.widget.InterFontText>
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.app.dailyjounral.uttils.CircularImageView
             android:id="@+id/navHeaderAppLogo"
             android:layout_width="@dimen/_60ssp"
             android:layout_height="@dimen/_60ssp"
             android:scaleType="fitXY"
-            android:src="@drawable/logo"
+            android:src="@drawable/icon_placeholder"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="30dp" />

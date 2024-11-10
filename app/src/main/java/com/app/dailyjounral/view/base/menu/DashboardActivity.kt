@@ -199,7 +199,7 @@ class DashboardActivity : BaseActivity(){
 
 
         Glide.with(this)
-            .load(R.drawable.logo)
+            .load(R.drawable.applogo)
             .circleCrop()
             .into(userImage)
 

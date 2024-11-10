@@ -7,6 +7,10 @@ android {
     namespace = "com.app.dailyjounral"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "com.app.dailyjounral"
         minSdk = 24
@@ -71,5 +75,5 @@ dependencies {
     implementation (libs.rxandroid)
     implementation (libs.rxbinding)
 
-
+    implementation ("com.karumi:dexter:6.2.3")
 }

@@ -55,12 +55,12 @@
                     android:layout_marginTop="@dimen/_20ssp"
                     app:layout_constraintTop_toBottomOf="@+id/tvSignupLabel">
 
-                    <androidx.appcompat.widget.AppCompatImageView
+                    <com.app.dailyjounral.uttils.CircularImageView
                         android:id="@+id/ivProfileImage"
                         android:layout_width="@dimen/_80ssp"
                         android:layout_height="@dimen/_80ssp"
                         android:scaleType="fitXY"
-                        android:src="@drawable/logo"
+                        android:src="@drawable/icon_placeholder"
                         tools:ignore="MissingConstraints" />
 
                     <ImageView
@@ -258,6 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:cornerRadius="@dimen/_5ssp"
+                    android:onClick="@{(view) -> viewModel.saveUpdateUserProfile()}"
                     android:layout_marginTop="@dimen/_10ssp"
                     app:layout_constraintTop_toBottomOf="@+id/ll_RemeberMe"
                     android:fontFamily="@font/roboto_regular"

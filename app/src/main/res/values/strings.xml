@@ -37,7 +37,11 @@
     <string name="orLoginWith">Or Login With</string>
     <string name="signup_text">Do not have Account?</string>
     <string name="register_now_text"> Register Now</string>
-    <string name="email_hint">Email<font color='#FF0000'>*</font></string>
+    <string name="email_hint">Email<font color='#1C0647'>*</font></string>
+    <string name="is_adult_hint">Is Adult?<font color='#1C0647'>*</font></string>
+
+    <string name="option_gallery">Gallery</string>
+    <string name="option_camera">Camera</string>
 
     <!-- Login Validation -->
     <string name="email_validation"> Please enter your Email address</string>
@@ -66,8 +70,8 @@
     <string name="fullName">Full Name</string>
     <string name="already_have_account_text">Already have Account?</string>
     <string name="login_now_text"> Login Now</string>
-    <string name="fullName_hint">Full Name<font color='#FF0000'>*</font></string>
-    <string name="password_hint">Password<font color='#FF0000'>*</font></string>
+    <string name="fullName_hint">Full Name<font color='#1C0647'>*</font></string>
+    <string name="password_hint">Password<font color='#1C0647'>*</font></string>
 
     <!-- Coming Soon -->
     <string name="coming_soon">Coming Soon..</string>
