@@ -215,11 +215,6 @@ class DashboardActivity : BaseActivity(){
         llProfile.visibility = View.VISIBLE
         appImage.visibility = View.GONE
 
-        Glide.with(this)
-            .load(R.drawable.user_image)
-            .circleCrop()
-            .into(userImage)
-
 
     }
 
