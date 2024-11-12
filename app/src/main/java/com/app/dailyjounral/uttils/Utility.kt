@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.app.dailyjounral.R
 import com.app.dailyjounral.uttils.AppConstants.baseURL
+import com.app.dailyjounral.view.dialougs.MessageDialog
 import com.bumptech.glide.request.RequestOptions
 import java.io.*
 import java.text.DecimalFormat
@@ -131,6 +132,14 @@ class Utility {
             }
 
             builder.show()
+        }
+
+        // Session Expired
+        fun sessionExpired(context: Context){
+            var session  = Session(context)
+            session!!.clearSession()
+            MessageDialog(context, context.getString(R.string.session_expired)).show()
+          //  Utils().reloadActivity(context)
         }
 
         private fun turnGPSOn(context: Context) {

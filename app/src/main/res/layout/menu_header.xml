@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:orientation="vertical">
-            <androidx.appcompat.widget.AppCompatImageView
+            <com.app.dailyjounral.uttils.CircularImageView
                 android:id="@+id/navHeaderLogo"
                 android:layout_width="@dimen/_60ssp"
                 android:layout_height="@dimen/_60ssp"

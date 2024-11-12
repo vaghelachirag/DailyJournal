@@ -70,6 +70,11 @@ class ForgotPasswordViewModel(private val context: Context, private val binding:
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
+                        if (code == 403){
+                            Utility.sessionExpired(context)
+                        }else{
+                            Utils().showSnackBar(context,message,binding.constraintLayout)
+                        }
                     }
 
                     override fun onNext(t: GetForgotPasswordResponse) {

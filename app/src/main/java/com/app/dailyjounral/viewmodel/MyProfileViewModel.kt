@@ -16,6 +16,7 @@ import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.view.dialougs.MessageDialog
 import com.app.dailyjounral.view.fragment.MyProfileFragment
 import com.bumptech.glide.Glide
@@ -36,7 +37,7 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
 
     var imageFile : MutableLiveData<File> = MutableLiveData<File>()
 
-    val session  = Session(context)
+    var session  = Session(context)
     fun init() {
 
         if (!session.isLoggedIn){
@@ -55,15 +56,15 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
             isAdult = true
         }
 
-        if (imageFile.value != null){
-            requestBody = MultipartBody.Builder()
+        requestBody = if (imageFile.value != null){
+            MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("FullName", binding.edtFullName.text.toString())
                 .addFormDataPart("Profile", imageFile.value!!.name, imageFile.value!!.asRequestBody("image/*".toMediaTypeOrNull()))
                 .addFormDataPart("IsAdult",isAdult.toString())
                 .build()
         }else{
-            requestBody = MultipartBody.Builder()
+            MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("FullName", binding.edtFullName.text.toString())
                 .addFormDataPart("IsAdult", isAdult.toString())
@@ -86,13 +87,20 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
+                        if (code == 403){
+                            Utility.sessionExpired(context)
+                        }else{
+                            Utils().showSnackBar(context,message,binding.constraintLayout)
+                        }
                     }
 
                     override fun onNext(getUpdateProfileResponse: GetUserProfileResponse) {
                         Log.e("Status",getUpdateProfileResponse.getSuccess().toString())
                         isLoading.postValue(false)
                         if(getUpdateProfileResponse.getSuccess() == true){
+                           // (context as DashboardActivity).setUserLogoAndName()
                             MessageDialog(context, getUpdateProfileResponse.getMessage().toString()).show()
+                            getUserProfileApi()
                           //  Utils().showSnackBar(context,getUpdateProfileResponse.getMessage().toString(),binding.constraintLayout)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -124,7 +132,12 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
-                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                        Log.e("ErrorCode",code.toString())
+                        if (code == 403){
+                           Utility.sessionExpired(context)
+                        }else{
+                            Utils().showSnackBar(context,message,binding.constraintLayout)
+                        }
                     }
 
                     override fun onNext(getUserProfileResponse: GetUserProfileResponse) {
@@ -149,6 +162,8 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
         binding.edtFullName.setText(Utility.getNullToBlankString(userProfileResponse.getData()?.getFullName().toString()))
         binding.edtEmail.setText(Utility.getNullToBlankString(userProfileResponse.getData()?.getEmailId().toString()))
         if (userProfileResponse.getData()?.getProfilePicture() != null){
+            session.storeUserProfileImageKey(userProfileResponse.getData()?.getProfilePicture()!!)
+            session.storeUserNameKey(userProfileResponse.getData()?.getFullName()!!)
             Glide.with(context)
                 .load(userProfileResponse.getData()!!.getProfilePicture())
                 .circleCrop()
@@ -156,6 +171,7 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
                 .placeholder(R.drawable.icon_placeholder)
                 .into(binding.ivProfileImage)
           //  Glide.with(context).load(userProfileResponse.getData()!!.getProfilePicture()).apply(Utility.getGlideRequestOption()).into(binding.ivProfileImage)
+            (context as DashboardActivity).setUserLogoAndName()
         }
         if (userProfileResponse.getData()!!.getIsAdult() == true){
             binding.rbYes.isChecked = true

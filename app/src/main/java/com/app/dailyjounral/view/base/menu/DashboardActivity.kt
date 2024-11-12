@@ -108,6 +108,7 @@ class DashboardActivity : BaseActivity(){
         menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
         menuList.add(MenuDataModel("Sleep","",R.drawable.icon_menu_sleep_unselected,R.drawable.icon_menu_sleep_selected,false))
         menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_menu_gradituty_unselected,R.drawable.icon_menu_gradituty_selected,false))
+
         menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
 
         menuList.add(MenuDataModel("Mood","",R.drawable.icon_menu_mood_unselected,R.drawable.icon_menu_mood_selected,false))
@@ -187,6 +188,7 @@ class DashboardActivity : BaseActivity(){
 
     }
 
+    @SuppressLint("CutPasteId")
     private fun setAppLogo() {
 
         val menuHeader = findViewById<View>(R.id.layoutMenu)
@@ -205,7 +207,7 @@ class DashboardActivity : BaseActivity(){
 
     }
 
-    private fun setUserLogoAndName() {
+    public fun setUserLogoAndName() {
 
         val menuHeader = findViewById<View>(R.id.layoutMenu)
         val userImage = menuHeader.findViewById<View>(R.id.navHeaderLogo) as ImageView
@@ -215,6 +217,23 @@ class DashboardActivity : BaseActivity(){
         llProfile.visibility = View.VISIBLE
         appImage.visibility = View.GONE
 
+        var profileImage = ""
+        var userName = ""
+        if (session != null){
+          if (!session!!.getUserProfileImageKey().isNullOrEmpty()){
+            profileImage = session!!.getUserProfileImageKey()!!
+          }
+            if (!session!!.getUserNameKey().isNullOrEmpty()){
+                userName = session!!.getUserNameKey()!!
+                val txtUserName = menuHeader.findViewById<View>(R.id.txt_UserName) as TextView
+                txtUserName.text = userName
+            }
+        }
+
+        val options: RequestOptions = RequestOptions().placeholder(R.drawable.icon_placeholder).error(R.drawable.icon_placeholder)
+        Glide.with(this).load(profileImage)
+            .circleCrop()
+            .apply(options).into(userImage)
 
     }
 

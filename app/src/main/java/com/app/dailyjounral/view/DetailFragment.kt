@@ -11,6 +11,7 @@ import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseFragment
+import com.app.dailyjounral.view.dialougs.DialogAddGratitude
 import com.app.dailyjounral.viewmodel.DetailViewModel
 
 class DetailFragment: BaseFragment() {
@@ -39,6 +40,16 @@ class DetailFragment: BaseFragment() {
 
         detailViewModel.selectedMoodTypeId.observeForever {
             Log.e("SelectedMood",it.toString())
+        }
+
+        binding.btnAddGratitude.setOnClickListener {
+            DialogAddGratitude(requireActivity()).setListener(object :
+                DialogAddGratitude.OkButtonListener {
+                override fun onOkPressed(dialogAddGratitude: DialogAddGratitude, gratitude: String?) {
+                    detailViewModel.addGratitudeData(gratitude)
+                    dialogAddGratitude.dismiss()
+                }
+            }).show()
         }
 
         return binding.root

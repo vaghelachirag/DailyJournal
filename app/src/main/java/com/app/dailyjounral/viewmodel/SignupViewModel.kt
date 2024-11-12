@@ -138,6 +138,12 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
+
+                        if (code == 403){
+                            Utility.sessionExpired(context)
+                        }else{
+                            Utils().showSnackBar(context,message,binding.constraintLayout)
+                        }
                     }
 
                     override fun onNext(t: GetRegisterUserResponse) {

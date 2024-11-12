@@ -101,6 +101,8 @@
     <string name="old_password_validation"> Please enter your Old Password</string>
     <string name="new_password_validation"> Please enter your New Password</string>
 
+    <string name="gratitude_label">Gratitude</string>
+
     <string name="my_profile_label">My Profile</string>
 
 
@@ -123,10 +125,11 @@
 
     <string name="enter_your_ans">Enter your answer..</string>
 
-
+    <string name="session_expired">Session Expired</string>
 
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+
 
     <string name="lorem_ipsum">
        "Autism is not a disability, it's a different ability. Embrace the uniqueness and celebrate every milestone, no matter how small. You are your child's strongest advocate and their greatest source of love and support."

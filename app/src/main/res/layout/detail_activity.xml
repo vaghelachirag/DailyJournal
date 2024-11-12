@@ -65,7 +65,7 @@
                 android:background="@color/white"
                 app:cardCornerRadius="10dp"
                 android:layout_below="@+id/iv_text_logo"
-                android:layout_marginTop="@dimen/_40ssp"
+                android:layout_marginTop="@dimen/_20ssp"
                 android:layout_centerVertical="true"
                 android:layout_marginBottom="@dimen/_60ssp"
                 app:cardBackgroundColor="@color/white"
@@ -198,12 +198,60 @@
                                 android:textSize="@dimen/_10ssp"
                                 android:layout_gravity="top"
                                 android:gravity="top"
+                                android:focusable="@{viewModel.isAnswerIsEditable}"
+                                android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
                                 android:paddingTop="@dimen/_10ssp"
                                 android:paddingStart="@dimen/_5ssp"
                                 android:background="@color/daily_general_ans_bg"
                                 tools:ignore="RtlSymmetry">
 
                             </EditText>
+                            <LinearLayout
+                                android:id="@+id/llPastGoal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                android:orientation="vertical">
+                                <com.app.dailyjounral.widget.RobotoRegularText
+                                    android:id="@+id/txtPastGoalLabel"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/_10ssp"
+                                    android:textSize="@dimen/_12ssp">
+                                </com.app.dailyjounral.widget.RobotoRegularText>
+                                <RadioGroup
+                                    android:id="@+id/radioGroupPastGoal"
+                                    android:layout_width="match_parent"
+                                    android:layout_weight="1"
+                                    android:layout_gravity="top"
+                                    android:gravity="top"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:animationCache="false">
+
+                                    <RadioButton
+                                        android:text="Yes"
+                                        android:scaleX="0.80"
+                                        android:scaleY="0.80"
+                                        android:textSize="@dimen/_15ssp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/roboto_regular"
+                                        android:id="@+id/rbPastGoalYes" />
+
+                                    <RadioButton
+                                        android:text="No"
+                                        android:scaleX="0.80"
+                                        android:scaleY="0.80"
+                                        android:textSize="@dimen/_15ssp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/roboto_regular"
+                                        android:id="@+id/rbPastGoalNo" />
+
+
+                                </RadioGroup>
+                            </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -213,6 +261,7 @@
                                 android:layout_marginTop="@dimen/_10ssp"
                                 tools:ignore="MissingConstraints">
                                 <Button
+                                    android:id="@+id/btnSubmit"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="2.7"
@@ -232,6 +281,7 @@
                                     android:src="@drawable/icon_edit">
                                 </ImageView>
                                 <ImageView
+                                    android:id="@+id/iv_delete"
                                     android:layout_width="@dimen/_25ssp"
                                     android:layout_height="@dimen/_25ssp"
                                     android:layout_weight="0.15"
@@ -241,7 +291,6 @@
 
                                 </ImageView>
                             </LinearLayout>
-
                         </LinearLayout>
 
                     </LinearLayout>
@@ -276,69 +325,39 @@
                         android:visibility="gone"
                         android:orientation="vertical"
                         android:layout_marginTop="@dimen/_15ssp"
-                        android:layout_marginStart="@dimen/_10ssp"
-                        android:layout_marginEnd="@dimen/_10ssp">
-                       <androidx.core.widget.NestedScrollView
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content">
-                        <LinearLayout
+                        android:layout_marginStart="@dimen/_5ssp"
+                        android:layout_marginEnd="@dimen/_5ssp">
+                        <ImageView
+                            android:id="@+id/ivNoDataGratitude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_15ssp"
+                            android:visibility="visible"
+                            android:src="@drawable/addgratitude">
+                        </ImageView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvGratitude"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40ssp"
-                                android:hint=""
-                                android:textSize="@dimen/_10ssp"
-                                android:layout_gravity="top"
-                                android:gravity="top"
-                                android:paddingTop="@dimen/_15ssp"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:paddingLeft="@dimen/_5ssp"
-                                android:background="@color/daily_general_ans_bg" />
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40ssp"
-                                android:layout_marginTop="@dimen/_5ssp"
-                                android:hint=""
-                                android:textSize="@dimen/_10ssp"
-                                android:layout_gravity="top"
-                                android:gravity="top"
-                                android:paddingTop="@dimen/_10ssp"
-                                android:paddingLeft="@dimen/_5ssp"
-                                android:background="@color/daily_general_ans_bg" />
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40ssp"
-                                android:layout_marginTop="@dimen/_5ssp"
-                                android:hint=""
-                                android:textSize="@dimen/_10ssp"
-                                android:layout_gravity="top"
-                                android:gravity="top"
-                                android:paddingTop="@dimen/_10ssp"
-                                android:paddingLeft="@dimen/_5ssp"
-                                android:background="@color/daily_general_ans_bg" />
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_40ssp"
-                                android:layout_marginTop="@dimen/_5ssp"
-                                android:hint=""
-                                android:textSize="@dimen/_10ssp"
-                                android:layout_gravity="top"
-                                android:gravity="top"
-                                android:paddingTop="@dimen/_10ssp"
-                                android:paddingStart="@dimen/_5ssp"
-                                android:background="@color/daily_general_ans_bg" />
-                        </LinearLayout>
-                       </androidx.core.widget.NestedScrollView>
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:clipToPadding="false"
+                            android:fadeScrollbars="false"
+                            android:paddingTop="6dp"
+                            android:visibility="gone"
+                            android:paddingBottom="6dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_gratitude" />
+
                         <Button
+                            android:id="@+id/btnAddGratitude"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:paddingStart="@dimen/_5ssp"
                             android:layout_marginTop="@dimen/_5ssp"
                             android:layout_weight="2.7"
                             app:cornerRadius="@dimen/_5ssp"
-                            android:text="Submit"
+                            android:text="Add Gratitude"
                             tools:ignore="RtlSymmetry">
 
                         </Button>

@@ -11,6 +11,10 @@ class GetDailyReflectionResponseData {
     @Expose
     private var dailyReflectionUserRecordId: Int? = null
 
+    @SerializedName("dailyReflectionId")
+    @Expose
+    private var dailyReflectionId: Int? = null
+
     @SerializedName("userId")
     @Expose
     private var userId: Int? = null
@@ -45,6 +49,14 @@ class GetDailyReflectionResponseData {
 
     fun setDailyReflectionUserRecordId(dailyReflectionUserRecordId: Int?) {
         this.dailyReflectionUserRecordId = dailyReflectionUserRecordId
+    }
+
+    fun getDailyReflectionId(): Int {
+        return dailyReflectionId!!
+    }
+
+    fun setDailyReflectionId(dailyReflectionId: Int?) {
+        this.dailyReflectionId = dailyReflectionId
     }
 
     fun getUserId(): Int? {

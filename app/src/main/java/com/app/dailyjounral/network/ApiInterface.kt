@@ -1,4 +1,5 @@
 package com.app.dailyjounral.network
+import com.app.dailyjounral.model.getDailyGoalAnswerReponse.GetDailyGoalAnswerResponse
 import com.app.dailyjounral.model.getDailyGoalResponse.GetDailyGoalResponse
 import com.app.dailyjounral.model.getDailyQuoteResponse.GetDailyQuoteResponse
 import com.app.dailyjounral.model.getDailyReflectionResponse.GetDailyReflectionResponse
@@ -102,4 +103,24 @@ interface ApiInterface {
 
     @PUT("app/user/update-profile")
     fun saveUpdateUserProfile(@Header("Authorization") header: String?,@Body body: RequestBody): Observable<GetUserProfileResponse>
+
+
+    @POST("app/daily-reflection/save")
+    fun getSaveDailyReflectionAnswerResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
+
+
+
+    @GET("app/daily-goal/{date}")
+    fun getDailyGoalResponseData(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetDailyGoalAnswerResponse>
+
+
+    @POST("app/daily-goal/save")
+    fun getSaveDailyGoalAnswerResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
+
+
+
+    @POST("app/daily-goal/status-update")
+    fun getSaveDailyPastGoalStatusResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
+
+
 }

@@ -11,6 +11,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
@@ -23,29 +24,309 @@
             tools:ignore="MissingConstraints">
 
 
-            <LinearLayout
-                android:id="@+id/ll_Mood"
+            <com.app.dailyjounral.widget.LogoRegularText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daily Journal"
+                android:textColor="@color/main_logo_txt_bg"
+                android:visibility="gone"
+                android:textSize="@dimen/_20ssp">
+
+            </com.app.dailyjounral.widget.LogoRegularText>
+
+            <com.app.dailyjounral.widget.PoppinsBoldText
+                android:id="@+id/txt_Header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/_25ssp"
+                android:textColor="@color/color_light_navy_blue"
+                android:layout_below="@+id/iv_Logo"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:visibility="gone"
+                android:text="Daily General">
+
+            </com.app.dailyjounral.widget.PoppinsBoldText>
+            <ImageView
+                android:id="@+id/iv_text_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35ssp"
+                android:layout_marginTop="@dimen/_20ssp"
+                android:layout_centerHorizontal="true"
+                android:visibility="visible"
+                android:src="@drawable/text_daily_journal">
+
+            </ImageView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_DailyGeneral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/_20ssp">
+                android:background="@color/white"
+                app:cardCornerRadius="10dp"
+                android:layout_below="@+id/iv_text_logo"
+                android:layout_marginTop="@dimen/_40ssp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/_60ssp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginStart="@dimen/_15ssp"
+                android:layout_marginEnd="@dimen/_15ssp"
+                card_view:cardElevation="4dp"
+                card_view:cardUseCompatPadding="true">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvMoodDetector"
+                <RelativeLayout
+                    android:id="@+id/rv_DailyJournal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10ssp"
-                    android:clipToPadding="false"
-                    android:fadeScrollbars="false"
-                    android:paddingTop="6dp"
+                    android:padding="8dp"
+                    android:layout_marginTop="@dimen/_5ssp"
+                    android:layout_marginBottom="10sp"
                     android:visibility="visible"
-                    android:paddingBottom="6dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutMenu"
-                    tools:listitem="@layout/layout_mood_detector" />
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:id="@+id/ll_WeekDays"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvWeekDays"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clipToPadding="false"
+                                android:fadeScrollbars="false"
+                                android:paddingBottom="6dp"
+                                android:visibility="gone"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:ignore="MissingConstraints"
+                                tools:listitem="@layout/item_week_days" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <com.app.dailyjounral.widget.HeaderText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/_12ssp"
+                                android:text="Date : ">
+
+                            </com.app.dailyjounral.widget.HeaderText>
+
+                            <com.app.dailyjounral.widget.SmallText
+                                android:id="@+id/txtCurrentDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/_12ssp"
+                                android:text="">
+
+                            </com.app.dailyjounral.widget.SmallText>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_DailyJournal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_below="@+id/ll_Date"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:id="@+id/iv_Image"
+                            android:layout_width="match_parent"
+                            android:layout_height="150sp"
+                            android:contentDescription="TODO"
+                            android:visibility="gone"
+                            android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginEnd="@dimen/_10ssp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/icon_placeholder">
+
+                        </ImageView>
+
+                        <com.app.dailyjounral.widget.RobotoRegularText
+                            android:id="@+id/txtTips"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10ssp"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:layout_marginEnd="@dimen/_10ssp"
+                            android:textSize="@dimen/_12ssp"
+                            android:maxLines="5"
+                            android:text=""
+                            android:textColor="@color/black">
+
+                        </com.app.dailyjounral.widget.RobotoRegularText>
+
+                        <LinearLayout
+                            android:id="@+id/ll_DailyJournalAns"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <com.app.dailyjounral.widget.PoppinsBoldText
+                                android:id="@+id/txtLabel"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:textSize="@dimen/_12ssp">
+
+                            </com.app.dailyjounral.widget.PoppinsBoldText>
+
+                            <EditText
+                                android:id="@+id/edtAnswer"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_80ssp"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:hint="@string/enter_your_ans"
+                                android:textSize="@dimen/_10ssp"
+                                android:layout_gravity="top"
+                                android:gravity="top"
+                                android:paddingTop="@dimen/_10ssp"
+                                android:paddingStart="@dimen/_5ssp"
+                                android:background="@color/daily_general_ans_bg"
+                                tools:ignore="RtlSymmetry">
+
+                            </EditText>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="3"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_10ssp"
+                                tools:ignore="MissingConstraints">
+                                <Button
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2.7"
+                                    app:cornerRadius="@dimen/_5ssp"
+                                    android:text="Submit">
+
+                                </Button>
+
+                                <ImageView
+                                    android:id="@+id/iv_edit"
+                                    android:layout_width="@dimen/_25ssp"
+                                    android:layout_height="@dimen/_25ssp"
+                                    app:layout_constraintLeft_toRightOf="@+id/btnLogin"
+                                    android:layout_weight="0.15"
+                                    android:scaleType="fitCenter"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/icon_edit">
+                                </ImageView>
+                                <ImageView
+                                    android:layout_width="@dimen/_25ssp"
+                                    android:layout_height="@dimen/_25ssp"
+                                    android:layout_weight="0.15"
+                                    android:layout_gravity="center"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/icon_delete">
+
+                                </ImageView>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_Mood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_20ssp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvMoodDetector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:clipToPadding="false"
+                            android:fadeScrollbars="false"
+                            android:paddingTop="6dp"
+                            android:visibility="visible"
+                            android:paddingBottom="6dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@+id/layoutMenu"
+                            tools:listitem="@layout/layout_mood_detector" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_Gratuity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginStart="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_10ssp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_15ssp"
+                            android:visibility="gone"
+                            android:src="@drawable/addgratitude">
+                        </ImageView>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvGratitude"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10ssp"
+                            android:clipToPadding="false"
+                            android:fadeScrollbars="false"
+                            android:paddingTop="6dp"
+                            android:visibility="visible"
+                            android:paddingBottom="6dp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/layout_mood_detector" />
+
+                        <Button
+                            android:id="@+id/btnAddGratitude"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/_5ssp"
+                            android:layout_marginTop="@dimen/_5ssp"
+                            android:layout_weight="2.7"
+                            app:cornerRadius="@dimen/_5ssp"
+                            android:text="Add Gratitude"
+                            tools:ignore="RtlSymmetry">
+
+                        </Button>
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <ImageView
+                android:id="@+id/iv_Bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_bottom_leaf"
+                android:layout_marginBottom="@dimen/_20ssp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true">
+
+            </ImageView>
 
         </RelativeLayout>
 
