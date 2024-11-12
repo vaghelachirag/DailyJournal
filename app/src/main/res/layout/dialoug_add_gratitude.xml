@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.app.dailyjounral.viewmodel.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_DailyGeneral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:cardCornerRadius="10dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="@dimen/_60ssp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginStart="@dimen/_15ssp"
+                android:layout_marginEnd="@dimen/_15ssp"
+                card_view:cardElevation="4dp"
+                card_view:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:id="@+id/ll_WeekDays"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvWeekDays"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clipToPadding="false"
+                                android:fadeScrollbars="false"
+                                android:paddingBottom="6dp"
+                                android:visibility="visible"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:ignore="MissingConstraints"
+                                tools:listitem="@layout/item_week_days" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_weight="1">
+
+                            <com.app.dailyjounral.widget.HeaderText
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/_12ssp"
+                                android:text="Date : ">
+
+                            </com.app.dailyjounral.widget.HeaderText>
+
+                            <com.app.dailyjounral.widget.SmallText
+                                android:id="@+id/txtCurrentDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/_12ssp"
+                                android:text="">
+
+                            </com.app.dailyjounral.widget.SmallText>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.app.dailyjounral.widget.PoppinsBoldText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gratitude_label"
+                        android:layout_marginLeft="@dimen/_10ssp"
+                        android:layout_marginRight="@dimen/_10ssp">
+
+                    </com.app.dailyjounral.widget.PoppinsBoldText>
+
+                    <EditText
+                        android:id="@+id/edt_Gratitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_80ssp"
+                        android:layout_gravity="top"
+                        android:layout_marginLeft="@dimen/_10ssp"
+                        android:layout_marginRight="@dimen/_10ssp"
+                        android:background="@color/daily_general_ans_bg"
+                        android:fontFamily="@font/roboto_bold"
+                        android:gravity="top"
+                        android:hint="@string/lorem_ipsum"
+                        android:paddingLeft="@dimen/_5ssp"
+                        android:paddingTop="@dimen/_15ssp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_20ssp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnCancel"
+                            style="@style/black_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16ssp"
+                            android:layout_weight="1"
+                            android:text="@string/cancel"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_marginLeft="@dimen/_20ssp"
+                            android:textColor="@color/black"
+                            app:backgroundTint="@color/light_gray_bg"
+                            app:cornerRadius="@dimen/_100ssp" />
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnOk"
+                            style="@style/black_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8ssp"
+                            android:layout_marginTop="@dimen/_16ssp"
+                            android:layout_weight="1"
+                            android:text="@string/update"
+                            android:textAllCaps="false"
+                            android:textSize="@dimen/_8ssp"
+                            android:layout_marginEnd="@dimen/_20ssp"
+                            app:backgroundTint="@color/list_background"
+                            app:cornerRadius="@dimen/_100ssp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
