@@ -65,10 +65,10 @@ class DetailActivity : BaseActivity(){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_mood))
             setMoodDetectorData()
         }
+        setTipOfDayData(false)
 
         if(AppConstants.detailType == 7){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_goal_setting))
-            setTipOfDayData(false)
         }
         if(AppConstants.detailType == 8){
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_workout))

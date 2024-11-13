@@ -43,11 +43,17 @@ class DetailFragment: BaseFragment() {
         }
 
         binding.btnAddGratitude.setOnClickListener {
-            DialogAddGratitude(requireActivity()).setListener(object :
+            DialogAddGratitude(requireActivity(),true,"").setListener(object :
                 DialogAddGratitude.OkButtonListener {
                 override fun onOkPressed(dialogAddGratitude: DialogAddGratitude, gratitude: String?) {
-                    detailViewModel.addGratitudeData(gratitude)
-                    dialogAddGratitude.dismiss()
+                    Log.e("Answer",gratitude.toString())
+                    if (!gratitude.isNullOrEmpty()){
+                        detailViewModel.saveGratitudeApiResponse(gratitude, 0)
+                        dialogAddGratitude.dismiss()
+                    }
+                    else{
+                        Utils().showSnackBar(context!!, "Please add gratitude first!", binding.constraintLayout)
+                    }
                 }
             }).show()
         }

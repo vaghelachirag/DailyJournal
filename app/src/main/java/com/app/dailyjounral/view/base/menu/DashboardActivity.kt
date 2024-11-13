@@ -51,6 +51,7 @@ class DashboardActivity : BaseActivity(){
 
     private var menuList = mutableListOf<MenuDataModel>()
     private var options: RequestOptions? = null
+    private var menuAdapter: MenuItemAdapter? = null
 
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,12 +107,16 @@ class DashboardActivity : BaseActivity(){
     private fun addMenuData() {
          menuList = mutableListOf<MenuDataModel>()
         menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
+        menuList.add(MenuDataModel("Tip of the day","",R.drawable.icon_menu_tip_of_day_unselected,R.drawable.icon_menu_tip_of_day_selected,false))
+        menuList.add(MenuDataModel("Daily Quote","",R.drawable.icon_menu_quote_unselected,R.drawable.icon_menu_quote_selected,false))
+        menuList.add(MenuDataModel("Daily Journal","",R.drawable.icon_menu_gradituty_unselected,R.drawable.icon_menu_gradituty_selected,false))
         menuList.add(MenuDataModel("Sleep","",R.drawable.icon_menu_sleep_unselected,R.drawable.icon_menu_sleep_selected,false))
         menuList.add(MenuDataModel("Gratitude","",R.drawable.icon_menu_gradituty_unselected,R.drawable.icon_menu_gradituty_selected,false))
-
-        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
-
         menuList.add(MenuDataModel("Mood","",R.drawable.icon_menu_mood_unselected,R.drawable.icon_menu_mood_selected,false))
+        menuList.add(MenuDataModel("Goal Setting","",R.drawable.icon_menu_goal_unselected,R.drawable.icon_menu_goal_selected,false))
+        menuList.add(MenuDataModel("Workout","",R.drawable.icon_menu_workout_unselected,R.drawable.icon_menu_workout_selected,false))
+        menuList.add(MenuDataModel("Self-Care Tip","",R.drawable.icon_menu_selfcare_unselected,R.drawable.icon_menu_selfcare_selected,false))
+        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
         menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
 
         session= Session(this)
@@ -131,33 +136,57 @@ class DashboardActivity : BaseActivity(){
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         binding.rvMenu.layoutManager = layoutManager
-
-        binding.rvMenu.adapter = MenuItemAdapter(this, menuList,object :
+        menuAdapter = MenuItemAdapter(this, menuList,object :
             OnItemSelected<MenuDataModel> {
 
             override fun onItemSelected(t: MenuDataModel?, position: Int) {
-               // clickMenuEvent(t)
+                // clickMenuEvent(t)
                 Log.e("MenuPosition",position.toString())
                 binding.drawer.closeDrawer(GravityCompat.START)
                 if (position == 0){
                     navController.navigate(R.id.dashboardMenuFragment)
                 }
                 if (position == 1){
-                    AppConstants.detailType = 4
+                    AppConstants.detailType == 1
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 2){
-                    AppConstants.detailType = 5
+                    AppConstants.detailType = 2
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 3){
-                    navController.navigate(R.id.MyProfileFragment)
+                    AppConstants.detailType = 3
+                    navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 4){
-                    AppConstants.detailType = 6
+                    AppConstants.detailType = 4
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 5){
+                    AppConstants.detailType = 5
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 6){
+                    AppConstants.detailType = 6
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 7){
+                    AppConstants.detailType = 7
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 8){
+                    AppConstants.detailType = 8
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 9){
+                    AppConstants.detailType = 9
+                    navController.navigate(R.id.detailViewFragment)
+                }
+                if (position == 10){
+                    AppConstants.detailType = 3
+                    navController.navigate(R.id.MyProfileFragment)
+                }
+                if (position == 11){
                     if (session!!.isLoggedIn){
                         AppConstants.detailType = 6
                         navController.navigate(R.id.ChangePasswordFragment)
@@ -165,9 +194,9 @@ class DashboardActivity : BaseActivity(){
                         navController.navigate(R.id.LoginFragment)
                     }
                 }
-                if (position == 6){
-                   /* AppConstants.detailType = 6
-                    navController.navigate(R.id.LoginFragment)*/
+                if (position == 12){
+                    /* AppConstants.detailType = 6
+                     navController.navigate(R.id.LoginFragment)*/
                     Log.e("MenuName", t!!.title)
                     if (t.title == AppConstants.menuLogout){
                         Utils().showAlertDialog(this@DashboardActivity,resources.getString(R.string.logoutAlert))
@@ -177,8 +206,9 @@ class DashboardActivity : BaseActivity(){
                     }
                 }
             }
-
         })
+
+        binding.rvMenu.adapter =  menuAdapter
 
         if (session!!.isLoggedIn){
             setUserLogoAndName()
@@ -346,4 +376,10 @@ class DashboardActivity : BaseActivity(){
          binding.llTab2.visibility  = View.GONE
     }
 
+   fun setSelectedMenuPosition(position: Int){
+       if (menuAdapter !=null){
+           menuAdapter!!.mSelectedItem = position
+           menuAdapter!!.notifyDataSetChanged()
+       }
+    }
 }

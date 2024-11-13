@@ -15,19 +15,15 @@ import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.databinding.ItemGratitudeBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
-import com.app.dailyjounral.model.getGratitudeResponse.SaveGratitudeData
+import com.app.dailyjounral.model.getGratitudeResponse.GetGratitudeListData
+import com.app.dailyjounral.uttils.Utility
+import com.app.dailyjounral.uttils.Utils
+import com.app.dailyjounral.view.dialougs.DialogAddGratitude
 import com.app.dailyjounral.viewmodel.DetailViewModel
 
 
-class GratitudeAnswerItemAdapter(
-    val context: Context,
-    private val list: MutableList<SaveGratitudeData>,
-    val binding: DetailActivityBinding,
-    val detailViewModel: DetailViewModel,
-    val onItemSelected: OnItemSelected<SaveGratitudeData>
-) :  RecyclerView.Adapter<GratitudeAnswerItemViewHolder>() {
+class GratitudeAnswerItemAdapter(val context: Context, private val list: List<GetGratitudeListData>, val binding: DetailActivityBinding, private val detailViewModel: DetailViewModel, val onItemSelected: OnItemSelected<GetGratitudeListData>) :  RecyclerView.Adapter<GratitudeAnswerItemViewHolder>() {
 
-    private var mSelectedItem: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GratitudeAnswerItemViewHolder {
 
@@ -47,6 +43,8 @@ class GratitudeAnswerItemAdapter(
     override fun onBindViewHolder(holder: GratitudeAnswerItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
+        holder.binding.edtGratitudeAns.setText(Utility.getNullToBlankString(list[position].getAnswer()!!))
+
         holder.binding.ivMenu.setOnClickListener {
             val menu = PopupMenu(context,  holder.binding.ivMenu)
             menu.menu.add(Menu.NONE, 1, 1, "Edit")
@@ -57,13 +55,29 @@ class GratitudeAnswerItemAdapter(
                 val i = item.itemId
                 when (i) {
                     1 -> {
-                        Log.e("Edit","Edit")
+                        Log.e("Edit","Edit" + list[position].getGratitudeUserRecordId())
                          holder.binding.edtGratitudeAns.focusable
+
+                        DialogAddGratitude(context,false,list[position].getAnswer()!!).setListener(object :
+                            DialogAddGratitude.OkButtonListener {
+                            override fun onOkPressed(dialogAddGratitude: DialogAddGratitude, gratitude: String?) {
+                                Log.e("Answer",gratitude.toString())
+                                if (!gratitude.isNullOrEmpty()){
+                                    detailViewModel.saveGratitudeApiResponse(gratitude,list[position].getGratitudeUserRecordId())
+                                    dialogAddGratitude.dismiss()
+                                }
+                                else{
+                                    Utils().showSnackBar(context!!, "Please add gratitude first!", binding.constraintLayout)
+                                }
+                            }
+                        }).show()
+
                         //handle share
                         true
+
                     }
                     2 -> {
-                        detailViewModel.deleteGratitudeData(position)
+                        detailViewModel.deleteGratitudeData(position,list[position].getGratitudeUserRecordId())
                         Log.e("Delete","Delete")
                         true
                     }

@@ -13,7 +13,7 @@
 
         <variable
             name="itemData"
-            type="com.app.dailyjounral.model.getGratitudeResponse.SaveGratitudeData" />
+            type="com.app.dailyjounral.model.getGratitudeResponse.GetGratitudeListData" />
 
         <variable
             name="holder"

@@ -1,21 +1,14 @@
 package com.app.dailyjounral
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.app.dailyjounral.adapter.MoodSelectorAdapter
-import com.app.dailyjounral.databinding.DialougAddGratitudeBinding
 import com.app.dailyjounral.databinding.TestActivityBinding
-import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MoodDataModel
 import com.app.dailyjounral.model.getGratitudeResponse.SaveGratitudeData
-import com.app.dailyjounral.model.getSleepDataResponse.SetSelectedSleepData
 import com.app.dailyjounral.view.dialougs.DialogAddGratitude
-import com.app.dailyjounral.view.dialougs.MessageDialog
 
 
 class TestActivity : AppCompatActivity() {
@@ -54,7 +47,7 @@ class TestActivity : AppCompatActivity() {
 
 
         binding.btnAddGratitude.setOnClickListener {
-            DialogAddGratitude(this).setListener(object :
+            DialogAddGratitude(this, true, "").setListener(object :
                 DialogAddGratitude.OkButtonListener {
                 override fun onOkPressed(dialogAddGratitude: DialogAddGratitude, gratitude: String?) {
 

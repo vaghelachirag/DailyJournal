@@ -26,7 +26,8 @@ import com.app.dailyjounral.model.getDailyGoalResponse.GetDailyGoalResponse
 import com.app.dailyjounral.model.getDailyQuoteResponse.GetDailyQuoteResponse
 import com.app.dailyjounral.model.getDailyReflectionResponse.GetDailyReflectionResponse
 import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
-import com.app.dailyjounral.model.getGratitudeResponse.SaveGratitudeData
+import com.app.dailyjounral.model.getGratitudeResponse.GetGratitudeListData
+import com.app.dailyjounral.model.getGratitudeResponse.GetGratitudeListResponse
 import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponse
 import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponseData
 import com.app.dailyjounral.model.getMoodResponse.SetSelectedMoodData
@@ -58,7 +59,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     private var moodDataList = mutableListOf<SetSelectedMoodData>()
     private var workoutDataList = mutableListOf<SetSelectedWorkoutData>()
     private var sleepDataList = mutableListOf<SetSelectedSleepData>()
-    private var gratitudeList = mutableListOf<SaveGratitudeData>()
+    private var gratitudeList = ArrayList<GetGratitudeListData>()
 
     val session = Session(context)
 
@@ -103,6 +104,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
         if (AppConstants.detailType == 5) {
             //  addWorkoutData()
+            getGratitudeListResponse()
         }
 
         if (AppConstants.detailType == 6) {
@@ -304,6 +306,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                             if (answer.isEmpty()){
                                 binding.edtAnswer.setText("")
                             }
+                            showHideEditAndDelete(true)
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -579,6 +582,52 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             Utils().showToast(context, context.getString(R.string.nointernetconnection))
         }
     }
+    private fun getGratitudeListResponse() {
+        if (!session.isLoggedIn) {
+            detailFragment.findNavController().navigate(R.id.LoginFragment)
+            return
+        }
+
+        if (Utility.isNetworkConnected(context)) {
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getGratitudeListByDateResponse(Utils().getUserToken(context), Utils().getDate())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetGratitudeListResponse>() {
+                    override fun onSuccess(response: GetGratitudeListResponse) {
+                        isLoading.postValue(false)
+                        if (response.getSuccess() == true) {
+                            if (response.getData() != null) {
+                                setGratitudeListData(response.getData()!!)
+                            }
+                        }
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        if (code == 403) {
+                            Utility.sessionExpired(context)
+                        } else {
+                            Utils().showSnackBar(context, message, binding.constraintLayout)
+                        }
+                    }
+
+                    override fun onNext(getGratitudeListResponse : GetGratitudeListResponse) {
+                        isLoading.postValue(false)
+                        if (getGratitudeListResponse.getSuccess() == true) {
+                            if (getGratitudeListResponse.getData() != null) {
+                                setGratitudeListData(getGratitudeListResponse.getData()!!)
+                            }
+                        }
+                    }
+
+                })
+        } else {
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
+        }
+    }
 
     // Get Sleep data from API
     private fun getSleepApiResponse() {
@@ -743,6 +792,35 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         Log.e("SelectedData", selectedSleepTypeId.value.toString())
     }
 
+
+    private fun setGratitudeListData(data: ArrayList<GetGratitudeListData>) {
+        if (data.isNullOrEmpty()){
+            binding.ivNoDataGratitude.visibility = View.VISIBLE
+            binding.rvGratitude.visibility = View.GONE
+        }else{
+            gratitudeList = data
+            binding.ivNoDataGratitude.visibility = View.GONE
+            val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            binding.rvGratitude.visibility = View.VISIBLE
+            binding.ivNoDataGratitude.visibility = View.GONE
+            binding.rvGratitude.layoutManager = layoutManager
+
+            if (!gratitudeList.isNullOrEmpty()){
+                if (gratitudeList.size >= 4){
+                    binding.btnAddGratitude.visibility = View.GONE
+                }
+            }
+
+            binding.rvGratitude.adapter = GratitudeAnswerItemAdapter(context, gratitudeList,binding,this,object :
+                OnItemSelected<GetGratitudeListData> {
+
+                override fun onItemSelected(t: GetGratitudeListData?, position: Int) {
+                    // clickMenuEvent(t)
+                    Log.e("MenuPosition",position.toString())
+                }
+            })
+        }
+    }
 
     // Call API For Self Care Tip
     private fun getSelfCareTip() {
@@ -950,6 +1028,8 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             if (!getDailyGoalAnswerData?.getDailyGoalUserRecordByDate()!!.getAnswer().isNullOrEmpty()){
                 binding.edtAnswer.setText(Utility.getNullToBlankString(getDailyGoalAnswerData.getDailyGoalUserRecordByDate()!!.getAnswer()!!))
                 isAnswerIsEditable.value = false
+                binding.ivEdit.visibility = View.VISIBLE
+                binding.ivDelete.visibility = View.VISIBLE
             }
         }
         if (getDailyGoalAnswerData?.getDailyGoalUserRecordByDate() != null){
@@ -959,6 +1039,8 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         binding.llPastGoal.visibility = View.VISIBLE
                         binding.txtPastGoalLabel.text = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle()
                         dailyGoalUserRecordId.value = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getDailyGoalUserRecordId()
+                        binding.ivEdit.visibility = View.VISIBLE
+                        binding.ivDelete.visibility = View.VISIBLE
                     }
                 }
             }
@@ -984,12 +1066,25 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         if (getDailyReflectionResponse?.getData()?.getAnswer() !=null && getDailyReflectionResponse?.getData()?.getAnswer() != ""){
             isAnswerIsEditable.value = false
             binding.edtAnswer.setText(getDailyReflectionResponse?.getData()?.getAnswer().toString())
+            showHideEditAndDelete(true)
         }
         else{
             isAnswerIsEditable.value = true
             binding.edtAnswer.requestFocus()
+            showHideEditAndDelete(false)
         }
         //   Glide.with(context).load(getDailyReflectionResponse.getData()?.get()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
+    }
+
+    private fun showHideEditAndDelete(showHide: Boolean) {
+        if (showHide){
+            binding.ivEdit.visibility = View.VISIBLE
+            binding.ivDelete.visibility = View.VISIBLE
+        }
+       else{
+            binding.ivEdit.visibility = View.GONE
+            binding.ivDelete.visibility = View.GONE
+       }
     }
 
     @SuppressLint("SetTextI18n")
@@ -1031,8 +1126,6 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         workoutDataList.add(SetSelectedWorkoutData(1, "Sleep", "", R.drawable.icon_workout_one))
         workoutDataList.add(SetSelectedWorkoutData(2, "Gratitude", "", R.drawable.icon_workout_two))
         workoutDataList.add(SetSelectedWorkoutData(3, "Mood", "", R.drawable.icon_workout_three))
-
-
         workoutDataList.add(SetSelectedWorkoutData(4, "Sleep", "", R.drawable.icon_workout_four))
         workoutDataList.add(
             SetSelectedWorkoutData(
@@ -1165,7 +1258,54 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         })
     }
 
-    fun deleteGratitudeData(position: Int) {
+    fun deleteGratitudeData(position: Int, gratitudeUserRecordId: Int?) {
+        if (!session.isLoggedIn) {
+            detailFragment.findNavController().navigate(R.id.LoginFragment)
+            return
+        }
+
+        if (Utility.isNetworkConnected(context)) {
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getDeleteGratitudeResponse(Utils().getUserToken(context), gratitudeUserRecordId!!)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetForgotPasswordResponse>() {
+                    @RequiresApi(Build.VERSION_CODES.O)
+                    override fun onSuccess(response: GetForgotPasswordResponse) {
+                        isLoading.postValue(false)
+                        if (response.getSuccess() == true) {
+
+                        }
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        if (code == 403) {
+                            Utility.sessionExpired(context)
+                        } else {
+                            Utils().showSnackBar(context, message, binding.constraintLayout)
+                        }
+                    }
+
+                    @RequiresApi(Build.VERSION_CODES.O)
+                    override fun onNext(getDailyGoalAnswerResponse : GetForgotPasswordResponse) {
+                        isLoading.postValue(false)
+                        if (getDailyGoalAnswerResponse.getSuccess() == true) {
+                            MessageDialog(context, getDailyGoalAnswerResponse.getMessage().toString()).show()
+                           removeDataFromGratitudeList(position)
+                        }
+                    }
+                })
+        } else {
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
+        }
+
+    }
+
+    // Remove Data from Gratitude List
+    private fun removeDataFromGratitudeList(position: Int) {
         gratitudeList.removeAt(position)
         binding.rvGratitude.adapter?.notifyDataSetChanged()
         binding.btnAddGratitude.visibility = View.VISIBLE
@@ -1175,30 +1315,56 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
     }
 
-    fun addGratitudeData(gratitude: String?) {
+    fun saveGratitudeApiResponse(gratitudeAnswer: String?, gratitudeUserRecordId: Int?) {
 
-        gratitudeList.add(SaveGratitudeData(0, gratitude.toString()))
+        val params = HashMap<String, Any>()
+        params["userId"] = 0
+        params["gratitudeDate"] = Utils().getDate()
+        params["answer"] = gratitudeAnswer!!
+        params["gratitudeUserRecordId"] = gratitudeUserRecordId!!
 
-        if (!gratitudeList.isNullOrEmpty()){
-            if (gratitudeList.size > 4){
-                binding.btnAddGratitude.visibility = View.GONE
-                return
-            }
+        if (Utility.isNetworkConnected(context)) {
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getSaveGratitudeResponse(
+                    Utility.getUserToken(context),
+                    Networking.wrapParams(params)
+                )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetForgotPasswordResponse>() {
+                    override fun onSuccess(response: GetForgotPasswordResponse) {
+                        isLoading.postValue(false)
+                        //redirectToHome()
+
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        // Utils().showSnackBar(context,message,binding.constraintLayout)
+                        if (code == 403) {
+                            Utility.sessionExpired(context)
+                        } else {
+                            Utils().showSnackBar(context, message, binding.constraintLayout)
+                        }
+                    }
+
+                    override fun onNext(t: GetForgotPasswordResponse) {
+                        Log.e("Status", t.getSuccess().toString())
+                        isLoading.postValue(false)
+                        if (t.getSuccess() == true) {
+                            MessageDialog(context, t.getMessage().toString()).show()
+                            getGratitudeListResponse()
+                        } else {
+                            MessageDialog(context, t.getMessage().toString()).show()
+                        }
+                        Log.e("StatusCode", t.getSuccess().toString())
+                    }
+
+                })
+        } else {
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
         }
-
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-
-        binding.rvGratitude.visibility = View.VISIBLE
-        binding.ivNoDataGratitude.visibility = View.GONE
-        binding.rvGratitude.layoutManager = layoutManager
-
-        binding.rvGratitude.adapter = GratitudeAnswerItemAdapter(context, gratitudeList,binding,this,object :
-            OnItemSelected<SaveGratitudeData> {
-
-            override fun onItemSelected(t: SaveGratitudeData?, position: Int) {
-                // clickMenuEvent(t)
-                Log.e("MenuPosition",position.toString())
-            }
-        })
     }
 }

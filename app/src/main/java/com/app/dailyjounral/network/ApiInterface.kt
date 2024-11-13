@@ -4,6 +4,7 @@ import com.app.dailyjounral.model.getDailyGoalResponse.GetDailyGoalResponse
 import com.app.dailyjounral.model.getDailyQuoteResponse.GetDailyQuoteResponse
 import com.app.dailyjounral.model.getDailyReflectionResponse.GetDailyReflectionResponse
 import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
+import com.app.dailyjounral.model.getGratitudeResponse.GetGratitudeListResponse
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getLogoutResponse.GetLogoutResponse
 import com.app.dailyjounral.model.getMoodResponse.GetMoodDataResponse
@@ -18,6 +19,7 @@ import com.app.dailyjounral.model.getWorkoutDataResponse.GetWorkoutDataResponse
 import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -118,9 +120,20 @@ interface ApiInterface {
     fun getSaveDailyGoalAnswerResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
 
 
-
     @POST("app/daily-goal/status-update")
     fun getSaveDailyPastGoalStatusResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
 
+
+    @GET("app/gratitude/list")
+    fun getGratitudeListResponse(@Header("Authorization") header: String?): Observable<GetGratitudeListResponse>
+
+    @GET("app/gratitude/list/{date}")
+    fun getGratitudeListByDateResponse(@Header("Authorization") header: String?,@Path("date") date : String): Observable<GetGratitudeListResponse>
+
+    @POST("app/gratitude/save")
+    fun getSaveGratitudeResponse(@Header("Authorization") header: String?,@Body requestBody: RequestBody): Observable<GetForgotPasswordResponse>
+
+    @DELETE("app/gratitude/{gratitudeUserRecordId}")
+    fun getDeleteGratitudeResponse(@Header("Authorization") header: String?,@Path("gratitudeUserRecordId") gratitudeUserRecordId : Int): Observable<GetForgotPasswordResponse>
 
 }

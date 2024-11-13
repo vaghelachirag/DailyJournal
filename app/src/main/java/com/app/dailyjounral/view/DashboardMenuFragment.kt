@@ -64,16 +64,19 @@ class DashboardMenuFragment: BaseFragment()  {
              startActivity(iDashboard)*/
              AppConstants.detailType = 1
              (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+             (context as DashboardActivity).setSelectedMenuPosition(1)
          }
 
         binding.cardDailyQuote.setOnClickListener {
             AppConstants.detailType = 2
             (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+            (context as DashboardActivity).setSelectedMenuPosition(2)
         }
 
         binding.cardDailyGeneral.setOnClickListener {
             AppConstants.detailType = 3
             (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+            (context as DashboardActivity).setSelectedMenuPosition(3)
         }
 /*
         binding.llHome.setOnClickListener {
@@ -124,33 +127,40 @@ class DashboardMenuFragment: BaseFragment()  {
                 if (position == 0){
                     AppConstants.detailType = 4
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(4)
                 }
 
                 if (position == 1){
                     AppConstants.detailType = 5
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(5)
                 }
                 if (position == 2){
                     AppConstants.detailType = 6
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(6)
                 }
 
                 if (position == 3){
                     AppConstants.detailType = 7
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(7)
                 }
 
                 if (position == 4){
                     AppConstants.detailType = 8
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(8)
                 }
                 if (position == 5){
                     AppConstants.detailType = 9
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(9)
                 }
                 if (position == 6){
                     AppConstants.detailType = 10
                     (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+                    (context as DashboardActivity).setSelectedMenuPosition(10)
                 }
 
             }

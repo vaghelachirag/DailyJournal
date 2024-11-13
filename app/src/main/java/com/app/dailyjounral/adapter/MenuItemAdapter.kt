@@ -19,7 +19,7 @@ import com.app.dailyjounral.interfaces.OnItemSelected
 
 class MenuItemAdapter(val context: Context, private val list: MutableList<MenuDataModel>, val onItemSelected: OnItemSelected<MenuDataModel>) :  RecyclerView.Adapter<MenuItemViewHolder>() {
 
-    private var mSelectedItem: Int = 0
+    var mSelectedItem: Int = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuItemViewHolder {
 
