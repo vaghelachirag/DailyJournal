@@ -1,6 +1,7 @@
 package com.app.dailyjounral.adapter
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.util.Log
@@ -16,6 +17,7 @@ import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.databinding.ItemGratitudeBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.getGratitudeResponse.GetGratitudeListData
+import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.dialougs.DialogAddGratitude
@@ -77,7 +79,13 @@ class GratitudeAnswerItemAdapter(val context: Context, private val list: List<Ge
 
                     }
                     2 -> {
-                        detailViewModel.deleteGratitudeData(position,list[position].getGratitudeUserRecordId())
+                        AlertDialog.Builder(context)
+                            .setTitle("Alert!")
+                            .setMessage("Are you sure you want to delete?").setPositiveButton(android.R.string.yes) { _, _ ->
+                                detailViewModel.deleteGratitudeData(position,list[position].getGratitudeUserRecordId())
+                            } // A null listener allows the button to dismiss the dialog and take no further action.
+                            .setNegativeButton(android.R.string.no, null)
+                            .show()
                         Log.e("Delete","Delete")
                         true
                     }

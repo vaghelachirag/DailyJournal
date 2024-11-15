@@ -124,13 +124,27 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
         addWeekData()
         setAction()
+
+        isAnswerIsEditable.observeForever {
+            if (it){
+                binding.btnSubmit.isEnabled = true
+            }else{
+                binding.btnSubmit.isEnabled = false
+            }
+        }
     }
 
     private fun setAction() {
          binding.btnSubmit.setOnClickListener {
              if (binding.edtAnswer.text.isNullOrEmpty()){
-                 Utils().showSnackBar(context, context.getString(R.string.enter_your_ans), binding.constraintLayout)
-             }else{
+                 if (AppConstants.detailType == 3) {
+                     Utils().showSnackBar(context, context.getString(R.string.enter_your_ans), binding.constraintLayout)
+                 }
+                 if (AppConstants.detailType == 7) {
+                     Utils().showSnackBar(context, context.getString(R.string.enter_your_gratitude), binding.constraintLayout)
+                 }
+             }
+             else{
                  if (AppConstants.detailType == 3) {
                      saveDailyReflectionAnswer(binding.edtAnswer.text.toString())
                  }
@@ -163,7 +177,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         binding.rbPastGoalYes.setOnClickListener {
             saveUpdateGoalStatusResponse(true)
         }
-        binding.rbPastGoalYes.setOnClickListener {
+        binding.rbPastGoalNo.setOnClickListener {
             saveUpdateGoalStatusResponse(false)
         }
     }
@@ -201,6 +215,8 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                     override fun onNext(t: GetForgotPasswordResponse) {
                         isLoading.postValue(false)
                         if (t.getSuccess() == true) {
+                            binding.llPastGoal.visibility = View.GONE
+                            isAnswerIsEditable.value = true
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -1055,8 +1071,8 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
     @SuppressLint("SetTextI18n")
     private fun setDailyGoalAnswerData(getDailyGoalAnswerData: GetDailyGoalAnswerData) {
-        if (getDailyGoalAnswerData?.getDailyGoalUserRecordByDate() != null){
-            if (!getDailyGoalAnswerData?.getDailyGoalUserRecordByDate()!!.getAnswer().isNullOrEmpty()){
+        if (getDailyGoalAnswerData.getDailyGoalUserRecordByDate() != null){
+            if (!getDailyGoalAnswerData.getDailyGoalUserRecordByDate()!!.getAnswer().isNullOrEmpty()){
                 binding.edtAnswer.setText(Utility.getNullToBlankString(getDailyGoalAnswerData.getDailyGoalUserRecordByDate()!!.getAnswer()!!))
                 isAnswerIsEditable.value = false
                 binding.ivEdit.visibility = View.VISIBLE
@@ -1066,15 +1082,16 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 binding.edtAnswer.setHint("Enter your goal")
             }
         }
-        if (getDailyGoalAnswerData?.getDailyGoalUserRecordByDate() != null){
+        if (getDailyGoalAnswerData.getDailyGoalUserRecordByDate() != null){
             if (getDailyGoalAnswerData.getDailyGoalUserRecordByDate()!!.getIsPreviousGoalReviewed() == false){
-                if (getDailyGoalAnswerData?.getDailyGoalUserRecord() != null){
+                if (getDailyGoalAnswerData.getDailyGoalUserRecord() != null){
                     if (!getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle().isNullOrEmpty()){
                         binding.llPastGoal.visibility = View.VISIBLE
                         binding.txtPastGoalLabel.text = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle()
                         dailyGoalUserRecordId.value = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getDailyGoalUserRecordId()
-                        binding.ivEdit.visibility = View.VISIBLE
-                        binding.ivDelete.visibility = View.VISIBLE
+                        binding.ivEdit.visibility = View.GONE
+                        binding.ivDelete.visibility = View.GONE
+                        isAnswerIsEditable.value = false
                     }
                 }
             }
