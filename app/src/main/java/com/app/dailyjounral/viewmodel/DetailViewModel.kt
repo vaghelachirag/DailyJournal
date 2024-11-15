@@ -3,6 +3,7 @@ package com.app.dailyjounral.viewmodel
 import SleepSelectorAdapter
 import WorkoutSelectorAdapter
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.util.Log
@@ -144,12 +145,19 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             binding.edtAnswer.requestFocus()
         }
         binding.ivDelete.setOnClickListener {
-            if (AppConstants.detailType == 3) {
-                saveDailyReflectionAnswer("")
-            }
-            if (AppConstants.detailType == 7) {
-                saveDailyGoalAnswer("")
-            }
+            AlertDialog.Builder(context)
+                .setTitle("Alert!")
+                .setMessage("Are you sure you want to delete?").setPositiveButton(android.R.string.yes) { _, _ ->
+                    if (AppConstants.detailType == 3) {
+                        saveDailyReflectionAnswer("")
+                    }
+                    if (AppConstants.detailType == 7) {
+                        saveDailyGoalAnswer("")
+                    }
+                } // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .show()
+
         }
 
         binding.rbPastGoalYes.setOnClickListener {
@@ -230,8 +238,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 .subscribe(object : CallbackObserver<GetForgotPasswordResponse>() {
                     override fun onSuccess(response: GetForgotPasswordResponse) {
                         isLoading.postValue(false)
-                        //redirectToHome()
-
+                        //redirectToHome(
                     }
 
                     override fun onFailed(code: Int, message: String) {
@@ -247,19 +254,17 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                     override fun onNext(t: GetForgotPasswordResponse) {
                         Log.e("Status", t.getSuccess().toString())
                         isLoading.postValue(false)
-                        if (t.getSuccess() == true) {
-                            if (answer.isEmpty()){
-                                binding.edtAnswer.setText("")
-                            }
-                            MessageDialog(context, t.getMessage().toString()).show()
-                        } else {
-                            //  Utils().showToast(context,t.getMessage().toString())
-                            //  Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
-                            MessageDialog(context, t.getMessage().toString()).show()
+                        MessageDialog(context, t.getMessage().toString()).show()
+                        if (answer.isNullOrEmpty()){
+                            isAnswerIsEditable.value = true
+                            binding.edtAnswer.setText("")
+                            showHideEditAndDelete(false)
                         }
-                        Log.e("StatusCode", t.getSuccess().toString())
+                        else{
+                            isAnswerIsEditable.value = false
+                            showHideEditAndDelete(true)
+                        }
                     }
-
                 })
         } else {
             Utils().showToast(context, context.getString(R.string.nointernetconnection))
@@ -304,9 +309,14 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         isLoading.postValue(false)
                         if (t.getSuccess() == true) {
                             if (answer.isEmpty()){
+                                isAnswerIsEditable.value = true
                                 binding.edtAnswer.setText("")
+                                showHideEditAndDelete(false)
                             }
-                            showHideEditAndDelete(true)
+                            else{
+                                isAnswerIsEditable.value = false
+                                showHideEditAndDelete(true)
+                            }
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -342,10 +352,21 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         if (response.getSuccess() == true) {
                             if (response.getData() != null) {
                                 setDailyReflectionQuestionData(response)
+
+                                if (binding.edtAnswer.text.isEmpty()){
+                                    isAnswerIsEditable.value = true
+                                    binding.edtAnswer.setText("")
+                                    showHideEditAndDelete(false)
+                                }
+                                else{
+                                    binding.txtLabel.visibility = View.VISIBLE
+                                    binding.txtLabel.text = "Your Answer"
+                                    isAnswerIsEditable.value = false
+                                    showHideEditAndDelete(true)
+                                }
                             }
                         }
                     }
-
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
                         if (code == 403) {
@@ -358,13 +379,22 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                     @RequiresApi(Build.VERSION_CODES.O)
                     override fun onNext(getDailyReflectionResponse: GetDailyReflectionResponse) {
                         isLoading.postValue(false)
+
                         if (getDailyReflectionResponse.getSuccess() == true) {
                             if (getDailyReflectionResponse.getData() != null) {
                                 setDailyReflectionQuestionData(getDailyReflectionResponse)
+                                if (binding.edtAnswer.text.isEmpty()){
+                                    isAnswerIsEditable.value = true
+                                    binding.edtAnswer.setText("")
+                                    showHideEditAndDelete(false)
+                                }
+                                else{
+                                    isAnswerIsEditable.value = false
+                                    showHideEditAndDelete(true)
+                                }
                             }
                         }
                     }
-
                 })
         } else {
             Utils().showToast(context, context.getString(R.string.nointernetconnection))
@@ -1023,6 +1053,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setDailyGoalAnswerData(getDailyGoalAnswerData: GetDailyGoalAnswerData) {
         if (getDailyGoalAnswerData?.getDailyGoalUserRecordByDate() != null){
             if (!getDailyGoalAnswerData?.getDailyGoalUserRecordByDate()!!.getAnswer().isNullOrEmpty()){
@@ -1030,6 +1061,9 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 isAnswerIsEditable.value = false
                 binding.ivEdit.visibility = View.VISIBLE
                 binding.ivDelete.visibility = View.VISIBLE
+
+                binding.txtLabel.text = "Your goal of today:"
+                binding.edtAnswer.setHint("Enter your goal")
             }
         }
         if (getDailyGoalAnswerData?.getDailyGoalUserRecordByDate() != null){

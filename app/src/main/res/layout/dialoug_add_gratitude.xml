@@ -117,7 +117,7 @@
                         android:background="@color/daily_general_ans_bg"
                         android:fontFamily="@font/roboto_bold"
                         android:gravity="top"
-                        android:hint="@string/enter_your_ans"
+                        android:hint="@string/enter_your_gratitude"
                         android:paddingStart="@dimen/_5ssp"
                         android:paddingTop="@dimen/_15ssp"
                         android:textColor="@color/black"

@@ -46,7 +46,6 @@ class DetailFragment: BaseFragment() {
             DialogAddGratitude(requireActivity(),true,"").setListener(object :
                 DialogAddGratitude.OkButtonListener {
                 override fun onOkPressed(dialogAddGratitude: DialogAddGratitude, gratitude: String?) {
-                    Log.e("Answer",gratitude.toString())
                     if (!gratitude.isNullOrEmpty()){
                         detailViewModel.saveGratitudeApiResponse(gratitude, 0)
                         dialogAddGratitude.dismiss()

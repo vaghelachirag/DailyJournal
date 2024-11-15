@@ -63,14 +63,15 @@
                         android:src="@drawable/icon_placeholder"
                         tools:ignore="MissingConstraints" />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:visibility="gone"
+                    <com.app.dailyjounral.uttils.CircularImageView
+                        android:layout_width="@dimen/_25ssp"
+                        android:layout_height="@dimen/_25ssp"
+                        android:gravity="bottom|right"
+                        android:layout_gravity="bottom|right"
+                        android:visibility="visible"
                         android:src="@drawable/icon_edit">
 
-                    </ImageView>
+                    </com.app.dailyjounral.uttils.CircularImageView>
                 </FrameLayout>
 
 

@@ -43,7 +43,6 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="@dimen/_25ssp"
                     android:textColor="@color/color_light_navy_blue"
-                    android:layout_below="@+id/iv_Logo"
                     android:layout_marginTop="@dimen/_20ssp"
                     android:visibility="gone"
                     android:text="Daily General">
@@ -261,6 +260,8 @@
                                     android:weightSum="3"
                                     android:layout_marginStart="@dimen/_10ssp"
                                     android:layout_marginEnd="@dimen/_10ssp"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
                                     android:layout_marginTop="@dimen/_10ssp"
                                     tools:ignore="MissingConstraints">
                                     <Button
