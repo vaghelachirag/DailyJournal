@@ -219,40 +219,37 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/_10ssp"
-                                        android:textSize="@dimen/_12ssp">
+                                        android:textSize="@dimen/_12ssp"
+                                        tools:ignore="TooDeepLayout">
                                     </com.app.dailyjounral.widget.RobotoRegularText>
-                                    <RadioGroup
-                                        android:id="@+id/radioGroupPastGoal"
+                                    <LinearLayout
                                         android:layout_width="match_parent"
-                                        android:layout_weight="1"
-                                        android:layout_gravity="top"
-                                        android:gravity="top"
-                                        android:layout_height="0dp"
-                                        android:orientation="horizontal"
-                                        android:animationCache="false">
+                                        android:layout_height="wrap_content"
+                                        android:weightSum="2">
+                                        <Button
+                                            android:id="@+id/btnYes"
+                                            android:layout_width="0dp"
+                                            android:layout_height="@dimen/_35ssp"
+                                            android:layout_weight="1"
+                                            app:cornerRadius="@dimen/_5ssp"
+                                            android:layout_marginLeft="@dimen/_30ssp"
+                                            android:layout_marginRight="@dimen/_30ssp"
+                                            android:text="Yes">
+                                        </Button>
+                                        <Button
+                                            android:id="@+id/btnNo"
+                                            android:layout_width="0dp"
+                                            android:layout_height="@dimen/_35ssp"
+                                            android:layout_weight="1"
+                                            app:cornerRadius="@dimen/_5ssp"
+                                            android:layout_marginLeft="@dimen/_30ssp"
+                                            android:layout_marginRight="@dimen/_30ssp"
+                                            android:text="No">
 
-                                        <RadioButton
-                                            android:text="Yes"
-                                            android:scaleX="0.80"
-                                            android:scaleY="0.80"
-                                            android:textSize="@dimen/_15ssp"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/roboto_regular"
-                                            android:id="@+id/rbPastGoalYes" />
-
-                                        <RadioButton
-                                            android:text="No"
-                                            android:scaleX="0.80"
-                                            android:scaleY="0.80"
-                                            android:textSize="@dimen/_15ssp"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/roboto_regular"
-                                            android:id="@+id/rbPastGoalNo" />
+                                        </Button>
 
 
-                                    </RadioGroup>
+                                    </LinearLayout>
                                 </LinearLayout>
                                 <LinearLayout
                                     android:layout_width="match_parent"

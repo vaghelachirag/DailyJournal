@@ -128,8 +128,10 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         isAnswerIsEditable.observeForever {
             if (it){
                 binding.btnSubmit.isEnabled = true
+                binding.btnSubmit.visibility = View.VISIBLE
             }else{
                 binding.btnSubmit.isEnabled = false
+                binding.btnSubmit.visibility = View.GONE
             }
         }
     }
@@ -174,10 +176,10 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
         }
 
-        binding.rbPastGoalYes.setOnClickListener {
+        binding.btnYes.setOnClickListener {
             saveUpdateGoalStatusResponse(true)
         }
-        binding.rbPastGoalNo.setOnClickListener {
+        binding.btnNo.setOnClickListener {
             saveUpdateGoalStatusResponse(false)
         }
     }
