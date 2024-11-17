@@ -219,6 +219,8 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         if (t.getSuccess() == true) {
                             binding.llPastGoal.visibility = View.GONE
                             isAnswerIsEditable.value = true
+                            binding.edtAnswer.visibility = View.VISIBLE
+                            binding.txtLabel.visibility = View.VISIBLE
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -1094,6 +1096,8 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         binding.ivEdit.visibility = View.GONE
                         binding.ivDelete.visibility = View.GONE
                         isAnswerIsEditable.value = false
+                        binding.edtAnswer.visibility =  View.GONE
+                        binding.txtLabel.visibility =  View.GONE
                     }
                 }
             }

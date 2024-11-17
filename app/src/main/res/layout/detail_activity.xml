@@ -223,27 +223,30 @@
                                         tools:ignore="TooDeepLayout">
                                     </com.app.dailyjounral.widget.RobotoRegularText>
                                     <LinearLayout
+                                        style="?android:attr/buttonBarStyle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_5ssp"
                                         android:weightSum="2">
+
                                         <Button
                                             android:id="@+id/btnYes"
                                             android:layout_width="0dp"
                                             android:layout_height="@dimen/_35ssp"
                                             android:layout_weight="1"
                                             app:cornerRadius="@dimen/_5ssp"
-                                            android:layout_marginLeft="@dimen/_30ssp"
-                                            android:layout_marginRight="@dimen/_30ssp"
-                                            android:text="Yes">
-                                        </Button>
+                                            android:layout_marginStart="@dimen/_20ssp"
+                                            android:layout_marginEnd="@dimen/_20ssp"
+                                            android:text="Yes" />
+
                                         <Button
                                             android:id="@+id/btnNo"
                                             android:layout_width="0dp"
                                             android:layout_height="@dimen/_35ssp"
                                             android:layout_weight="1"
                                             app:cornerRadius="@dimen/_5ssp"
-                                            android:layout_marginLeft="@dimen/_30ssp"
-                                            android:layout_marginRight="@dimen/_30ssp"
+                                            android:layout_marginLeft="@dimen/_20ssp"
+                                            android:layout_marginRight="@dimen/_20ssp"
                                             android:text="No">
 
                                         </Button>
