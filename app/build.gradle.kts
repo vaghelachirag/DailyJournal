@@ -1,3 +1,5 @@
+@file:Suppress("UNUSED_EXPRESSION")
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -18,7 +20,11 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        multiDexEnabled ; true
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
     }
 
     buildTypes {
@@ -75,5 +81,12 @@ dependencies {
     implementation (libs.rxandroid)
     implementation (libs.rxbinding)
 
-    implementation ("com.karumi:dexter:6.2.3")
+    implementation (libs.dexter)
+
+    implementation ("com.google.android.gms:play-services-auth:21.2.0")
+
+    implementation ("androidx.multidex:multidex:2.0.1")
+
+    // download sdk
+    implementation ("com.facebook.android:facebook-android-sdk:4.17.0")
 }

@@ -249,7 +249,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ll_loginOption">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_DailyGeneral"
+                        android:id="@+id/card_Google"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
@@ -271,6 +271,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/card_Facebook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/white"

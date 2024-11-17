@@ -1,6 +1,8 @@
 [versions]
 adapterRxjava2 = "2.6.2"
 agp = "8.5.1"
+dexter = "6.2.3"
+facebookAndroidSdk = "4.17.0"
 glide = "4.14.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -23,6 +25,8 @@ sspAndroid = "1.1.1"
 adapter-rxjava2 = { module = "com.squareup.retrofit2:adapter-rxjava2", version.ref = "adapterRxjava2" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+dexter = { module = "com.karumi:dexter", version.ref = "dexter" }
+facebook-android-sdk = { module = "com.facebook.android:facebook-android-sdk", version.ref = "facebookAndroidSdk" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
