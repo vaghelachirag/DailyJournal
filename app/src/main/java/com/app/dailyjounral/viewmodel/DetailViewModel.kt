@@ -129,9 +129,13 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             if (it){
                 binding.btnSubmit.isEnabled = true
                 binding.btnSubmit.visibility = View.VISIBLE
+                binding.ivEdit.visibility = View.GONE
+                binding.ivDelete.visibility = View.GONE
             }else{
                 binding.btnSubmit.isEnabled = false
                 binding.btnSubmit.visibility = View.GONE
+                binding.ivEdit.visibility = View.VISIBLE
+                binding.ivDelete.visibility = View.VISIBLE
             }
         }
     }
@@ -271,6 +275,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         }
                     }
 
+                    @SuppressLint("SetTextI18n")
                     override fun onNext(t: GetForgotPasswordResponse) {
                         Log.e("Status", t.getSuccess().toString())
                         isLoading.postValue(false)
@@ -332,6 +337,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                                 isAnswerIsEditable.value = true
                                 binding.edtAnswer.setText("")
                                 showHideEditAndDelete(false)
+                                binding.txtLabel.text = "Your goal of today:"
                             }
                             else{
                                 isAnswerIsEditable.value = false
