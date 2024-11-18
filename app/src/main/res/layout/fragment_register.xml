@@ -64,6 +64,7 @@
                     android:hint="@string/fullName"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.fullName}"
+                    android:textColorHint="@color/gray_616161"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
                     android:fontFamily="@font/roboto_regular"
@@ -98,6 +99,7 @@
                     android:hint="@string/email"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.emailAddress}"
+                    android:textColorHint="@color/gray_616161"
                     android:drawableTint="@color/top_header_color"
                     android:background="@drawable/round_shape_edittext"
                     android:fontFamily="@font/roboto_regular"
@@ -138,6 +140,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
+                        android:textColorHint="@color/gray_616161"
                         android:drawableTint="@color/top_header_color"
                         android:inputType="textPassword"
                         android:textSize="@dimen/_12ssp"
@@ -207,8 +210,10 @@
                                 android:scaleX="0.80"
                                 android:scaleY="0.80"
                                 android:textSize="@dimen/_15ssp"
+                                android:textColorHint="@color/gray_616161"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textColor="@color/black"
                                 android:fontFamily="@font/roboto_regular"
                                 android:id="@+id/rbYes" />
 
@@ -217,6 +222,8 @@
                                 android:scaleX="0.80"
                                 android:scaleY="0.80"
                                 android:textSize="@dimen/_15ssp"
+                                android:textColorHint="@color/gray_616161"
+                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/roboto_regular"
@@ -261,6 +268,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/black"
                         android:text="@string/orLoginWith">
 
                     </com.app.dailyjounral.widget.RobotoRegularText>

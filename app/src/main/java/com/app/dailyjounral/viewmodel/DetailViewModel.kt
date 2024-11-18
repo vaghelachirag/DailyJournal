@@ -280,7 +280,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         Log.e("Status", t.getSuccess().toString())
                         isLoading.postValue(false)
                         MessageDialog(context, t.getMessage().toString()).show()
-                        if (answer.isNullOrEmpty()){
+                        if (answer.isEmpty()){
                             isAnswerIsEditable.value = true
                             binding.edtAnswer.setText("")
                             showHideEditAndDelete(false)
@@ -1101,7 +1101,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         dailyGoalUserRecordId.value = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getDailyGoalUserRecordId()
                         binding.ivEdit.visibility = View.GONE
                         binding.ivDelete.visibility = View.GONE
-                        isAnswerIsEditable.value = false
+                        binding.btnSubmit.visibility = View.GONE
                         binding.edtAnswer.visibility =  View.GONE
                         binding.txtLabel.visibility =  View.GONE
                     }
@@ -1140,14 +1140,14 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     }
 
     private fun showHideEditAndDelete(showHide: Boolean) {
-        if (showHide){
+    /*    if (showHide){
             binding.ivEdit.visibility = View.VISIBLE
             binding.ivDelete.visibility = View.VISIBLE
         }
        else{
             binding.ivEdit.visibility = View.GONE
             binding.ivDelete.visibility = View.GONE
-       }
+       }*/
     }
 
     @SuppressLint("SetTextI18n")

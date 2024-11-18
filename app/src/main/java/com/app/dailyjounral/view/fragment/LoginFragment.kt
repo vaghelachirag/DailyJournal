@@ -20,34 +20,37 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.identity.GetSignInIntentRequest
 import com.google.android.gms.auth.api.identity.Identity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignInResult
+import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.GoogleApiClient
 import java.util.Arrays
 
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class LoginFragment : BaseFragment() {
+class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListener{
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val signInViewModel by lazy { LoginViewModel(activity as Context,binding,this@LoginFragment) }
 
 
-    private val RC_SIGN_IN = 1
+    // For Google Sign In
+    private val RC_SIGN_IN = 9001
+    private var mGoogleApiClient: GoogleApiClient? = null
 
-    private var mGoogleSignInClient: GoogleSignInClient? = null
-
-    private var webServerKey : String = "AIzaSyBoD5scdG-kPGWhOGERu96N0BWvPceipjQ"
-
-    private  val REQUEST_CODE_GOOGLE_SIGN_IN: Int = 1 /* unique request id */
-
-    private var callbackManager: CallbackManager? = null
+    override fun onConnectionFailed(connectionResult: ConnectionResult) {
+        Log.d("bett", "onConnectionFailed:$connectionResult");
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -56,7 +59,14 @@ class LoginFragment : BaseFragment() {
         binding.viewModel = signInViewModel
         binding.lifecycleOwner = this
 
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
 
+        mGoogleApiClient = GoogleApiClient.Builder(requireActivity())
+            .enableAutoManage(requireActivity() /* FragmentActivity */,this /* OnConnectionFailedListener */)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .build()
 
         binding.txtRedirectToSignup.setOnClickListener {
             signInViewModel.redirectToSignup()
@@ -72,11 +82,11 @@ class LoginFragment : BaseFragment() {
         }
 
         binding.cardGoogle.setOnClickListener {
-            signIn()
+            signInWithGoogle()
         }
         binding.cardFacebook.setOnClickListener {
-            callbackManager = CallbackManager.Factory.create()
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"))
+           /* callbackManager = CallbackManager.Factory.create()
+            LoginManager.getInstance().logInWithReadPermissions(this, listOf("public_profile", "email"))
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
                     override fun onSuccess(loginResult: LoginResult) {
@@ -93,7 +103,7 @@ class LoginFragment : BaseFragment() {
                         Log.d("MainActivity", "Facebook onError.")
 
                     }
-                })
+                })*/
         }
         setLoginAndPassword()
         binding.chkRememberPassword.isChecked = session.getDataByKey(Session.KEY_USER_REMEMBER, false)
@@ -109,51 +119,25 @@ class LoginFragment : BaseFragment() {
     }
 
 
-    private fun signIn() {
-        val request =
-            GetSignInIntentRequest.builder()
-                .setServerClientId(webServerKey)
-                .build()
-
-        Identity.getSignInClient(requireActivity())
-            .getSignInIntent(request)
-            .addOnSuccessListener { result ->
-                try {
-                    startIntentSenderForResult(
-                        result.getIntentSender(),
-                        REQUEST_CODE_GOOGLE_SIGN_IN,  /* fillInIntent= */
-                        null,  /* flagsMask= */
-                        0,  /* flagsValue= */
-                        0,  /* extraFlags= */
-                        0,  /* options= */
-                        null
-                    )
-                } catch (e: SendIntentException) {
-                    Log.e("TAG", "Google Sign-in failed")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.e("TAG", "Google Sign-in failed", e)
-            }
+    private fun signInWithGoogle() {
+        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient!!)
+        startActivityForResult(signInIntent, RC_SIGN_IN)
     }
-    @Deprecated("Deprecated in Java")
+    @Deprecated("Deprecated in Java", ReplaceWith("super.onActivityResult(requestCode, resultCode, data)", "com.app.dailyjounral.view.base.BaseFragment"))
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) { super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
-            val task =
-                GoogleSignIn.getSignedInAccountFromIntent(data)
-
-            try {
-                val account : GoogleSignInAccount? = task.getResult(ApiException::class.java)
-                val personName = account!!.displayName
-                Log.e("PersionName",personName.toString())
-            } catch (e: ApiException) {
-                // The ApiException status code indicates the detailed failure reason.
-                // Please refer to the GoogleSignInStatusCodes class reference for more information.
-                Log.e("TAG","signInResult:failed code=" + e.statusCode)
-            }
+            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data!!)
+            handleSignInResult(result!!)
         }
-        callbackManager?.onActivityResult(requestCode, resultCode, data)
-
     }
 
+    private fun handleSignInResult(result: GoogleSignInResult) {
+        if (result.isSuccess) {
+            //  updateUI(true)
+            Log.e("Result","Success" + result.signInAccount!!.email)
+            signInViewModel.callRegisterUserAPI(result.signInAccount!!.displayName,result.signInAccount!!.email,"123456")
+        }else{
+            Log.e("Result","Fail" + result.status)
+        }
+    }
 }

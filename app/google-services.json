@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "169771002670",
+    "project_id": "daily-jounral",
+    "storage_bucket": "daily-jounral.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:169771002670:android:e1161a7b3739bafd6028bf",
+        "android_client_info": {
+          "package_name": "com.app.dailyjounral"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "169771002670-5lk1jmun9bktu1llvr0kmo01a16hse5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.dailyjounral",
+            "certificate_hash": "c9012afeb2cc8e3bdf70e1589888bcd8ec094bcf"
+          }
+        },
+        {
+          "client_id": "169771002670-bmu576rhegrrik8hd2ccqvgknb63acij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3CZmFWmDFXcXkhN30Nsm30a0BmYVpViE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "169771002670-bmu576rhegrrik8hd2ccqvgknb63acij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -122,6 +122,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="@dimen/_12ssp"
+                                    android:textColor="@color/black"
                                     android:text="Date : ">
 
                                 </com.app.dailyjounral.widget.HeaderText>
@@ -131,6 +132,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="@dimen/_12ssp"
+                                    android:textColor="@color/black"
                                     android:text="">
 
                                 </com.app.dailyjounral.widget.SmallText>
@@ -185,6 +187,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="@dimen/_10ssp"
+                                    android:textColor="@color/black"
                                     android:textSize="@dimen/_12ssp">
 
                                 </com.app.dailyjounral.widget.PoppinsBoldText>
@@ -199,10 +202,12 @@
                                     android:textSize="@dimen/_10ssp"
                                     android:layout_gravity="top"
                                     android:gravity="top"
+                                    android:textColor="@color/black"
                                     android:focusable="@{viewModel.isAnswerIsEditable}"
                                     android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
                                     android:paddingTop="@dimen/_10ssp"
                                     android:paddingStart="@dimen/_5ssp"
+                                    android:textColorHint="@color/black"
                                     android:background="@color/daily_general_ans_bg"
                                     tools:ignore="RtlSymmetry">
 
@@ -220,6 +225,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/_10ssp"
                                         android:textSize="@dimen/_12ssp"
+                                        android:textColor="@color/black"
                                         tools:ignore="TooDeepLayout">
                                     </com.app.dailyjounral.widget.RobotoRegularText>
                                     <LinearLayout

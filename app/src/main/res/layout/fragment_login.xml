@@ -74,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
+                    android:textColorHint="@color/gray_616161"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.email}"
                     android:drawableTint="@color/top_header_color"
@@ -110,12 +111,13 @@
                     app:layout_constraintTop_toBottomOf="@+id/passwordLabel"
                     app:passwordToggleTint="@color/light_gray_bg"
                     app:passwordToggleEnabled="true">
-                <com.app.dailyjounral.widget.TypefaceEditText
-                    android:id="@+id/edt_Password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    android:drawableTint="@color/top_header_color"
+                    <com.app.dailyjounral.widget.TypefaceEditText
+                        android:id="@+id/edt_Password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password"
+                        android:textColorHint="@color/gray_616161"
+                       android:drawableTint="@color/top_header_color"
                     android:inputType="textPassword"
                     android:textSize="@dimen/_12ssp"
                     android:text="@={viewModel.password}"
@@ -132,201 +134,202 @@
                     tools:ignore="RtlSymmetry">
 
                 </com.app.dailyjounral.widget.TypefaceEditText>
-                </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_RemeberMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:layout_marginTop="@dimen/_20ssp"
+                app:layout_constraintTop_toBottomOf="@+id/layout_password">
 
                 <LinearLayout
-                    android:id="@+id/ll_RemeberMe"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:layout_marginTop="@dimen/_20ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/layout_password">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    android:layout_weight="1">
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/chkRememberPassword"
+                        style="@style/MaterialCheckBoxStyle"
+                        android:background="@android:color/white"
+                        android:button="@null"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginStart="@dimen/_5ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/inpPwd" />
+                    <com.app.dailyjounral.widget.RobotoRegularText
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
-                        <com.google.android.material.checkbox.MaterialCheckBox
-                            android:id="@+id/chkRememberPassword"
-                            style="@style/MaterialCheckBoxStyle"
-                            android:background="@android:color/white"
-                            android:button="@null"
-                            android:minWidth="0dp"
-                            android:minHeight="0dp"
-                            android:layout_marginStart="@dimen/_5ssp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/inpPwd" />
-                        <com.app.dailyjounral.widget.RobotoRegularText
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_3ssp"
-                            android:gravity="center_vertical"
-                            android:text="Remember Me"
-                            android:textSize="@dimen/_10ssp"
-                            android:textColor="@color/tab_un_selected_bg"
-                            android:layout_gravity="center"
-                            app:layout_constraintBottom_toBottomOf="@+id/chkRememberPassword"
-                            app:layout_constraintStart_toEndOf="@+id/chkRememberPassword"
-                            app:layout_constraintTop_toTopOf="@+id/chkRememberPassword"
-                            tools:ignore="SmallSp" />
-                    </LinearLayout>
+                        android:layout_marginStart="@dimen/_3ssp"
+                        android:gravity="center_vertical"
+                        android:text="Remember Me"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="@color/tab_un_selected_bg"
+                        android:layout_gravity="center"
+                        app:layout_constraintBottom_toBottomOf="@+id/chkRememberPassword"
+                        app:layout_constraintStart_toEndOf="@+id/chkRememberPassword"
+                        app:layout_constraintTop_toTopOf="@+id/chkRememberPassword"
+                        tools:ignore="SmallSp" />
+                </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="end">
+
+                    <com.app.dailyjounral.widget.RobotoRegularText
+                        android:id="@+id/txtForgotPassword"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="@string/forgot_password"
+                        android:textSize="@dimen/_10ssp"
+                        android:layout_marginRight="@dimen/_5ssp"
                         android:layout_gravity="end"
+                        android:textColor="@color/tab_un_selected_bg"
                         android:gravity="end">
 
-                        <com.app.dailyjounral.widget.RobotoRegularText
-                            android:id="@+id/txtForgotPassword"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/forgot_password"
-                            android:textSize="@dimen/_10ssp"
-                            android:layout_marginRight="@dimen/_5ssp"
-                            android:layout_gravity="end"
-                            android:textColor="@color/tab_un_selected_bg"
-                            android:gravity="end">
-
-                        </com.app.dailyjounral.widget.RobotoRegularText>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <Button
-                    android:id="@+id/btn_Login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="@dimen/_5ssp"
-                    android:onClick="@{(view) -> viewModel.onSignInClicked()}"
-                    android:layout_marginTop="@dimen/_20ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_RemeberMe"
-                    android:fontFamily="@font/roboto_regular"
-                    android:text="@string/login">
-                </Button>
-                <LinearLayout
-                    android:id="@+id/ll_loginOption"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3"
-                    android:layout_marginTop="@dimen/_10ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/btn_Login">
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_1ssp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:background="@color/light_gray_bg">
-                    </View>
-                    <com.app.dailyjounral.widget.RobotoRegularText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textSize="@dimen/_10ssp"
-                        android:text="@string/orLoginWith">
-
                     </com.app.dailyjounral.widget.RobotoRegularText>
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_1ssp"
-                        android:layout_weight="1"
-                        android:layout_gravity="center"
-                        android:background="@color/light_gray_bg">
-                    </View>
-
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/ll_SocialLogin"
-                    android:layout_width="match_parent"
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cornerRadius="@dimen/_5ssp"
+                android:onClick="@{(view) -> viewModel.onSignInClicked()}"
+                android:layout_marginTop="@dimen/_20ssp"
+                app:layout_constraintTop_toBottomOf="@+id/ll_RemeberMe"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@string/login">
+            </Button>
+            <LinearLayout
+                android:id="@+id/ll_loginOption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:layout_marginTop="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_Login">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1ssp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:background="@color/light_gray_bg">
+                </View>
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_marginTop="@dimen/_10ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_loginOption">
+                    android:textSize="@dimen/_10ssp"
+                    android:textColor="@color/gray_616161"
+                    android:text="@string/orLoginWith">
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card_Google"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        app:cardCornerRadius="@dimen/_5ssp"
-                        app:cardBackgroundColor="@color/white"
-                        card_view:cardUseCompatPadding="true">
+                </com.app.dailyjounral.widget.RobotoRegularText>
 
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_1ssp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:background="@color/light_gray_bg">
+                </View>
 
-                        <ImageView
-                            android:layout_width="@dimen/_35ssp"
-                            android:layout_height="@dimen/_35ssp"
-                            android:paddingTop="@dimen/_10ssp"
-                            android:layout_marginStart="@dimen/_20ssp"
-                            android:layout_marginEnd="@dimen/_20ssp"
-                            android:paddingBottom="@dimen/_10ssp"
-                            android:src="@drawable/icon_google">
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_SocialLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@+id/ll_loginOption">
 
-                        </ImageView>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/card_Facebook"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        app:cardCornerRadius="@dimen/_5ssp"
-                        app:cardBackgroundColor="@color/white"
-                        card_view:cardUseCompatPadding="true">
-
-
-                        <ImageView
-                            android:layout_width="@dimen/_35ssp"
-                            android:layout_height="@dimen/_35ssp"
-                            android:paddingTop="@dimen/_10ssp"
-                            android:layout_marginStart="@dimen/_20ssp"
-                            android:layout_marginEnd="@dimen/_20ssp"
-                            android:paddingBottom="@dimen/_10ssp"
-                            android:src="@drawable/icon_facebook">
-
-                        </ImageView>
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_Google"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintVertical_bias="0"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:gravity="center|top"
-                    android:paddingBottom="@dimen/_10ssp"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_SocialLogin">
+                    android:background="@color/white"
+                    app:cardCornerRadius="@dimen/_5ssp"
+                    app:cardBackgroundColor="@color/white"
+                    card_view:cardUseCompatPadding="true">
 
-                    <com.app.dailyjounral.widget.RobotoRegularText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/signup_text"
-                        android:textColor="@color/list_text_bg"
-                        android:layout_marginTop="@dimen/_10ssp"
-                        android:textSize="@dimen/_10ssp" />
 
-                    <com.app.dailyjounral.widget.PoppinsBoldText
-                        android:id="@+id/txt_RedirectToSignup"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5ssp"
-                        android:text="@string/register_now_text"
-                        android:textColor="@color/list_text_bg"
-                        android:layout_marginTop="@dimen/_10ssp"
-                        android:textSize="@dimen/_10ssp" />
-                </LinearLayout>
+                    <ImageView
+                        android:layout_width="@dimen/_35ssp"
+                        android:layout_height="@dimen/_35ssp"
+                        android:paddingTop="@dimen/_10ssp"
+                        android:layout_marginStart="@dimen/_20ssp"
+                        android:layout_marginEnd="@dimen/_20ssp"
+                        android:paddingBottom="@dimen/_10ssp"
+                        android:src="@drawable/icon_google">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_Facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:cardCornerRadius="@dimen/_5ssp"
+                    app:cardBackgroundColor="@color/white"
+                    card_view:cardUseCompatPadding="true">
+
+
+                    <ImageView
+                        android:layout_width="@dimen/_35ssp"
+                        android:layout_height="@dimen/_35ssp"
+                        android:paddingTop="@dimen/_10ssp"
+                        android:layout_marginStart="@dimen/_20ssp"
+                        android:layout_marginEnd="@dimen/_20ssp"
+                        android:paddingBottom="@dimen/_10ssp"
+                        android:src="@drawable/icon_facebook">
+
+                    </ImageView>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center|top"
+                android:paddingBottom="@dimen/_10ssp"
+                app:layout_constraintTop_toBottomOf="@+id/ll_SocialLogin">
+
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signup_text"
+                    android:textColor="@color/list_text_bg"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:textSize="@dimen/_10ssp" />
+
+                <com.app.dailyjounral.widget.PoppinsBoldText
+                    android:id="@+id/txt_RedirectToSignup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5ssp"
+                    android:text="@string/register_now_text"
+                    android:textColor="@color/list_text_bg"
+                    android:layout_marginTop="@dimen/_10ssp"
+                    android:textSize="@dimen/_10ssp" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</layout>
+</androidx.core.widget.NestedScrollView>
+
+    </layout>

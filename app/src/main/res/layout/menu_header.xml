@@ -7,8 +7,7 @@
         android:id="@+id/ll_Header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_marginStart="@dimen/_10ssp"
+        android:background="@color/daily_general_ans_bg"
         android:padding="@dimen/_12ssp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +37,7 @@
                 android:textSize="@dimen/_12ssp"
                 android:text="Robert Downey"
                 android:gravity="center"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/navHeaderLogo"
                 tools:ignore="MissingConstraints">
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginTop="@dimen/_15ssp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/txt_UserName"
             android:background="@color/gray_616161"
             tools:ignore="MissingConstraints" />

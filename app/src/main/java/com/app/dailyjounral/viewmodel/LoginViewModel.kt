@@ -1,11 +1,7 @@
 package com.app.dailyjounral.viewmodel
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.content.Intent.getIntent
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.navigation.fragment.findNavController
@@ -14,6 +10,7 @@ import com.app.dailyjounral.databinding.FragmentLoginBinding
 import com.app.dailyjounral.model.base.BaseViewModel
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getLoginResponse.SetLoginModel
+import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.Session
@@ -72,17 +69,18 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                 session.storeDataByKey(Session.KEY_USER_REMEMBER, false)
                 session.storeDataByKey(Session.KEY_USER_NAME,"")
             }
-            callLoginAPI()
+
+            callLoginAPI(model.email!!,  model.password!!)
         }
     }
 
     @SuppressLint("HardwareIds")
-    private fun callLoginAPI() {
+    private fun callLoginAPI(email: String, password: String) {
         Session(context)
 
         val params = HashMap<String,Any>()
-        params["email"] = email.get().toString()
-        params["password"] = password.get().toString()
+        params["email"] = email
+        params["password"] = password
 
         if (Utility.isNetworkConnected(context)){
             isLoading.postValue(true)
@@ -95,9 +93,7 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                     override fun onSuccess(response: GetLoginResponse) {
                         isLoading.postValue(false)
                         //redirectToHome()
-
-
-       }
+                    }
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
@@ -126,5 +122,53 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
             Utils().showToast(context, context.getString(R.string.nointernetconnection))
         }
     }
+
+    // Call  Api  For Register User
+    fun callRegisterUserAPI(displayName: String?, email: String?, password: String) {
+
+        val params = HashMap<String,Any>()
+        params["userId"] = 0
+        params["fullName"] = displayName.toString()
+        params["emailId"] = email.toString()
+        params["password"] = password
+        params["isAdult"] = true
+
+        if (Utility.isNetworkConnected(context)){
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getRegisterUserResponse(Networking.wrapParams(params))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetRegisterUserResponse>() {
+                    override fun onSuccess(response: GetRegisterUserResponse) {
+                        isLoading.postValue(false)
+                        //redirectToHome()
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                    }
+
+                    override fun onNext(t: GetRegisterUserResponse) {
+                        Log.e("Status",t.getSuccess().toString())
+                        isLoading.postValue(false)
+                        if(t.getSuccess() == true){
+                            //  Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            callLoginAPI(email!!,password)
+                        }else{
+                            callLoginAPI(email!!,password)
+                            //  Utils().showToast(context,t.getMessage().toString())
+                        }
+                        Log.e("StatusCode",t.getSuccess().toString())
+                    }
+
+                })
+        }else{
+            Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
+        }
+    }
+
 
 }
