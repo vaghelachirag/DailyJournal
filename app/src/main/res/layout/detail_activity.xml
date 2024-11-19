@@ -280,28 +280,35 @@
 
                                     </Button>
 
-                                    <ImageView
-                                        android:id="@+id/iv_edit"
-                                        android:layout_width="@dimen/_25ssp"
-                                        android:layout_height="@dimen/_25ssp"
-                                        app:layout_constraintLeft_toRightOf="@+id/btnLogin"
-                                        android:layout_weight="0.15"
-                                        android:scaleType="fitCenter"
-                                        android:layout_gravity="center"
-                                        android:visibility="gone"
-                                        android:src="@drawable/icon_edit">
-                                    </ImageView>
-                                    <ImageView
-                                        android:id="@+id/iv_delete"
-                                        android:layout_width="@dimen/_25ssp"
-                                        android:layout_height="@dimen/_25ssp"
-                                        android:layout_weight="0.15"
-                                        android:layout_gravity="center"
-                                        android:scaleType="fitCenter"
-                                        android:visibility="gone"
-                                        android:src="@drawable/icon_delete">
+                                    <LinearLayout
+                                        android:id="@+id/ll_Edit"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:weightSum="2">
+                                        <Button
+                                            android:id="@+id/btnEdit"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            app:cornerRadius="@dimen/_5ssp"
+                                            android:drawableLeft="@drawable/icon_edit"
+                                            android:text="Edit">
 
-                                    </ImageView>
+                                        </Button>
+                                        <com.google.android.material.button.MaterialButton
+                                            android:id="@+id/btnDelete"
+                                            android:layout_width="0dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            app:cornerRadius="@dimen/_5ssp"
+                                            android:drawableLeft="@drawable/icon_delete"
+                                            android:layout_marginStart="@dimen/_10ssp"
+                                            app:backgroundTint="@color/delete_btn_bg"
+                                            android:text="Delete">
+
+                                        </com.google.android.material.button.MaterialButton>
+
+                                    </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
 

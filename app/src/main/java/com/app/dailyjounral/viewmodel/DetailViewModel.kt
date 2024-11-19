@@ -130,14 +130,19 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             if (it){
                 binding.btnSubmit.isEnabled = true
                 binding.btnSubmit.visibility = View.VISIBLE
-                binding.ivEdit.visibility = View.GONE
-                binding.ivDelete.visibility = View.GONE
+                binding.llEdit.visibility = View.GONE
+                binding.btnEdit.visibility = View.GONE
+                binding.btnDelete.visibility = View.GONE
+                binding.llEdit.visibility= View.GONE
                 binding.edtAnswer.setBackgroundColor(Color.parseColor("#F0F0F0"));
             }else{
                 binding.btnSubmit.isEnabled = false
                 binding.btnSubmit.visibility = View.GONE
-                binding.ivEdit.visibility = View.VISIBLE
-                binding.ivDelete.visibility = View.VISIBLE
+                binding.btnEdit.visibility = View.VISIBLE
+                binding.btnDelete.visibility = View.VISIBLE
+                binding.llEdit.visibility= View.VISIBLE
+               // binding.ivEdit.visibility = View.VISIBLE
+               // binding.ivDelete.visibility = View.VISIBLE
                 binding.edtAnswer.setBackgroundColor(Color.parseColor("#E7DCFF"));
             }
         }
@@ -163,11 +168,11 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
              }
          }
 
-        binding.ivEdit.setOnClickListener {
+        binding.btnEdit.setOnClickListener {
             isAnswerIsEditable.value = true
             binding.edtAnswer.requestFocus()
         }
-        binding.ivDelete.setOnClickListener {
+        binding.btnDelete.setOnClickListener {
             AlertDialog.Builder(context)
                 .setTitle("Alert!")
                 .setMessage("Are you sure you want to delete?").setPositiveButton(android.R.string.yes) { _, _ ->
@@ -1088,8 +1093,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             if (!getDailyGoalAnswerData.getDailyGoalUserRecordByDate()!!.getAnswer().isNullOrEmpty()){
                 binding.edtAnswer.setText(Utility.getNullToBlankString(getDailyGoalAnswerData.getDailyGoalUserRecordByDate()!!.getAnswer()!!))
                 isAnswerIsEditable.value = false
-                binding.ivEdit.visibility = View.VISIBLE
-                binding.ivDelete.visibility = View.VISIBLE
+                binding.llEdit.visibility = View.VISIBLE
 
                 binding.txtLabel.text = "Your goal of today:"
                 binding.edtAnswer.setHint("Enter your goal")
@@ -1102,8 +1106,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         binding.llPastGoal.visibility = View.VISIBLE
                         binding.txtPastGoalLabel.text = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle()
                         dailyGoalUserRecordId.value = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getDailyGoalUserRecordId()
-                        binding.ivEdit.visibility = View.GONE
-                        binding.ivDelete.visibility = View.GONE
+                        binding.llEdit.visibility = View.VISIBLE
                         binding.btnSubmit.visibility = View.GONE
                         binding.edtAnswer.visibility =  View.GONE
                         binding.txtLabel.visibility =  View.GONE

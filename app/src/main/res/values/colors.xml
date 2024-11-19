@@ -32,4 +32,6 @@
 
     <color name="selected_bg">#E7DCFF</color>
 
+    <color name="delete_btn_bg">#FF6767</color>
+
 </resources>
