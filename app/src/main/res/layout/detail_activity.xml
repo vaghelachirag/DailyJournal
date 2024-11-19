@@ -208,7 +208,7 @@
                                     android:paddingTop="@dimen/_10ssp"
                                     android:paddingStart="@dimen/_5ssp"
                                     android:textColorHint="@color/black"
-                                    android:background="@color/daily_general_ans_bg"
+                                    android:background="@color/selected_bg"
                                     tools:ignore="RtlSymmetry">
 
                                 </EditText>

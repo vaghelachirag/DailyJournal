@@ -5,6 +5,7 @@ import WorkoutSelectorAdapter
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
 import android.os.Build
 import android.util.Log
 import android.view.View
@@ -131,11 +132,13 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 binding.btnSubmit.visibility = View.VISIBLE
                 binding.ivEdit.visibility = View.GONE
                 binding.ivDelete.visibility = View.GONE
+                binding.edtAnswer.setBackgroundColor(Color.parseColor("#F0F0F0"));
             }else{
                 binding.btnSubmit.isEnabled = false
                 binding.btnSubmit.visibility = View.GONE
                 binding.ivEdit.visibility = View.VISIBLE
                 binding.ivDelete.visibility = View.VISIBLE
+                binding.edtAnswer.setBackgroundColor(Color.parseColor("#E7DCFF"));
             }
         }
     }
@@ -687,10 +690,10 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
     // Get Sleep data from API
     private fun getSleepApiResponse() {
-        if (!session.isLoggedIn) {
+   /*     if (!session.isLoggedIn) {
             detailFragment.findNavController().navigate(R.id.LoginFragment)
             return
-        }
+        }*/
 
         if (Utility.isNetworkConnected(context)) {
             isLoading.postValue(true)
@@ -784,10 +787,10 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     // Get Mood data from API
     private fun getMoodDetectorApiResponse() {
 
-        if (!session.isLoggedIn) {
+      /*  if (!session.isLoggedIn) {
             detailFragment.findNavController().navigate(R.id.LoginFragment)
             return
-        }
+        }*/
 
         if (Utility.isNetworkConnected(context)) {
             isLoading.postValue(true)
@@ -1158,14 +1161,13 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     }
 
     private fun addSleepData() {
-        sleepDataList.add(SetSelectedSleepData(1, "Sleep", "", R.drawable.icon_number_one))
-        sleepDataList.add(SetSelectedSleepData(2, "Gratitude", "", R.drawable.icon_number_two))
-        sleepDataList.add(SetSelectedSleepData(3, "Mood", "", R.drawable.icon_number_three))
+        sleepDataList.add(SetSelectedSleepData(1, "", "", R.drawable.icon_number_one))
+        sleepDataList.add(SetSelectedSleepData(2, "", "", R.drawable.icon_number_two))
+        sleepDataList.add(SetSelectedSleepData(3, "", "", R.drawable.icon_number_three))
 
 
-        sleepDataList.add(SetSelectedSleepData(4, "Sleep", "", R.drawable.icon_number_four))
-        sleepDataList.add(SetSelectedSleepData(5, "Gratitude", "", R.drawable.icon_number_five))
-        sleepDataList.add(SetSelectedSleepData(6, "Mood", "", R.drawable.icon_number_six))
+        sleepDataList.add(SetSelectedSleepData(4, "", "", R.drawable.icon_number_four))
+        sleepDataList.add(SetSelectedSleepData(5, "", "", R.drawable.icon_number_five))
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
         val sleepSelectorAdapter =
@@ -1186,19 +1188,13 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
     @SuppressLint("NotifyDataSetChanged")
     private fun addWorkoutData() {
-        workoutDataList.add(SetSelectedWorkoutData(1, "Sleep", "", R.drawable.icon_workout_one))
-        workoutDataList.add(SetSelectedWorkoutData(2, "Gratitude", "", R.drawable.icon_workout_two))
-        workoutDataList.add(SetSelectedWorkoutData(3, "Mood", "", R.drawable.icon_workout_three))
-        workoutDataList.add(SetSelectedWorkoutData(4, "Sleep", "", R.drawable.icon_workout_four))
-        workoutDataList.add(
-            SetSelectedWorkoutData(
-                5,
-                "Gratitude",
-                "",
-                R.drawable.icon_workout_five
-            )
-        )
-        workoutDataList.add(SetSelectedWorkoutData(6, "Mood", "", R.drawable.icon_workout_six))
+        workoutDataList.add(SetSelectedWorkoutData(1, "cardio", "", R.drawable.icon_workout_one))
+        workoutDataList.add(SetSelectedWorkoutData(2, "weight", "", R.drawable.icon_workout_two))
+        workoutDataList.add(SetSelectedWorkoutData(3, "yoga", "", R.drawable.icon_workout_three))
+        workoutDataList.add(SetSelectedWorkoutData(4, "stretch", "", R.drawable.icon_workout_four))
+        workoutDataList.add(SetSelectedWorkoutData(5, "rest day", "", R.drawable.icon_workout_five))
+        workoutDataList.add(SetSelectedWorkoutData(6, "other", "", R.drawable.icon_workout_six))
+
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
         val workoutSelectorAdapter = WorkoutSelectorAdapter(
@@ -1227,7 +1223,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         moodDataList.add(
             SetSelectedMoodData(
                 1,
-                "MoodSelector",
+                "Angry",
                 "",
                 R.drawable.icon_mood_angel,
                 false
@@ -1236,7 +1232,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         moodDataList.add(
             SetSelectedMoodData(
                 2,
-                "MoodSelector",
+                "Tired",
                 "",
                 R.drawable.icon_mood_angry,
                 false
@@ -1245,7 +1241,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         moodDataList.add(
             SetSelectedMoodData(
                 3,
-                "MoodSelector",
+                "SAD",
                 "",
                 R.drawable.icon_mood_sad,
                 false
@@ -1256,7 +1252,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         moodDataList.add(
             SetSelectedMoodData(
                 4,
-                "MoodSelector",
+                "Great",
                 "",
                 R.drawable.icon_mood_smart,
                 false
@@ -1265,18 +1261,9 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         moodDataList.add(
             SetSelectedMoodData(
                 5,
-                "MoodSelector",
+                "Fun",
                 "",
                 R.drawable.icon_mood_sleep,
-                false
-            )
-        )
-        moodDataList.add(
-            SetSelectedMoodData(
-                6,
-                "MoodSelector",
-                "",
-                R.drawable.icon_mood_smart,
                 false
             )
         )

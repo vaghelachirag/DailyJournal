@@ -30,4 +30,6 @@
 
     <color name="colorTransparentBlack">#00000000</color>
 
+    <color name="selected_bg">#E7DCFF</color>
+
 </resources>

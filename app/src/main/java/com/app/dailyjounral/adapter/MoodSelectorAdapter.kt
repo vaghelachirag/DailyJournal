@@ -78,6 +78,8 @@ class MoodSelectorAdapter(
             notifyDataSetChanged()
         }
 
+        holder.binding.txtLabel.text = list[position].title
+
     }
     override fun getItemCount(): Int {
         return list.size

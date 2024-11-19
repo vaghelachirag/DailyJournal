@@ -50,6 +50,16 @@
                 android:src="@drawable/icon_number_one">
             </ImageView>
         </LinearLayout>
+        <com.app.dailyjounral.widget.HeaderText
+            android:id="@+id/txtLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:layout_marginTop="@dimen/_5ssp"
+            android:visibility="visible"
+            android:textColor="#160042">
+
+        </com.app.dailyjounral.widget.HeaderText>
         <ImageView
             android:id="@+id/iv_Icon"
             android:layout_width="wrap_content"

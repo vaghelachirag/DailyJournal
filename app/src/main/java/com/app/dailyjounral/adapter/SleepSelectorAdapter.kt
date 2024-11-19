@@ -41,7 +41,7 @@ class SleepSelectorAdapter(val context: Context,
         return SleepDetectorItemViewHolder(binder)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onBindViewHolder(holder: SleepDetectorItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
@@ -68,6 +68,8 @@ class SleepSelectorAdapter(val context: Context,
                 holder.binding.rbSelection.isChecked = false
             }
         }
+
+        holder.binding.txtLabel.text  = list[position].title
 
         holder.binding.rbSelection.setOnClickListener {
             detailViewModel.saveSleepApiResponse(list[position].typeId)

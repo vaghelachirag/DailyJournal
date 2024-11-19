@@ -55,6 +55,8 @@ class WorkoutSelectorAdapter(
 
         Glide.with(context).load(list[position].image).apply(options).into(holder.binding.ivMood)
 
+        holder.binding.txtLabel.text = list[position].title
+
         if (list[position].typeId == selectedWorkoutTypeId.value){
             holder.binding.rbSelection.isChecked = true
         }
