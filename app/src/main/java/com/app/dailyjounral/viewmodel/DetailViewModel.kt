@@ -337,6 +337,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         }
                     }
 
+                    @SuppressLint("SetTextI18n")
                     override fun onNext(t: GetForgotPasswordResponse) {
                         Log.e("Status", t.getSuccess().toString())
                         isLoading.postValue(false)
@@ -345,11 +346,12 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                                 isAnswerIsEditable.value = true
                                 binding.edtAnswer.setText("")
                                 showHideEditAndDelete(false)
-                                binding.txtLabel.text = "Your goal of today:"
+                                binding.txtLabel.text = "Enter Your goal of today:"
                             }
                             else{
                                 isAnswerIsEditable.value = false
                                 showHideEditAndDelete(true)
+                                binding.txtLabel.text = "Your goal of today:"
                             }
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
@@ -858,7 +860,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
 
     private fun setGratitudeListData(data: ArrayList<GetGratitudeListData>) {
-        if (data.isNullOrEmpty()){
+        if (data.isEmpty()){
             binding.ivNoDataGratitude.visibility = View.VISIBLE
             binding.rvGratitude.visibility = View.GONE
         }else{
@@ -869,7 +871,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             binding.ivNoDataGratitude.visibility = View.GONE
             binding.rvGratitude.layoutManager = layoutManager
 
-            if (!gratitudeList.isNullOrEmpty()){
+            if (gratitudeList.isNotEmpty()){
                 if (gratitudeList.size >= 4){
                     binding.btnAddGratitude.visibility = View.GONE
                 }
@@ -1096,7 +1098,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 binding.llEdit.visibility = View.VISIBLE
 
                 binding.txtLabel.text = "Your goal of today:"
-                binding.edtAnswer.setHint("Enter your goal")
+                binding.edtAnswer.setHint("Your goal of today:")
             }
         }
         if (getDailyGoalAnswerData.getDailyGoalUserRecordByDate() != null){
@@ -1358,6 +1360,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     }
 
     // Remove Data from Gratitude List
+    @SuppressLint("NotifyDataSetChanged")
     private fun removeDataFromGratitudeList(position: Int) {
         gratitudeList.removeAt(position)
         binding.rvGratitude.adapter?.notifyDataSetChanged()
