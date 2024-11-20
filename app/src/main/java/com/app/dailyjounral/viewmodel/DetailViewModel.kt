@@ -5,6 +5,7 @@ import WorkoutSelectorAdapter
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.RestrictionEntry.TYPE_NULL
 import android.graphics.Color
 import android.os.Build
 import android.util.Log
@@ -233,6 +234,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                             isAnswerIsEditable.value = true
                             binding.edtAnswer.visibility = View.VISIBLE
                             binding.txtLabel.visibility = View.VISIBLE
+                            binding.txtLabel.text = "Enter Your goal of today:"
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -1089,6 +1091,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SetTextI18n")
     private fun setDailyGoalAnswerData(getDailyGoalAnswerData: GetDailyGoalAnswerData) {
         if (getDailyGoalAnswerData.getDailyGoalUserRecordByDate() != null){
@@ -1112,6 +1115,16 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         binding.btnSubmit.visibility = View.GONE
                         binding.edtAnswer.visibility =  View.GONE
                         binding.txtLabel.visibility =  View.GONE
+                    }
+                    if (!getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getAnswer().isNullOrEmpty()){
+                        binding.edtAnswer.visibility =  View.VISIBLE
+                        binding.txtLabel.visibility =  View.VISIBLE
+                        binding.txtLabel.text = "Past Goal"
+                        binding.edtAnswer.setText(getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getAnswer()!!)
+                        binding.edtAnswer.setBackgroundColor(Color.parseColor("#E7DCFF"));
+                        binding.edtAnswer.isFocusable = false
+                        binding.edtAnswer.isFocusableInTouchMode = false
+                        binding.edtAnswer.inputType = TYPE_NULL
                     }
                 }
             }

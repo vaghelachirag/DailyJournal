@@ -11,6 +11,7 @@ import com.app.dailyjounral.model.base.BaseViewModel
 import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getLoginResponse.SetLoginModel
 import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
+import com.app.dailyjounral.model.getSocialLoginResponse.GetSocialLoginResponse
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.Session
@@ -37,6 +38,48 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
     }
 
 
+    fun getSocialLoginResponse(loginFrom : Int){
+        val params = HashMap<String,Any>()
+        params["fullname"] = "chirag vaghela"
+        params["email"] = "test@gmail.com"
+        params["socialtype"] = 1
+
+        if (Utility.isNetworkConnected(context)){
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getSocialLoginResponse(Utils().getUserToken(context),Networking.wrapParams(params))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetSocialLoginResponse>() {
+                    override fun onSuccess(response: GetSocialLoginResponse) {
+                        isLoading.postValue(false)
+                        //redirectToHome()
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                    }
+                    override fun onNext(t: GetSocialLoginResponse) {
+                        Log.e("Status",t.getSuccess().toString())
+                        isLoading.postValue(false)
+                        if(t.getSuccess() == true){
+                            MessageDialog(context, t.getMessage().toString()).show()
+
+                        }else{
+                            //  Utils().showToast(context,t.getMessage().toString())
+                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                        }
+                        Log.e("StatusCode",t.getSuccess().toString())
+                    }
+
+                })
+        }else{
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
+        }
+
+    }
     fun onSignInClicked(){
         val model = SetLoginModel()
         model.email = email.get()

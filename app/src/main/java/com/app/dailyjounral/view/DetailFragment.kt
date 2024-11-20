@@ -2,10 +2,12 @@ package com.app.dailyjounral.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Scroller
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.uttils.AppConstants
@@ -13,6 +15,7 @@ import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.view.dialougs.DialogAddGratitude
 import com.app.dailyjounral.viewmodel.DetailViewModel
+
 
 class DetailFragment: BaseFragment() {
 
@@ -31,6 +34,7 @@ class DetailFragment: BaseFragment() {
         setCurrentDate()
         setHeader()
         detailViewModel.init()
+
 
         // Show Progress bar
         detailViewModel.isLoading.observe(requireActivity()) { isLoading ->

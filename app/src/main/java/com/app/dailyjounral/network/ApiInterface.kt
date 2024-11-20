@@ -13,6 +13,7 @@ import com.app.dailyjounral.model.getSaveMoodDataResponse.GetSaveMoodDataRespons
 import com.app.dailyjounral.model.getSelfCareTipResponse.GetSelfCareTipResponse
 import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
 import com.app.dailyjounral.model.getSleepDataResponse.GetSleepDataResponse
+import com.app.dailyjounral.model.getSocialLoginResponse.GetSocialLoginResponse
 import com.app.dailyjounral.model.getTipOfTheDayResponse.GetTipOfTheDayResponse
 import com.app.dailyjounral.model.getUserProfileResponse.GetUserProfileResponse
 import com.app.dailyjounral.model.getWorkoutDataResponse.GetWorkoutDataResponse
@@ -135,5 +136,8 @@ interface ApiInterface {
 
     @DELETE("app/gratitude/{gratitudeUserRecordId}")
     fun getDeleteGratitudeResponse(@Header("Authorization") header: String?,@Path("gratitudeUserRecordId") gratitudeUserRecordId : Int): Observable<GetForgotPasswordResponse>
+
+    @POST("app/account/social-login")
+    fun getSocialLoginResponse(@Header("Authorization") header: String?,@Body reGetLoginResponsequestBody: RequestBody): Observable<GetSocialLoginResponse>
 
 }

@@ -48,6 +48,8 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
     private val RC_SIGN_IN = 9001
     private var mGoogleApiClient: GoogleApiClient? = null
 
+    private var callbackManager = CallbackManager.Factory.create()
+
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("bett", "onConnectionFailed:$connectionResult");
     }
@@ -85,7 +87,8 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
             signInWithGoogle()
         }
         binding.cardFacebook.setOnClickListener {
-           /* callbackManager = CallbackManager.Factory.create()
+            signInViewModel.getSocialLoginResponse(1)
+           callbackManager = CallbackManager.Factory.create()
             LoginManager.getInstance().logInWithReadPermissions(this, listOf("public_profile", "email"))
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
@@ -103,7 +106,7 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
                         Log.d("MainActivity", "Facebook onError.")
 
                     }
-                })*/
+                })
         }
         setLoginAndPassword()
         binding.chkRememberPassword.isChecked = session.getDataByKey(Session.KEY_USER_REMEMBER, false)
