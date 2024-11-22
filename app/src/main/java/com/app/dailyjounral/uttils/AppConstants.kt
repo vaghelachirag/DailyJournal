@@ -25,12 +25,12 @@ object AppConstants {
     var fromOTP: String = "OTP"
 
   /*  All URL*/
-    var StagingURL = "http://5.77.39.57:50091/api/"
-    var LiveURL = "https://surveyorappapi.pickfords.com/api/"
+    var StagingURL = "http://202.131.110.234:2035/api/"
+    var LiveURL = "https://api.beingatotapps.com/api/"
     var TestLiveURL = "https://testsurveyorappapi.pickfords.com/api/"
 
     // For Base URL
-    var baseURL = "http://202.131.110.234:2035/api/"
+    var baseURL = LiveURL
     var baseURLImage = "https://squeamish.co.in"
 
 

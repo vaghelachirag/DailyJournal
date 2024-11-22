@@ -138,9 +138,10 @@
                             android:layout_weight="1"
                             android:text="@string/cancel"
                             android:textAllCaps="false"
-                            android:textSize="@dimen/_8ssp"
+                            android:textSize="@dimen/_12ssp"
                             android:layout_marginLeft="@dimen/_20ssp"
                             android:textColor="@color/black"
+                            android:fontFamily="@font/roboto_bold"
                             app:backgroundTint="@color/light_gray_bg"
                             app:cornerRadius="@dimen/_100ssp" />
 
@@ -155,7 +156,8 @@
                             android:layout_weight="1"
                             android:text="@string/update"
                             android:textAllCaps="false"
-                            android:textSize="@dimen/_8ssp"
+                            android:textSize="@dimen/_12ssp"
+                            android:fontFamily="@font/roboto_bold"
                             android:layout_marginEnd="@dimen/_20ssp"
                             app:backgroundTint="@color/list_background"
                             app:cornerRadius="@dimen/_100ssp" />

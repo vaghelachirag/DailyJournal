@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.RestrictionEntry.TYPE_NULL
 import android.graphics.Color
 import android.os.Build
+import android.text.InputType
 import android.util.Log
 import android.view.View
 import androidx.annotation.RequiresApi
@@ -234,7 +235,11 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                             isAnswerIsEditable.value = true
                             binding.edtAnswer.visibility = View.VISIBLE
                             binding.txtLabel.visibility = View.VISIBLE
+                            binding.edtAnswer.setText("")
                             binding.txtLabel.text = "Enter Your goal of today:"
+                            binding.edtAnswer.isFocusable = true
+                            binding.edtAnswer.isFocusableInTouchMode = true
+                            binding.edtAnswer.inputType = InputType.TYPE_CLASS_TEXT
                             MessageDialog(context, t.getMessage().toString()).show()
                         } else {
                             //  Utils().showToast(context,t.getMessage().toString())
@@ -699,10 +704,10 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
 
     // Get Sleep data from API
     private fun getSleepApiResponse() {
-   /*     if (!session.isLoggedIn) {
+       if (!session.isLoggedIn) {
             detailFragment.findNavController().navigate(R.id.LoginFragment)
             return
-        }*/
+        }
 
         if (Utility.isNetworkConnected(context)) {
             isLoading.postValue(true)
@@ -796,10 +801,10 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     // Get Mood data from API
     private fun getMoodDetectorApiResponse() {
 
-      /*  if (!session.isLoggedIn) {
+       if (!session.isLoggedIn) {
             detailFragment.findNavController().navigate(R.id.LoginFragment)
             return
-        }*/
+        }
 
         if (Utility.isNetworkConnected(context)) {
             isLoading.postValue(true)
@@ -1109,7 +1114,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 if (getDailyGoalAnswerData.getDailyGoalUserRecord() != null){
                     if (!getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle().isNullOrEmpty()){
                         binding.llPastGoal.visibility = View.VISIBLE
-                        binding.txtPastGoalLabel.text = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle()
+                        binding.txtLabel.text = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getTitle()
                         dailyGoalUserRecordId.value = getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getDailyGoalUserRecordId()
                         binding.llEdit.visibility = View.VISIBLE
                         binding.btnSubmit.visibility = View.GONE
@@ -1119,7 +1124,6 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                     if (!getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getAnswer().isNullOrEmpty()){
                         binding.edtAnswer.visibility =  View.VISIBLE
                         binding.txtLabel.visibility =  View.VISIBLE
-                        binding.txtLabel.text = "Past Goal"
                         binding.edtAnswer.setText(getDailyGoalAnswerData.getDailyGoalUserRecord()!!.getAnswer()!!)
                         binding.edtAnswer.setBackgroundColor(Color.parseColor("#E7DCFF"));
                         binding.edtAnswer.isFocusable = false

@@ -14,7 +14,6 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
@@ -22,7 +21,6 @@ import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.app.dailyjounral.databinding.ActivityDashboardBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MenuDataModel
-import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
 import com.app.dailyjounral.model.getLogoutResponse.GetLogoutResponse
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
@@ -52,6 +50,8 @@ class DashboardActivity : BaseActivity(){
     private var menuList = mutableListOf<MenuDataModel>()
     private var options: RequestOptions? = null
     private var menuAdapter: MenuItemAdapter? = null
+
+    var doubleBackToExitPressedOnce: Boolean = false
 
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {

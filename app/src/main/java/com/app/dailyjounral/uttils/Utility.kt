@@ -22,8 +22,11 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.navigation.fragment.findNavController
 import com.app.dailyjounral.R
 import com.app.dailyjounral.uttils.AppConstants.baseURL
+import com.app.dailyjounral.view.DetailFragment
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.view.dialougs.MessageDialog
 import com.bumptech.glide.request.RequestOptions
 import java.io.*
@@ -139,6 +142,7 @@ class Utility {
             var session  = Session(context)
             session!!.clearSession()
             MessageDialog(context, context.getString(R.string.session_expired)).show()
+            (context as DashboardActivity).navController.navigate(R.id.LoginFragment)
           //  Utils().reloadActivity(context)
         }
 
@@ -158,6 +162,11 @@ class Utility {
                 poke.setData(Uri.parse("3"))
                 context.sendBroadcast(poke)
             }
+        }
+
+        // Redirect To Login
+        fun redirectToLogin(detailFragment : DetailFragment){
+            detailFragment.findNavController().popBackStack(R.id.LoginFragment, false)
         }
 
         fun getNullToBlankString(mainString: String) : String{
@@ -182,6 +191,23 @@ class Utility {
                     val input = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
                     cal.time = input.parse(value)!!
                     val output = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
+                    outputString =  output.format(cal.timeInMillis).toString()
+                } catch (e: ParseException) {
+                    e.printStackTrace()
+                }
+            }
+            return outputString
+        }
+
+        @SuppressLint("SimpleDateFormat")
+        fun convertDate(value: String?) : String {
+            var outputString = ""
+            if (value != null) {
+                val cal = Calendar.getInstance()
+                try {
+                    val input = SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss")
+                    cal.time = input.parse(value)!!
+                    val output = SimpleDateFormat("dd-M-yyyy")
                     outputString =  output.format(cal.timeInMillis).toString()
                 } catch (e: ParseException) {
                     e.printStackTrace()

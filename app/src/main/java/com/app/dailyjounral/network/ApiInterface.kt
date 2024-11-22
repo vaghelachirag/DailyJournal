@@ -138,6 +138,6 @@ interface ApiInterface {
     fun getDeleteGratitudeResponse(@Header("Authorization") header: String?,@Path("gratitudeUserRecordId") gratitudeUserRecordId : Int): Observable<GetForgotPasswordResponse>
 
     @POST("app/account/social-login")
-    fun getSocialLoginResponse(@Header("Authorization") header: String?,@Body reGetLoginResponsequestBody: RequestBody): Observable<GetSocialLoginResponse>
+    fun getSocialLoginResponse(@Header("Authorization") header: String?,@Body reGetLoginResponsequestBody: RequestBody): Observable<GetLoginResponse>
 
 }

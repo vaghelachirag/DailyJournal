@@ -1,10 +1,8 @@
 package com.app.dailyjounral.view.fragment
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.IntentSender.SendIntentException
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,17 +19,10 @@ import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.identity.GetSignInIntentRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
 import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
-import java.util.Arrays
 
 
 /**
@@ -87,7 +78,6 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
             signInWithGoogle()
         }
         binding.cardFacebook.setOnClickListener {
-            signInViewModel.getSocialLoginResponse(1)
            callbackManager = CallbackManager.Factory.create()
             LoginManager.getInstance().logInWithReadPermissions(this, listOf("public_profile", "email"))
             LoginManager.getInstance().registerCallback(callbackManager,
@@ -138,9 +128,15 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
         if (result.isSuccess) {
             //  updateUI(true)
             Log.e("Result","Success" + result.signInAccount!!.email)
-            signInViewModel.callRegisterUserAPI(result.signInAccount!!.displayName,result.signInAccount!!.email,"123456")
+            signInViewModel.getSocialLoginResponse(result.signInAccount!!.displayName,result.signInAccount!!.email,1)
         }else{
             Log.e("Result","Fail" + result.status)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mGoogleApiClient!!.stopAutoManage(requireActivity())
+        mGoogleApiClient!!.disconnect()
     }
 }

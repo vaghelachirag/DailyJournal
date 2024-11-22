@@ -69,7 +69,7 @@
                         android:gravity="bottom|right"
                         android:layout_gravity="bottom|right"
                         android:visibility="visible"
-                        android:src="@drawable/icon_edit">
+                        android:src="@drawable/icon_edit_profile">
 
                     </com.app.dailyjounral.uttils.CircularImageView>
                 </FrameLayout>

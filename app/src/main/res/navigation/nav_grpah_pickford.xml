@@ -10,7 +10,8 @@
         android:id="@+id/dashboardMenuFragment"
         android:name="com.app.dailyjounral.view.DashboardMenuFragment"
         android:label="@string/dashboard_menu_fragment_label"
-        app:popUpToInclusive="true"
+        app:popUpTo="@+id/dashboardMenuFragment"
+        app:popUpToInclusive="false"
         app:destination="@id/detailViewFragment"
         tools:layout="@layout/dashboard_menu_fragment">
 
@@ -19,7 +20,7 @@
             app:destination="@id/detailViewFragment"
             app:launchSingleTop="true"
             app:popUpTo="@+id/dashboardMenuFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="false"/>
         <action
             android:id="@+id/action_dashboardMenuFragment_to_LoginFragment"
             app:destination="@id/LoginFragment" />
@@ -43,8 +44,7 @@
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/anim_slide_in_from_bottom"
         app:popExitAnim="@anim/anim_slide_out_to_bottom"
-        app:popUpTo="@id/nav_graph"
-        app:popUpToInclusive="true"
+        app:popUpToInclusive="false"
         tools:layout="@layout/detail_activity">
 
         <action
@@ -61,10 +61,10 @@
         android:label="@string/login_fragment_label"
         tools:layout="@layout/fragment_login">
 
-
         <action
             android:id="@+id/action_LoginFragment_to_RegisterFragment2"
             app:destination="@id/RegisterFragment" />
+
     </fragment>
 
     <fragment
@@ -114,6 +114,7 @@
         android:id="@+id/MyProfileFragment"
         android:name="com.app.dailyjounral.view.fragment.MyProfileFragment"
         android:label="@string/my_profile_label"
+        app:popUpToInclusive="false"
         tools:layout="@layout/fragment_my_profile">
 
     </fragment>
@@ -123,6 +124,8 @@
         android:id="@+id/AnalyticsFragment"
         android:name="com.app.dailyjounral.view.fragment.AnalyticsFragment"
         android:label="@string/my_profile_label"
+        app:popUpTo="@+id/dashboardMenuFragment"
+        app:popUpToInclusive="false"
         tools:layout="@layout/fragment_analytics">
 
     </fragment>

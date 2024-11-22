@@ -201,14 +201,15 @@
                                     android:hint="@string/enter_your_ans"
                                     android:textSize="@dimen/_10ssp"
                                     android:layout_gravity="top"
-                                    android:gravity="top"
+                                    android:gravity="top|left"
                                     android:inputType="textMultiLine"
                                     android:textColor="@color/black"
                                     android:focusable="@{viewModel.isAnswerIsEditable}"
                                     android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
-                                    android:paddingTop="@dimen/_20ssp"
-                                    android:paddingBottom="@dimen/_20ssp"
+                                    android:minHeight="@dimen/_100ssp"
                                     android:paddingStart="@dimen/_5ssp"
+                                    android:paddingTop="@dimen/_10ssp"
+                                    android:paddingEnd="@dimen/_5ssp"
                                     android:textColorHint="@color/black"
                                     android:background="@color/selected_bg"
                                     tools:ignore="RtlSymmetry">
@@ -221,15 +222,16 @@
                                     android:visibility="gone"
                                     android:layout_marginTop="@dimen/_5ssp"
                                     android:orientation="vertical">
-                                    <com.app.dailyjounral.widget.RobotoRegularText
+                                    <com.app.dailyjounral.widget.PoppinsBoldText
                                         android:id="@+id/txtPastGoalLabel"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/_10ssp"
                                         android:textSize="@dimen/_12ssp"
                                         android:textColor="@color/black"
+                                        android:visibility="gone"
                                         tools:ignore="TooDeepLayout">
-                                    </com.app.dailyjounral.widget.RobotoRegularText>
+                                    </com.app.dailyjounral.widget.PoppinsBoldText>
                                     <LinearLayout
                                         style="?android:attr/buttonBarStyle"
                                         android:layout_width="match_parent"
@@ -292,8 +294,13 @@
                                             android:layout_width="0dp"
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
                                             app:cornerRadius="@dimen/_5ssp"
                                             android:drawableLeft="@drawable/icon_edit"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textSize="@dimen/_12ssp"
+                                            android:drawableTint="@color/white"
                                             android:text="Edit">
 
                                         </Button>
@@ -303,9 +310,12 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             app:cornerRadius="@dimen/_5ssp"
-                                            android:drawableLeft="@drawable/icon_delete"
+                                            android:drawableStart="@drawable/icon_delete"
                                             android:layout_marginStart="@dimen/_10ssp"
                                             app:backgroundTint="@color/delete_btn_bg"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textSize="@dimen/_12ssp"
+                                            android:drawableTint="@color/white"
                                             android:text="Delete">
 
                                         </com.google.android.material.button.MaterialButton>
@@ -386,7 +396,6 @@
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
-
 
                 <ImageView
                     android:id="@+id/iv_Bottom"
