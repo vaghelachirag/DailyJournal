@@ -279,6 +279,7 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     app:cardCornerRadius="@dimen/_5ssp"
+                    android:visibility="gone"
                     app:cardBackgroundColor="@color/white"
                     card_view:cardUseCompatPadding="true">
 

@@ -14,6 +14,7 @@ import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
@@ -21,6 +22,7 @@ import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.app.dailyjounral.databinding.ActivityDashboardBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MenuDataModel
+import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
 import com.app.dailyjounral.model.getLogoutResponse.GetLogoutResponse
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
@@ -51,8 +53,6 @@ class DashboardActivity : BaseActivity(){
     private var options: RequestOptions? = null
     private var menuAdapter: MenuItemAdapter? = null
 
-    var doubleBackToExitPressedOnce: Boolean = false
-
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,13 +60,13 @@ class DashboardActivity : BaseActivity(){
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
         session = Session(this)
 
-       options = RequestOptions()
+        options = RequestOptions()
             .centerCrop()
             .placeholder(R.mipmap.ic_launcher_round)
             .error(R.mipmap.ic_launcher_round)
 
         // Set up ActionBar
-      //  setSupportActionBar(binding.toolbarDashboard)
+        //  setSupportActionBar(binding.toolbarDashboard)
         val actionBar = supportActionBar
         if (actionBar != null) {
             supportActionBar!!.setDisplayShowTitleEnabled(false)
@@ -77,8 +77,8 @@ class DashboardActivity : BaseActivity(){
 
         setVersionName()
 
-       /* supportActionBar!!.title = "Test"
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_nav_menup)*/
+        /* supportActionBar!!.title = "Test"
+         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_nav_menup)*/
 
         navController = findNavController(R.id.navHostFragmentPickford)
 
@@ -105,7 +105,8 @@ class DashboardActivity : BaseActivity(){
     }
 
     private fun addMenuData() {
-         menuList = mutableListOf<MenuDataModel>()
+        session= Session(this)
+        menuList = mutableListOf<MenuDataModel>()
         menuList.add(MenuDataModel("Home","",R.drawable.icon_menu_home_unselected,R.drawable.icon_home,true))
         menuList.add(MenuDataModel("Tip of the day","",R.drawable.icon_menu_tip_of_day_unselected,R.drawable.icon_menu_tip_of_day_selected,false))
         menuList.add(MenuDataModel("Daily Quote","",R.drawable.icon_menu_quote_unselected,R.drawable.icon_menu_quote_selected,false))
@@ -116,10 +117,12 @@ class DashboardActivity : BaseActivity(){
         menuList.add(MenuDataModel("Goal Setting","",R.drawable.icon_menu_goal_unselected,R.drawable.icon_menu_goal_selected,false))
         menuList.add(MenuDataModel("Workout","",R.drawable.icon_menu_workout_unselected,R.drawable.icon_menu_workout_selected,false))
         menuList.add(MenuDataModel("Self-Care Tip","",R.drawable.icon_menu_selfcare_unselected,R.drawable.icon_menu_selfcare_selected,false))
-        menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
-        menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
 
-        session= Session(this)
+        if (session!!.isLoggedIn){
+            menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
+            menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
+        }
+
         if (!session!!.isLoggedIn){
             menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
         }else{
@@ -182,11 +185,11 @@ class DashboardActivity : BaseActivity(){
                     AppConstants.detailType = 9
                     navController.navigate(R.id.detailViewFragment)
                 }
-                if (position == 10){
+                if (menuList[position].title == "Profile"){
                     AppConstants.detailType = 3
                     navController.navigate(R.id.MyProfileFragment)
                 }
-                if (position == 11){
+                if (menuList[position].title == "Change Password"){
                     if (session!!.isLoggedIn){
                         AppConstants.detailType = 6
                         navController.navigate(R.id.ChangePasswordFragment)
@@ -194,16 +197,12 @@ class DashboardActivity : BaseActivity(){
                         navController.navigate(R.id.LoginFragment)
                     }
                 }
-                if (position == 12){
-                    /* AppConstants.detailType = 6
-                     navController.navigate(R.id.LoginFragment)*/
-                    Log.e("MenuName", t!!.title)
-                    if (t.title == AppConstants.menuLogout){
-                        Utils().showAlertDialog(this@DashboardActivity,resources.getString(R.string.logoutAlert))
-                    }else{
-                        AppConstants.detailType = 6
-                        navController.navigate(R.id.LoginFragment)
-                    }
+                if (menuList[position].title == AppConstants.menuLogout){
+                    Utils().showAlertDialog(this@DashboardActivity,resources.getString(R.string.logoutAlert))
+                }
+                if (menuList[position].title == AppConstants.menuLogin){
+                    AppConstants.detailType = 6
+                    navController.navigate(R.id.LoginFragment)
                 }
             }
         })
@@ -250,9 +249,9 @@ class DashboardActivity : BaseActivity(){
         var profileImage = ""
         var userName = ""
         if (session != null){
-          if (!session!!.getUserProfileImageKey().isNullOrEmpty()){
-            profileImage = session!!.getUserProfileImageKey()!!
-          }
+            if (!session!!.getUserProfileImageKey().isNullOrEmpty()){
+                profileImage = session!!.getUserProfileImageKey()!!
+            }
             if (!session!!.getUserNameKey().isNullOrEmpty()){
                 userName = session!!.getUserNameKey()!!
                 val txtUserName = menuHeader.findViewById<View>(R.id.txt_UserName) as TextView
@@ -269,43 +268,43 @@ class DashboardActivity : BaseActivity(){
 
     fun  callLogoutApi(){
 
-      if (Utility.isNetworkConnected(this)){
-          showProgressbar()
-          Networking.with(this)
-              .getServices()
-              .getLogoutResponse(Utils().getUserToken(this))
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .subscribe(object : CallbackObserver<GetLogoutResponse>() {
-                  override fun onSuccess(response: GetLogoutResponse) {
-                      hideProgressbar()
-                      //redirectToHome()
-                  }
+        if (Utility.isNetworkConnected(this)){
+            showProgressbar()
+            Networking.with(this)
+                .getServices()
+                .getLogoutResponse(Utils().getUserToken(this))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetLogoutResponse>() {
+                    override fun onSuccess(response: GetLogoutResponse) {
+                        hideProgressbar()
+                        //redirectToHome()
+                    }
 
-                  override fun onFailed(code: Int, message: String) {
-                      hideProgressbar()
-                      session!!.clearSession()
-                      Utils().showSnackBar(this@DashboardActivity,message,binding.constraintLayout)
-                      Utils().reloadActivity(this@DashboardActivity)
-                  }
+                    override fun onFailed(code: Int, message: String) {
+                        hideProgressbar()
+                        session!!.clearSession()
+                        Utils().showSnackBar(this@DashboardActivity,message,binding.constraintLayout)
+                        Utils().reloadActivity(this@DashboardActivity)
+                    }
 
-                  override fun onNext(t: GetLogoutResponse) {
-                      hideProgressbar()
-                      session!!.clearSession()
+                    override fun onNext(t: GetLogoutResponse) {
+                        hideProgressbar()
+                        session!!.clearSession()
 
-                      if(t.getSuccess() == true){
-                          Utils().showSnackBar(this@DashboardActivity,t.getMessage()!!,binding.constraintLayout)
-                      }else{
-                          Utils().showSnackBar(this@DashboardActivity,t.getMessage()!!,binding.constraintLayout)
-                      }
-                      Utils().reloadActivity(this@DashboardActivity)
-                      Log.e("StatusCode",t.getSuccess().toString())
-                  }
+                        if(t.getSuccess() == true){
+                            Utils().showSnackBar(this@DashboardActivity,t.getMessage()!!,binding.constraintLayout)
+                        }else{
+                            Utils().showSnackBar(this@DashboardActivity,t.getMessage()!!,binding.constraintLayout)
+                        }
+                        Utils().reloadActivity(this@DashboardActivity)
+                        Log.e("StatusCode",t.getSuccess().toString())
+                    }
 
-              })
-      }else{
-          Utils().showToast(this,this.getString(R.string.nointernetconnection).toString())
-      }
+                })
+        }else{
+            Utils().showToast(this,this.getString(R.string.nointernetconnection).toString())
+        }
 
     }
 
@@ -315,7 +314,7 @@ class DashboardActivity : BaseActivity(){
 
 
     private fun setVersionName() {
-     //   binding.txtVersion.text = "Version : " +BuildConfig.VERSION_NAME
+        //   binding.txtVersion.text = "Version : " +BuildConfig.VERSION_NAME
     }
 
     @SuppressLint("SetTextI18n")
@@ -330,56 +329,56 @@ class DashboardActivity : BaseActivity(){
     }
 
     private fun setAction() {
-                binding.ivMenu.setOnClickListener {
-                    if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
-                        binding.drawer.closeDrawer(GravityCompat.START)
-                    }else{
-                        binding.drawer.openDrawer(GravityCompat.START)
-                    }
-                }
-                binding.llHome.setOnClickListener {
-                    binding.llTab1.visibility = View.VISIBLE
-                    binding.llTab2.visibility = View.GONE
+        binding.ivMenu.setOnClickListener {
+            if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
+                binding.drawer.closeDrawer(GravityCompat.START)
+            }else{
+                binding.drawer.openDrawer(GravityCompat.START)
+            }
+        }
+        binding.llHome.setOnClickListener {
+            binding.llTab1.visibility = View.VISIBLE
+            binding.llTab2.visibility = View.GONE
 
 
-                    binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
-                    binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+            binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+            binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
-                    binding.ivHome.setBackgroundResource(R.drawable.icon_home_active);
-                    binding.ivAnalytics.setBackgroundResource(R.drawable.icon_analystic_unselected);
+            binding.ivHome.setBackgroundResource(R.drawable.icon_home_active);
+            binding.ivAnalytics.setBackgroundResource(R.drawable.icon_analystic_unselected);
 
-                    navController.navigate(R.id.dashboardMenuFragment)
-                }
+            navController.navigate(R.id.dashboardMenuFragment)
+        }
 
-                binding.llAnalystic.setOnClickListener {
-                    binding.llTab1.visibility = View.GONE
-                    binding.llTab2.visibility = View.VISIBLE
+        binding.llAnalystic.setOnClickListener {
+            binding.llTab1.visibility = View.GONE
+            binding.llTab2.visibility = View.VISIBLE
 
-                    binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
-                    binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
+            binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+            binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
 
 
-                    binding.ivHome.setBackgroundResource(R.drawable.icon_home_unselected)
-                    binding.ivAnalytics.setBackgroundResource(R.drawable.icon_anaylist_active)
+            binding.ivHome.setBackgroundResource(R.drawable.icon_home_unselected)
+            binding.ivAnalytics.setBackgroundResource(R.drawable.icon_anaylist_active)
 
-                    navController.navigate(R.id.AnalyticsFragment)
-                }
+            navController.navigate(R.id.AnalyticsFragment)
+        }
     }
     private fun setBottomTab() {
-         binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
-         binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+        binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+        binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
         binding.ivHome.setBackgroundResource(R.drawable.icon_home_active);
         binding.ivAnalytics.setBackgroundResource(R.drawable.icon_analystic_unselected);
 
-         binding.llTab1.visibility  = View.VISIBLE
-         binding.llTab2.visibility  = View.GONE
+        binding.llTab1.visibility  = View.VISIBLE
+        binding.llTab2.visibility  = View.GONE
     }
 
-   fun setSelectedMenuPosition(position: Int){
-       if (menuAdapter !=null){
-           menuAdapter!!.mSelectedItem = position
-           menuAdapter!!.notifyDataSetChanged()
-       }
+    fun setSelectedMenuPosition(position: Int){
+        if (menuAdapter !=null){
+            menuAdapter!!.mSelectedItem = position
+            menuAdapter!!.notifyDataSetChanged()
+        }
     }
 }

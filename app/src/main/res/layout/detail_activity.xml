@@ -310,7 +310,7 @@
                                             android:layout_height="wrap_content"
                                             android:layout_weight="1"
                                             app:cornerRadius="@dimen/_5ssp"
-                                            android:drawableStart="@drawable/icon_delete"
+                                            android:drawableLeft="@drawable/icon_delete"
                                             android:layout_marginStart="@dimen/_10ssp"
                                             app:backgroundTint="@color/delete_btn_bg"
                                             android:fontFamily="@font/roboto_bold"
