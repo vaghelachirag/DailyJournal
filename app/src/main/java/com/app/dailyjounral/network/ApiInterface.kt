@@ -66,8 +66,8 @@ interface ApiInterface {
     fun getUserProfileResponse(@Header("Authorization") header: String?,@Path("Id") emailId: String): Observable<GetUserProfileResponse>
 
 
-    @POST("app/account/register-send-verification-code/{emailId}")
-    fun getSendOTPToEmail(@Path("emailId") emailId: String): Observable<GetSendOTPResponse>
+    @POST("app/account/register-send-verification-code")
+    fun getSendOTPToEmail(@Body reGetLoginResponsequestBody: RequestBody): Observable<GetSendOTPResponse>
 
 
     @GET("app/mooduser/{date}")

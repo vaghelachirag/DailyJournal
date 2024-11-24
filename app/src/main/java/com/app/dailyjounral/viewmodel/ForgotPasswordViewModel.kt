@@ -34,6 +34,9 @@ class ForgotPasswordViewModel(private val context: Context, private val binding:
         forgotPasswordFragment.findNavController().navigate(R.id.OtpPasswordFragment,bundle)
     }
 
+    fun redirectToLogin(){
+        forgotPasswordFragment.findNavController().navigate(R.id.LoginFragment)
+    }
 
     fun onForgotPasswordClick(){
         val model = SetLoginModel()

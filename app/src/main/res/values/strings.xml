@@ -69,6 +69,7 @@
     <string name="register">Register</string>
     <string name="fullName">Full Name</string>
     <string name="already_have_account_text">Already have Account?</string>
+    <string name="back_to_login">Back to</string>
     <string name="login_now_text"> Login Now</string>
     <string name="fullName_hint">Full Name<font color='#1C0647'>*</font></string>
     <string name="password_hint">Password<font color='#1C0647'>*</font></string>

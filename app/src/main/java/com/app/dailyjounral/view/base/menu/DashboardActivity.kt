@@ -3,18 +3,20 @@ package com.app.dailyjounral.view.base.menu
 import android.annotation.SuppressLint
 import android.content.IntentFilter
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
@@ -22,7 +24,6 @@ import com.app.dailyjounral.adapter.MenuItemAdapter
 import com.app.dailyjounral.databinding.ActivityDashboardBinding
 import com.app.dailyjounral.interfaces.OnItemSelected
 import com.app.dailyjounral.model.MenuDataModel
-import com.app.dailyjounral.model.getForgotPasswordResponse.GetForgotPasswordResponse
 import com.app.dailyjounral.model.getLogoutResponse.GetLogoutResponse
 import com.app.dailyjounral.network.CallbackObserver
 import com.app.dailyjounral.network.Networking
@@ -52,6 +53,8 @@ class DashboardActivity : BaseActivity(){
     private var menuList = mutableListOf<MenuDataModel>()
     private var options: RequestOptions? = null
     private var menuAdapter: MenuItemAdapter? = null
+
+    var doubleBackToExitPressedOnce: Boolean = false
 
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,7 +99,8 @@ class DashboardActivity : BaseActivity(){
         val llHeader = menuHeader.findViewById<View>(R.id.ll_Header) as ConstraintLayout
 
         llHeader.setOnClickListener {
-            navController.navigate(R.id.MyProfileFragment)
+           // navController.navigate(R.id.MyProfileFragment)
+            navController.navigate(R.id.action_dashboardMenuFragment_to_MyProfileFragment)
             binding.drawer.closeDrawer(GravityCompat.START)
         }
 
@@ -187,7 +191,7 @@ class DashboardActivity : BaseActivity(){
                 }
                 if (menuList[position].title == "Profile"){
                     AppConstants.detailType = 3
-                    navController.navigate(R.id.MyProfileFragment)
+                    navController.navigate(R.id.action_dashboardMenuFragment_to_MyProfileFragment)
                 }
                 if (menuList[position].title == "Change Password"){
                     if (session!!.isLoggedIn){
@@ -236,7 +240,7 @@ class DashboardActivity : BaseActivity(){
 
     }
 
-    public fun setUserLogoAndName() {
+    fun setUserLogoAndName() {
 
         val menuHeader = findViewById<View>(R.id.layoutMenu)
         val userImage = menuHeader.findViewById<View>(R.id.navHeaderLogo) as ImageView
@@ -375,10 +379,26 @@ class DashboardActivity : BaseActivity(){
         binding.llTab2.visibility  = View.GONE
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setSelectedMenuPosition(position: Int){
         if (menuAdapter !=null){
             menuAdapter!!.mSelectedItem = position
             menuAdapter!!.notifyDataSetChanged()
         }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+
+        this.doubleBackToExitPressedOnce = true
+       // Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+       Utils().showSnackBar(this,"Please click BACK again to exit",binding.constraintLayout)
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
     }
 }

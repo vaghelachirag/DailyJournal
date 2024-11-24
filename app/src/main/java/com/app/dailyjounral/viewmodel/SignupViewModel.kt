@@ -70,11 +70,17 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
    }
 
     private fun callSendOTPAPI() {
+
+        val params = HashMap<String,Any>()
+        params["fullName"] = fullName.get().toString()
+        params["emailId"] =  emailAddress.get().toString()
+
+
         if (Utility.isNetworkConnected(context)){
             isLoading.postValue(true)
             Networking.with(context)
                 .getServices()
-                .getSendOTPToEmail(emailAddress.get().toString())
+                .getSendOTPToEmail(Networking.wrapParams(params))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(object : CallbackObserver<GetSendOTPResponse>() {

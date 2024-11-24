@@ -31,6 +31,11 @@ class ForgotPasswordFragment: BaseFragment() {
             else if (!isLoading && isAdded) hideProgressbar()
         }
 
+        binding.txtRedirectToLogin.setOnClickListener {
+            forgotPasswordViewModel.redirectToLogin()
+        }
+
+
         return binding.root
 
     }

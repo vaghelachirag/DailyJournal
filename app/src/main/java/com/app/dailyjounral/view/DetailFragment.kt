@@ -145,4 +145,8 @@ class DetailFragment: BaseFragment() {
         binding.llMood.visibility = View.VISIBLE
         binding.llGratuity.visibility = View.VISIBLE
     }
+
+    fun onBackPressed() {
+      Log.e("OnBackPress","OnBackPres")
+    }
 }

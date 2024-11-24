@@ -16,14 +16,22 @@
         tools:layout="@layout/dashboard_menu_fragment">
 
         <action
+            android:id="@+id/action_dashboardMenuFragment_to_LoginFragment"
+            app:destination="@id/LoginFragment" />
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_MyProfileFragment"
+            app:destination="@id/MyProfileFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+
+        <action
             android:id="@+id/action_dashboardMenuFragment_to_detailViewFragment"
             app:destination="@id/detailViewFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/dashboardMenuFragment"
-            app:popUpToInclusive="false"/>
-        <action
-            android:id="@+id/action_dashboardMenuFragment_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -114,7 +122,8 @@
         android:id="@+id/MyProfileFragment"
         android:name="com.app.dailyjounral.view.fragment.MyProfileFragment"
         android:label="@string/my_profile_label"
-        app:popUpToInclusive="false"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true"
         tools:layout="@layout/fragment_my_profile">
 
     </fragment>
