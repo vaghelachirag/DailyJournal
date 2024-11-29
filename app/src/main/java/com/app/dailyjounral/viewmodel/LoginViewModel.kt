@@ -154,6 +154,12 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                             val session = Session(context)
                             session.isLoggedIn = true
                             session.user = t.getData()
+
+                            if (t.getData() != null){
+                                if (!t.getData()!!.profilePicture.isNullOrEmpty()){
+                                    session.storeUserProfileImageKey(t.getData()!!.profilePicture)
+                                }
+                            }
                             Utils().reloadActivity(context)
 
                         }else{

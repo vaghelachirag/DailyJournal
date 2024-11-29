@@ -32,7 +32,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:ignore="MissingConstraints">
 
-                <com.app.dailyjounral.widget.RobotoRegularText
+                <com.app.dailyjounral.widget.PoppinsBoldText
                     android:id="@+id/tvSignupLabel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -84,6 +84,7 @@
                     android:drawableStart="@drawable/baseline_email_24"
                     android:paddingStart="@dimen/_10ssp"
                     android:drawablePadding="@dimen/_10ssp"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/_8ssp"
                     android:layout_marginTop="@dimen/_5ssp"
                     app:layout_constraintTop_toBottomOf="@+id/emailLabel"

@@ -113,9 +113,13 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
 
 
     private fun signInWithGoogle() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient!!).setResultCallback {
+            Log.e("Signout","Signout")
+        }
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient!!)
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
+
     @Deprecated("Deprecated in Java", ReplaceWith("super.onActivityResult(requestCode, resultCode, data)", "com.app.dailyjounral.view.base.BaseFragment"))
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) { super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {

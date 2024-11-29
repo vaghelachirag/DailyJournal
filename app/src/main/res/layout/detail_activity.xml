@@ -168,7 +168,6 @@
                                 android:layout_marginTop="@dimen/_10ssp"
                                 android:layout_marginEnd="@dimen/_10ssp"
                                 android:textSize="@dimen/_12ssp"
-                                android:maxLines="5"
                                 android:text=""
                                 android:textColor="@color/black">
 

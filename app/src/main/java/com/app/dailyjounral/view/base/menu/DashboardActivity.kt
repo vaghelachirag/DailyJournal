@@ -190,7 +190,7 @@ class DashboardActivity : BaseActivity(){
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (menuList[position].title == "Profile"){
-                    AppConstants.detailType = 3
+                   // AppConstants.detailType = 3
                     navController.navigate(R.id.action_dashboardMenuFragment_to_MyProfileFragment)
                 }
                 if (menuList[position].title == "Change Password"){

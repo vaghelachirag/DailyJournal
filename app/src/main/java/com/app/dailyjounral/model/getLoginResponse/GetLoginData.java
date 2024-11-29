@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class GetLoginData {
-
     @SerializedName("userId")
     @Expose
     private Integer userId;
@@ -16,7 +15,10 @@ public class GetLoginData {
     private String emailId;
     @SerializedName("fullName")
     @Expose
-    private Object fullName;
+    private String fullName;
+    @SerializedName("profilePicture")
+    @Expose
+    private String profilePicture;
     @SerializedName("token")
     @Expose
     private String token;
@@ -26,9 +28,12 @@ public class GetLoginData {
     @SerializedName("isActive")
     @Expose
     private Boolean isActive;
-    @SerializedName("tokenCreatedDate")
+    @SerializedName("isGoogleLoginEnabled")
     @Expose
-    private String tokenCreatedDate;
+    private Object isGoogleLoginEnabled;
+    @SerializedName("isFacebookLoginEnabled")
+    @Expose
+    private Object isFacebookLoginEnabled;
 
     public Integer getUserId() {
         return userId;
@@ -54,12 +59,20 @@ public class GetLoginData {
         this.emailId = emailId;
     }
 
-    public Object getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(Object fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
     public String getToken() {
@@ -86,12 +99,20 @@ public class GetLoginData {
         this.isActive = isActive;
     }
 
-    public String getTokenCreatedDate() {
-        return tokenCreatedDate;
+    public Object getIsGoogleLoginEnabled() {
+        return isGoogleLoginEnabled;
     }
 
-    public void setTokenCreatedDate(String tokenCreatedDate) {
-        this.tokenCreatedDate = tokenCreatedDate;
+    public void setIsGoogleLoginEnabled(Object isGoogleLoginEnabled) {
+        this.isGoogleLoginEnabled = isGoogleLoginEnabled;
+    }
+
+    public Object getIsFacebookLoginEnabled() {
+        return isFacebookLoginEnabled;
+    }
+
+    public void setIsFacebookLoginEnabled(Object isFacebookLoginEnabled) {
+        this.isFacebookLoginEnabled = isFacebookLoginEnabled;
     }
 
 }
