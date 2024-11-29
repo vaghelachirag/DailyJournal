@@ -10,9 +10,7 @@
             type="com.app.dailyjounral.viewmodel.DetailViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
@@ -160,18 +158,27 @@
 
                             </ImageView>
 
+                            <ScrollView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginStart="@dimen/_10ssp"
+                                android:layout_marginTop="@dimen/_10ssp"
+                                android:layout_marginEnd="@dimen/_10ssp"
+                                android:overScrollMode="never"
+                                android:layout_marginBottom="@dimen/_10ssp">
+
                             <com.app.dailyjounral.widget.RobotoRegularText
                                 android:id="@+id/txtTips"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginTop="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
                                 android:textSize="@dimen/_12ssp"
                                 android:text=""
+                                android:scrollbars="vertical"
                                 android:textColor="@color/black">
 
                             </com.app.dailyjounral.widget.RobotoRegularText>
+                            </ScrollView>
 
                             <LinearLayout
                                 android:id="@+id/ll_DailyJournalAns"
@@ -410,7 +417,5 @@
             </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
 </layout>
