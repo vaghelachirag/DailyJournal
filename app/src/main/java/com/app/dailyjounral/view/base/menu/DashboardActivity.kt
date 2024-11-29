@@ -154,7 +154,7 @@ class DashboardActivity : BaseActivity(){
                     navController.navigate(R.id.dashboardMenuFragment)
                 }
                 if (position == 1){
-                    AppConstants.detailType == 1
+                    AppConstants.detailType = 1
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (position == 2){
@@ -254,7 +254,9 @@ class DashboardActivity : BaseActivity(){
         var userName = ""
         if (session != null){
             if (!session!!.getUserProfileImageKey().isNullOrEmpty()){
+                Log.e("Profile",session!!.getUserProfileImageKey().toString())
                 profileImage = session!!.getUserProfileImageKey()!!
+                Log.e("Profile",profileImage)
             }
             if (!session!!.getUserNameKey().isNullOrEmpty()){
                 userName = session!!.getUserNameKey()!!
