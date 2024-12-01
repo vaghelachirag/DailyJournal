@@ -23,15 +23,15 @@
             android:id="@+id/action_dashboardMenuFragment_to_MyProfileFragment"
             app:destination="@id/MyProfileFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
+            app:popUpTo="@+id/LoginFragment"
             app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_dashboardMenuFragment_to_detailViewFragment"
             app:destination="@id/detailViewFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@+id/LoginFragment"
+            app:popUpToInclusive="false" />
 
     </fragment>
 
@@ -56,11 +56,24 @@
         tools:layout="@layout/detail_activity">
 
         <action
-            android:id="@+id/action_detailViewFragment_to_dashboardFragment"
-            app:destination="@id/detailViewFragment" />
-        <action
             android:id="@+id/action_webViewFragment_to_dashboardMenuFragment"
             app:destination="@id/dashboardMenuFragment" />
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_MyProfileFragment"
+            app:destination="@id/MyProfileFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="false" />
+
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_detailViewFragment"
+            app:destination="@id/detailViewFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="false" />
+
     </fragment>
 
     <fragment

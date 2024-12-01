@@ -18,6 +18,7 @@ import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
+import com.app.dailyjounral.view.dialougs.MessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -88,9 +89,7 @@ class ChangePasswordViewModel(@SuppressLint("StaticFieldLeak") private val conte
                         Log.e("Status",t.getSuccess().toString())
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
-                            val session = Session(context)
-                            session.clearSession()
-                            changePasswordFragment.findNavController().navigate(R.id.LoginFragment)
+                            MessageDialog(context, t.getMessage().toString()).show()
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)

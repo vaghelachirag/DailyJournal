@@ -149,4 +149,5 @@ class DetailFragment: BaseFragment() {
     fun onBackPressed() {
       Log.e("OnBackPress","OnBackPres")
     }
+
 }

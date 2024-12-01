@@ -108,6 +108,7 @@
                     android:textColor="@color/black"
                     android:drawableStart="@drawable/icon_email"
                     android:paddingStart="@dimen/_10ssp"
+                    android:inputType="textEmailAddress"
                     android:drawablePadding="@dimen/_10ssp"
                     android:padding="@dimen/_8ssp"
                     android:layout_marginTop="@dimen/_5ssp"
@@ -295,7 +296,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ll_loginOption">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_DailyGeneral"
+                        android:id="@+id/card_Google"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/white"

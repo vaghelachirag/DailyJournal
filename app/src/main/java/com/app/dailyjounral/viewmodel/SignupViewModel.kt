@@ -17,8 +17,11 @@ import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.RegisterFragment
 import com.app.dailyjounral.model.base.BaseViewModel
+import com.app.dailyjounral.model.getLoginResponse.GetLoginResponse
 import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
 import com.app.dailyjounral.uttils.AppConstants
+import com.app.dailyjounral.uttils.Session
+import com.app.dailyjounral.view.dialougs.MessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -119,6 +122,7 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
         }
     }
 
+
     // Call  Api  For Register User
     private fun callRegisterUserAPI() {
 
@@ -169,6 +173,52 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
         }else{
             Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
         }
+    }
+
+    fun getSocialLoginResponse(displayName: String?, email: String?, socialType: Int) {
+        val params = HashMap<String,Any>()
+        params["fullname"] = displayName.toString()
+        params["email"] = email.toString()
+        params["socialtype"] = socialType
+
+        if (Utility.isNetworkConnected(context)){
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getSocialLoginResponse(Utils().getUserToken(context),Networking.wrapParams(params))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetLoginResponse>() {
+                    override fun onSuccess(response: GetLoginResponse) {
+                        isLoading.postValue(false)
+                        //redirectToHome()
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                    }
+                    override fun onNext(t: GetLoginResponse) {
+                        Log.e("Status",t.getSuccess().toString())
+                        isLoading.postValue(false)
+                        if(t.getSuccess() == true){
+                            MessageDialog(context, t.getMessage().toString()).show()
+                            val session = Session(context)
+                            session.isLoggedIn = true
+                            session.user = t.getData()
+                            Utils().reloadActivity(context)
+                        }else{
+                            //  Utils().showToast(context,t.getMessage().toString())
+                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                        }
+                        Log.e("StatusCode",t.getSuccess().toString())
+                    }
+
+                })
+        }else{
+            Utils().showToast(context, context.getString(R.string.nointernetconnection))
+        }
+
     }
 
 }
