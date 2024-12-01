@@ -169,12 +169,13 @@
                                 android:fadeScrollbars="false"
                                 android:layout_marginBottom="@dimen/_10ssp">
 
-                            <com.app.dailyjounral.widget.RobotoRegularText
+                             <com.app.dailyjounral.widget.RobotoRegularText
                                 android:id="@+id/txtTips"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/_12ssp"
                                 android:text=""
+                                android:maxHeight="@dimen/_80ssp"
                                 android:scrollbars="vertical"
                                 android:textColor="@color/black">
 

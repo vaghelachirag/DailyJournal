@@ -2,6 +2,7 @@ package com.app.dailyjounral.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,7 @@ class DetailFragment: BaseFragment() {
         setHeader()
         detailViewModel.init()
 
+        binding.txtTips.movementMethod = ScrollingMovementMethod()
 
         // Show Progress bar
         detailViewModel.isLoading.observe(requireActivity()) { isLoading ->
