@@ -42,7 +42,6 @@ class MyProfileFragment: BaseFragment() {
     private var imagePath: Uri? = null
     private val cameraCode: Int = 0x50
     private val galleryCode: Int = 0x51
-    private var compressedImage: File? = null
 
 
     override fun onCreateView(
@@ -52,6 +51,8 @@ class MyProfileFragment: BaseFragment() {
         binding.lifecycleOwner = this
         myProfileViewModel.init()
 
+        binding.rbYes.isClickable = false;
+        binding.rbNo.isClickable = false;
 
         binding.btnLogin.setOnClickListener {
          //   forgotPasswordViewModel.redirectToOTP()
