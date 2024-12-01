@@ -111,7 +111,7 @@ class Utils {
     @SuppressLint("SimpleDateFormat")
     fun getCurrentDate(): String {
         val today = Date()
-        val format = SimpleDateFormat("dd/MM/yyyy")
+        val format = SimpleDateFormat("MM/dd/yyyy")
         return format.format(today)
     }
 

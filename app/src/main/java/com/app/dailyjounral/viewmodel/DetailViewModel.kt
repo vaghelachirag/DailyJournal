@@ -1183,13 +1183,19 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     }
 
     private fun addSleepData() {
-        sleepDataList.add(SetSelectedSleepData(0, "", "", R.drawable.icon_number_one))
+
+        sleepDataList.add(SetSelectedSleepData(1, "", "", R.drawable.icon_number_one))
         sleepDataList.add(SetSelectedSleepData(2, "", "", R.drawable.icon_number_two))
-        sleepDataList.add(SetSelectedSleepData(4, "", "", R.drawable.icon_number_three))
+        sleepDataList.add(SetSelectedSleepData(3, "", "", R.drawable.icon_number_three))
 
 
-        sleepDataList.add(SetSelectedSleepData(6, "", "", R.drawable.icon_number_four))
-        sleepDataList.add(SetSelectedSleepData(8, "", "", R.drawable.icon_number_five))
+        sleepDataList.add(SetSelectedSleepData(4, "", "", R.drawable.icon_number_four))
+        sleepDataList.add(SetSelectedSleepData(5, "", "", R.drawable.icon_number_five))
+
+        sleepDataList.add(SetSelectedSleepData(6, "", "", R.drawable.icon_number_six))
+        sleepDataList.add(SetSelectedSleepData(7, "", "", R.drawable.icon_number_seven))
+        sleepDataList.add(SetSelectedSleepData(8, "", "", R.drawable.icon_number_eight))
+
 
         binding.rvMoodDetector.setLayoutManager(GridLayoutManager(context, 3))
         val sleepSelectorAdapter =
