@@ -38,7 +38,7 @@
     <string name="signup_text">Do not have Account?</string>
     <string name="register_now_text"> Register Now</string>
     <string name="email_hint">Email<font color='#1C0647'>*</font></string>
-    <string name="is_adult_hint">Is Adult?<font color='#1C0647'>*</font></string>
+    <string name="is_adult_hint">Are you Adult?<font color='#1C0647'>*</font></string>
 
     <string name="option_gallery">Gallery</string>
     <string name="option_camera">Camera</string>
@@ -49,7 +49,7 @@
     <string name="password_validation"> Please enter your Password</string>
     <string name="password_valid_validation"> Please enter password character more than 3</string>
     <string name="confirm_password_validation"> New Password and Confirm Password does not match</string>
-    <string name="adult_validation"> Please Select Yes or No </string>
+    <string name="adult_validation"> Please Select Yes for Adult</string>
 
     <!-- Register Validation -->
     <string name="fullName_validation"> Please enter your Full Name</string>

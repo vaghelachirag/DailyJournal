@@ -64,7 +64,7 @@
                     android:background="@color/white"
                     app:cardCornerRadius="10dp"
                     android:layout_below="@+id/iv_text_logo"
-                    android:layout_marginTop="@dimen/_20ssp"
+                    android:layout_marginTop="@dimen/_10ssp"
                     android:layout_centerVertical="true"
                     android:layout_marginBottom="@dimen/_60ssp"
                     app:cardBackgroundColor="@color/white"
@@ -175,7 +175,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/_12ssp"
                                 android:text=""
-                                android:maxHeight="@dimen/_60ssp"
+                                android:maxHeight="@dimen/_100ssp"
                                 android:scrollbars="vertical"
                                 android:textColor="@color/black">
 
@@ -214,7 +214,7 @@
                                     android:textColor="@color/black"
                                     android:focusable="@{viewModel.isAnswerIsEditable}"
                                     android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
-                                    android:minHeight="@dimen/_100ssp"
+                                    android:minHeight="@dimen/_80ssp"
                                     android:paddingStart="@dimen/_5ssp"
                                     android:paddingTop="@dimen/_10ssp"
                                     android:paddingEnd="@dimen/_5ssp"

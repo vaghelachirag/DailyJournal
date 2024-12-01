@@ -95,7 +95,7 @@ class DetailFragment: BaseFragment() {
         if(AppConstants.detailType == 7){
             binding.txtLabel.visibility = View.VISIBLE
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.detail_goal_setting))
-            binding.txtLabel.text = "Enter your goal of today:"
+            binding.txtLabel.text = "Enter your goal for today:"
             binding.edtAnswer.setHint("Enter your goal")
             setTipOfDayData(false)
             setDailyGeneralData()

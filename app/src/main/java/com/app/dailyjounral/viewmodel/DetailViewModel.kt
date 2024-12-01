@@ -108,7 +108,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
         }
         if (AppConstants.detailType == 5) {
             //  addWorkoutData()
-            getGratitudeListResponse()
+            getGratitudeListResponse(true)
         }
 
         if (AppConstants.detailType == 6) {
@@ -655,14 +655,16 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             Utils().showToast(context, context.getString(R.string.nointernetconnection))
         }
     }
-    private fun getGratitudeListResponse() {
+    private fun getGratitudeListResponse(isShow: Boolean) {
         if (!session.isLoggedIn) {
             detailFragment.findNavController().navigate(R.id.LoginFragment)
             return
         }
 
         if (Utility.isNetworkConnected(context)) {
-            isLoading.postValue(true)
+            if (isShow){
+                isLoading.postValue(true)
+            }
             Networking.with(context)
                 .getServices()
                 .getGratitudeListByDateResponse(Utils().getUserToken(context), Utils().getDate())
@@ -1105,7 +1107,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 isAnswerIsEditable.value = false
                 binding.llEdit.visibility = View.VISIBLE
 
-                binding.txtLabel.text = "Your goal of today:"
+                binding.txtLabel.text = "Your goal for today:"
                 binding.edtAnswer.setHint("Your goal of today:")
             }
         }
@@ -1434,7 +1436,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                         isLoading.postValue(false)
                         if (t.getSuccess() == true) {
                             MessageDialog(context, t.getMessage().toString()).show()
-                            getGratitudeListResponse()
+                            getGratitudeListResponse(false)
                         } else {
                             MessageDialog(context, t.getMessage().toString()).show()
                         }

@@ -127,6 +127,7 @@ class DashboardActivity : BaseActivity(){
             menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
         }
 
+        menuList.add(MenuDataModel("Help and Feedback","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
         menuList.add(MenuDataModel("Privacy Policy","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
 
         if (!session!!.isLoggedIn){

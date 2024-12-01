@@ -169,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_marginTop="@dimen/_5ssp"
                     app:layout_constraintTop_toBottomOf="@+id/layout_password">
 
@@ -227,6 +227,7 @@
                                 android:text="No"
                                 android:scaleX="0.80"
                                 android:scaleY="0.80"
+                                android:visibility="gone"
                                 android:textSize="@dimen/_15ssp"
                                 android:textColorHint="@color/gray_616161"
                                 android:textColor="@color/black"
