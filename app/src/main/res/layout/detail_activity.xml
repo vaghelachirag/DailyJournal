@@ -166,6 +166,7 @@
                                 android:layout_marginTop="@dimen/_10ssp"
                                 android:layout_marginEnd="@dimen/_10ssp"
                                 android:overScrollMode="never"
+                                android:fadeScrollbars="false"
                                 android:layout_marginBottom="@dimen/_10ssp">
 
                             <com.app.dailyjounral.widget.RobotoRegularText

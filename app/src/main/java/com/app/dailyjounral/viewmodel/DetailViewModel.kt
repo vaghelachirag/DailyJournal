@@ -236,7 +236,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                             binding.edtAnswer.visibility = View.VISIBLE
                             binding.txtLabel.visibility = View.VISIBLE
                             binding.edtAnswer.setText("")
-                            binding.txtLabel.text = "Enter Your goal of today:"
+                            binding.txtLabel.text = "Enter Your goal for today:"
                             binding.edtAnswer.isFocusable = true
                             binding.edtAnswer.isFocusableInTouchMode = true
                             binding.edtAnswer.inputType = InputType.TYPE_CLASS_TEXT
@@ -353,7 +353,7 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                                 isAnswerIsEditable.value = true
                                 binding.edtAnswer.setText("")
                                 showHideEditAndDelete(false)
-                                binding.txtLabel.text = "Enter Your goal of today:"
+                                binding.txtLabel.text = "Enter Your goal for today:"
                             }
                             else{
                                 isAnswerIsEditable.value = false
