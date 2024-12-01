@@ -134,8 +134,12 @@
 
 
     <string name="server_client_id">AIzaSyBoD5scdG-kPGWhOGERu96N0BWvPceipjQ</string>
-
     <string name="facebook_app_id">495608067455933</string>
+
+
+    <string name="didntreceiveotp">Did not receive OTP?</string>
+    <string name="resend">Resend OTP</string>
+
 
     <string name="lorem_ipsum">
        "Autism is not a disability, it's a different ability. Embrace the uniqueness and celebrate every milestone, no matter how small. You are your child's strongest advocate and their greatest source of love and support."

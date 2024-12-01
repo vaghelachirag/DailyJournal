@@ -1,13 +1,17 @@
 package com.app.dailyjounral.view.fragment
 
+import android.R
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.app.dailyjounral.databinding.OtpPasswordBinding
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.view.base.BaseFragment
@@ -46,9 +50,34 @@ class OtpPasswordFragment: BaseFragment() {
             if (isLoading && isAdded) showProgressbar()
             else if (!isLoading && isAdded) hideProgressbar()
         }
+
+        binding.txtResend.setOnClickListener {
+            otpViewModel.callSendOTPAPI()
+            startTimer()
+        }
         setOtpToNext()
+
+        startTimer()
+
         return binding.root
 
+    }
+
+    private fun startTimer() {
+        val cTimer = object : CountDownTimer(30000, 1000) {
+            @SuppressLint("SetTextI18n")
+            override fun onTick(millisUntilFinished: Long) {
+                binding.txtDidntReceive.visibility = View.GONE
+                binding.txtResend.text = "Resend OTP in : " + (millisUntilFinished / 1000).toString() + " Sec"
+            }
+
+            override fun onFinish() {
+                binding.txtDidntReceive.visibility = View.VISIBLE
+                binding.txtResend.text = "Resend OTP"
+                binding.txtResend.setEnabled(true)
+            }
+        }
+        cTimer.start()
     }
 
     private fun setRegisterData() {

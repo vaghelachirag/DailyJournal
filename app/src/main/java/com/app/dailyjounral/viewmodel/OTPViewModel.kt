@@ -17,6 +17,7 @@ import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.fragment.OtpPasswordFragment
 import com.app.dailyjounral.model.base.BaseViewModel
 import com.app.dailyjounral.model.getRegisterResponse.GetRegisterUserResponse
+import com.app.dailyjounral.model.getSendOTPResponse.GetSendOTPResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -66,6 +67,50 @@ class OTPViewModel(private val context: Context, private val binding: OtpPasswor
             }
         }
     }
+
+    fun callSendOTPAPI() {
+
+        val params = HashMap<String,Any>()
+        params["fullName"] = fullName.get().toString()
+        params["emailId"] =  registerEmail.get().toString()
+
+
+        if (Utility.isNetworkConnected(context)){
+            isLoading.postValue(true)
+            Networking.with(context)
+                .getServices()
+                .getSendOTPToEmail(Networking.wrapParams(params))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(object : CallbackObserver<GetSendOTPResponse>() {
+                    override fun onSuccess(response: GetSendOTPResponse) {
+                        isLoading.postValue(false)
+                        //redirectToHome()
+                    }
+
+                    override fun onFailed(code: Int, message: String) {
+                        isLoading.postValue(false)
+                    }
+
+                    override fun onNext(getSendOTPResponse: GetSendOTPResponse) {
+                        Log.e("Status",getSendOTPResponse.getSuccess().toString())
+                        isLoading.postValue(false)
+                        if(getSendOTPResponse.getSuccess() == true){
+                            Utils().showSnackBar(context,getSendOTPResponse.getMessage().toString(),binding.constraintLayout)
+
+                        }else{
+                            //  Utils().showToast(context,t.getMessage().toString())
+                            Utils().showSnackBar(context,getSendOTPResponse.getMessage().toString(),binding.constraintLayout)
+                        }
+                        Log.e("StatusCode",getSendOTPResponse.getSuccess().toString())
+                    }
+
+                })
+        }else{
+            Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
+        }
+    }
+
 
     // Call  Api  For Register User
     private fun callRegisterUserAPI() {
