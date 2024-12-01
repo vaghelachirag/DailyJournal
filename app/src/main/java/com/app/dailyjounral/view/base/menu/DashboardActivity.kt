@@ -127,6 +127,8 @@ class DashboardActivity : BaseActivity(){
             menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
         }
 
+        menuList.add(MenuDataModel("Privacy Policy","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
+
         if (!session!!.isLoggedIn){
             menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
         }else{
@@ -191,7 +193,7 @@ class DashboardActivity : BaseActivity(){
                 }
                 if (menuList[position].title == "Profile"){
                    // AppConstants.detailType = 3
-                    navController.navigate(R.id.action_dashboardMenuFragment_to_MyProfileFragment)
+                    navController.navigate(R.id.MyProfileFragment)
                 }
                 if (menuList[position].title == "Change Password"){
                     if (session!!.isLoggedIn){

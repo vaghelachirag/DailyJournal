@@ -175,7 +175,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/_12ssp"
                                 android:text=""
-                                android:maxHeight="@dimen/_80ssp"
+                                android:maxHeight="@dimen/_60ssp"
                                 android:scrollbars="vertical"
                                 android:textColor="@color/black">
 
