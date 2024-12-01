@@ -154,6 +154,7 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                             val session = Session(context)
                             session.isLoggedIn = true
                             session.user = t.getData()
+                            if(t.getData())
                             Utils().reloadActivity(context)
 
                         }else{
