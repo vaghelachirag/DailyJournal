@@ -64,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/fullName"
                     android:textSize="@dimen/_12ssp"
+                    android:inputType="text"
                     android:text="@={viewModel.fullName}"
                     android:textColorHint="@color/gray_616161"
                     android:drawableTint="@color/top_header_color"

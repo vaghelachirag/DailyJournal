@@ -37,6 +37,7 @@
                 android:id="@+id/edt_GratitudeAns"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:maxHeight="@dimen/_50ssp"
                 android:hint="@string/enter_your_gratitude"
                 android:textSize="@dimen/_10ssp"
                 android:layout_gravity="top"

@@ -207,6 +207,15 @@ class DashboardActivity : BaseActivity(){
                 if (menuList[position].title == AppConstants.menuLogout){
                     Utils().showAlertDialog(this@DashboardActivity,resources.getString(R.string.logoutAlert))
                 }
+
+                if (menuList[position].title == "Help and Feedback"){
+                    navController.navigate(R.id.webViewFragment)
+                }
+
+                if (menuList[position].title == "Privacy Policy"){
+                    navController.navigate(R.id.webViewFragment)
+                }
+
                 if (menuList[position].title == AppConstants.menuLogin){
                     AppConstants.detailType = 6
                     navController.navigate(R.id.LoginFragment)

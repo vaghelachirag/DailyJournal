@@ -153,4 +153,19 @@
     </fragment>
 
 
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.app.dailyjounral.view.fragment.WebViewFragment"
+        android:label="@string/webView_fragment_label"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/anim_slide_in_from_bottom"
+        app:popExitAnim="@anim/anim_slide_out_to_bottom"
+        app:destination="@id/dashboardMenuFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true"
+        tools:layout="@layout/fragment_load_web_url">
+
+    </fragment>
 </navigation>
