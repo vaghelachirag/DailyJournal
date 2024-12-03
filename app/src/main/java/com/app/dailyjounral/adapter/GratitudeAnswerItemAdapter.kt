@@ -45,7 +45,7 @@ class GratitudeAnswerItemAdapter(val context: Context, private val list: List<Ge
     override fun onBindViewHolder(holder: GratitudeAnswerItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
-        holder.binding.edtGratitudeAns.setText(Utility.getNullToBlankString(list[position].getAnswer()!!))
+        holder.binding.txtTips.setText(Utility.getNullToBlankString(list[position].getAnswer()!!))
 
         holder.binding.ivMenu.setOnClickListener {
             val menu = PopupMenu(context,  holder.binding.ivMenu)
@@ -58,7 +58,7 @@ class GratitudeAnswerItemAdapter(val context: Context, private val list: List<Ge
                 when (i) {
                     1 -> {
                         Log.e("Edit","Edit" + list[position].getGratitudeUserRecordId())
-                         holder.binding.edtGratitudeAns.focusable
+                         holder.binding.txtTips.focusable
 
                         DialogAddGratitude(context,false,list[position].getAnswer()!!).setListener(object :
                             DialogAddGratitude.OkButtonListener {

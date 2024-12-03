@@ -33,23 +33,30 @@
             android:paddingTop="@dimen/_10ssp"
             tools:ignore="MissingConstraints">
 
-            <EditText
-                android:id="@+id/edt_GratitudeAns"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:maxHeight="@dimen/_50ssp"
-                android:hint="@string/enter_your_gratitude"
-                android:textSize="@dimen/_10ssp"
-                android:layout_gravity="top"
-                android:gravity="top"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_10ssp"
+                android:layout_marginEnd="@dimen/_10ssp"
+                android:overScrollMode="never"
+                android:fadeScrollbars="false"
                 android:padding="@dimen/_10ssp"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:background="@color/daily_general_ans_bg"
-                android:layout_weight="0.9"
-                tools:ignore="RtlSymmetry">
+                android:layout_weight="0.9">
 
-            </EditText>
+                <com.app.dailyjounral.widget.RobotoRegularText
+                    android:id="@+id/txtTips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12ssp"
+                    android:text=""
+                    android:maxHeight="@dimen/_30ssp"
+                    android:scrollbars="vertical"
+                    android:background="@color/daily_general_ans_bg"
+                    android:textColor="@color/black">
+
+                </com.app.dailyjounral.widget.RobotoRegularText>
+            </androidx.core.widget.NestedScrollView>
 
             <ImageView
                 android:id="@+id/ivMenu"

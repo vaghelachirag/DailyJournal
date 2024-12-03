@@ -83,6 +83,9 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
     private var dailyGoalUserRecordId: MutableLiveData<Int> = MutableLiveData<Int>()
 
     fun init() {
+
+        binding.rvGratitude.isNestedScrollingEnabled = true;
+
         selectedMoodTypeId.value = 0
         selectedWorkoutTypeId.value = 0
         selectedSleepTypeId.value = 0
