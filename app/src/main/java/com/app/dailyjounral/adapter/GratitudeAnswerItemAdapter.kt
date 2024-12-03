@@ -7,6 +7,7 @@ import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
+import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.annotation.RequiresApi
@@ -41,11 +42,18 @@ class GratitudeAnswerItemAdapter(val context: Context, private val list: List<Ge
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables", "NotifyDataSetChanged")
+    @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables", "NotifyDataSetChanged",
+        "ClickableViewAccessibility"
+    )
     override fun onBindViewHolder(holder: GratitudeAnswerItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
-        holder.binding.txtTips.setText(Utility.getNullToBlankString(list[position].getAnswer()!!))
+        holder.binding.scrollGratitude.setOnTouchListener(View.OnTouchListener { v, _ -> // Disallow the touch request for parent scroll on touch of child view
+            v.parent.requestDisallowInterceptTouchEvent(true)
+            false
+        })
+
+        holder.binding.txtTips.text = Utility.getNullToBlankString(list[position].getAnswer()!!)
 
         holder.binding.ivMenu.setOnClickListener {
             val menu = PopupMenu(context,  holder.binding.ivMenu)

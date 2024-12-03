@@ -6,6 +6,7 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.DetailActivityBinding
@@ -24,7 +25,7 @@ class DetailFragment: BaseFragment() {
 
     private val detailViewModel by lazy { DetailViewModel(requireActivity(),binding,this) }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = DetailActivityBinding.inflate(inflater, container, false)
@@ -49,10 +50,10 @@ class DetailFragment: BaseFragment() {
         binding.btnAddGratitude.setOnClickListener {
             DialogAddGratitude(requireActivity(),true,"").setListener(object :
                 DialogAddGratitude.OkButtonListener {
-                override fun onOkPressed(dialogAddGratitude: DialogAddGratitude, gratitude: String?) {
+                override fun onOkPressed(dialog: DialogAddGratitude, gratitude: String?) {
                     if (!gratitude.isNullOrEmpty()){
                         detailViewModel.saveGratitudeApiResponse(gratitude, 0)
-                        dialogAddGratitude.dismiss()
+                        dialog.dismiss()
                     }
                     else{
                         Utils().showSnackBar(context!!, "Please add gratitude first!", binding.constraintLayout)
@@ -60,6 +61,12 @@ class DetailFragment: BaseFragment() {
                 }
             }).show()
         }
+
+        binding.rvGratitude.setOnTouchListener(OnTouchListener { _, _ ->
+            binding.rvGratitude.parent.requestDisallowInterceptTouchEvent(false)
+            false
+        })
+
 
         return binding.root
     }
