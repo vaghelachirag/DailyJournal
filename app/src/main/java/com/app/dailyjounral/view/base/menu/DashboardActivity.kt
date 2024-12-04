@@ -41,7 +41,6 @@ import io.reactivex.schedulers.Schedulers
 @Suppress("DEPRECATION")
 class DashboardActivity : BaseActivity(){
 
-
     private lateinit var binding: ActivityDashboardBinding
     lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -124,11 +123,15 @@ class DashboardActivity : BaseActivity(){
 
         if (session!!.isLoggedIn){
             menuList.add(MenuDataModel("Profile","",R.drawable.icon_profile,R.drawable.icon_profile,false))
-            menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
+        }
+        if (session!!.isLoggedIn){
+            if (session!!.user?.isChangePasswordScreeenToShow == true){
+                menuList.add(MenuDataModel("Change Password","",R.drawable.icon_menu_change_password_unselected,R.drawable.icon_menu_change_password_selected,false))
+            }
         }
 
-        menuList.add(MenuDataModel("Help and Feedback","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
-        menuList.add(MenuDataModel("Privacy Policy","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
+        menuList.add(MenuDataModel("Help and Feedback","",R.drawable.icon_menu_help_unselect,R.drawable.icon_menu_help_select,false))
+        menuList.add(MenuDataModel("Privacy Policy","",R.drawable.icon_privcy_policy_unsected,R.drawable.icon_privcy_policy_sected,false))
 
         if (!session!!.isLoggedIn){
             menuList.add(MenuDataModel("Login","",R.drawable.icon_menu_login_unseleted,R.drawable.icon_login_menu_selected,false))
@@ -209,11 +212,15 @@ class DashboardActivity : BaseActivity(){
                 }
 
                 if (menuList[position].title == "Help and Feedback"){
-                    navController.navigate(R.id.webViewFragment)
+                    val bundle = Bundle()
+                    bundle.putString("webURL","Help and Feedback")
+                    navController.navigate(R.id.webViewFragment,bundle)
                 }
 
                 if (menuList[position].title == "Privacy Policy"){
-                    navController.navigate(R.id.webViewFragment)
+                    val bundle = Bundle()
+                    bundle.putString("webURL","Privacy Policy")
+                    navController.navigate(R.id.webViewFragment,bundle)
                 }
 
                 if (menuList[position].title == AppConstants.menuLogin){

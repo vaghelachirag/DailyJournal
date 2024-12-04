@@ -241,13 +241,12 @@
                                         tools:ignore="TooDeepLayout">
                                     </com.app.dailyjounral.widget.PoppinsBoldText>
                                     <LinearLayout
-                                        style="?android:attr/buttonBarStyle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/_5ssp"
                                         android:weightSum="2">
 
-                                        <Button
+                                        <com.google.android.material.button.MaterialButton
                                             android:id="@+id/btnYes"
                                             android:layout_width="0dp"
                                             android:layout_height="@dimen/_35ssp"
@@ -255,19 +254,27 @@
                                             app:cornerRadius="@dimen/_5ssp"
                                             android:layout_marginStart="@dimen/_20ssp"
                                             android:layout_marginEnd="@dimen/_20ssp"
+                                            android:textColor="@color/white"
+                                            style="@style/CustomDialougButtonStyle"
+                                            app:backgroundTint="@null"
+                                            android:fontFamily="@font/roboto_bold"
                                             android:text="Yes" />
 
-                                        <Button
+                                        <com.google.android.material.button.MaterialButton
                                             android:id="@+id/btnNo"
                                             android:layout_width="0dp"
                                             android:layout_height="@dimen/_35ssp"
                                             android:layout_weight="1"
                                             app:cornerRadius="@dimen/_5ssp"
+                                            app:backgroundTint="@null"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textColor="@color/black"
+                                            style="@style/CustomDialougButton"
                                             android:layout_marginLeft="@dimen/_20ssp"
                                             android:layout_marginRight="@dimen/_20ssp"
                                             android:text="No">
 
-                                        </Button>
+                                        </com.google.android.material.button.MaterialButton>
 
 
                                     </LinearLayout>
@@ -378,7 +385,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvGratitude"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="200sp"
                                 android:layout_marginTop="@dimen/_10ssp"
                                 android:clipToPadding="false"
                                 android:fadeScrollbars="false"

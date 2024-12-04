@@ -54,11 +54,12 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnCancel"
                         android:layout_weight="1"
-                        style="@style/CustomDialougButtonStyle"
+                        style="@style/CustomDialougButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_16ssp"
                         android:text="Cancel"
+                        android:textColor="@color/black"
                         app:backgroundTint="@null"
                         android:layout_marginLeft="@dimen/_10ssp"
                         android:textAllCaps="false"

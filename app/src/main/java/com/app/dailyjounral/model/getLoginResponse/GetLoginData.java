@@ -30,10 +30,13 @@ public class GetLoginData {
     private Boolean isActive;
     @SerializedName("isGoogleLoginEnabled")
     @Expose
-    private Object isGoogleLoginEnabled;
+    private Boolean isGoogleLoginEnabled;
     @SerializedName("isFacebookLoginEnabled")
     @Expose
     private Object isFacebookLoginEnabled;
+    @SerializedName("isChangePasswordScreeenToShow")
+    @Expose
+    private Boolean isChangePasswordScreeenToShow;
 
     public Integer getUserId() {
         return userId;
@@ -99,11 +102,11 @@ public class GetLoginData {
         this.isActive = isActive;
     }
 
-    public Object getIsGoogleLoginEnabled() {
+    public Boolean getIsGoogleLoginEnabled() {
         return isGoogleLoginEnabled;
     }
 
-    public void setIsGoogleLoginEnabled(Object isGoogleLoginEnabled) {
+    public void setIsGoogleLoginEnabled(Boolean isGoogleLoginEnabled) {
         this.isGoogleLoginEnabled = isGoogleLoginEnabled;
     }
 
@@ -114,5 +117,14 @@ public class GetLoginData {
     public void setIsFacebookLoginEnabled(Object isFacebookLoginEnabled) {
         this.isFacebookLoginEnabled = isFacebookLoginEnabled;
     }
+
+    public Boolean getIsChangePasswordScreeenToShow() {
+        return isChangePasswordScreeenToShow;
+    }
+
+    public void setIsChangePasswordScreeenToShow(Boolean isChangePasswordScreeenToShow) {
+        this.isChangePasswordScreeenToShow = isChangePasswordScreeenToShow;
+    }
+
 
 }

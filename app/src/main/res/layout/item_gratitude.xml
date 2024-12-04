@@ -33,32 +33,19 @@
             android:paddingTop="@dimen/_10ssp"
             tools:ignore="MissingConstraints">
 
-            <ScrollView
-                android:id="@+id/scrollGratitude"
+            <com.app.dailyjounral.widget.RobotoRegularText
+                android:id="@+id/txtTips"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_10ssp"
-                android:layout_marginEnd="@dimen/_10ssp"
-                android:overScrollMode="never"
-                android:fadeScrollbars="false"
-                android:layout_weight="0.9">
+                android:textSize="@dimen/_12ssp"
+                android:layout_weight="0.9"
+                android:text=""
+                android:padding="@dimen/_5ssp"
+                android:scrollbars="vertical"
+                android:background="@color/daily_general_ans_bg"
+                android:textColor="@color/black">
 
-                <com.app.dailyjounral.widget.RobotoRegularText
-                    android:id="@+id/txtTips"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/_12ssp"
-                    android:text=""
-                    android:padding="@dimen/_5ssp"
-                    android:maxHeight="@dimen/_50ssp"
-                    android:scrollbars="vertical"
-                    android:background="@color/daily_general_ans_bg"
-                    android:textColor="@color/black">
-
-                </com.app.dailyjounral.widget.RobotoRegularText>
-            </ScrollView>
-
+            </com.app.dailyjounral.widget.RobotoRegularText>
             <ImageView
                 android:id="@+id/ivMenu"
                 android:layout_width="0dp"

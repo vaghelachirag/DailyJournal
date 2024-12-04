@@ -71,26 +71,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_80ssp"
                     android:layout_marginStart="-20dp"
-                    android:src="@drawable/icon_top_left_leaf">
-                </ImageView>
+                    android:src="@drawable/icon_top_left_leaf"></ImageView>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_80ssp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="-20dp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/icon_top_right_leaf">
-                </ImageView>
+                    android:src="@drawable/icon_top_right_leaf"></ImageView>
+
                 <ImageView
                     android:id="@+id/iv_Menu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
                     android:layout_below="@+id/iv_LeftIcon"
-                    android:layout_marginTop="-20dp"
+                    android:layout_alignParentStart="true"
                     android:layout_marginStart="@dimen/_30ssp"
-                    android:src="@drawable/ic_nav_menup">
-                </ImageView>
+                    android:layout_marginTop="-20dp"
+                    android:src="@drawable/ic_nav_menup"></ImageView>
 
                 <ImageView
                     android:id="@+id/iv_Logo"
@@ -99,16 +98,16 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_30ssp"
                     android:contentDescription="TODO"
-                    android:src="@drawable/applogo">
-                </ImageView>
+                    android:src="@drawable/applogo"></ImageView>
+
                 <fragment
                     android:id="@+id/navHostFragmentPickford"
                     android:name="androidx.navigation.fragment.NavHostFragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_above="@+id/ll_bottom"
                     android:layout_below="@+id/iv_Menu"
                     app:defaultNavHost="true"
-                    android:layout_above="@+id/ll_bottom"
                     app:navGraph="@navigation/nav_grpah_pickford" />
 
 
@@ -116,11 +115,11 @@
                     android:id="@+id/ll_bottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_gravity="bottom"
                     android:layout_alignParentBottom="true"
-                    android:gravity="bottom"
+                    android:layout_gravity="bottom"
                     android:background="@color/white"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
                     android:weightSum="2">
 
 
@@ -163,6 +162,7 @@
                         </com.app.dailyjounral.widget.InterFontText>
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/ll_Analystic"
                         android:layout_width="match_parent"
@@ -176,9 +176,9 @@
                             android:layout_height="@dimen/_3ssp"
                             android:layout_marginLeft="@dimen/_30ssp"
                             android:layout_marginRight="@dimen/_30ssp"
+                            android:background="@color/tab_selected_bg"
                             android:orientation="horizontal"
-                            android:visibility="gone"
-                            android:background="@color/tab_selected_bg">
+                            android:visibility="gone">
 
                         </LinearLayout>
 
@@ -187,29 +187,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="@dimen/_10ssp">
-                        </ImageView>
+                            android:layout_marginTop="@dimen/_10ssp"></ImageView>
+
                         <com.app.dailyjounral.widget.InterFontText
                             android:id="@+id/txt_Analytics"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Analytics"
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/tab_un_selected_bg"
-                            android:textStyle="bold"
                             android:layout_gravity="center"
-                            >
+                            android:layout_marginTop="5dp"
+                            android:text="Analytics"
+                            android:textColor="@color/tab_un_selected_bg"
+                            android:textStyle="bold">
 
                         </com.app.dailyjounral.widget.InterFontText>
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:visibility="gone"
                         android:layout_marginBottom="10sp"
-                        android:orientation="vertical">
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -217,20 +217,20 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_preium"
                             app:tint="@color/gray_616161" />
+
                         <com.app.dailyjounral.widget.InterFontText
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Premium"
-                            android:layout_marginTop="5dp"
-                            android:textColor="@color/black"
                             android:layout_gravity="center"
-                            >
-                        </com.app.dailyjounral.widget.InterFontText>
+                            android:layout_marginTop="5dp"
+                            android:text="Premium"
+                            android:textColor="@color/black"></com.app.dailyjounral.widget.InterFontText>
 
                     </LinearLayout>
 
                 </LinearLayout>
             </RelativeLayout>
+
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/navigationView"
                 android:layout_width="wrap_content"

@@ -60,13 +60,22 @@ class WebViewFragment: BaseFragment() {
         fileUploadCallback = null
     }
 
-    @SuppressLint("SetJavaScriptEnabled")
+    @SuppressLint("SetJavaScriptEnabled", "UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLoadWebUrlBinding.inflate(inflater, container, false)
         binding.viewModel = webViewViewModel
         binding.lifecycleOwner = this
         context?.let { webViewViewModel.init(it,menuId) }
+
+
+        menuId = requireArguments().getString("webURL").toString()
+
+        if (menuId == "Help and Feedback"){
+            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.icon_help_and_feedback))
+        }else{
+            binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.icon_privacy_policy))
+        }
 
         val webSettings: WebSettings = binding.webView.getSettings()
         webSettings.javaScriptEnabled = true

@@ -48,10 +48,6 @@ class GratitudeAnswerItemAdapter(val context: Context, private val list: List<Ge
     override fun onBindViewHolder(holder: GratitudeAnswerItemViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.bind(list[position])
 
-        holder.binding.scrollGratitude.setOnTouchListener(View.OnTouchListener { v, _ -> // Disallow the touch request for parent scroll on touch of child view
-            v.parent.requestDisallowInterceptTouchEvent(true)
-            false
-        })
 
         holder.binding.txtTips.text = Utility.getNullToBlankString(list[position].getAnswer()!!)
 

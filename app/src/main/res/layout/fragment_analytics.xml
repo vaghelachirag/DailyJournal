@@ -23,7 +23,7 @@
                 android:layout_height="@dimen/_35ssp"
                 android:layout_marginTop="@dimen/_20ssp"
                 android:visibility="visible"
-                android:src="@drawable/detail_analystics_text">
+                android:src="@drawable/icon_analystic">
 
             </ImageView>
 
