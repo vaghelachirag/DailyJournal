@@ -1,5 +1,6 @@
 package com.app.dailyjounral.view.fragment
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +8,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
+import android.widget.TextView
+import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.FragmentRegisterBinding
+import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.viewmodel.SignupViewModel
 import com.facebook.CallbackManager
@@ -16,6 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.material.button.MaterialButton
 
 class RegisterFragment: BaseFragment(), GoogleApiClient.OnConnectionFailedListener {
 
@@ -29,20 +36,20 @@ class RegisterFragment: BaseFragment(), GoogleApiClient.OnConnectionFailedListen
     private var mGoogleApiClient: GoogleApiClient? = null
 
     private var callbackManager = CallbackManager.Factory.create()
-
+    private var gso : GoogleSignInOptions? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         binding.viewModel = signupViewModel
         binding.lifecycleOwner = this
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
 
         mGoogleApiClient = GoogleApiClient.Builder(requireActivity())
             .enableAutoManage(requireActivity() /* FragmentActivity */,this /* OnConnectionFailedListener */)
-            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+            .addApi(Auth.GOOGLE_SIGN_IN_API, gso!!)
             .build()
 
 
@@ -64,7 +71,7 @@ class RegisterFragment: BaseFragment(), GoogleApiClient.OnConnectionFailedListen
         }
 
         binding.cardGoogle.setOnClickListener {
-            signInWithGoogle()
+            showAreYouAdultDialog(requireActivity())
         }
 
 
@@ -107,5 +114,60 @@ class RegisterFragment: BaseFragment(), GoogleApiClient.OnConnectionFailedListen
         super.onPause()
         mGoogleApiClient!!.stopAutoManage(requireActivity())
         mGoogleApiClient!!.disconnect()
+    }
+
+
+    // Show Are you Adult
+    private fun showAreYouAdultDialog(context: Context) {
+
+        session = Session(context);
+
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window!!.attributes.windowAnimations = R.style.DialogTheme;
+        dialog.setCancelable(false)
+        dialog.setContentView(R.layout.custom_alert_are_you_adult)
+
+        dialog.window!!.setBackgroundDrawableResource(R.color.tip_of_day_gradient_top);
+
+        // Button
+        val buttonOk : MaterialButton = dialog.findViewById(R.id.btnOk)
+        val buttonCancel : MaterialButton = dialog.findViewById(R.id.btnCancel)
+
+        val tvValidation : TextView = dialog.findViewById(R.id.tvValidation)
+
+        val iv_Close : ImageView = dialog.findViewById(R.id.iv_Close)
+        val tvMessage: TextView = dialog.findViewById(R.id.tvMessage)
+
+        buttonOk.setOnClickListener {
+            dialog.dismiss()
+            if(mGoogleApiClient!!.isConnected){
+                signInWithGoogle()
+            }else{
+
+                mGoogleApiClient = gso?.let { it1 ->
+                    GoogleApiClient.Builder(requireActivity())
+                        .enableAutoManage(requireActivity() /* FragmentActivity */,this /* OnConnectionFailedListener */)
+                        .addApi(Auth.GOOGLE_SIGN_IN_API, it1)
+                        .build()
+                }
+            }
+
+        }
+
+        iv_Close.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        buttonCancel.setOnClickListener {
+            iv_Close.visibility = View.VISIBLE
+            tvValidation.visibility = View.VISIBLE
+            tvValidation.text = context.resources.getString(R.string.adult_msg_validation)
+            tvMessage.visibility = View.GONE
+            buttonCancel.visibility = View.GONE
+            buttonOk.visibility = View.GONE
+            //  dialog.dismiss()
+        }
+        dialog.show()
     }
 }

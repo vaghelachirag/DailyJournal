@@ -1,6 +1,7 @@
 package com.app.dailyjounral.view.fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -13,14 +14,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.FragmentMyProfileBinding
 import com.app.dailyjounral.uttils.ImagePickerDialog
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.onItemClick
 import com.app.dailyjounral.view.base.BaseFragment
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.viewmodel.MyProfileViewModel
 import com.bumptech.glide.Glide
 import com.karumi.dexter.Dexter
@@ -51,6 +56,7 @@ class MyProfileFragment: BaseFragment() {
         binding.lifecycleOwner = this
         myProfileViewModel.init()
 
+
         binding.rbYes.isClickable = false;
         binding.rbNo.isClickable = false;
 
@@ -66,6 +72,15 @@ class MyProfileFragment: BaseFragment() {
         binding.ivProfileImage.setOnClickListener {
             checkImagePickerPermission()
         }
+
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                @SuppressLint("RestrictedApi")
+                override fun handleOnBackPressed() {
+                  Log.e("Back","Back")
+                    (context as DashboardActivity).navController.navigate(R.id.dashboardMenuFragment)
+                }
+            })
 
         return binding.root
 
@@ -168,8 +183,22 @@ class MyProfileFragment: BaseFragment() {
                 .placeholder(R.drawable.icon_placeholder)
                 .into(binding.ivProfileImage)
         }
+
+        requireFragmentManager().addOnBackStackChangedListener {
+            val f: List<Fragment> = requireFragmentManager().fragments
+            val frag: Fragment = f[0]
+            Log.e("Data","Data")
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // in here you can do logic when backPress is clicked
+                Log.e("OnBackPress","OnBackPres")
+            }
+        })
     }
+
     fun onBackPressed() {
         Log.e("OnBackPress","OnBackPres")
+        (requireActivity() as DashboardActivity).navController.popBackStack(R.id.dashboardMenuFragment, true)
     }
 }

@@ -89,7 +89,7 @@ class Utils {
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.custom_alert_dialoug)
 
-        dialog.window!!.setBackgroundDrawableResource(R.color.tip_of_day_gradient_top);
+        dialog.window!!.setBackgroundDrawableResource(R.color.white);
 
         val txtHeader  : TextView = dialog.findViewById(R.id.tvMessage)
         txtHeader.text = strTitle
@@ -107,6 +107,7 @@ class Utils {
         }
         dialog.show()
     }
+
 
     @SuppressLint("SimpleDateFormat")
     fun getCurrentDate(): String {

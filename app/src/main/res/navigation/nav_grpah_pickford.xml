@@ -19,12 +19,6 @@
             android:id="@+id/action_dashboardMenuFragment_to_LoginFragment"
             app:destination="@id/LoginFragment" />
 
-        <action
-            android:id="@+id/action_dashboardMenuFragment_to_MyProfileFragment"
-            app:destination="@id/MyProfileFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/LoginFragment"
-            app:popUpToInclusive="true" />
 
         <action
             android:id="@+id/action_dashboardMenuFragment_to_detailViewFragment"
@@ -32,6 +26,20 @@
             app:launchSingleTop="true"
             app:popUpTo="@+id/LoginFragment"
             app:popUpToInclusive="false" />
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_ChangePasswordFragment"
+            app:destination="@id/ChangePasswordFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/dashboardMenuFragment"
+            app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/action_dashboardMenuFragment_to_MyProfileFragment"
+            app:destination="@id/MyProfileFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/dashboardMenuFragment"
+            app:popUpToInclusive="true"/>
 
     </fragment>
 
@@ -62,17 +70,16 @@
         <action
             android:id="@+id/action_dashboardMenuFragment_to_MyProfileFragment"
             app:destination="@id/MyProfileFragment"
-            app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/nav_grpah_pickford"
+            app:popUpToInclusive="true" />
 
 
         <action
             android:id="@+id/action_dashboardMenuFragment_to_detailViewFragment"
             app:destination="@id/detailViewFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@+id/nav_graph"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/nav_grpah_pickford"
+            app:popUpToInclusive="true" />
 
     </fragment>
 
@@ -110,6 +117,8 @@
         android:id="@+id/ChangePasswordFragment"
         android:name="com.app.dailyjounral.view.fragment.ChangePasswordFragment"
         android:label="@string/change_password_label"
+        app:popUpTo="@id/nav_grpah_pickford"
+        app:popUpToInclusive="true"
         tools:layout="@layout/change_password">
 
     </fragment>
@@ -119,6 +128,8 @@
         android:id="@+id/ResetPasswordFragment"
         android:name="com.app.dailyjounral.view.fragment.ResetPasswordFragment"
         android:label="@string/reset_password_label"
+        app:popUpTo="@id/nav_grpah_pickford"
+        app:popUpToInclusive="true"
         tools:layout="@layout/reset_password">
 
     </fragment>
@@ -135,8 +146,8 @@
         android:id="@+id/MyProfileFragment"
         android:name="com.app.dailyjounral.view.fragment.MyProfileFragment"
         android:label="@string/my_profile_label"
+        app:popUpTo="@id/nav_grpah_pickford"
         app:popUpToInclusive="true"
-        app:launchSingleTop="true"
         tools:layout="@layout/fragment_my_profile">
 
     </fragment>

@@ -11,10 +11,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -36,6 +36,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlin.system.exitProcess
 
 
 @Suppress("DEPRECATION")
@@ -61,6 +62,7 @@ class DashboardActivity : BaseActivity(){
         activityDashboard = this
         binding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard)
         session = Session(this)
+
 
         options = RequestOptions()
             .centerCrop()
@@ -197,6 +199,10 @@ class DashboardActivity : BaseActivity(){
                 }
                 if (menuList[position].title == "Profile"){
                    // AppConstants.detailType = 3
+                    val fm: FragmentManager = supportFragmentManager
+                    for (i in 0 until fm.backStackEntryCount) {
+                        fm.popBackStack()
+                    }
                     navController.navigate(R.id.MyProfileFragment)
                 }
                 if (menuList[position].title == "Change Password"){
@@ -410,9 +416,10 @@ class DashboardActivity : BaseActivity(){
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
+        super.onBackPressed()
         if (doubleBackToExitPressedOnce) {
-            super.onBackPressed()
-            return
+           //
+            exitProcess(0);
         }
 
         this.doubleBackToExitPressedOnce = true

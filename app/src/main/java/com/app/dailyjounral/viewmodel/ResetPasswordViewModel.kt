@@ -32,19 +32,26 @@ class ResetPasswordViewModel(@SuppressLint("StaticFieldLeak") private val contex
         model.confirmPassword = confirmPassword.get()
 
         if (model.email == null){
+
             Utils().showSnackBar(context,context.resources.getString(R.string.email_validation),binding.constraintLayout)
         }
         else if (!Utility.isEmailValid(model.email.toString())){
             Utils().showSnackBar(context,context.resources.getString(R.string.email_valid_validation),binding.constraintLayout)
         }
         else if (model.password == null ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.password_validation),binding.constraintLayout)
+          //  Utils().showSnackBar(context,context.resources.getString(R.string.password_validation),binding.constraintLayout)
+            binding.edtNewPassword.requestFocus()
+            binding.edtNewPassword.error = context.resources.getString(R.string.password_validation)
         }
         else if (model.password.toString().length < 4 ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+         //   Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+            binding.edtNewPassword.requestFocus()
+            binding.edtNewPassword.error = context.resources.getString(R.string.password_valid_validation)
         }
         else if (model.password.toString() != model.confirmPassword.toString()){
-            Utils().showSnackBar(context,context.resources.getString(R.string.confirm_password_validation),binding.constraintLayout)
+          //  Utils().showSnackBar(context,context.resources.getString(R.string.confirm_password_validation),binding.constraintLayout)
+            binding.edtConfirmPassword.requestFocus()
+            binding.edtConfirmPassword.error = context.resources.getString(R.string.confirm_password_validation)
         }
         else{
             callResetPasswordAPI()

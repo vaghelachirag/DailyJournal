@@ -91,10 +91,15 @@
 
     <!-- Change Password -->
     <string name="change_password_text">Change Password</string>
-    <string name="old_password_text">Old Password</string>
-    <string name="new_password_text">New Password</string>
-    <string name="confirm_password_text">Confirm Password</string>
+    <string name="old_password_text">Old Password <font color='#1C0647'>*</font></string>
+    <string name="new_password_text">New Password <font color='#1C0647'>*</font></string>
+    <string name="confirm_password_text">Confirm Password <font color='#1C0647'>*</font></string>
     <string name="change_password_label">Change Password Fragment</string>
+
+    <string name="change_password_hint">Change Password</string>
+    <string name="old_password_hint">Old Password </string>
+    <string name="new_password_hint">New Password </string>
+    <string name="confirm_password_hint">Confirm Password </string>
 
     <!-- OTP Password -->
     <string name="otp_verification_label">OTP Verification</string>
@@ -125,7 +130,7 @@
 
 
     <string name="enter_your_ans">Enter your answer..</string>
-    <string name="enter_your_gratitude">Please Enter gratitude</string>
+    <string name="enter_your_gratitude">Please enter gratitude</string>
 
     <string name="session_expired">Session Expired</string>
 
@@ -140,6 +145,7 @@
     <string name="didntreceiveotp">Did not receive OTP?</string>
     <string name="resend">Resend OTP</string>
 
+    <string name="adult_msg_validation">Must be 18 years and older to access this application.</string>
 
     <string name="lorem_ipsum">
        "Autism is not a disability, it's a different ability. Embrace the uniqueness and celebrate every milestone, no matter how small. You are your child's strongest advocate and their greatest source of love and support."

@@ -18,6 +18,7 @@ import com.app.dailyjounral.network.Networking
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.view.dialougs.MessageDialog
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -33,16 +34,24 @@ class ChangePasswordViewModel(@SuppressLint("StaticFieldLeak") private val conte
     fun onChangePasswordClick(){
 
         if (oldPassword.get() == null){
-            Utils().showSnackBar(context,context.resources.getString(R.string.old_password_validation),binding.constraintLayout)
+         //   Utils().showSnackBar(context,context.resources.getString(R.string.old_password_validation),binding.constraintLayout)
+            binding.edtOldPassword.requestFocus()
+            binding.edtOldPassword.error = context.resources.getString(R.string.old_password_validation)
         }
         else if (newPassword.get() == null ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.new_password_validation),binding.constraintLayout)
+           // Utils().showSnackBar(context,context.resources.getString(R.string.new_password_validation),binding.constraintLayout)
+            binding.edtNewPassword.requestFocus()
+            binding.edtNewPassword.error = context.resources.getString(R.string.new_password_validation)
         }
         else if (confirmPassword.get().toString().length < 4 ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+         //   Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+            binding.edtConfirmPassword.requestFocus()
+            binding.edtConfirmPassword.error = context.resources.getString(R.string.new_password_validation)
         }
         else if (confirmPassword.get() == null ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.confirm_password_validation),binding.constraintLayout)
+          //  Utils().showSnackBar(context,context.resources.getString(R.string.confirm_password_validation),binding.constraintLayout)
+            binding.edtConfirmPassword.requestFocus()
+            binding.edtConfirmPassword.error = context.resources.getString(R.string.new_password_validation)
         }
         else if (newPassword.get() != confirmPassword.get()){
             Utils().showSnackBar(context,context.resources.getString(R.string.confirm_password_validation),binding.constraintLayout)
@@ -90,6 +99,8 @@ class ChangePasswordViewModel(@SuppressLint("StaticFieldLeak") private val conte
                         isLoading.postValue(false)
                         if(t.getSuccess() == true){
                             MessageDialog(context, t.getMessage().toString()).show()
+                            session.clearSession()
+                            (context as DashboardActivity).navController.navigate(R.id.LoginFragment)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
                             Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)

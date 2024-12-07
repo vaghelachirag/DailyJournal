@@ -48,23 +48,34 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
        model.password = password.get()
 
        if (model.fullName == null){
-           Utils().showSnackBar(context,context.resources.getString(R.string.fullName_validation),binding.constraintLayout)
+          // Utils().showSnackBar(context,context.resources.getString(R.string.fullName_validation),binding.constraintLayout)
+           binding.edtFullName.requestFocus()
+           binding.edtFullName.error = context.resources.getString(R.string.fullName_validation)
        }
        else if  (model.emailId == null){
-           Utils().showSnackBar(context,context.resources.getString(R.string.email_validation),binding.constraintLayout)
+         //  Utils().showSnackBar(context,context.resources.getString(R.string.email_validation),binding.constraintLayout)
+           binding.edtEmail.requestFocus()
+           binding.edtEmail.error = context.resources.getString(R.string.email_validation)
        }
        else if (!Utility.isEmailValid(model.emailId.toString())){
-           Utils().showSnackBar(context,context.resources.getString(R.string.email_valid_validation),binding.constraintLayout)
+       //    Utils().showSnackBar(context,context.resources.getString(R.string.email_valid_validation),binding.constraintLayout)
+           binding.edtEmail.requestFocus()
+           binding.edtEmail.error = context.resources.getString(R.string.email_valid_validation)
        }
 
        else if (model.password == null ){
-           Utils().showSnackBar(context,context.resources.getString(R.string.password_validation),binding.constraintLayout)
+          // Utils().showSnackBar(context,context.resources.getString(R.string.password_validation),binding.constraintLayout)
+           binding.edtPassword.requestFocus()
+           binding.edtPassword.error = context.resources.getString(R.string.password_validation)
        }
        else if (model.password.toString().length < 4 ){
-           Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+          // Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+           binding.edtPassword.requestFocus()
+           binding.edtPassword.error = context.resources.getString(R.string.password_valid_validation)
        }
        else if (binding.radioGroupAdult.checkedRadioButtonId == -1){
-           Utils().showSnackBar(context,context.resources.getString(R.string.adult_validation),binding.constraintLayout)
+           MessageDialog(context,context.resources.getString(R.string.adult_validation)).show()
+        //   Utils().showSnackBar(context,context.resources.getString(R.string.adult_validation),binding.constraintLayout)
        }
        else{
            callSendOTPAPI()
@@ -111,7 +122,8 @@ class SignupViewModel(@SuppressLint("StaticFieldLeak") private val context: Cont
                             registerFragment.findNavController().navigate(R.id.OtpPasswordFragment,bundle)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
-                            Utils().showSnackBar(context,getSendOTPResponse.getMessage().toString(),binding.constraintLayout)
+                           // Utils().showSnackBar(context,getSendOTPResponse.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context,getSendOTPResponse.getMessage().toString()).show()
                         }
                         Log.e("StatusCode",getSendOTPResponse.getSuccess().toString())
                     }

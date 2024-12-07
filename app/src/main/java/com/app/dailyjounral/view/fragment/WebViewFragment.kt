@@ -37,6 +37,7 @@ import androidx.navigation.fragment.findNavController
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.FragmentLoadWebUrlBinding
 import com.app.dailyjounral.view.base.BaseFragment
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.viewmodel.WebViewViewModel
 import java.net.URL
 
@@ -76,6 +77,15 @@ class WebViewFragment: BaseFragment() {
         }else{
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.icon_privacy_policy))
         }
+
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                @SuppressLint("RestrictedApi")
+                override fun handleOnBackPressed() {
+                    Log.e("Back","Back")
+                    (context as DashboardActivity).navController.navigate(R.id.dashboardMenuFragment)
+                }
+            })
 
         val webSettings: WebSettings = binding.webView.getSettings()
         webSettings.javaScriptEnabled = true

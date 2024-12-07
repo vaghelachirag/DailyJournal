@@ -38,6 +38,7 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
     }
 
 
+
     fun getSocialLoginResponse(displayName: String?, email: String?, socialType: Int) {
         val params = HashMap<String,Any>()
         params["fullname"] = displayName.toString()
@@ -59,7 +60,8 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
 
                     override fun onFailed(code: Int, message: String) {
                         isLoading.postValue(false)
-                        Utils().showSnackBar(context,message,binding.constraintLayout)
+                      //  Utils().showSnackBar(context,message,binding.constraintLayout)
+                        MessageDialog(context, message.toString()).show()
                     }
                     override fun onNext(t: GetLoginResponse) {
                         Log.e("Status",t.getSuccess().toString())
@@ -72,7 +74,8 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
                             Utils().reloadActivity(context)
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context, t.getMessage().toString()).show()
+                        //    Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                         }
                         Log.e("StatusCode",t.getSuccess().toString())
                     }
@@ -90,16 +93,24 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
         model.confirmPassword = confirmPassword.get()
 
         if (model.email == null){
-            Utils().showSnackBar(context,context.resources.getString(R.string.email_validation),binding.constraintLayout)
+         //   Utils().showSnackBar(context,context.resources.getString(R.string.email_validation),binding.constraintLayout)
+            binding.edtEmail.requestFocus()
+            binding.edtEmail.error = context.resources.getString(R.string.email_validation)
         }
         else if (!Utility.isEmailValid(model.email.toString())){
-            Utils().showSnackBar(context,context.resources.getString(R.string.email_valid_validation),binding.constraintLayout)
+           // Utils().showSnackBar(context,context.resources.getString(R.string.email_valid_validation),binding.constraintLayout)
+            binding.edtEmail.requestFocus()
+            binding.edtEmail.error = context.resources.getString(R.string.email_validation)
         }
         else if (model.password == null ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.password_validation),binding.constraintLayout)
+        //    Utils().showSnackBar(context,context.resources.getString(R.string.password_validation),binding.constraintLayout)
+            binding.edtPassword.requestFocus()
+            binding.edtPassword.error = context.resources.getString(R.string.password_validation)
         }
         else if (model.password.toString().length < 4 ){
-            Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+        //    Utils().showSnackBar(context,context.resources.getString(R.string.password_valid_validation),binding.constraintLayout)
+            binding.edtPassword.requestFocus()
+            binding.edtPassword.error = context.resources.getString(R.string.password_valid_validation)
         }
         else{
             val session = Session(context)
@@ -164,7 +175,8 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
 
                         }else{
                             //  Utils().showToast(context,t.getMessage().toString())
-                            Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
+                            MessageDialog(context, t.getMessage().toString()).show()
+                           // Utils().showSnackBar(context,t.getMessage().toString(),binding.constraintLayout)
                         }
                         Log.e("StatusCode",t.getSuccess().toString())
                     }
@@ -177,3 +189,4 @@ class LoginViewModel(@SuppressLint("StaticFieldLeak") private val context: Conte
 
 
 }
+

@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import com.app.dailyjounral.R
 import com.app.dailyjounral.databinding.DetailActivityBinding
 import com.app.dailyjounral.uttils.AppConstants
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.base.BaseFragment
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.view.dialougs.DialogAddGratitude
 import com.app.dailyjounral.viewmodel.DetailViewModel
 
@@ -61,6 +63,15 @@ class DetailFragment: BaseFragment() {
                 }
             }).show()
         }
+
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                @SuppressLint("RestrictedApi")
+                override fun handleOnBackPressed() {
+                    Log.e("Back","Back")
+                    (context as DashboardActivity).navController.navigate(R.id.dashboardMenuFragment)
+                }
+            })
 
         binding.rvGratitude.setOnTouchListener(OnTouchListener { _, _ ->
             binding.rvGratitude.parent.requestDisallowInterceptTouchEvent(false)

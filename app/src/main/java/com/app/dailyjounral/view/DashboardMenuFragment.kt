@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.dailyjounral.R
 import com.app.dailyjounral.adapter.MoodAdapter
@@ -40,6 +41,16 @@ class DashboardMenuFragment: BaseFragment()  {
             if (isLoading && isAdded) showProgressbar()
             else if (!isLoading && isAdded) hideProgressbar()
         }
+
+        requireActivity().onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                @SuppressLint("RestrictedApi")
+                override fun handleOnBackPressed() {
+                    Log.e("Back","Back")
+                    super.handleOnBackCancelled()
+                }
+            })
+
 
         addMoodData()
         setAction()
