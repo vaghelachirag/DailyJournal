@@ -160,14 +160,10 @@
 
                             <ScrollView
                                 android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_50ssp"
+                                android:layout_height="@dimen/_60ssp"
                                 android:orientation="vertical"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginTop="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
                                 android:overScrollMode="never"
-                                android:fadeScrollbars="false"
-                                android:layout_marginBottom="@dimen/_10ssp">
+                                android:fadeScrollbars="false">
 
                              <com.app.dailyjounral.widget.RobotoRegularText
                                 android:id="@+id/txtTips"
@@ -175,6 +171,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/_12ssp"
                                 android:text=""
+                                android:padding="@dimen/_10ssp"
                                 android:scrollbars="vertical"
                                 android:textColor="@color/black">
 
@@ -202,7 +199,7 @@
                                 <EditText
                                     android:id="@+id/edtAnswer"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_80ssp"
+                                    android:layout_height="@dimen/_60ssp"
                                     android:layout_marginStart="@dimen/_10ssp"
                                     android:layout_marginEnd="@dimen/_10ssp"
                                     android:hint="@string/enter_your_ans"

@@ -245,6 +245,9 @@
                             android:fadeScrollbars="false"
                             android:visibility="visible"
                             android:layout_weight="2.6"
+                            android:scrollbars="horizontal"
+                            android:scrollbarThumbVertical="@android:color/darker_gray"
+                            android:scrollbarSize="5dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             tools:listitem="@layout/item_mood" />
                         <ImageView
