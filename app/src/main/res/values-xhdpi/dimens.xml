@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="scroll_height">50sp</dimen>
+    <dimen name="image_height">150sp</dimen>
+    <dimen name="edit_text_height">@dimen/_80ssp</dimen>
+    <dimen name="edit_text_min_height">@dimen/_50ssp</dimen>
+</resources>

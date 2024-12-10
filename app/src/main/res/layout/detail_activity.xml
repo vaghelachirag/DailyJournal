@@ -160,19 +160,22 @@
 
                             <ScrollView
                                 android:layout_width="wrap_content"
-                                android:layout_height="@dimen/scroll_height"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:minHeight="@dimen/_80ssp"
+                                android:minHeight="@dimen/_50ssp"
                                 android:overScrollMode="never"
                                 android:fadeScrollbars="false">
 
                              <com.app.dailyjounral.widget.RobotoRegularText
                                 android:id="@+id/txtTips"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="@dimen/scroll_height"
                                 android:textSize="@dimen/_12ssp"
+                                android:maxHeight="@dimen/scroll_height"
                                 android:text=""
-                                android:padding="@dimen/_10ssp"
+                                android:paddingLeft="@dimen/_10ssp"
+                                android:paddingRight="@dimen/_10ssp"
+                                android:paddingTop="@dimen/_5ssp"
                                 android:scrollbars="vertical"
                                 android:textColor="@color/black">
 
@@ -200,7 +203,7 @@
                                 <EditText
                                     android:id="@+id/edtAnswer"
                                     android:layout_width="match_parent"
-                                    android:layout_height="@dimen/_60ssp"
+                                    android:layout_height="@dimen/edit_text_height"
                                     android:layout_marginStart="@dimen/_10ssp"
                                     android:layout_marginEnd="@dimen/_10ssp"
                                     android:hint="@string/enter_your_ans"
@@ -211,11 +214,12 @@
                                     android:textColor="@color/black"
                                     android:focusable="@{viewModel.isAnswerIsEditable}"
                                     android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
-                                    android:minHeight="@dimen/_80ssp"
-                                    android:maxHeight="@dimen/_100ssp"
+                                    android:minHeight="@dimen/edit_text_height"
+                                    android:maxHeight="@dimen/edit_text_min_height"
                                     android:paddingStart="@dimen/_5ssp"
                                     android:paddingTop="@dimen/_10ssp"
                                     android:paddingEnd="@dimen/_5ssp"
+                                    android:paddingBottom="@dimen/_10ssp"
                                     android:textColorHint="@color/black"
                                     android:background="@color/selected_bg"
                                     tools:ignore="RtlSymmetry">
