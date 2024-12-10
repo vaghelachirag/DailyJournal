@@ -148,7 +148,7 @@
                             <ImageView
                                 android:id="@+id/iv_Image"
                                 android:layout_width="match_parent"
-                                android:layout_height="150sp"
+                                android:layout_height="@dimen/image_height"
                                 android:contentDescription="TODO"
                                 android:visibility="gone"
                                 android:layout_marginStart="@dimen/_10ssp"
@@ -160,8 +160,9 @@
 
                             <ScrollView
                                 android:layout_width="wrap_content"
-                                android:layout_height="@dimen/_60ssp"
+                                android:layout_height="@dimen/scroll_height"
                                 android:orientation="vertical"
+                                android:minHeight="@dimen/_80ssp"
                                 android:overScrollMode="never"
                                 android:fadeScrollbars="false">
 

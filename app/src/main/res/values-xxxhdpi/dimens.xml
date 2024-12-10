@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="fab_margin">48dp</dimen>
+    <dimen name="scroll_height">180sp</dimen>
+    <dimen name="image_height">150sp</dimen>
+</resources>
