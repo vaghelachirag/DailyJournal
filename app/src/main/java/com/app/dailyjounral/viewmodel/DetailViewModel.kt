@@ -11,6 +11,8 @@ import android.os.Build
 import android.text.InputType
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
@@ -151,6 +153,15 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
                 binding.edtAnswer.setBackgroundColor(Color.parseColor("#E7DCFF"));
             }
         }
+
+        val layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            480
+        )
+        val totalHeight: Int = binding.scrollViewTips.getChildAt(0).height
+        Log.e("Height",totalHeight.toString())
+        binding.scrollViewTips.layoutParams = layoutParams
+
     }
 
     private fun setAction() {
@@ -1166,6 +1177,15 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             binding.edtAnswer.requestFocus()
             showHideEditAndDelete(false)
         }
+
+        val layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+          480
+        )
+        val totalHeight: Int = binding.scrollViewTips.getChildAt(0).height
+        Log.e("Height",totalHeight.toString())
+        binding.scrollViewTips.layoutParams = layoutParams
+
         //   Glide.with(context).load(getDailyReflectionResponse.getData()?.get()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
 

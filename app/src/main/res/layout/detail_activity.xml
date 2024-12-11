@@ -159,6 +159,7 @@
                             </ImageView>
 
                             <ScrollView
+                                android:id="@+id/scrollViewTips"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
@@ -169,12 +170,12 @@
                              <com.app.dailyjounral.widget.RobotoRegularText
                                 android:id="@+id/txtTips"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/scroll_height"
+                                android:layout_height="wrap_content"
                                 android:textSize="@dimen/_12ssp"
-                                android:maxHeight="@dimen/scroll_height"
                                 android:text=""
                                 android:paddingLeft="@dimen/_10ssp"
                                 android:paddingRight="@dimen/_10ssp"
+                                android:paddingBottom="@dimen/_10ssp"
                                 android:paddingTop="@dimen/_5ssp"
                                 android:scrollbars="vertical"
                                 android:textColor="@color/black">
