@@ -24,6 +24,407 @@
                 tools:ignore="MissingConstraints">
 
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.3"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp">
+                        <ImageView
+                            android:id="@+id/iv_text_logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_centerHorizontal="true"
+                            android:visibility="visible"
+                            android:src="@drawable/text_daily_journal">
+
+                        </ImageView>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="2.3"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/card_DailyGeneral"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            app:cardCornerRadius="10dp"
+                            android:layout_below="@+id/iv_text_logo"
+                            android:layout_centerVertical="true"
+                            app:cardBackgroundColor="@color/white"
+                            android:layout_marginStart="@dimen/_15ssp"
+                            android:layout_marginEnd="@dimen/_15ssp"
+                            card_view:cardElevation="4dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <RelativeLayout
+                                android:id="@+id/rv_DailyJournal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="8dp"
+                                android:layout_marginTop="@dimen/_5ssp"
+                                android:layout_marginBottom="10sp"
+                                android:visibility="visible"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/ll_Date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible"
+                                    android:weightSum="2">
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_WeekDays"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1">
+
+                                        <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/rvWeekDays"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:clipToPadding="false"
+                                            android:fadeScrollbars="false"
+                                            android:paddingBottom="6dp"
+                                            android:visibility="visible"
+                                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                            tools:ignore="MissingConstraints"
+                                            tools:listitem="@layout/item_week_days" />
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:layout_weight="1">
+
+                                        <com.app.dailyjounral.widget.HeaderText
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"
+                                            android:text="Date : ">
+
+                                        </com.app.dailyjounral.widget.HeaderText>
+
+                                        <com.app.dailyjounral.widget.SmallText
+                                            android:id="@+id/txtCurrentDate"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="@dimen/_12ssp"
+                                            android:textColor="@color/black"
+                                            android:text="">
+
+                                        </com.app.dailyjounral.widget.SmallText>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/ll_DailyJournal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_below="@+id/ll_Date"
+                                    android:orientation="vertical">
+                                    <ImageView
+                                        android:id="@+id/iv_Image"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_100sdp"
+                                        android:contentDescription="TODO"
+                                        android:visibility="gone"
+                                        android:layout_marginStart="@dimen/_10ssp"
+                                        android:layout_marginEnd="@dimen/_10ssp"
+                                        android:scaleType="fitXY"
+                                        android:src="@drawable/icon_placeholder">
+
+                                    </ImageView>
+
+                                    <ScrollView
+                                        android:id="@+id/scrollViewTips"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/_120sdp"
+                                        android:orientation="vertical"
+                                        android:minHeight="@dimen/_50ssp"
+                                        android:overScrollMode="never"
+                                        android:paddingBottom="@dimen/_5ssp"
+                                        android:fadeScrollbars="false">
+
+                                        <com.app.dailyjounral.widget.RobotoRegularText
+                                            android:id="@+id/txtTips"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:textSize="@dimen/_10sdp"
+                                            android:text=""
+                                            android:paddingLeft="@dimen/_10ssp"
+                                            android:paddingRight="@dimen/_10ssp"
+                                            android:paddingBottom="@dimen/_10sdp"
+                                            android:paddingTop="@dimen/_5ssp"
+                                            android:scrollbars="vertical"
+                                            android:textColor="@color/black">
+
+                                        </com.app.dailyjounral.widget.RobotoRegularText>
+                                    </ScrollView>
+
+                                    <LinearLayout
+                                        android:id="@+id/ll_DailyJournalAns"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_10ssp"
+                                        android:visibility="gone"
+                                        android:orientation="vertical">
+
+                                        <com.app.dailyjounral.widget.PoppinsBoldText
+                                            android:id="@+id/txtLabel"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_10ssp"
+                                            android:textColor="@color/black"
+                                            android:textSize="@dimen/_12ssp">
+
+                                        </com.app.dailyjounral.widget.PoppinsBoldText>
+
+                                        <EditText
+                                            android:id="@+id/edtAnswer"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="@dimen/edit_text_height"
+                                            android:layout_marginStart="@dimen/_10ssp"
+                                            android:layout_marginEnd="@dimen/_10ssp"
+                                            android:hint="@string/enter_your_ans"
+                                            android:textSize="@dimen/_10ssp"
+                                            android:layout_gravity="top"
+                                            android:gravity="top|left"
+                                            android:inputType="textMultiLine"
+                                            android:textColor="@color/black"
+                                            android:focusable="@{viewModel.isAnswerIsEditable}"
+                                            android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
+                                            android:minHeight="@dimen/edit_text_height"
+                                            android:maxHeight="@dimen/edit_text_min_height"
+                                            android:paddingStart="@dimen/_5ssp"
+                                            android:paddingTop="@dimen/_10ssp"
+                                            android:paddingEnd="@dimen/_5ssp"
+                                            android:paddingBottom="@dimen/_10ssp"
+                                            android:textColorHint="@color/black"
+                                            android:background="@color/selected_bg"
+                                            tools:ignore="RtlSymmetry">
+
+                                        </EditText>
+                                        <LinearLayout
+                                            android:id="@+id/llPastGoal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:visibility="gone"
+                                            android:layout_marginTop="@dimen/_5ssp"
+                                            android:orientation="vertical">
+                                            <com.app.dailyjounral.widget.PoppinsBoldText
+                                                android:id="@+id/txtPastGoalLabel"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginStart="@dimen/_10ssp"
+                                                android:textSize="@dimen/_12ssp"
+                                                android:textColor="@color/black"
+                                                android:visibility="gone"
+                                                tools:ignore="TooDeepLayout">
+                                            </com.app.dailyjounral.widget.PoppinsBoldText>
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_marginTop="@dimen/_5ssp"
+                                                android:weightSum="2">
+
+                                                <com.google.android.material.button.MaterialButton
+                                                    android:id="@+id/btnYes"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="@dimen/_35ssp"
+                                                    android:layout_weight="1"
+                                                    app:cornerRadius="@dimen/_5ssp"
+                                                    android:layout_marginStart="@dimen/_20ssp"
+                                                    android:layout_marginEnd="@dimen/_20ssp"
+                                                    android:textColor="@color/white"
+                                                    style="@style/CustomDialougButtonStyle"
+                                                    app:backgroundTint="@null"
+                                                    android:fontFamily="@font/roboto_bold"
+                                                    android:text="Yes" />
+
+                                                <com.google.android.material.button.MaterialButton
+                                                    android:id="@+id/btnNo"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="@dimen/_35ssp"
+                                                    android:layout_weight="1"
+                                                    app:cornerRadius="@dimen/_5ssp"
+                                                    app:backgroundTint="@null"
+                                                    android:fontFamily="@font/roboto_bold"
+                                                    android:textColor="@color/black"
+                                                    style="@style/CustomDialougButton"
+                                                    android:layout_marginLeft="@dimen/_20ssp"
+                                                    android:layout_marginRight="@dimen/_20ssp"
+                                                    android:text="No">
+
+                                                </com.google.android.material.button.MaterialButton>
+
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:weightSum="3"
+                                            android:layout_marginStart="@dimen/_10ssp"
+                                            android:layout_marginEnd="@dimen/_10ssp"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:layout_marginTop="@dimen/_10ssp"
+                                            tools:ignore="MissingConstraints">
+                                            <Button
+                                                android:id="@+id/btnSubmit"
+                                                android:layout_width="0dp"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="2.7"
+                                                app:cornerRadius="@dimen/_5ssp"
+                                                android:text="Submit">
+
+                                            </Button>
+
+                                            <LinearLayout
+                                                android:id="@+id/ll_Edit"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:weightSum="2">
+                                                <Button
+                                                    android:id="@+id/btnEdit"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="1"
+                                                    android:layout_gravity="center"
+                                                    android:gravity="center"
+                                                    app:cornerRadius="@dimen/_5ssp"
+                                                    android:drawableLeft="@drawable/icon_edit"
+                                                    android:fontFamily="@font/roboto_bold"
+                                                    android:textSize="@dimen/_12ssp"
+                                                    android:drawableTint="@color/white"
+                                                    android:text="Edit">
+
+                                                </Button>
+                                                <com.google.android.material.button.MaterialButton
+                                                    android:id="@+id/btnDelete"
+                                                    android:layout_width="0dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="1"
+                                                    app:cornerRadius="@dimen/_5ssp"
+                                                    android:drawableLeft="@drawable/icon_delete"
+                                                    android:layout_marginStart="@dimen/_10ssp"
+                                                    app:backgroundTint="@color/delete_btn_bg"
+                                                    android:fontFamily="@font/roboto_bold"
+                                                    android:textSize="@dimen/_12ssp"
+                                                    android:drawableTint="@color/white"
+                                                    android:text="Delete">
+
+                                                </com.google.android.material.button.MaterialButton>
+
+                                            </LinearLayout>
+                                        </LinearLayout>
+                                    </LinearLayout>
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/ll_Mood"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="visible"
+                                    android:orientation="vertical"
+                                    android:gravity="center"
+                                    android:layout_marginTop="@dimen/_20ssp">
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/rvMoodDetector"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="@dimen/_10ssp"
+                                        android:clipToPadding="false"
+                                        android:fadeScrollbars="false"
+                                        android:paddingTop="6dp"
+                                        android:visibility="visible"
+                                        android:paddingBottom="6dp"
+                                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                        app:layout_constraintTop_toBottomOf="@+id/layoutMenu"
+                                        tools:listitem="@layout/layout_mood_detector" />
+
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:id="@+id/ll_Gratuity"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:orientation="vertical"
+                                    android:layout_marginTop="@dimen/_15ssp"
+                                    android:layout_marginStart="@dimen/_5ssp"
+                                    android:layout_marginEnd="@dimen/_5ssp">
+                                    <ImageView
+                                        android:id="@+id/ivNoDataGratitude"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="@dimen/_15ssp"
+                                        android:visibility="visible"
+                                        android:src="@drawable/addgratitude">
+                                    </ImageView>
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/rvGratitude"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="200sp"
+                                        android:layout_marginTop="@dimen/_10ssp"
+                                        android:clipToPadding="false"
+                                        android:fadeScrollbars="false"
+                                        android:paddingTop="6dp"
+                                        android:visibility="gone"
+                                        android:paddingBottom="6dp"
+                                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                        tools:listitem="@layout/item_gratitude" />
+
+                                    <Button
+                                        android:id="@+id/btnAddGratitude"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingStart="@dimen/_5ssp"
+                                        android:layout_marginTop="@dimen/_5ssp"
+                                        android:layout_weight="2.7"
+                                        app:cornerRadius="@dimen/_5ssp"
+                                        android:text="Add Gratitude"
+                                        tools:ignore="RtlSymmetry">
+
+                                    </Button>
+                                </LinearLayout>
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/iv_Bottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:src="@drawable/icon_bottom_leaf"
+                        android:layout_weight="0.5"
+                        android:gravity="center"
+                        android:layout_gravity="center">
+
+                    </ImageView>
+                </LinearLayout>
                 <com.app.dailyjounral.widget.LogoRegularText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -34,397 +435,9 @@
 
                 </com.app.dailyjounral.widget.LogoRegularText>
 
-                <com.app.dailyjounral.widget.PoppinsBoldText
-                    android:id="@+id/txt_Header"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/_25ssp"
-                    android:textColor="@color/color_light_navy_blue"
-                    android:layout_marginTop="@dimen/_20ssp"
-                    android:visibility="gone"
-                    android:text="Daily General">
-
-                </com.app.dailyjounral.widget.PoppinsBoldText>
-                <ImageView
-                    android:id="@+id/iv_text_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_35ssp"
-                    android:layout_marginTop="@dimen/_20ssp"
-                    android:layout_centerHorizontal="true"
-                    android:visibility="visible"
-                    android:src="@drawable/text_daily_journal">
-
-                </ImageView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/card_DailyGeneral"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    app:cardCornerRadius="10dp"
-                    android:layout_below="@+id/iv_text_logo"
-                    android:layout_marginTop="@dimen/_10ssp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginBottom="@dimen/_60ssp"
-                    app:cardBackgroundColor="@color/white"
-                    android:layout_marginStart="@dimen/_15ssp"
-                    android:layout_marginEnd="@dimen/_15ssp"
-                    card_view:cardElevation="4dp"
-                    card_view:cardUseCompatPadding="true">
-
-                    <RelativeLayout
-                        android:id="@+id/rv_DailyJournal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="8dp"
-                        android:layout_marginTop="@dimen/_5ssp"
-                        android:layout_marginBottom="10sp"
-                        android:visibility="visible"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:id="@+id/ll_Date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="visible"
-                            android:weightSum="2">
-
-                            <LinearLayout
-                                android:id="@+id/ll_WeekDays"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1">
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/rvWeekDays"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:clipToPadding="false"
-                                    android:fadeScrollbars="false"
-                                    android:paddingBottom="6dp"
-                                    android:visibility="visible"
-                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                    tools:ignore="MissingConstraints"
-                                    tools:listitem="@layout/item_week_days" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:layout_weight="1">
-
-                                <com.app.dailyjounral.widget.HeaderText
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="@dimen/_12ssp"
-                                    android:textColor="@color/black"
-                                    android:text="Date : ">
-
-                                </com.app.dailyjounral.widget.HeaderText>
-
-                                <com.app.dailyjounral.widget.SmallText
-                                    android:id="@+id/txtCurrentDate"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="@dimen/_12ssp"
-                                    android:textColor="@color/black"
-                                    android:text="">
-
-                                </com.app.dailyjounral.widget.SmallText>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/ll_DailyJournal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:layout_below="@+id/ll_Date"
-                            android:orientation="vertical">
-                            <ImageView
-                                android:id="@+id/iv_Image"
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/image_height"
-                                android:contentDescription="TODO"
-                                android:visibility="gone"
-                                android:layout_marginStart="@dimen/_10ssp"
-                                android:layout_marginEnd="@dimen/_10ssp"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/icon_placeholder">
-
-                            </ImageView>
-
-                            <ScrollView
-                                android:id="@+id/scrollViewTips"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:minHeight="@dimen/_50ssp"
-                                android:overScrollMode="never"
-                                android:fadeScrollbars="false">
-
-                             <com.app.dailyjounral.widget.RobotoRegularText
-                                android:id="@+id/txtTips"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:textSize="@dimen/_12ssp"
-                                android:text=""
-                                android:paddingLeft="@dimen/_10ssp"
-                                android:paddingRight="@dimen/_10ssp"
-                                android:paddingBottom="@dimen/_10ssp"
-                                android:paddingTop="@dimen/_5ssp"
-                                android:scrollbars="vertical"
-                                android:textColor="@color/black">
-
-                            </com.app.dailyjounral.widget.RobotoRegularText>
-                            </ScrollView>
-
-                            <LinearLayout
-                                android:id="@+id/ll_DailyJournalAns"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10ssp"
-                                android:visibility="gone"
-                                android:orientation="vertical">
-
-                                <com.app.dailyjounral.widget.PoppinsBoldText
-                                    android:id="@+id/txtLabel"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="@dimen/_10ssp"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/_12ssp">
-
-                                </com.app.dailyjounral.widget.PoppinsBoldText>
-
-                                <EditText
-                                    android:id="@+id/edtAnswer"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="@dimen/edit_text_height"
-                                    android:layout_marginStart="@dimen/_10ssp"
-                                    android:layout_marginEnd="@dimen/_10ssp"
-                                    android:hint="@string/enter_your_ans"
-                                    android:textSize="@dimen/_10ssp"
-                                    android:layout_gravity="top"
-                                    android:gravity="top|left"
-                                    android:inputType="textMultiLine"
-                                    android:textColor="@color/black"
-                                    android:focusable="@{viewModel.isAnswerIsEditable}"
-                                    android:focusableInTouchMode="@{viewModel.isAnswerIsEditable}"
-                                    android:minHeight="@dimen/edit_text_height"
-                                    android:maxHeight="@dimen/edit_text_min_height"
-                                    android:paddingStart="@dimen/_5ssp"
-                                    android:paddingTop="@dimen/_10ssp"
-                                    android:paddingEnd="@dimen/_5ssp"
-                                    android:paddingBottom="@dimen/_10ssp"
-                                    android:textColorHint="@color/black"
-                                    android:background="@color/selected_bg"
-                                    tools:ignore="RtlSymmetry">
-
-                                </EditText>
-                                <LinearLayout
-                                    android:id="@+id/llPastGoal"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:visibility="gone"
-                                    android:layout_marginTop="@dimen/_5ssp"
-                                    android:orientation="vertical">
-                                    <com.app.dailyjounral.widget.PoppinsBoldText
-                                        android:id="@+id/txtPastGoalLabel"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="@dimen/_10ssp"
-                                        android:textSize="@dimen/_12ssp"
-                                        android:textColor="@color/black"
-                                        android:visibility="gone"
-                                        tools:ignore="TooDeepLayout">
-                                    </com.app.dailyjounral.widget.PoppinsBoldText>
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/_5ssp"
-                                        android:weightSum="2">
-
-                                        <com.google.android.material.button.MaterialButton
-                                            android:id="@+id/btnYes"
-                                            android:layout_width="0dp"
-                                            android:layout_height="@dimen/_35ssp"
-                                            android:layout_weight="1"
-                                            app:cornerRadius="@dimen/_5ssp"
-                                            android:layout_marginStart="@dimen/_20ssp"
-                                            android:layout_marginEnd="@dimen/_20ssp"
-                                            android:textColor="@color/white"
-                                            style="@style/CustomDialougButtonStyle"
-                                            app:backgroundTint="@null"
-                                            android:fontFamily="@font/roboto_bold"
-                                            android:text="Yes" />
-
-                                        <com.google.android.material.button.MaterialButton
-                                            android:id="@+id/btnNo"
-                                            android:layout_width="0dp"
-                                            android:layout_height="@dimen/_35ssp"
-                                            android:layout_weight="1"
-                                            app:cornerRadius="@dimen/_5ssp"
-                                            app:backgroundTint="@null"
-                                            android:fontFamily="@font/roboto_bold"
-                                            android:textColor="@color/black"
-                                            style="@style/CustomDialougButton"
-                                            android:layout_marginLeft="@dimen/_20ssp"
-                                            android:layout_marginRight="@dimen/_20ssp"
-                                            android:text="No">
-
-                                        </com.google.android.material.button.MaterialButton>
 
 
-                                    </LinearLayout>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:weightSum="3"
-                                    android:layout_marginStart="@dimen/_10ssp"
-                                    android:layout_marginEnd="@dimen/_10ssp"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:layout_marginTop="@dimen/_10ssp"
-                                    tools:ignore="MissingConstraints">
-                                    <Button
-                                        android:id="@+id/btnSubmit"
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="2.7"
-                                        app:cornerRadius="@dimen/_5ssp"
-                                        android:text="Submit">
 
-                                    </Button>
-
-                                    <LinearLayout
-                                        android:id="@+id/ll_Edit"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:weightSum="2">
-                                        <Button
-                                            android:id="@+id/btnEdit"
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            android:layout_gravity="center"
-                                            android:gravity="center"
-                                            app:cornerRadius="@dimen/_5ssp"
-                                            android:drawableLeft="@drawable/icon_edit"
-                                            android:fontFamily="@font/roboto_bold"
-                                            android:textSize="@dimen/_12ssp"
-                                            android:drawableTint="@color/white"
-                                            android:text="Edit">
-
-                                        </Button>
-                                        <com.google.android.material.button.MaterialButton
-                                            android:id="@+id/btnDelete"
-                                            android:layout_width="0dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_weight="1"
-                                            app:cornerRadius="@dimen/_5ssp"
-                                            android:drawableLeft="@drawable/icon_delete"
-                                            android:layout_marginStart="@dimen/_10ssp"
-                                            app:backgroundTint="@color/delete_btn_bg"
-                                            android:fontFamily="@font/roboto_bold"
-                                            android:textSize="@dimen/_12ssp"
-                                            android:drawableTint="@color/white"
-                                            android:text="Delete">
-
-                                        </com.google.android.material.button.MaterialButton>
-
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/ll_Mood"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="visible"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:layout_marginTop="@dimen/_20ssp">
-
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rvMoodDetector"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10ssp"
-                                android:clipToPadding="false"
-                                android:fadeScrollbars="false"
-                                android:paddingTop="6dp"
-                                android:visibility="visible"
-                                android:paddingBottom="6dp"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                app:layout_constraintTop_toBottomOf="@+id/layoutMenu"
-                                tools:listitem="@layout/layout_mood_detector" />
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/ll_Gratuity"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="gone"
-                            android:orientation="vertical"
-                            android:layout_marginTop="@dimen/_15ssp"
-                            android:layout_marginStart="@dimen/_5ssp"
-                            android:layout_marginEnd="@dimen/_5ssp">
-                            <ImageView
-                                android:id="@+id/ivNoDataGratitude"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:visibility="visible"
-                                android:src="@drawable/addgratitude">
-                            </ImageView>
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/rvGratitude"
-                                android:layout_width="match_parent"
-                                android:layout_height="200sp"
-                                android:layout_marginTop="@dimen/_10ssp"
-                                android:clipToPadding="false"
-                                android:fadeScrollbars="false"
-                                android:paddingTop="6dp"
-                                android:visibility="gone"
-                                android:paddingBottom="6dp"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/item_gratitude" />
-
-                            <Button
-                                android:id="@+id/btnAddGratitude"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingStart="@dimen/_5ssp"
-                                android:layout_marginTop="@dimen/_5ssp"
-                                android:layout_weight="2.7"
-                                app:cornerRadius="@dimen/_5ssp"
-                                android:text="Add Gratitude"
-                                tools:ignore="RtlSymmetry">
-
-                            </Button>
-                        </LinearLayout>
-                    </RelativeLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <ImageView
-                    android:id="@+id/iv_Bottom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/icon_bottom_leaf"
-                    android:layout_marginBottom="@dimen/_20ssp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true">
-
-                </ImageView>
 
             </RelativeLayout>
 

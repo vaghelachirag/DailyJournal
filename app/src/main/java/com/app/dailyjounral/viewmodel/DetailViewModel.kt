@@ -53,6 +53,7 @@ import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.uttils.Utility
 import com.app.dailyjounral.uttils.Utils
 import com.app.dailyjounral.view.DetailFragment
+import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.view.dialougs.MessageDialog
 import com.bumptech.glide.Glide
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -154,14 +155,24 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             }
         }
 
-        val layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            480
-        )
-        val totalHeight: Int = binding.scrollViewTips.getChildAt(0).height
-        Log.e("Height",totalHeight.toString())
-        binding.scrollViewTips.layoutParams = layoutParams
+       // setScrollHeight()
 
+    }
+
+    private fun setScrollHeight() {
+        var deviceHeight = Utility.getDeviceHeight(context as DashboardActivity)
+
+        if(deviceHeight <= 1920){
+            val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 250)
+            val totalHeight: Int = binding.scrollViewTips.getChildAt(0).height
+            binding.scrollViewTips.layoutParams = layoutParams
+        }
+        if(deviceHeight > 1920){
+            val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 400)
+            val totalHeight: Int = binding.scrollViewTips.getChildAt(0).height
+            binding.scrollViewTips.layoutParams = layoutParams
+        }
+        Log.e("DeviceHeight",deviceHeight.toString())
     }
 
     private fun setAction() {
@@ -1177,16 +1188,6 @@ class DetailViewModel(val context: Context, val binding: DetailActivityBinding, 
             binding.edtAnswer.requestFocus()
             showHideEditAndDelete(false)
         }
-
-        val layoutParams = LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-          480
-        )
-        val totalHeight: Int = binding.scrollViewTips.getChildAt(0).height
-        Log.e("Height",totalHeight.toString())
-        binding.scrollViewTips.layoutParams = layoutParams
-
-        //   Glide.with(context).load(getDailyReflectionResponse.getData()?.get()).apply(Utility.getGlideRequestOption()).into(binding.ivImage)
     }
 
     private fun showHideEditAndDelete(showHide: Boolean) {
