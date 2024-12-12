@@ -56,62 +56,83 @@ class MyProfileViewModel(@SuppressLint("StaticFieldLeak") private val context: C
             isAdult = true
         }
 
-        requestBody = if (imageFile.value != null){
-            MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("FullName", binding.edtFullName.text.toString())
-                .addFormDataPart("Profile", imageFile.value!!.name, imageFile.value!!.asRequestBody("image/*".toMediaTypeOrNull()))
-                .addFormDataPart("IsAdult",isAdult.toString())
-                .build()
-        }else{
-            MultipartBody.Builder()
-                .setType(MultipartBody.FORM)
-                .addFormDataPart("FullName", binding.edtFullName.text.toString())
-                .addFormDataPart("IsAdult", isAdult.toString())
-                .build()
+        if (binding.edtFullName.text.toString() == null || binding.edtFullName.text.toString() == ""){
+            // Utils().showSnackBar(context,context.resources.getString(R.string.fullName_validation),binding.constraintLayout)
+            binding.edtFullName.requestFocus()
+            binding.edtFullName.error = context.resources.getString(R.string.fullName_validation)
         }
+        else {
+            requestBody = if (imageFile.value != null) {
+                MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("FullName", binding.edtFullName.text.toString())
+                    .addFormDataPart(
+                        "Profile",
+                        imageFile.value!!.name,
+                        imageFile.value!!.asRequestBody("image/*".toMediaTypeOrNull())
+                    )
+                    .addFormDataPart("IsAdult", isAdult.toString())
+                    .build()
+            } else {
+                MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("FullName", binding.edtFullName.text.toString())
+                    .addFormDataPart("IsAdult", isAdult.toString())
+                    .build()
+            }
 
 
-        if (Utility.isNetworkConnected(context)){
-            isLoading.postValue(true)
-            Networking.with(context)
-                .getServices()
-                .saveUpdateUserProfile(Utils().getUserToken(context),requestBody)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : CallbackObserver<GetUserProfileResponse>() {
-                    override fun onSuccess(response: GetUserProfileResponse) {
-                        isLoading.postValue(false)
-                        //redirectToHome()
-                    }
-
-                    override fun onFailed(code: Int, message: String) {
-                        isLoading.postValue(false)
-                        if (code == 403){
-                            Utility.sessionExpired(context)
-                        }else{
-                            Utils().showSnackBar(context,message,binding.constraintLayout)
+            if (Utility.isNetworkConnected(context)) {
+                isLoading.postValue(true)
+                Networking.with(context)
+                    .getServices()
+                    .saveUpdateUserProfile(Utils().getUserToken(context), requestBody)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(object : CallbackObserver<GetUserProfileResponse>() {
+                        override fun onSuccess(response: GetUserProfileResponse) {
+                            isLoading.postValue(false)
+                            //redirectToHome()
                         }
-                    }
 
-                    override fun onNext(getUpdateProfileResponse: GetUserProfileResponse) {
-                        Log.e("Status",getUpdateProfileResponse.getSuccess().toString())
-                        isLoading.postValue(false)
-                        if(getUpdateProfileResponse.getSuccess() == true){
-                           // (context as DashboardActivity).setUserLogoAndName()
-                            MessageDialog(context, getUpdateProfileResponse.getMessage().toString()).show()
-                            getUserProfileApi()
-                          //  Utils().showSnackBar(context,getUpdateProfileResponse.getMessage().toString(),binding.constraintLayout)
-                        }else{
-                            //  Utils().showToast(context,t.getMessage().toString())
-                            Utils().showSnackBar(context,getUpdateProfileResponse.getMessage().toString(),binding.constraintLayout)
+                        override fun onFailed(code: Int, message: String) {
+                            isLoading.postValue(false)
+                            if (code == 403) {
+                                Utility.sessionExpired(context)
+                            } else {
+                                Utils().showSnackBar(context, message, binding.constraintLayout)
+                            }
                         }
-                        Log.e("StatusCode",getUpdateProfileResponse.getSuccess().toString())
-                    }
 
-                })
-        }else{
-            Utils().showToast(context,context.getString(R.string.nointernetconnection).toString())
+                        override fun onNext(getUpdateProfileResponse: GetUserProfileResponse) {
+                            Log.e("Status", getUpdateProfileResponse.getSuccess().toString())
+                            isLoading.postValue(false)
+                            if (getUpdateProfileResponse.getSuccess() == true) {
+                                // (context as DashboardActivity).setUserLogoAndName()
+                                MessageDialog(
+                                    context,
+                                    getUpdateProfileResponse.getMessage().toString()
+                                ).show()
+                                getUserProfileApi()
+                                //  Utils().showSnackBar(context,getUpdateProfileResponse.getMessage().toString(),binding.constraintLayout)
+                            } else {
+                                //  Utils().showToast(context,t.getMessage().toString())
+                                Utils().showSnackBar(
+                                    context,
+                                    getUpdateProfileResponse.getMessage().toString(),
+                                    binding.constraintLayout
+                                )
+                            }
+                            Log.e("StatusCode", getUpdateProfileResponse.getSuccess().toString())
+                        }
+
+                    })
+            } else {
+                Utils().showToast(
+                    context,
+                    context.getString(R.string.nointernetconnection).toString()
+                )
+            }
         }
     }
 

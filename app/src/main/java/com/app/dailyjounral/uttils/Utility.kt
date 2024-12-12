@@ -18,6 +18,7 @@ import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.provider.Settings
+import android.util.DisplayMetrics
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -74,6 +75,13 @@ class Utility {
                 token =  "Bearer " + session.user!!.token
             }
             return token
+        }
+
+        fun getDeviceHeight(context: Activity) : Int{
+            val displayMetrics = DisplayMetrics()
+            context.windowManager.defaultDisplay.getMetrics(displayMetrics)
+            val height = displayMetrics.heightPixels
+            return height
         }
 
         fun getParseInteger(str: String?): Int {
