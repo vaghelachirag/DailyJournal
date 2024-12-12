@@ -25,7 +25,6 @@ import com.google.android.gms.common.api.GoogleApiClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-
 class TestActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedListener{
 
     private lateinit var binding: TestActivityBinding
@@ -34,6 +33,7 @@ class TestActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedList
 
      var context: Context =  this
      var isLoading = MutableLiveData<Boolean>()
+
 
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
         Log.d("bett", "onConnectionFailed:$connectionResult");

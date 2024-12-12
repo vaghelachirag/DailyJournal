@@ -14,8 +14,6 @@ android {
         buildConfig = true
     }
 
-
-
     defaultConfig {
         applicationId = "com.app.dailyjounral"
         minSdk = 24
@@ -93,4 +91,5 @@ dependencies {
 
     // download sdk
     implementation ("com.facebook.android:facebook-android-sdk:4.17.0")
+
 }

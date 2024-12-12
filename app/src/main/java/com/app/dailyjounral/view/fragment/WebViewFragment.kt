@@ -50,6 +50,7 @@ class WebViewFragment: BaseFragment() {
     var menuId: String = ""
 
     private var fileUploadCallback: ValueCallback<Array<Uri>>? = null
+    var url = ""
 
     private val fileUploadActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
@@ -73,8 +74,10 @@ class WebViewFragment: BaseFragment() {
         menuId = requireArguments().getString("webURL").toString()
 
         if (menuId == "Help and Feedback"){
+            url = "https://docs.google.com/forms/d/e/1FAIpQLSfJ8VdZiDVnB3j8TT2hDLUP8bf0YOTnBzR4dxE_yR32QMUNJQ/viewform"
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.icon_help_and_feedback))
         }else{
+            url = "https://acrobat.adobe.com/id/urn:aaid:sc:US:75854730-3764-4289-afe5-5ef44bb43ab9"
             binding.ivTextLogo.setImageDrawable(resources.getDrawable(R.drawable.icon_privacy_policy))
         }
 
@@ -258,7 +261,7 @@ class WebViewFragment: BaseFragment() {
                     }
                 })
 
-                binding.webView.loadUrl(webViewViewModel.webViewURL.value.toString())
+                binding.webView.loadUrl(url)
             }
         }
 
