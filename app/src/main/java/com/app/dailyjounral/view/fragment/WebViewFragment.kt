@@ -273,9 +273,9 @@ class WebViewFragment: BaseFragment() {
     }
 
     val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-             Log.e("OnBack","OnBack")
+        override fun handleOnBackPressed() {
+            Log.e("OnBack","OnBack")
 
-            }
         }
+    }
 }

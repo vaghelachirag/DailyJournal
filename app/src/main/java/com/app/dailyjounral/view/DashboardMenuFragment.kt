@@ -59,24 +59,24 @@ class DashboardMenuFragment: BaseFragment()  {
     }
 
     private fun setBottomTab() {
-       /* binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
-        binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
+        /* binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
+         binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
 
-        binding.llTab1.visibility  = View.VISIBLE
-        binding.llTab2.visibility  = View.GONE*/
+         binding.llTab1.visibility  = View.VISIBLE
+         binding.llTab2.visibility  = View.GONE*/
     }
 
     private fun setAction() {
-         binding.cardTipOfTheDay.setOnClickListener {
+        binding.cardTipOfTheDay.setOnClickListener {
             /* AppConstants.detailType = 1
              val iDashboard = Intent(activity, DetailActivity::class.java)
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
              iDashboard.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
              startActivity(iDashboard)*/
-             AppConstants.detailType = 1
-             (activity as DashboardActivity).navController.navigate(R.id.action_dashboardMenuFragment_to_detailViewFragment)
-             (context as DashboardActivity).setSelectedMenuPosition(1)
-         }
+            AppConstants.detailType = 1
+            (activity as DashboardActivity).navController.navigate(R.id.action_dashboardMenuFragment_to_detailViewFragment)
+            (context as DashboardActivity).setSelectedMenuPosition(1)
+        }
 
         binding.cardDailyQuote.setOnClickListener {
             AppConstants.detailType = 2
@@ -86,33 +86,11 @@ class DashboardMenuFragment: BaseFragment()  {
 
         binding.cardDailyGeneral.setOnClickListener {
             AppConstants.detailType = 3
-         //   (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
+            //   (activity as DashboardActivity).navController.navigate(R.id.detailViewFragment)
             (activity as DashboardActivity).navController.navigate(R.id.action_dashboardMenuFragment_to_detailViewFragment)
             (context as DashboardActivity).setSelectedMenuPosition(3)
         }
-/*
-        binding.llHome.setOnClickListener {
-            binding.llTab1.visibility = View.VISIBLE
-            binding.llTab2.visibility = View.GONE
 
-
-            binding.txtHome.setTextColor(resources.getColor(R.color.tab_selected_bg))
-            binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
-
-            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-        }
-
-        binding.llAnalystic.setOnClickListener {
-            binding.llTab1.visibility = View.GONE
-            binding.llTab2.visibility = View.VISIBLE
-
-            binding.txtHome.setTextColor(resources.getColor(R.color.tab_un_selected_bg))
-            binding.txtAnalytics.setTextColor(resources.getColor(R.color.tab_selected_bg))
-
-            binding.ivHome.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_un_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-            binding.ivAnalytics.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.tab_selected_bg), android.graphics.PorterDuff.Mode.MULTIPLY)
-        }*/
     }
 
     override fun onResume() {

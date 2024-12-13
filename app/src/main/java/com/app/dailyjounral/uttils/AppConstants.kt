@@ -24,7 +24,7 @@ object AppConstants {
     var fromRegister: String = "Register"
     var fromOTP: String = "OTP"
 
-  /*  All URL*/
+    /*  All URL*/
     var StagingURL = "http://202.131.110.234:2035/api/"
     var LiveURL = "https://api.beingatotapps.com/api/"
     var TestLiveURL = "https://testsurveyorappapi.pickfords.com/api/"
@@ -41,4 +41,7 @@ object AppConstants {
 
     var menuLogout: String = "Logout"
     var menuLogin: String = "Login"
+
+    var PrivacyPolicyURL = "https://acrobat.adobe.com/id/urn:aaid:sc:US:75854730-3764-4289-afe5-5ef44bb43ab9"
+    var HelpAndFeedbackURL = "https://docs.google.com/forms/d/e/1FAIpQLSfJ8VdZiDVnB3j8TT2hDLUP8bf0YOTnBzR4dxE_yR32QMUNJQ/viewform"
 }

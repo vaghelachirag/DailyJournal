@@ -1,7 +1,9 @@
 package com.app.dailyjounral.view.base.menu
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.IntentFilter
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -100,7 +102,7 @@ class DashboardActivity : BaseActivity(){
         val llHeader = menuHeader.findViewById<View>(R.id.ll_Header) as ConstraintLayout
 
         llHeader.setOnClickListener {
-           // navController.navigate(R.id.MyProfileFragment)
+            // navController.navigate(R.id.MyProfileFragment)
             navController.navigate(R.id.action_dashboardMenuFragment_to_MyProfileFragment)
             binding.drawer.closeDrawer(GravityCompat.START)
         }
@@ -198,7 +200,7 @@ class DashboardActivity : BaseActivity(){
                     navController.navigate(R.id.detailViewFragment)
                 }
                 if (menuList[position].title == "Profile"){
-                   // AppConstants.detailType = 3
+                    // AppConstants.detailType = 3
                     val fm: FragmentManager = supportFragmentManager
                     for (i in 0 until fm.backStackEntryCount) {
                         fm.popBackStack()
@@ -218,15 +220,21 @@ class DashboardActivity : BaseActivity(){
                 }
 
                 if (menuList[position].title == "Help and Feedback"){
-                    val bundle = Bundle()
-                    bundle.putString("webURL","Help and Feedback")
-                    navController.navigate(R.id.webViewFragment,bundle)
+                    /*   val bundle = Bundle()
+                       bundle.putString("webURL","Help and Feedback")
+                       navController.navigate(R.id.webViewFragment,bundle)
+   */
+                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(AppConstants.HelpAndFeedbackURL))
+                    startActivity(browserIntent)
                 }
 
                 if (menuList[position].title == "Privacy Policy"){
-                    val bundle = Bundle()
-                    bundle.putString("webURL","Privacy Policy")
-                    navController.navigate(R.id.webViewFragment,bundle)
+                    /* val bundle = Bundle()
+                     bundle.putString("webURL","Privacy Policy")
+                     navController.navigate(R.id.webViewFragment,bundle)
+ */
+                    val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(AppConstants.PrivacyPolicyURL))
+                    startActivity(browserIntent)
                 }
 
                 if (menuList[position].title == AppConstants.menuLogin){
@@ -418,13 +426,13 @@ class DashboardActivity : BaseActivity(){
     override fun onBackPressed() {
         super.onBackPressed()
         if (doubleBackToExitPressedOnce) {
-           //
+            //
             exitProcess(0);
         }
 
         this.doubleBackToExitPressedOnce = true
-       // Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
-       Utils().showSnackBar(this,"Please click BACK again to exit",binding.constraintLayout)
+        // Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+        Utils().showSnackBar(this,"Please click BACK again to exit",binding.constraintLayout)
         Handler(Looper.getMainLooper()).postDelayed(Runnable {
             doubleBackToExitPressedOnce = false
         }, 2000)
