@@ -12,33 +12,123 @@
 
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_text_logo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35ssp"
+            android:layout_marginTop="@dimen/_20ssp"
+            android:visibility="visible"
+            android:src="@drawable/icon_analystic">
+
+        </ImageView>
+
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:weightSum="2"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/iv_text_logo"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35ssp"
-                android:layout_marginTop="@dimen/_20ssp"
-                android:visibility="visible"
-                android:src="@drawable/icon_analystic">
-
-            </ImageView>
-
-            <com.app.dailyjounral.widget.PoppinsBoldText
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/card_GeneralEntries"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/coming_soon"
-                android:textSize="@dimen/_25ssp"
                 android:layout_gravity="center"
-                android:layout_marginTop="200sp"
-                android:textColor="@color/tip_of_day_gradient_top"
-                android:gravity="center">
+                android:layout_weight="1"
+                android:gravity="center"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                card_view:cardUseCompatPadding="true">
 
-            </com.app.dailyjounral.widget.PoppinsBoldText>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="vertical"
+                    android:background="@drawable/tip_of_the_day_gradient"
+                    android:padding="@dimen/_30sdp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/white_round_shape"
+                        android:padding="@dimen/_15ssp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_calendar"
+                        app:tint="@color/tab_un_selected_bg">
+
+                    </ImageView>
+
+                    <com.app.dailyjounral.widget.PoppinsBoldText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:gravity="center"
+                        android:text="@string/general_entries"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/card_MyTrends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                card_view:cardUseCompatPadding="true">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="vertical"
+                    android:layout_margin="@dimen/_30sdp"
+                    android:background="@drawable/tip_of_the_day_gradient"
+                    android:padding="@dimen/_30sdp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/white_round_shape"
+                        android:padding="@dimen/_15ssp"
+                        android:scaleType="fitCenter"
+                        app:tint="@color/tab_un_selected_bg"
+                        android:src="@drawable/piechart">
+
+                    </ImageView>
+
+                    <com.app.dailyjounral.widget.PoppinsBoldText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/my_trends"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        android:layout_marginTop="10sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
+
+    </LinearLayout>
 
 </layout>

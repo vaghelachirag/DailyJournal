@@ -179,4 +179,15 @@
         tools:layout="@layout/fragment_load_web_url">
 
     </fragment>
+
+
+    <fragment
+        android:id="@+id/GeneralEntryFragment"
+        android:name="com.app.dailyjounral.view.fragment.GeneralEntryFragment"
+        android:label="@string/general_entries_label"
+        app:popUpTo="@+id/dashboardMenuFragment"
+        app:popUpToInclusive="false"
+        tools:layout="@layout/fragment_general_entry">
+
+    </fragment>
 </navigation>
