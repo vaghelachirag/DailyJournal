@@ -36,7 +36,7 @@
                         android:layout_weight="0.3"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/_20sdp">
+                        android:layout_marginTop="@dimen/_10sdp">
                         <ImageView
                             android:id="@+id/iv_text_logo"
                             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="2.3"
+                        android:layout_weight="2.4"
                         android:layout_gravity="center"
                         android:gravity="center">
                         <androidx.cardview.widget.CardView
@@ -74,7 +74,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="8dp"
-                                android:layout_marginTop="@dimen/_5ssp"
                                 android:layout_marginBottom="10sp"
                                 android:visibility="visible"
                                 android:orientation="vertical">
@@ -193,7 +192,7 @@
                                             android:id="@+id/txtLabel"
                                             android:layout_width="match_parent"
                                             android:layout_height="wrap_content"
-                                            android:layout_marginStart="@dimen/_10ssp"
+                                            android:layout_marginStart="@dimen/_5ssp"
                                             android:textColor="@color/black"
                                             android:textSize="@dimen/_12ssp">
 
@@ -202,7 +201,7 @@
                                         <EditText
                                             android:id="@+id/edtAnswer"
                                             android:layout_width="match_parent"
-                                            android:layout_height="@dimen/_80sdp"
+                                            android:layout_height="@dimen/_55sdp"
                                             android:layout_marginStart="@dimen/_10ssp"
                                             android:layout_marginEnd="@dimen/_10ssp"
                                             android:hint="@string/enter_your_ans"
@@ -420,9 +419,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:src="@drawable/icon_bottom_leaf"
-                        android:layout_weight="0.5"
-                        android:gravity="center"
-                        android:layout_gravity="center">
+                        android:layout_weight="0.3"
+                        android:gravity="bottom"
+                        android:layout_gravity="bottom|center">
 
                     </ImageView>
                 </LinearLayout>
