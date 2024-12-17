@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="itemData"
+            type="com.app.dailyjounral.model.getGeneralEntityResponse.GetGeneralEntityData" />
+
+
+        <variable
+            name="viewmodel"
+            type="com.app.dailyjounral.viewmodel.analystic.GeneralEntryViewModel" />
+    </data>
+
+
+    <TableLayout
+        android:id="@+id/table_heading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/table_border"
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.app.dailyjounral.widget.SmallText
+                android:id="@+id/txtAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:visibility="visible"
+                android:paddingTop="@dimen/_3ssp"
+                android:textColor="@color/black"
+                android:drawablePadding="3sp"
+                android:textSize="14sp"
+                tools:ignore="MissingConstraints">
+            </com.app.dailyjounral.widget.SmallText>
+        </TableRow>
+    </TableLayout>
+
+</layout>
