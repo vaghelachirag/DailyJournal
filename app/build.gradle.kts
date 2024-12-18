@@ -1,4 +1,4 @@
-@file:Suppress("UNUSED_EXPRESSION")
+@file:Suppress("UNUSED_EXPRESSION", "DEPRECATION")
 
 plugins {
     alias(libs.plugins.android.application)
@@ -48,6 +48,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
