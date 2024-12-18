@@ -39,6 +39,12 @@ class GeneralEntryFragment: BaseFragment() {
          binding!!.txtCurrentDate.setOnClickListener {
              DatePickerDialog(requireActivity(), dateListener, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH], myCalendar[Calendar.DAY_OF_MONTH]).show()
          }
+        binding!!.inspnDate.setOnClickListener {
+            DatePickerDialog(requireActivity(), dateListener, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH], myCalendar[Calendar.DAY_OF_MONTH]).show()
+        }
+        binding!!.edtDate.setOnClickListener {
+            DatePickerDialog(requireActivity(), dateListener, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH], myCalendar[Calendar.DAY_OF_MONTH]).show()
+        }
     }
 
     private fun setCurrentDate() {
@@ -49,6 +55,7 @@ class GeneralEntryFragment: BaseFragment() {
         println(dateToStr)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showCalendar() {
         dateListener = OnDateSetListener { _, year, month, day ->
                 myCalendar.set(Calendar.YEAR, year)
@@ -56,6 +63,7 @@ class GeneralEntryFragment: BaseFragment() {
                 myCalendar.set(Calendar.DAY_OF_MONTH, day)
               //  updateLabel()
                binding!!.txtCurrentDate.text = "$day-$month-$year"
+            binding!!.edtDate.setText("$day-$month-$year")
             }
     }
 }

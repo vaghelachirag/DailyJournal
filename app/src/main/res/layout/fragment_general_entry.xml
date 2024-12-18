@@ -26,25 +26,81 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="10sp"
                 tools:ignore="MissingConstraints">
 
                    <com.app.dailyjounral.widget.SmallText
                     android:id="@+id/dateLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingStart="20dp"
+                   android:layout_marginLeft="@dimen/_20ssp"
                     android:text="Date: "
                     android:textColor="@color/black"
                     tools:ignore="MissingConstraints,RtlSymmetry">
 
                 </com.app.dailyjounral.widget.SmallText>
 
+                <com.app.dailyjounral.widget.TypefaceEditText
+                    style="@style/TextInputExposedDropdownMenu"
+                    android:id="@+id/edtDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select date here"
+                    android:textColorHint="@color/gray_616161"
+                    android:textSize="@dimen/_12ssp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:drawableTint="@color/top_header_color"
+                    android:background="@drawable/round_shape_edittext"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/black"
+                    android:drawableStart="@drawable/icon_date"
+                    android:padding="@dimen/_8ssp"
+                    android:drawablePadding="@dimen/_5ssp"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="@dimen/_5ssp"
+                    android:layout_marginStart="@dimen/_5ssp"
+                    app:layout_constraintTop_toBottomOf="@+id/dateLabel"
+                    tools:ignore="RtlSymmetry">
+
+                </com.app.dailyjounral.widget.TypefaceEditText>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputExposedDropdownMenu"
+                    android:id="@+id/inspnDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:paddingStart="20dp"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@+id/dateLabel"
+                    android:hint="Select Date Here"
+                    tools:ignore="RtlSymmetry">
+
+                    <com.app.dailyjounral.widget.InstantAutoComplete
+                        android:id="@+id/spnDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/edit_text_size"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/gray_616161"
+                        android:textSize="@dimen/_12ssp"
+                        app:custom_font="@string/app_font_regular" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <com.app.dailyjounral.widget.SmallText
                     android:id="@+id/txtCurrentDate"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:paddingStart="50dp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toEndOf="@+id/dateLabel"
                     android:text="@string/dashboard"
                     android:textColor="@color/black"
@@ -83,11 +139,41 @@
                             tools:ignore="MissingConstraints"
                             android:padding="20sp">
 
+                            <com.app.dailyjounral.widget.HeaderText
+                                android:id="@+id/txtGratitude"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.4"
+                                android:gravity="center_vertical"
+                                android:visibility="visible"
+                                android:textColor="@color/black"
+                                android:drawablePadding="3sp"
+                                android:textSize="@dimen/_14ssp"
+                                android:drawableLeft="@drawable/icon_menu_gradituty_unselected"
+                                android:text="Gratitude"
+                                tools:ignore="MissingConstraints">
+                            </com.app.dailyjounral.widget.HeaderText>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvGratitude"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clipToPadding="false"
+                                android:fadeScrollbars="false"
+                                android:paddingTop="6dp"
+                                android:layout_marginStart="@dimen/_15ssp"
+                                android:visibility="visible"
+                                android:paddingBottom="6dp"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constraintTop_toBottomOf="@+id/txtGratitude"
+                                tools:listitem="@layout/item_general_entry" />
+
                             <LinearLayout
                                 android:id="@+id/ll_GoalAnswer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:weightSum="2"
+                                app:layout_constraintTop_toBottomOf="@+id/rvGratitude"
                                 android:orientation="vertical"
                                 app:layout_constraintStart_toStartOf="parent"
                                 tools:ignore="ExtraText">
@@ -100,7 +186,7 @@
                                     android:visibility="visible"
                                     android:textColor="@color/black"
                                     android:drawablePadding="3sp"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/_14ssp"
                                     android:drawableLeft="@drawable/icon_menu_goal_unselected"
                                     android:text="Goal Answer"
                                     tools:ignore="MissingConstraints">
@@ -116,7 +202,7 @@
                                     android:textColor="@color/gray_616161"
                                     android:drawablePadding="3sp"
                                     android:layout_marginTop="@dimen/_5ssp"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/_14ssp"
                                     android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electroni"
                                     tools:ignore="MissingConstraints">
                                 </com.app.dailyjounral.widget.RobotoRegularText>
@@ -126,21 +212,21 @@
                                 android:id="@+id/ll_SleepHours"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:weightSum="2"
+                                android:gravity="start|center"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@+id/ll_GoalAnswer"
                                 android:layout_marginTop="@dimen/_10ssp"
                                 tools:ignore="ExtraText">
 
                                 <com.app.dailyjounral.widget.HeaderText
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
                                     android:gravity="center_vertical"
                                     android:visibility="visible"
                                     android:textColor="@color/black"
                                     android:drawablePadding="3sp"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/_14ssp"
+                                    android:layout_gravity="center"
                                     android:drawableLeft="@drawable/icon_menu_sleep_unselected"
                                     android:drawableTint="@color/gray_616161"
                                     android:text="Sleep Hours : "
@@ -148,17 +234,16 @@
                                 </com.app.dailyjounral.widget.HeaderText>
                                 <com.app.dailyjounral.widget.RobotoRegularText
                                     android:id="@+id/txtSleepHours"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="start"
+                                    android:gravity="center"
                                     android:visibility="visible"
-                                    android:layout_gravity="end"
-                                    android:layout_weight="1.5"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/gray_616161"
                                     android:drawablePadding="3sp"
-                                    android:layout_marginTop="@dimen/_5ssp"
-                                    android:textSize="12sp"
+                                    android:layout_marginLeft="@dimen/_5ssp"
                                     android:text="8 Hr"
+                                    android:textSize="@dimen/_14ssp"
                                     tools:ignore="MissingConstraints">
                                 </com.app.dailyjounral.widget.RobotoRegularText>
                             </LinearLayout>
@@ -174,32 +259,29 @@
                                 tools:ignore="ExtraText">
 
                                 <com.app.dailyjounral.widget.HeaderText
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
                                     android:gravity="center_vertical"
                                     android:visibility="visible"
                                     android:textColor="@color/black"
                                     android:drawablePadding="3sp"
-                                    android:textSize="14sp"
                                     android:text="Mood : "
+                                    android:textSize="@dimen/_14ssp"
                                     android:drawableLeft="@drawable/icon_menu_mood_unselected"
                                     android:drawableTint="@color/gray_616161"
                                     tools:ignore="MissingConstraints">
                                 </com.app.dailyjounral.widget.HeaderText>
                                 <com.app.dailyjounral.widget.RobotoRegularText
                                     android:id="@+id/txtMood"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="start"
+                                    android:gravity="center"
                                     android:visibility="visible"
-                                    android:layout_gravity="end"
-                                    android:layout_weight="1.5"
+                                    android:layout_gravity="center"
                                     android:textColor="@color/gray_616161"
-                                    android:drawablePadding="3sp"
-                                    android:layout_marginTop="@dimen/_5ssp"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/_14ssp"
                                     android:text="Angry"
+                                    android:layout_marginLeft="@dimen/_5ssp"
                                     tools:ignore="MissingConstraints">
                                 </com.app.dailyjounral.widget.RobotoRegularText>
                             </LinearLayout>
@@ -215,14 +297,13 @@
                                 tools:ignore="ExtraText">
 
                                 <com.app.dailyjounral.widget.HeaderText
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="0.8"
                                     android:gravity="center_vertical"
                                     android:visibility="visible"
                                     android:textColor="@color/black"
                                     android:drawablePadding="3sp"
-                                    android:textSize="14sp"
+                                    android:textSize="@dimen/_14ssp"
                                     android:drawableLeft="@drawable/icon_menu_workout_unselected"
                                     android:drawableTint="@color/gray_616161"
                                     android:text="Workout : "
@@ -230,53 +311,20 @@
                                 </com.app.dailyjounral.widget.HeaderText>
                                 <com.app.dailyjounral.widget.RobotoRegularText
                                     android:id="@+id/txtWorkout"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:gravity="start"
+                                    android:gravity="center"
                                     android:visibility="visible"
-                                    android:layout_gravity="end"
-                                    android:layout_weight="1.5"
+                                    android:layout_marginLeft="@dimen/_5ssp"
                                     android:textColor="@color/gray_616161"
                                     android:drawablePadding="3sp"
-                                    android:layout_marginTop="@dimen/_5ssp"
-                                    android:textSize="12sp"
+                                    android:textSize="@dimen/_14ssp"
                                     android:text="Cardio"
                                     tools:ignore="MissingConstraints">
                                 </com.app.dailyjounral.widget.RobotoRegularText>
                             </LinearLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
-
-                    <com.app.dailyjounral.widget.HeaderText
-                        android:id="@+id/txtGratitude"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.4"
-                        android:gravity="center_vertical"
-                        android:visibility="visible"
-                        android:textColor="@color/black"
-                        android:drawablePadding="3sp"
-                        android:textSize="14sp"
-                        android:paddingLeft="20sp"
-                        android:drawableLeft="@drawable/icon_menu_gradituty_unselected"
-                        android:text="Gratitude"
-                        tools:ignore="MissingConstraints">
-                    </com.app.dailyjounral.widget.HeaderText>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvGratitude"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:fadeScrollbars="false"
-                        android:paddingTop="6dp"
-                        android:layout_marginStart="@dimen/_15ssp"
-                        android:visibility="visible"
-                        android:paddingBottom="6dp"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutMenu"
-                        tools:listitem="@layout/item_general_entry" />
-
 
                 </LinearLayout>
 

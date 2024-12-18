@@ -20,30 +20,17 @@
     </data>
 
 
-    <TableLayout
-        android:id="@+id/table_heading_layout"
+    <com.app.dailyjounral.widget.SmallText
+        android:id="@+id/txtAnswer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/table_border"
-        >
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.app.dailyjounral.widget.SmallText
-                android:id="@+id/txtAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:visibility="visible"
-                android:paddingTop="@dimen/_3ssp"
-                android:textColor="@color/black"
-                android:drawablePadding="3sp"
-                android:textSize="14sp"
-                tools:ignore="MissingConstraints">
-            </com.app.dailyjounral.widget.SmallText>
-        </TableRow>
-    </TableLayout>
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:visibility="visible"
+        android:paddingTop="@dimen/_3ssp"
+        android:textColor="@color/black"
+        android:drawablePadding="3sp"
+        android:textSize="@dimen/_14ssp"
+        tools:ignore="MissingConstraints">
+    </com.app.dailyjounral.widget.SmallText>
 
 </layout>

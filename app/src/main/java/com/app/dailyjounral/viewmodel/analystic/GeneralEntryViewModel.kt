@@ -20,7 +20,7 @@ class GeneralEntryViewModel(val context: Context, val binding: FragmentGeneralEn
     private fun setAdapter() {
         val layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.rvGratitude.layoutManager = layoutManager
-        binding.rvGratitude.adapter = GeneralGratitudeAnswerAdapter(gratitudeList)
+        binding.rvGratitude.adapter = GeneralGratitudeAnswerAdapter(context,gratitudeList)
     }
 
     private fun addGratitudeAnswerList() {

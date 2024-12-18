@@ -23,6 +23,15 @@
         <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
 
+    <style name="TextInputExposedDropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="hintTextAppearance">@style/HintText</item>
+        <!--        <item name="android:paddingBottom">@dimen/_3sdp</item>-->
+        <item name="android:textSize">@dimen/_14sdp</item>
+        <item name="hintTextColor">@color/main_logo_txt_bg</item>
+        <item name="boxStrokeColor">@color/main_logo_txt_bg</item>
+    </style>
+
+
 
     <style name="CustomDialougButtonStyle" parent="Widget.AppCompat.Button.Colored">
         <item name="android:layout_width">0dp</item>
