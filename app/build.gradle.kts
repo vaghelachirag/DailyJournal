@@ -14,6 +14,7 @@ android {
         buildConfig = true
     }
 
+
     defaultConfig {
         applicationId = "com.app.dailyjounral"
         minSdk = 24
@@ -24,8 +25,6 @@ android {
         multiDexEnabled ; true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-
     }
 
     buildTypes {
@@ -49,9 +48,13 @@ android {
         viewBinding = true
     }
 
+    lintOptions {
+        isCheckReleaseBuilds = false
+    }
 }
 
 dependencies {
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -60,6 +63,7 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.databinding.runtime)
+
 
 
     //Image Process
@@ -91,6 +95,6 @@ dependencies {
     implementation ("androidx.multidex:multidex:2.0.1")
 
     // download sdk
-    implementation ("com.facebook.android:facebook-android-sdk:4.17.0")
+ //   implementation ("com.facebook.android:facebook-android-sdk:4.17.0")
 
 }

@@ -20,11 +20,6 @@ import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.view.base.menu.DashboardActivity
 import com.app.dailyjounral.viewmodel.LoginViewModel
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
-import com.facebook.login.LoginManager
-import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
@@ -47,7 +42,7 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
     private val RC_SIGN_IN = 9001
     private var mGoogleApiClient: GoogleApiClient? = null
 
-    private var callbackManager = CallbackManager.Factory.create()
+ //   private var callbackManager = CallbackManager.Factory.create()
 
     private var gso : GoogleSignInOptions? = null
     override fun onConnectionFailed(connectionResult: ConnectionResult) {
@@ -99,7 +94,7 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
             })
 
         binding.cardFacebook.setOnClickListener {
-           callbackManager = CallbackManager.Factory.create()
+         /*  callbackManager = CallbackManager.Factory.create()
             LoginManager.getInstance().logInWithReadPermissions(this, listOf("public_profile", "email"))
             LoginManager.getInstance().registerCallback(callbackManager,
                 object : FacebookCallback<LoginResult> {
@@ -117,7 +112,7 @@ class LoginFragment : BaseFragment() , GoogleApiClient.OnConnectionFailedListene
                         Log.d("MainActivity", "Facebook onError.")
 
                     }
-                })
+                })*/
         }
         setLoginAndPassword()
         binding.chkRememberPassword.isChecked = session.getDataByKey(Session.KEY_USER_REMEMBER, false)

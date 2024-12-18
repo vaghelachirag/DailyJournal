@@ -16,7 +16,6 @@ import com.app.dailyjounral.databinding.FragmentRegisterBinding
 import com.app.dailyjounral.uttils.Session
 import com.app.dailyjounral.view.base.BaseFragment
 import com.app.dailyjounral.viewmodel.SignupViewModel
-import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInResult
@@ -35,7 +34,7 @@ class RegisterFragment: BaseFragment(), GoogleApiClient.OnConnectionFailedListen
     private val RC_SIGN_IN = 9001
     private var mGoogleApiClient: GoogleApiClient? = null
 
-    private var callbackManager = CallbackManager.Factory.create()
+  //  private var callbackManager = CallbackManager.Factory.create()
     private var gso : GoogleSignInOptions? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
