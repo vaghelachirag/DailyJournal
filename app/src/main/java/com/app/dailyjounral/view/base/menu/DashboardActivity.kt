@@ -54,7 +54,7 @@ class DashboardActivity : BaseActivity(){
     private var options: RequestOptions? = null
     private var menuAdapter: MenuItemAdapter? = null
 
-    var doubleBackToExitPressedOnce: Boolean = false
+    private var doubleBackToExitPressedOnce: Boolean = false
 
     @SuppressLint("DiscouragedPrivateApi", "SimpleDateFormat", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {

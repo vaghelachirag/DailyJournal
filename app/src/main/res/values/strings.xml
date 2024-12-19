@@ -148,7 +148,7 @@
     <string name="adult_msg_validation">Must be 18 years and older to access this application.</string>
 
     <!-- Analytics -->
-    <string name="general_entries">General \n Entries</string>
+    <string name="general_entries">Journal \n Entries</string>
     <string name="my_trends">My Trends</string>
     <string name="general_entries_label">General Entries</string>
 
